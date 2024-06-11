@@ -4,8 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join Gruppe 3</title>
+
+    <!-- ///Sidebar und Header script /// -->
+    <script src="./assets/templates/tamplatesScript.js"></script>
+
+
 </head>
-<body>
+<body onload="includeHTML()">
+    <!-- ///Header und Sidebar Div bei jeder HTML Datei hinzufügen, dazu auch im body: onload="includeHTML()" /// -->
+    <div w3-include-html="./assets/templates/headerSidebar.html"></div>
+
     <div class="affe">schön</div>
     <div>Heute ist ein schöner Tag</div>
     <div>Romans Div Test 2</div>
