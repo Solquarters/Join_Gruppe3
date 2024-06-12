@@ -5,14 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="03board.css">
+    <script src="./assets/templates/templatesScript.js"></script>
+    <link rel="stylesheet" href="./assets/templates/headerSidebar.css">
 </head>
-<body>
+<body onload="includeHTML()"></body>
+
+<!-- ///Header und Sidebar Div bei jeder HTML Datei hinzufügen, dazu auch im body: onload="includeHTML()" /// -->
+<div w3-include-html="./assets/templates/headerSidebar.html"></div>
     <main>
         <div class="mainDiv">
             <div class="headDiv">
                 <img src="./assets/img/Frame 40.svg" alt="">
                 <input id="findTask" placeholder="Find Task">
-                <button placeholder="Find Task">Add Task +</button>
+                <img id="addTask" src="./assets/img/Secondary-plus.svg" alt="">
                 <div class="underBarDiv">
                     <div id="toDoDiv">
                         <span>To Do</span>
@@ -29,8 +34,14 @@
                     <span id="done">Done</span>
                 </div>
             </div>
+    
             <div class="contentDiv">
-
+                <div class="cardsDiv">
+                    <img src="./assets/img/No tasks feedback.svg" alt="">
+                    <img src="./assets/img/Cards.svg" alt="">
+                    <img src="./assets/img/Cards (2).svg" alt="">
+                    <img src="./assets/img/Cards (3).svg" alt="">
+                </div>
             </div>
         </div>
     </main>
