@@ -42,6 +42,12 @@ h1 {
     justify-content: space-evenly;
     align-items: center;
     margin-right: 10px;
+    cursor: pointer;
+}
+
+.container-left:hover {
+    background-color: #2A3647;
+    color: white;
 }
 
 .container-right {
@@ -52,6 +58,12 @@ h1 {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    cursor: pointer;
+}
+
+.container-right:hover {
+    background-color: #2A3647;
+    color: white;
 }
 
 .container-todo {
@@ -84,6 +96,12 @@ h1 {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    cursor: pointer;
+}
+
+.container-middle:hover {
+    background-color: #2A3647;
+    color: white;
 }
 
 .dash-line {
@@ -123,6 +141,12 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+}
+
+.container-below-left:hover {
+    background-color: #2A3647;
+    color: white;
 }
 
 .container-below-middle {
@@ -134,6 +158,12 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+}
+
+.container-below-middle:hover {
+    background-color: #2A3647;
+    color: white;
 }
 
 .container-below-right {
@@ -145,4 +175,10 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+}
+
+.container-below-right:hover {
+    background-color: #2A3647;
+    color: white;
 }
