@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/templates/headerSidebar.css">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./02summary.css">
+    <title>Summary</title>
+
+</head>
+
+<body onload="includeHTML()">
+    <!-- ///Header und Sidebar Div bei jeder HTML Datei hinzufügen, dazu auch im body: onload="includeHTML()" /// -->
+    <div w3-include-html="./assets/templates/headerSidebar.html"></div> 
+
+    <main class="body-main">
+        <section class="header-site">
+            <div>
+                <h1 class="headline-left">Join 360</h1>
+            </div>
+            <div>
+                <span class="line"></span>
+            </div>
+            <div>
+                <p class="headline-right">Key Metrics at a Glance</p>
+            </div>
+        </section>
+        <div class="content-container">
+            <section class="main-size">
+                <div class="container-line-1-2">
+                    <div class="container">
+                        <div class="icon-todo">
+                            <img src="./assets/img/edit.svg" alt="">
+                        </div>
+                        <div class="todo">
+                            <div class="number-todo">1</div>
+                            <div class="text-todo">To-do</div>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="icon-todo">
+                            <img src="./assets/img/chop.svg" alt="">
+                        </div>
+                        <div class="todo">
+                            <div class="number-todo">1</div>
+                            <div class="text-todo">Done</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-line-1-2">
+                    <div class="container-2">
+                        <div class="icon-todo-2">
+                            <img src="./assets/img/Prio alta.svg" alt="">
+                        </div>
+                        <div class="todo-2">
+                            <div class="number-todo">5</div>
+                            <div class="text-todo">Urgent</div>
+                        </div>
+                        <div>
+                            <div class="container-2-line"></div>
+                        </div>
+                        <div>
+                            <div class="date-year">Juni 12, 2024</div>
+                            <div class="date-year-subheadline">Upcoming Deadline</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-line-3">
+                    <div class="container-3">
+                        <div class="todo-2">
+                            <div class="number-todo">5</div>
+                            <div class="text-todo">Tasks In<br> Board</div>
+                        </div>
+                    </div>
+                    <div class="container-3">
+                        <div class="todo-2">
+                            <div class="number-todo">2</div>
+                            <div class="text-todo">Tasks In<br> Progress</div>
+                        </div>
+                    </div>
+                    <div class="container-3">
+                        <div class="todo-2">
+                            <div class="number-todo">2</div>
+                            <div class="text-todo">Awaiting<br> Feedback</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="container-welcome">
+                <h2 class="welcome-headline">Good morning,</h2>
+                <span class="welcom-under-headline">Guest</span>
+            </div>
+        </div>
+    </main>
+    
+
+
+
+
+
+    <script src="./assets/templates/templatesScript.js"></script>
+</body>
+
+</html>
