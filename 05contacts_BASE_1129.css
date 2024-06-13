@@ -131,8 +131,7 @@ h2 {
     padding: 12px 10px;
 }
 
-
-.selectContact span {
+.selectContact span{
     font-size: 20px;
     font-weight: 400;
 }
@@ -141,13 +140,7 @@ h2 {
     font-weight: 400;
 } */
 
-.underContactMainTwo a {
-    font-size: 16px;
-    font-weight: 400;
-    text-decoration: none;
-}
-
-.underContactMain a {
+a {
     font-size: 16px;
     font-weight: 400;
     text-decoration: none;
