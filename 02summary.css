@@ -3,14 +3,11 @@ body {
     width: 100%;
     height: auto;
     background-color: #F6F7F8;
-<<<<<<< HEAD
     position: absolute;
     padding-top: 106px;
     z-index: 2;
     left: 232px;
     top: 96px;
-=======
->>>>>>> a39906a7b4d28d48f4c6b79bc15cf5f1f240c473
     font-family: 'Inter';
 }
 
