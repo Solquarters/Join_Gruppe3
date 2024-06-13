@@ -1,5 +1,6 @@
 body {
     margin: 0;
+    font-family: 'Inter';
     position: fixed;
     background-color: #f6f7f8;
 }
@@ -11,7 +12,7 @@ body {
 #findTask {
     border-radius: 6px;
     padding: 12px;
-    border-color: ;
+    /* border-color: ; */
 }
 .headDiv {
     margin-left: 64px;
