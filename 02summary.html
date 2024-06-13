@@ -17,85 +17,65 @@
     <!-- ///Header und Sidebar Div bei jeder HTML Datei hinzufügen, dazu auch im body: onload="includeHTML()" /// -->
     <div w3-include-html="./assets/templates/headerSidebar.html"></div> 
 
-    <main class="body-main">
-        <section class="header-site">
-            <div>
-                <h1 class="headline-left">Join 360</h1>
-            </div>
-            <div>
-                <span class="line"></span>
-            </div>
-            <div>
-                <p class="headline-right">Key Metrics at a Glance</p>
-            </div>
-        </section>
-        <div class="content-container">
-            <section class="main-size">
-                <div class="container-line-1-2">
-                    <div class="container">
-                        <div class="icon-todo">
-                            <img src="./assets/img/edit.svg" alt="">
-                        </div>
-                        <div class="todo">
-                            <div class="number-todo">1</div>
-                            <div class="text-todo">To-do</div>
-                        </div>
-                    </div>
-                    <div class="container">
-                        <div class="icon-todo">
-                            <img src="./assets/img/chop.svg" alt="">
-                        </div>
-                        <div class="todo">
-                            <div class="number-todo">1</div>
-                            <div class="text-todo">Done</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="container-line-1-2">
-                    <div class="container-2">
-                        <div class="icon-todo-2">
-                            <img src="./assets/img/Prio alta.svg" alt="">
-                        </div>
-                        <div class="todo-2">
-                            <div class="number-todo">5</div>
-                            <div class="text-todo">Urgent</div>
-                        </div>
-                        <div>
-                            <div class="container-2-line"></div>
-                        </div>
-                        <div>
-                            <div class="date-year">Juni 12, 2024</div>
-                            <div class="date-year-subheadline">Upcoming Deadline</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="container-line-3">
-                    <div class="container-3">
-                        <div class="todo-2">
-                            <div class="number-todo">5</div>
-                            <div class="text-todo">Tasks In<br> Board</div>
-                        </div>
-                    </div>
-                    <div class="container-3">
-                        <div class="todo-2">
-                            <div class="number-todo">2</div>
-                            <div class="text-todo">Tasks In<br> Progress</div>
-                        </div>
-                    </div>
-                    <div class="container-3">
-                        <div class="todo-2">
-                            <div class="number-todo">2</div>
-                            <div class="text-todo">Awaiting<br> Feedback</div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <div class="container-welcome">
-                <h2 class="welcome-headline">Good morning,</h2>
-                <span class="welcom-under-headline">Guest</span>
+    <section class="container-headline">
+        <h1>Join 360</h1>
+        <div class="heading-dash"></div>
+        <p class="under-headline">Key Metrics at a Glance</p>
+    </section>
+    <section class="container-main">
+        <div class="container-left">
+            <img src="./assets/img/button-Edit.svg" alt="">
+            <div class="container-todo">
+                <span class="number-size">1</span>
+                <span class="text-size">To-do</span>
             </div>
         </div>
-    </main>
+        <div class="container-right">
+            <img src="./assets/img/button-chop.svg" alt="">
+            <div class="container-todo">
+                <span class="number-size">1</span>
+                <span class="text-size">Done</span>
+            </div>
+        </div>
+    </section>
+    <section class="container-main-middle">
+        <div class="container-middle">
+            <img src="./assets/img/button-arrows-up.svg" alt="">
+            <div class="container-todo">
+                <span class="number-size">1</span>
+                <span class="text-size">Done</span>
+            </div>
+            <div class="dash-line"></div>
+            <div class="container-todo">
+                <span class="data-year-size">August 16, 2024</span>
+                <span class="text-size">Upcoming Deadline</span>
+            </div>
+        </div>
+        <div class="welcome-container">
+            <span class="welcome-headline">Good morning,</span>
+            <span class="welcome-under-headline">Guest</span>
+        </div>
+    </section>
+    <section class="container-main-middle">
+            <div class="container-below-left">
+                <div class="container-todo">
+                    <span class="number-size">5</span>
+                    <span class="text-size">Tasks In<br>Board</span>
+                </div>
+            </div>
+            <div class="container-below-middle">
+                <div class="container-todo">
+                    <span class="number-size">2</span>
+                    <span class="text-size">Tasks In<br>Progress</span>
+                </div>
+            </div>
+            <div class="container-below-right">
+                <div class="container-todo">
+                    <span class="number-size">2</span>
+                    <span class="text-size">Awaiting<br>Feedback</span>
+                </div>
+            </div>
+    </section>
     
 
 

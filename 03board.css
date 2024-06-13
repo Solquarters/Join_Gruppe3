@@ -1,6 +1,10 @@
 body {
     margin: 0;
+<<<<<<< HEAD
     font-family: 'Inter';
+=======
+    font-family: 'inter';
+>>>>>>> a39906a7b4d28d48f4c6b79bc15cf5f1f240c473
 }
 .mainDiv {
     margin-left: 232px;
