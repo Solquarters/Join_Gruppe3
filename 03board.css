@@ -1,30 +1,58 @@
 body {
     margin: 0;
     font-family: 'Inter';
+    position: fixed;
+    background-color: #f6f7f8;
 }
 .mainDiv {
     margin-left: 232px;
     margin-top: 96px;
     height: 100vh;
-    background-color: #f6f7f8;
-    
-    
+}
+#findTask {
+    border-radius: 6px;
+    padding: 12px;
+    /* border-color: ; */
 }
 .headDiv {
     margin-left: 64px;
     margin-top: 79px;
+    margin-right: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     
 }
+
 .cardsDiv img:hover {
     cursor: pointer;
 }
+.cardsDiv {
+    display: flex;
+}
 .underBarDiv {
     display: flex;
-    align-items: center;
+    justify-content: space-between;
+    align-items: flex-start;
 }
 .underBarDiv img:hover {
     cursor: pointer;
 }
 #addTask:hover {
     cursor: pointer;
+}
+.addLine {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+#toDo {
+    width: 253px;
+}
+#toDoContainer {
+    border-style: solid;
+}
+#containerheadline {
+    background-color: blue;
+    color: white;
 }
