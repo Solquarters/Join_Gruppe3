@@ -131,14 +131,10 @@ h2 {
     padding: 12px 10px;
 }
 
-.selectContact span{
+span {
     font-size: 20px;
     font-weight: 400;
 }
-/* span {
-    font-size: 20px;
-    font-weight: 400;
-} */
 
 a {
     font-size: 16px;
