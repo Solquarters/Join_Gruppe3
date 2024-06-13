@@ -3,7 +3,7 @@ body {
     width: 100%;
     height: auto;
     background-color: #F6F7F8;
-    position: absolute;
+    position: fixed;
     padding-top: 106px;
     z-index: 2;
     left: 232px;

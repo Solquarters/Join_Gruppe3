@@ -3,6 +3,7 @@ body {
     font-family: 'Inter';
     position: fixed;
     background-color: #f6f7f8;
+    
 }
 .mainDiv {
     margin-left: 232px;
@@ -56,3 +57,26 @@ body {
     background-color: blue;
     color: white;
 }
+#block-3  {
+    width: 220px; height: 16px;px;
+    text-align:center; font-size:1em; box-sizing: border-box;   border:solid 1px #fff; line-height:50px; 
+    color: #000; background:#808080; margin:10px auto;
+     border:solid 1px #fff; 
+      
+      font-size: 1em;
+      letter-spacing: 1px;
+      border-radius: 1px;
+      display: block;
+      text-align: center;
+      cursor: pointer;
+      box-shadow: inset 0 0 0 0 rgb(68, 0, 255);
+      -webkit-transition: all ease 3s;
+      -moz-transition: all ease 3s;
+      transition: all linear 2s;
+  }
+  #block-3:hover {
+      box-shadow: inset 220px 0 0 0 rgb(17, 0, 255);
+      color:white;  color:white; cursor:pointer; border:solid 1px green; 
+  }
+  
+  /* .wrapper { display:block; width:; height:5px; margin:0 auto;} */
