@@ -93,7 +93,7 @@ height: 120px;
 .navLinksClass img{ margin: 0px 16px 0px 0px;}
 .navLinksClass:hover{background-color: #38485f; 
     color:#29ABE2;   
-    scale: 1.01; 
+    
 }
 .sideBarIconAndSpanDivClass{
    width: 120px;
@@ -117,7 +117,7 @@ height: 120px;
 
 .legalNoticeSidebarDivClass span:hover{
     color: #29ABE2;
-    scale: 1.05; 
+    
 }
 
 .testClass1{
@@ -133,6 +133,11 @@ height: 120px;
     display:none;
 }
 
+
+.sideBarNavigationDivClass a{
+    text-decoration: none;
+    width: 100%;
+}
 
 /* //////////////Media queries////////////// */
 
@@ -161,15 +166,17 @@ height: 120px;
        bottom: 0;
        top:auto;
        left: 0;
-       flex-direction: row;
+       justify-content: center;
     }
 
     .sideBarNavigationDivClass{
-        flex-direction: row;
         padding: 0;
+        justify-content: space-around;
+        flex-direction: unset;
        
     }
-    
+
+   
     .sideBarIconAndSpanDivClass{
         flex-direction: column;
         justify-content: center;
@@ -177,7 +184,7 @@ height: 120px;
         
     }
     .navLinksClass img{
-        margin: 0px 0px 8px 0px;
+        margin: 0px 0px 2px 0px;
     }
     .legalNoticeSidebarDivClass{
         display:none;
