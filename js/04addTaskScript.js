@@ -75,3 +75,48 @@ function setPriority(ButtonId,SVGfillId1,SVGfillId2){
     document.getElementById(SVGfillId1).style.fill="white";
     document.getElementById(SVGfillId2).style.fill="white"; 
 }
+
+///////////////////////////
+// Dropdown Menu Contact script
+
+function toggleDropdown() {
+    let dropdownButton = document.querySelector('.dropbtn');
+    let dropdownContent = document.getElementById("dropdownContactAssignId");
+    dropdownButton.classList.toggle("active");
+    dropdownContent.classList.toggle("show");
+}
+
+function selectOption(element) {
+    let checkboxChecked = element.querySelector('.checkbox-checked');
+    let checkboxUnchecked = element.querySelector('.checkbox-unchecked');
+
+    if (element.classList.contains('selected')) {
+        element.classList.remove('selected');
+        checkboxChecked.style.display = 'none';
+        checkboxUnchecked.style.display = 'block';
+    } else {
+        element.classList.add('selected');
+        checkboxChecked.style.display = 'block';
+        checkboxUnchecked.style.display = 'none';
+    }
+}
+
+// Close the dropdown if the user clicks outside of it, except when clicking on the checkboxes
+window.onclick = function(event) {
+    if (!event.target.matches('.dropbtn') && !event.target.closest('.dropdownContactDivClass')) {
+        let dropdowns = document.getElementsByClassName("dropdownContactDivClass");
+        let dropdownButtons = document.getElementsByClassName("dropbtn");
+        for (let i = 0; i < dropdowns.length; i++) {
+            let openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
+            }
+        }
+        for (let i = 0; i < dropdownButtons.length; i++) {
+            let activeButton = dropdownButtons[i];
+            if (activeButton.classList.contains('active')) {
+                activeButton.classList.remove('active');
+            }
+        }
+    }
+}

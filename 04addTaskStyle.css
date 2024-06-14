@@ -1,254 +1,489 @@
 body {
-    background-color: #f6f7f8;
-    font-family: 'Inter';
-  }
+  background-color: #f6f7f8;
+  /* padding: 96px 0px 0px 232px; */
   
-  .addTaskMainSiteDivClass {
-    padding: 96px 0px 0px 232px;
-  }
+} 
+
+.addTaskMainSiteDivClass {
+  padding: 96px 0px 0px 232px;
+}
+
+.addTaskMainTemplateDivClass {
+  z-index: 1;
+  padding: 16px 48px 16px 48px;
+
+  display: flex;
+  flex-direction: column;
+
+  border: 2px solid rgb(255, 0, 0);
+  border-radius: 24px;
+}
+
+.textarea-container {
+  position: relative;
+}
+
+textarea {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 16px;
+  overflow: hidden;
+  width: 100%;
+  box-sizing: border-box;
+  resize: none; /* Disable native resize */
+  margin: 0;
+  padding: 8px 12px;
+  border: 1px solid #ccc; /* Add your preferred border style */
+  border-radius: 8px;
+}
+textarea:focus {
+  border-color: #3498db;
+  outline: none;
+}
+
+.resizeHandleClass {
+ position: relative;
+  width: 100%;
+  height: 0px;
+  display: flex;
+  justify-content: flex-end;
+}
+.resizeHandleClass svg{
+  position: relative;
+  cursor: pointer;
+  top: -26px;
+  right: 4px;
+}
+
+.resizeHandleClass svg:hover {
+  filter: invert(0.2);
+}
+
+.inputCalenderIconClass {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 20px;
+  height: 20px;
+  background: url("./assets/img/addTaskCalenderIcon.svg") no-repeat center
+    center;
+  background-size: contain;
+  cursor: se-resize;
+  cursor: pointer;
+}
+.inputCalenderIconClass:hover {
+  filter: invert(0.5);
+}
+
+#descriptionTextAreaId {
+  height: 64px;
+}
+
+.addTaskDetailsParentDivClass {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.leftSideChildDivClass {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+.rightSideChildDivClass {
+  width: 50%;
+}
+
+.verticalDivSeperatorClass {
+  width: 1px;
+  height: 400px;
+  background-color: rgba(201, 201, 201, 0.445);
+  margin: 0px 24px;
+}
+
+.clearCreateTaskButtonDivClass {
+  margin: 32px 0px 0px 0px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.clearCreateTaskButtonDivChildClass {
+  display: flex;
+  gap: 8px;
+}
+
+.userContactCirclesDivClass {
+  display: flex;
+  padding: 8px 0px 20px 0px;
+}
+
+.userProfileCircleDivClass {
+  width: 36px;
+  height: 36px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  margin: 8px 12px 0px 0px;
+  font-weight: 800;
+}
+
+.singleLineInputClass {
+  height: 40px;
+  width: 100%;
+  min-width: 336px;
+  padding: 0px 10px;
+  font-size: 16px;
+  box-sizing: border-box;
+  display: flex;
+  border-radius: 8px;
+  border: 1px solid #cccccc;
+}
+
+.singleLineInputClass:focus {
+  border-color: #3498db;
+  outline: none;
+}
+
+.prioButtonDivClass {
+  display: flex;
+  align-items: center;
   
-  .addTaskMainTemplateDivClass {
-    padding: 16px 48px 48px 64px;
-  
-    display: flex;
-    flex-direction: column;
-  
-    border: 2px solid rgb(255, 0, 0);
-    border-radius: 24px;
-  }
-  
-  .textarea-container {
+  gap: 8px;
+}
+.priorityButtonClass {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 104px;
+  height: 42px;
+  font-size: 16px;
+  font-weight: 600;
+  background-color: rgb(255, 255, 255);
+  border: none;
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+  cursor: pointer;
+}
+.priorityButtonClass:hover {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.178) 0px 2px 4px -2px;
+}
+
+/* ////Selection input ///////// */
+.custom-select {
+  position: relative;
+}
+
+select {
+  height: 40px;
+  font-size: 16px;
+  appearance: none;
+  /*  safari  */
+  -webkit-appearance: none;
+  width: 100%;
+  padding: 0px 10px;
+  background-color: #fff;
+  border: 1px solid #cccccc;
+  border-radius: 8px;
+  color: #5c5c5c;
+  cursor: pointer;
+}
+select:hover {
+  border: 1px solid #949494c0;
+}
+
+.custom-select::before,
+.custom-select::after {
+  --size: 3px;
+  content: "";
+  position: absolute;
+  right: 16px;
+  pointer-events: none;
+}
+
+.custom-select::before {
+  border-left: var(--size) solid transparent;
+  border-right: var(--size) solid transparent;
+  border-bottom: var(--size) solid black;
+  top: 14px;
+}
+.custom-select::after {
+  border-left: var(--size) solid transparent;
+  border-right: var(--size) solid transparent;
+  border-top: var(--size) solid black;
+  top: 24px;
+}
+
+.clearCreateButtonClass1 {
+  color: #091931;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 42px;
+  font-size: 16px;
+  font-weight: 600;
+  background-color: #ffffff;
+  border: 1px solid #091931;
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+  cursor: pointer;
+}
+.clearCreateButtonClass1:hover {
+  border: 1px solid #29abe2;
+  color: #29abe2;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+.clearCreateButtonClass1:hover svg path {
+  stroke: #29abe2; /* Change to your desired color */
+}
+
+.clearCreateButtonClass2 {
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 130px;
+  height: 42px;
+  font-size: 16px;
+  font-weight: 600;
+  background-color: #2a3647;
+  border: none;
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+  cursor: pointer;
+}
+.clearCreateButtonClass2:hover {
+  background-color: #29abe2;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+
+  /* Style for the dropdown button */
+  .dropdown {
     position: relative;
-  }
-  
-  textarea {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    display: inline-block;
+}
+
+/* Style for the clickable bar */
+.dropbtn {
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    padding: 10px;
     font-size: 16px;
-    overflow: hidden;
-    width: 100%;
-    box-sizing: border-box;
-    resize: none; /* Disable native resize */
-    margin: 0;
-    padding: 8px 12px;
-    border: 1px solid #ccc; /* Add your preferred border style */
+    border: 1px solid rgb(207, 207, 207);
     border-radius: 8px;
-  }
-  textarea:focus {
-    border-color: #3498db;
-    outline: none;
-  }
-  
-  .resizeHandleClass {
-    position: absolute;
-    bottom: 8px;
-    right: 4px;
-    width: 20px;
-    height: 20px;
-    background: url("./assets/img/addTaskTextareaHandleIcon.svg") no-repeat center
-      center;
-    background-size: contain;
     cursor: pointer;
-  }
-  .resizeHandleClass:hover {
-    filter: invert(0.2);
-  }
-  
-  .inputCalenderIconClass {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    width: 20px;
-    height: 20px;
-    background: url("./assets/img/addTaskCalenderIcon.svg") no-repeat center
-      center;
-    background-size: contain;
-    cursor: se-resize;
-    cursor: pointer;
-  }
-  .inputCalenderIconClass:hover {
-    filter: invert(0.5);
-  }
-  
-  #descriptionTextAreaId {
-    height: 64px;
-  }
-  
-  .addTaskDetailsParentDivClass {
-    width: 100%;
-    display: flex;
-    justify-content: flex-start;
-  }
-  
-  .leftSideChildDivClass {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-  }
-  
-  .rightSideChildDivClass {
-    width: 50%;
-  }
-  
-  .verticalDivSeperatorClass {
-    width: 1px;
-    height: 400px;
-    background-color: rgb(201, 201, 201);
-    margin: 0px 32px;
-  }
-  
-  .clearCreateTaskButtonDivClass {
-    margin: 32px 0px 0px 0px;
+    width: 100%; /* Adjusted for the triangle */
+    text-align: left;
     display: flex;
     justify-content: space-between;
-  }
-  
-  .clearCreateTaskButtonDivChildClass {
-    display: flex;
-    gap: 8px;
-  }
-  
-  .userContactCirclesDivClass {
-    display: flex;
-  }
-  
-  .userProfileCircleDivClass {
-    width: 36px;
-    height: 36px;
-    color: white;
-    display: flex;
-    justify-content: center;
     align-items: center;
+   
+}
+
+/* Style for the SVG triangle */
+.dropbtn svg {
+    fill: rgb(62, 65, 102);
+    margin-left: auto;
+    transition: transform 0.2s;
+}
+
+.dropbtn:hover svg {
+    background-color: rgba(231, 231, 231, 0.705);
     border-radius: 50%;
-    margin: 8px 12px 0px 0px;
-    font-weight: 800;
-  }
-  
-  .singleLineInputClass {
-    height: 40px;
-    width: 100%;
-    padding: 0px 10px;
-    font-size: 16px;
-    box-sizing: border-box;
-    display: flex;
-    border-radius: 8px;
-    border: 1px solid #cccccc;
-  }
-  
-  .singleLineInputClass:focus {
-    border-color: #3498db;
-    outline: none;
-  }
-  
-  .prioButtonDivClass {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .priorityButtonClass {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 110px;
-    height: 42px;
-    font-size: 16px;
-    font-weight: 600;
-    background-color: rgb(255, 255, 255);
-    border: none;
-    border-radius: 6px;
-    box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
-    cursor: pointer;
-  }
-  .priorityButtonClass:hover {
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
-      rgba(0, 0, 0, 0.178) 0px 2px 4px -2px;
-  }
-  
-  /* ////Selection input ///////// */
-  .custom-select {
-    position: relative;
-  }
-  
-  select {
-    height: 40px;
-    font-size: 16px;
-    appearance: none;
-    /*  safari  */
-    -webkit-appearance: none;
-    width: 100%;
-    padding: 0px 10px;
-    background-color: #fff;
-    border: 1px solid #cccccc;
-    border-radius: 8px;
-    color: #5c5c5c;
-    cursor: pointer;
-  }
-  select:hover {
-    border: 1px solid #949494c0;
-  }
-  
-  .custom-select::before,
-  .custom-select::after {
-    --size: 3px;
-    content: "";
+}
+
+/* Rotate the triangle when the dropdown is open */
+.dropbtn.active svg {
+    transform: rotate(180deg);
+}
+
+/* Style for the dropdown content */
+.dropdownContactDivClass {
+    display: none;
     position: absolute;
-    right: 16px;
-    pointer-events: none;
-  }
-  
-  .custom-select::before {
-    border-left: var(--size) solid transparent;
-    border-right: var(--size) solid transparent;
-    border-bottom: var(--size) solid black;
-    top: 14px;
-  }
-  .custom-select::after {
-    border-left: var(--size) solid transparent;
-    border-right: var(--size) solid transparent;
-    border-top: var(--size) solid black;
-    top: 24px;
-  }
-  
-  .clearCreateButtonClass1 {
-    color: #091931;
+    background-color: #f9f9f9;
+    width: 100%; /* Adjusted for the triangle */
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 8px;
+
+}
+
+.dropdownContactDivClass div {
+    padding: 4px 16px;
+    margin: 2px 0px;
+    text-decoration: none;
     display: flex;
-    justify-content: center;
     align-items: center;
-    width: 80px;
-    height: 42px;
-    font-size: 16px;
-    font-weight: 600;
-    background-color: #ffffff;
-    border: 1px solid #091931;
-    border-radius: 6px;
-    box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+    justify-content: space-between;
     cursor: pointer;
-  }
-  .clearCreateButtonClass1:hover {
-    border: 1px solid #29abe2;
-    color: #29abe2;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-  }
-  .clearCreateButtonClass1:hover svg path {
-    stroke: #29abe2; /* Change to your desired color */
-  }
-  
-  .clearCreateButtonClass2 {
+    border-radius: 8px;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+}
+
+
+.dropdownContactDivClass div:not(.selected):hover {
+    background-color: #ececec79;
+}
+
+
+/* Style for the contactSvgCircleClass with "AA" inside */
+.contactSvgCircleClass {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #399b46;
     color: white;
+    text-align: center;
+    line-height: 20px;
+    margin-right: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 130px;
-    height: 42px;
-    font-size: 16px;
-    font-weight: 600;
-    background-color: #2a3647;
-    border: none;
-    border-radius: 6px;
-    box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
-    cursor: pointer;
+}
+
+/* Show the dropdown content when the button is clicked */
+.dropdownContactDivClass.show {
+    display: block;
+}
+
+/* Style for selected option */
+.selected {
+    background-color: #2A3647;
+    color: white;
+}
+.selected:hover{
+    background-color: #35455a;
+}
+
+/* Style for SVG checkbox */
+.checkbox {
+    width: 20px;
+    height: 20px;
+    border-radius: 8px;
+}
+
+.checkbox-unchecked {
+    fill: none;
+    stroke: #2A3647;
+    stroke-width: 2;
+}
+
+.checkbox-checked {
+    fill: #ffffff;
+}
+
+.selected .checkbox-checked {
+    fill: white;
+}
+
+.circleAndNameSpanClass{
+  display: flex;
+  align-items: center;
+}
+
+
+
+
+
+
+
+/* ////MEDIA QUERIES //// */
+/* ////MEDIA QUERIES //// */
+/* ////MEDIA QUERIES //// */
+
+@media screen and (max-width: 1020px) {
+  .clearCreateTaskButtonDivChildClass {
+    gap: 4px;
   }
-  .clearCreateButtonClass2:hover {
-    background-color: #29abe2;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+
+  .addTaskMainTemplateDivClass {
+    padding: 0px 16px 48px 16px;
+  }
+
+  .verticalDivSeperatorClass {
+    margin: 0px 10px;
+    background-color: #f6f7f8;
+  }
+
+
+  .addTaskMainSiteDivClass {
+    padding: 96px 0px 0px 180px;
+}
+  
+}
+
+@media screen and (max-width: 906px) {
+  .clearCreateTaskButtonDivChildClass {
+    gap: 4px;
+  }
+
+  .addTaskDetailsParentDivClass{
+    flex-direction: column;
+  }
+
+  textarea{
+    min-width: 336px;
+  }
+
+  .dropbtn{
+    min-width: 336px;
+  }
+
+  .resizeHandleClass {
+    min-width: 336px;
+  }
+
+  .verticalDivSeperatorClass {
+    display: none;
+  }
+
+  select{
+    min-width: 336px;
+  }
+
+  .addTaskDetailsParentDivClass {
+    
+    align-items: center;
+  }
+
+
+  .leftSideChildDivClass {
+    width: 90%;
+  }
+  .rightSideChildDivClass {
+    width: 90%;
   }
   
+
+  .clearCreateTaskButtonDivClass {
+    width: 90%;
+    margin: 16px 0px 0px 0px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.addTaskMainTemplateDivClass {
+  align-items: center;
+}
+}
+
+
+
+@media screen and (max-width: 620px) {
+
+.addTaskMainSiteDivClass{
+  padding: 68px 0px 64px 0px ;
+}
+.addTaskMainTemplateDivClass{
+  padding: 0px 0px 32px 0px;
+}
+}
+
+
