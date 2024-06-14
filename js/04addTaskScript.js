@@ -76,6 +76,10 @@ function setPriority(ButtonId,SVGfillId1,SVGfillId2){
     document.getElementById(SVGfillId2).style.fill="white"; 
 }
 
+
+
+
+
 ///////////////////////////
 // Dropdown Menu Contact script
 

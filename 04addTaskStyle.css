@@ -10,10 +10,8 @@ body {
 .addTaskMainTemplateDivClass {
   z-index: 1;
   padding: 16px 48px 16px 48px;
-
   display: flex;
   flex-direction: column;
-
   border: 2px solid rgb(255, 0, 0);
   border-radius: 24px;
 }
@@ -57,18 +55,6 @@ textarea:focus {
   filter: invert(0.2);
 }
 
-.inputCalenderIconClass {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  width: 20px;
-  height: 20px;
-  background: url("./assets/img/addTaskCalenderIcon.svg") no-repeat center
-    center;
-  background-size: contain;
-  cursor: se-resize;
-  cursor: pointer;
-}
 .inputCalenderIconClass:hover {
   filter: invert(0.5);
 }
@@ -236,7 +222,8 @@ select:hover {
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 .clearCreateButtonClass1:hover svg path {
-  stroke: #29abe2; /* Change to your desired color */
+  stroke: #29abe2; 
+  /* fill: #29abe2; */
 }
 
 .clearCreateButtonClass2 {
@@ -380,6 +367,20 @@ select:hover {
 .circleAndNameSpanClass {
   display: flex;
   align-items: center;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  bottom: 0;
+  cursor: pointer;
+  height: 24px;
+  width: 24px;
+  position: absolute;
+  right: 6px;
+  top: 6px;
+  opacity: 0.75;
+}
+input[type="date"]:-webkit-calendar-picker-indicator:hover {
+  color: rgb(255, 0, 0);
 }
 
 /* ////MEDIA QUERIES //// */
