@@ -223,7 +223,7 @@ margin: 96px 0px 0px 328px;
     }
 
     .container-all {
-        margin: 196px 0px 0px 228px;
+        margin: 96px 0px 0px 228px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -236,7 +236,7 @@ margin: 96px 0px 0px 328px;
     }
 
     .container-all {
-        margin: 196px 0px 0px 0px;
+        margin: 96px 0px 0px 0px;
     }
 
     .headerTitleSpanClass{
