@@ -183,6 +183,9 @@ height: 120px;
         width: auto;
         
     }
+    .navLinksClass{
+        font-size: 14px;
+    }
     .navLinksClass img{
         margin: 0px 0px 2px 0px;
     }
