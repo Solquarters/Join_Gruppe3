@@ -17,12 +17,15 @@ body {
 }
 .headDiv {
     margin-left: 64px;
-    margin-top: 79px;
+    margin-top: 180px;
     margin-right: 64px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     
+}
+#boardImg {
+    margin-right: 200px;
 }
 
 .cardsDiv img:hover {
@@ -30,42 +33,54 @@ body {
 }
 .cardsDiv {
     display: flex;
+    margin-left: 64px;
+    margin-top: 48px;
 }
-.underBarDiv {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-}
-.underBarDiv img:hover {
-    cursor: pointer;
-}
+
 #addTask:hover {
     cursor: pointer;
+    fill: rect: x="0.5" y="0.5" width="159" height="47" rx="9.5" fill="#2A3647";
 }
 .addLine {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
-#toDo {
+#card {
     width: 253px;
+    margin: 12px;
 }
-#toDoContainer {
+#cardContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     border-style: solid;
+    border-radius: 12px;
+    border-width: 0;
+    background-color: white;
+    box-shadow: 6px 5px 5px rgb(212, 209, 209);
+    margin-top: 24px;
 }
-#containerheadline {
+#cardHeadline {
     background-color: blue;
+    display: flex;
+    justify-content: center;
     color: white;
+    width: 100px;
+    padding: 4px 16px 4px 16px;
+    border-radius: 6px;
+    margin: 16px 16px 4px 16px;
+    
 }
 #block-3  {
-    width: 220px; height: 16px;px;
+    width: 220px; height: 12px;
     text-align:center; font-size:1em; box-sizing: border-box;   border:solid 1px #fff; line-height:50px; 
     color: #000; background:#808080; margin:10px auto;
      border:solid 1px #fff; 
       
       font-size: 1em;
       letter-spacing: 1px;
-      border-radius: 1px;
+      border-radius: 6px;
       display: block;
       text-align: center;
       cursor: pointer;
@@ -73,10 +88,61 @@ body {
       -webkit-transition: all ease 3s;
       -moz-transition: all ease 3s;
       transition: all linear 2s;
+     
   }
   #block-3:hover {
       box-shadow: inset 220px 0 0 0 rgb(17, 0, 255);
-      color:white;  color:white; cursor:pointer; border:solid 1px green; 
+      color:white;  color:white; cursor:pointer; border:solid 6px green; 
   }
   
   /* .wrapper { display:block; width:; height:5px; margin:0 auto;} */
+
+  .contactPrioDiv {
+    display: flex;
+    justify-content: space-between;
+    
+  }
+  #description {
+    margin: 16px 16px 16px 16px;
+    font-weight: normal;
+    color: #808080;
+  }
+  .cartContainerInnert {
+    margin-left: 16px;
+    height: 100vh;
+  }
+  #containerformular {
+    font-weight: bold;
+    margin: 16px 16px 4px 16px;
+  }
+  .contactPrioDiv {
+    margin: 16px 16px 4px 16px;
+  }
+  #contacts {
+    position: relative;
+    
+  }
+  #img1 {
+    z-index: 1;
+    margin-right: -14px;
+  }
+  #img2 {
+    z-index: 2;
+    margin-right: -14px;
+  }
+  #img3 {
+    z-index: 3;
+    margin-right: -14px;
+  }
+
+  .accept-field {
+    width: 24px;
+    height: 24px;
+    border-radius: 3px;
+    background-image: url(./assets/img/search.svg);
+    cursor: pointer;
+    display: inline-block;
+    appearance: none;
+    margin: 0;
+
+  }

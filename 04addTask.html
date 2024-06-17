@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Add Tast Main Site</title>
+<title>Add Task Main Site</title>
 
 <link rel="stylesheet" href="fonts.css">
 <link rel="stylesheet" href="./04addTaskStyle.css">
@@ -31,18 +31,52 @@
                     Description
                     <div class="textarea-container">
                         <textarea id="descriptionTextAreaId" oninput="autoResize('descriptionTextAreaId')" placeholder="Write a task description"></textarea>
-                        <div class="resizeHandleClass"></div>
+                        <div class="resizeHandleClass"><svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18.9 0V1.69C18.9017 2.31796 18.7788 2.94002 18.5385 3.52019C18.2982 4.10036 17.9452 4.62712 17.5 5.07L5.07 17.5C4.62712 17.9452 4.10036 18.2982 3.52019 18.5385C2.94002 18.7788 2.31796 18.9017 1.69 18.9H0L18.9 0Z" fill="#D1D1D1"/>
+                            <path d="M18.9001 6.31006V8.00006C18.9006 8.62786 18.7772 9.2496 18.537 9.82961C18.2967 10.4096 17.9444 10.9365 17.5001 11.3801L11.3801 17.5001C10.9365 17.9444 10.4096 18.2967 9.82961 18.537C9.2496 18.7772 8.62786 18.9006 8.00006 18.9001H6.31006L18.9001 6.31006Z" fill="#D1D1D1"/>
+                            <path d="M18.8999 12.4302V14.1202C18.9005 14.748 18.7771 15.3697 18.5369 15.9497C18.2966 16.5297 17.9442 17.0566 17.4999 17.5002C17.0564 17.9445 16.5295 18.2969 15.9495 18.5371C15.3695 18.7773 14.7477 18.9007 14.1199 18.9002H12.4299L18.8999 12.4302Z" fill="#D1D1D1"/>
+                            </svg>
+                            </div>
                     </div>
                     <br>
                     <span>Assigned to</span>    
-                    <div class="custom-select">
-                        <select >
-                            <option value="" selected disabled>Select contacts to assign</option>
-                          <option value="">Render contact A&nbsp&nbsp&nbsp&nbsp[checkbox]</option>
-                          <option value="">Render contact B&nbsp&nbsp&nbsp&nbsp[checkbox]</option>
-                          <option value="">Render contact C&nbsp&nbsp&nbsp&nbsp[checkbox]</option>
-                          
-                        </select>
+                    <div class="dropdown">
+                        <button class="dropbtn" onclick="toggleDropdown()">
+                            Select contacts to assign
+                            <svg width="18" height="18" viewBox="0 0 24 24">
+                                <path d="M7 10l5 5 5-5z"></path>
+                            </svg>
+                        </button>
+                        <div id="dropdownContactAssignId" class="dropdownContactDivClass">
+
+
+                            <div onclick="selectOption(this)">
+                                <span class="circleAndNameSpanClass"><span class="contactSvgCircleClass">AA</span> John Doe</span>
+
+                                <svg class="checkbox" viewBox="0 0 24 24">
+                                    <rect width="24" height="24" fill="none" rx="4" ry="4"/>
+                                    <path class="checkbox-unchecked" d="M5 5 H19 V19 H5 Z"/>
+                                    <path class="checkbox-checked" d="M7 13.5l3 3l7-7L14.5 8L10 12.5L8.5 11L7 13.5z" style="display: none"/>
+                                </svg>
+                            </div>
+                            <div onclick="selectOption(this)">
+                                <span class="circleAndNameSpanClass"><span class="contactSvgCircleClass">AB</span> Jane Smith</span>
+
+                                <svg class="checkbox" viewBox="0 0 24 24">
+                                    <rect width="24" height="24" fill="none" rx="4" ry="4"/>
+                                    <path class="checkbox-unchecked" d="M5 5 H19 V19 H5 Z"/>
+                                    <path class="checkbox-checked" d="M7 13.5l3 3l7-7L14.5 8L10 13L8.5 11L7 13.5z" style="display: none"/>
+                                </svg>
+                            </div>
+                            <div onclick="selectOption(this)">
+                                <span class="circleAndNameSpanClass"><span class="contactSvgCircleClass">AC</span> Robert Brown</span>
+                                <svg class="checkbox" viewBox="0 0 24 24">
+                                    <rect width="24" height="24" fill="none" rx="4" ry="4"/>
+                                    <path class="checkbox-unchecked" d="M5 5 H19 V19 H5 Z"/>
+                                    <path class="checkbox-checked" d="M7 13.5l3 3l7-7L14.5 8L10 12.5L8.5 11L7 13.5z" style="display: none"/>
+                                </svg>
+                            </div>
+                        </div>
                     </div>
                    
                     <div class="userContactCirclesDivClass">
@@ -61,7 +95,7 @@
                     <div class="textarea-container">
                         <input type="date" class="singleLineInputClass" placeholder="dd/mm/yyyy">
             
-                        <div class="inputCalenderIconClass"></div>
+                      
                     </div>
                     <br>
                     <br>
