@@ -99,6 +99,7 @@ textarea:focus {
 
 .userContactCirclesDivClass {
   display: flex;
+  flex-wrap: wrap;
   padding: 8px 0px 20px 0px;
 }
 

@@ -72,8 +72,10 @@ function setPriority(ButtonId,SVGfillId1,SVGfillId2){
 
 
 
+// Create a set to store the IDs of the added elements
+let addedIDs = new Set();
 
-function selectOption(element) {
+function selectOption(element, nameSpanId) {
     let checkboxChecked = element.querySelector('.checkbox-checked');
     let checkboxUnchecked = element.querySelector('.checkbox-unchecked');
 
@@ -81,12 +83,52 @@ function selectOption(element) {
         element.classList.remove('selected');
         checkboxChecked.style.display = 'none';
         checkboxUnchecked.style.display = 'block';
+        
+        // Remove the element from the set if it's deselected
+        addedIDs.delete(nameSpanId);
+        removeUserProfileCircle(nameSpanId);
     } else {
         element.classList.add('selected');
         checkboxChecked.style.display = 'block';
         checkboxUnchecked.style.display = 'none';
+        
+        // Only add the element if it hasn't been added before
+        if (!addedIDs.has(nameSpanId)) {
+            addedIDs.add(nameSpanId);
+
+            // Render ProfileCircles below selection dropdown
+            // GET INITIALS HERE - from JSON or create a separate Function and read the first letter of firstName + first letter of lastName 
+
+            let nameSpanIdContent = document.getElementById(nameSpanId).innerText;
+            document.getElementById('assignedUsersCircleDivId').innerHTML += /*html*/`
+                <div class="userProfileCircleDivClass" id="circle-${nameSpanId}" style="background-color: ${generateRandomRGB()};">${nameSpanIdContent}</div>
+            `; 
+        }
     }
 }
+
+
+
+
+////Remove added circles below assigned contacts selection
+function removeUserProfileCircle(nameSpanId) {
+    let circleElement = document.getElementById(`circle-${nameSpanId}`);
+    if (circleElement) {
+        circleElement.remove();
+    }
+}
+
+
+
+
+function generateRandomRGB() {
+    const r = Math.floor(Math.random() * 256);
+    const g = Math.floor(Math.random() * 256);
+    const b = Math.floor(Math.random() * 256);
+    return `rgb(${r}, ${g}, ${b})`;
+}
+
+
 
 ///////////////////////////
 // Dropdown Menu Contact script
