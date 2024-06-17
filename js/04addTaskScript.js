@@ -221,13 +221,19 @@ function editParentDivText() {
 
 
 function changeInputArrow(inputElement){
-    if (!inputElement.classList.contains('open')) {
-    inputElement.style.backgroundImage = "url('./assets/img/addTaskImg/inputArrowDownHover.svg')";}
+    if (inputElement.classList.contains('open')) {
+        inputElement.style.backgroundImage = "url('./assets/img/addTaskImg/inputArrowUpHover.svg')";}
+    else{
+        inputElement.style.backgroundImage = "url('./assets/img/addTaskImg/inputArrowDownHover.svg')";
+    }
+    
 }
 
 function changeBackInputArrow(inputElement){
-
-    if (!inputElement.classList.contains('open')) {
+    if(inputElement.classList.contains('open')){
+        inputElement.style.backgroundImage = "url('./assets/img/addTaskImg/inputArrowUp.svg')";
+    }
+    else{
         inputElement.style.backgroundImage = "url('./assets/img/addTaskImg/inputArrowDown.svg')";
       }
    
