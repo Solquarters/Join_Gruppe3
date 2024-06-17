@@ -2,6 +2,7 @@ body {
     margin: 0;
     font-family: 'Inter';
     /* overflow: hidden; */
+    background-color: #f6f7f8;
 }
 
 .contactsSection {
@@ -19,7 +20,7 @@ body {
     border-radius: 10px;
     box-shadow: 4px 3px 7px rgba(0, 0, 0, 0.15);
     width: 456px;
-    /* height: 928px; */
+    height: 100vh;
     overflow-y: auto;
     max-height: calc(100vh - 117px);
     border: none;
@@ -56,7 +57,9 @@ body {
 .showContactsText {
     display: flex;
     align-items: baseline;
-    padding: 50px 0 0 60px;
+    padding: 50px 0 0 0;
+    justify-content: center;
+    flex: 1;
 }
 
 .showContactsTextMain {
@@ -126,9 +129,12 @@ h2 {
 .nameShortOne {
     background-color: #FF7A00;
     border-radius: 50%;
-    border: 1px solid #FF7A00;
+    border: 2px solid #FFFFFF;
     font-size: 12px;
     padding: 12px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 
@@ -136,29 +142,30 @@ h2 {
     font-size: 20px;
     font-weight: 400;
 }
-/* span {
-    font-size: 20px;
-    font-weight: 400;
-} */
 
 .underContactMainTwo a {
     font-size: 16px;
     font-weight: 400;
     text-decoration: none;
+    color: #007CEE;
 }
 
 .underContactMain a {
     font-size: 16px;
     font-weight: 400;
     text-decoration: none;
+    color: #007CEE;
 }
 
 .nameShorttwo {
     background-color: #9327FF;
     border-radius: 50%;
-    border: 1px solid #9327FF;
+    border: 2px solid #FFFFFF;
     font-size: 12px;
     padding: 12px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .contactsContentMain {
@@ -180,8 +187,41 @@ h2 {
 .underContactMain {
     display: flex;
     gap: 40px;
-    padding: 0 0 30px 10px;
+    padding: 0 0 0 10px;
+    align-items: center;
+    width: 315px;
+    height: 90px;
 }
+
+.underContactMain:hover {
+    background: linear-gradient(to bottom, #f2f2f2, #ececec);
+    border-radius: 10px;
+}
+
+.underContactMain.active {
+    background-color: #2A3647;
+    color: #ffffff;
+    border-radius: 10px;
+}
+
+.underContactMainTwo.active,
+.underContactMain.active {
+    background-color: #2A3647;
+    color: #ffffff;
+}
+
+.underContactMainTwo.active:hover,
+.underContactMain.active:hover {
+    background-color: #2A3647;
+}
+
+/* Farbe der Links in aktiven Elementen */
+.underContactMain.active a,
+.underContactMainTwo.active a {
+    color: #0B6BC4;
+    /* Beispiel für eine neue Farbe */
+}
+
 
 .selectContact {
     display: flex;
@@ -197,57 +237,240 @@ h2 {
 .underContactMainTwo {
     display: flex;
     gap: 40px;
-    padding: 0 0 28px 10px;
+    padding: 0 0 0 10px;
+    align-items: center;
+    width: 315px;
+    height: 90px;
 }
 
 .underContactMainTwo:hover {
+    background: linear-gradient(to bottom, #f2f2f2, #ececec);
+    border-radius: 10px;
     cursor: pointer;
+}
+
+.underContactMainTwo.active {
+    background-color: #2A3647;
+    color: #ffffff;
+    border-radius: 10px;
 }
 
 .nameShortThree {
     background-color: #6E52FF;
     border-radius: 50%;
-    border: 1px solid #6E52FF;
+    border: 2px solid #FFFFFF;
     font-size: 12px;
     padding: 12px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .nameShortFour {
     background-color: #FC71FF;
     border-radius: 50%;
-    border: 1px solid #FC71FF;
+    border: 2px solid #FFFFFF;
     font-size: 12px;
     padding: 12px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .nameShortFive {
     background-color: #FFBB2B;
     border-radius: 50%;
-    border: 1px solid #FFBB2B;
+    border: 2px solid #FFFFFF;
     font-size: 12px;
-    padding: 12px 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 12px 12px 12px;
 }
 
 .nameShortSix {
     background-color: #1FD7C1;
     border-radius: 50%;
-    border: 1px solid #1FD7C1;
+    border: 2px solid #FFFFFF;
     font-size: 12px;
-    padding: 12px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 10px 12px 10px;
 }
 
 .nameShortSeven {
     background-color: #462F8A;
     border-radius: 50%;
-    border: 1px solid #462F8A;
+    border: 2px solid #FFFFFF;
     font-size: 12px;
-    padding: 12px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 10px 12px 10px;
 }
 
 .nameShortEight {
     background-color: #FF4646;
     border-radius: 50%;
-    border: 1px solid #FF4646;
+    border: 2px solid #FFFFFF;
     font-size: 12px;
-    padding: 12px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 10px 12px 10px;
+}
+
+/* ////////////////////////////////POP UP WINDOW///////////// */
+.popUp {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* ////////////////////////////////POP UP WINDOW END///////////// */
+@media(max-width: 1285px) {
+    .showContactsText {
+        display: none;
+    }
+}
+
+@media(max-width: 1000px) {
+    .mainSideBarDivClass {
+        display: none;
+    }
+
+    .contactsSection {
+        margin: 96px 0 0 0;
+    }
+}
+
+@media(max-width: 380px) {
+    .addContactsBtn button {
+        font-size: 0;
+        padding: 0 6px 0 0;
+    }
+
+    .addContactsBtn {
+        padding: 0;
+        position: fixed;
+        bottom: 50px;
+        right: 30px;
+    }
+
+    .addContacts {
+        border-radius: 100px;
+        height: 55px;
+        width: 55px;
+        box-shadow: 0 4px 3px rgba(0, 0, 0, 0.2);
+    }
+
+    .addContacts:hover {
+        background-color: initial;
+    }
+
+    .addContacts:hover {
+        background-color: #2A3647;
+    }
+
+    .addContacts:active {
+        background-color: #29abe2;
+    }
+
+    .contactsContent {
+        padding: 20px 0 0 0px;
+    }
+
+    .contactSeperator {
+        width: 270px;
+    }
+
+    .underContactMain {
+        gap: 30px;
+    }
+
+    .underContactMainTwo {
+        gap: 30px;
+    }
+
+    .selectContact span {
+        font-size: 17px;
+    }
+
+    .underContactMain a {
+        font-size: 13px;
+    }
+
+    .underContactMainTwo a {
+        font-size: 13px;
+    }
+
+    .alphabet {
+        font-size: 17px;
+    }
+
+    .nameShortOne {
+        font-size: 11px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .nameShorttwo {
+        font-size: 11px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .nameShortThree {
+        font-size: 11px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .nameShortFour {
+        font-size: 11px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .nameShortFive {
+        font-size: 11px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 12px 12px 12px 12px;
+    }
+
+    .nameShortSix {
+        font-size: 11px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 12px 10px 12px 10px;
+    }
+
+    .nameShortSeven {
+        font-size: 11px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 12px 10px 12px 10px;
+    }
+
+    .nameShortEight {
+        font-size: 11px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 12px 10px 12px 10px;
+    }
 }
