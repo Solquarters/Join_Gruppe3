@@ -19,12 +19,6 @@ function stopResize() {
     document.removeEventListener('mouseup', stopResize);
 }
 
-function resize(e) {
-    const newHeight = initialHeight + (e.clientY - initialY);
-    if (newHeight > 64) { // Ensure the textarea does not shrink below its initial height
-        textarea.style.height = newHeight + 'px';
-    }
-}
 
 // Auto Resize main input field
 function autoResize(idName) {
@@ -33,11 +27,11 @@ function autoResize(idName) {
     inputTextArea.style.height = inputTextArea.scrollHeight + 10 + "px";
 }
 
-//Call whenever a task is created 
-//   function resetTextAreaSize(idName, height) {
-//     inputTextArea = document.getElementById(idName);
-//     inputTextArea.style.height = height + "px";
-//   }
+// Call whenever a task is created 
+  function resetTextAreaSize(idName, height) {
+    inputTextArea = document.getElementById(idName);
+    inputTextArea.style.height = height + "px";
+  }
   
 function setPriority(ButtonId,SVGfillId1,SVGfillId2){
     for(let i= 1; i < 4; i++){
@@ -76,15 +70,8 @@ function setPriority(ButtonId,SVGfillId1,SVGfillId2){
     document.getElementById(SVGfillId2).style.fill="white"; 
 }
 
-///////////////////////////
-// Dropdown Menu Contact script
 
-function toggleDropdown() {
-    let dropdownButton = document.querySelector('.dropbtn');
-    let dropdownContent = document.getElementById("dropdownContactAssignId");
-    dropdownButton.classList.toggle("active");
-    dropdownContent.classList.toggle("show");
-}
+
 
 function selectOption(element) {
     let checkboxChecked = element.querySelector('.checkbox-checked');
@@ -101,8 +88,27 @@ function selectOption(element) {
     }
 }
 
+///////////////////////////
+// Dropdown Menu Contact script
+function toggleDropdown(thisElement) {
+    let dropdownButton = document.querySelector('.dropbtn');
+    let dropdownContent = document.getElementById("dropdownContactAssignId");
+    dropdownButton.classList.toggle("active");
+    dropdownContent.classList.toggle("show");
+
+    
+    
+    if (thisElement.classList.contains('open')) {
+        thisElement.style.backgroundImage = "url('./assets/img/addTaskImg/inputArrowDownHover.svg')";}
+        else{
+            thisElement.style.backgroundImage = "url('./assets/img/addTaskImg/inputArrowUp.svg')";
+        }
+        thisElement.classList.toggle('open');
+}
+
 // Close the dropdown if the user clicks outside of it, except when clicking on the checkboxes
 window.onclick = function(event) {
+
     if (!event.target.matches('.dropbtn') && !event.target.closest('.dropdownContactDivClass')) {
         let dropdowns = document.getElementsByClassName("dropdownContactDivClass");
         let dropdownButtons = document.getElementsByClassName("dropbtn");
@@ -118,5 +124,111 @@ window.onclick = function(event) {
                 activeButton.classList.remove('active');
             }
         }
+        //On click outside the input - change background arrow to default state
+        contactInputId = document.getElementById('contactsInputId');
+        contactInputId.classList.remove('open')
+        contactInputId.style.backgroundImage = "url('./assets/img/addTaskImg/inputArrowDown.svg')";
+
+        
     }
+
+    //On click outside the category input - change background arrow to default state
+    if(!event.target.matches('.categorySelectClass')){
+        categorySelectId = document.getElementById('categorySelectId');
+        categorySelectId.classList.remove('open')
+        categorySelectId.style.backgroundImage = "url('./assets/img/addTaskImg/inputArrowDown.svg')";
+    }
+
+}
+
+function toggleCategoryDropdown() {
+    let dropdownButton = document.querySelector('.dropbtn');
+    let dropdownContent = document.getElementById("dropdownCategoryAssignId");
+    dropdownButton.classList.toggle("active");
+    dropdownContent.classList.toggle("show");
+}
+
+
+function displayAddAndDeleteSubtasksButtons(){
+    document.getElementById('deleteSubtaskInputId').style.display="flex";
+    document.getElementById('addSubtaskInputId').style.display="flex";
+
+    if(document.getElementById('subtaskTextareaId').value == 0){
+        document.getElementById('deleteSubtaskInputId').style.display="none";
+        document.getElementById('addSubtaskInputId').style.display="none";
+    }
+}
+
+
+function clearSubtaskInput(){
+    document.getElementById('subtaskTextareaId').value = '';
+    displayAddAndDeleteSubtasksButtons();
+}
+
+function renderAndSafeSubtask(){
+    if(document.getElementById('subtaskTextareaId').value == 0)
+        {return;}
+    /////////////Safe to Task JSON HERE/////////////
+    document.getElementById('subtasksDivContainerClass').innerHTML += 
+    //////////////PEN AND DELETE ICONS ////////////// TEXTAREA, make editable onclick
+    // onclick pen and trashbin
+    /*html*/ `
+    <div onclick="this.contentEditable='true';" class="subtaskDynamicDivClass" onmouseover="showIcons(this)" onmouseout="hideIcons(this)">
+    <div id="subtaskTextDivId">&nbsp&nbsp•&nbsp   ${document.getElementById('subtaskTextareaId').value} </div>
+    <div class="iconsClass">
+            <img src="./assets/img/addTaskImg/smallEditSVG.svg" alt=""  onclick="editParentDivText()">
+            <img src="./assets/img/addTaskImg/smallDeleteSVG.svg" alt="" onclick="deleteSubtask(this)" >
+        </div>
+    </div>
+    `
+    document.getElementById('subtaskTextareaId').value = '';
+
+    document.getElementById('deleteSubtaskInputId').style.display="none";
+    document.getElementById('addSubtaskInputId').style.display="none";
+    }
+
+   function showIcons(element) {
+    document.querySelectorAll('.iconsClass').forEach(icons => icons.style.display = 'none');
+    element.querySelector('.iconsClass').style.display = 'flex';
+}
+
+    function hideIcons(element) {
+    element.querySelector('.iconsClass').style.display = 'none';
+}
+
+
+function deleteSubtask(element){
+    const grandparent = element.parentElement.parentElement;
+    grandparent.remove();
+
+}
+
+function editParentDivText() {
+    // Find the subtaskTextDivId within the parent div
+    let subtaskTextDiv = document.getElementById('subtaskTextDivId');
+    
+    // Make the subtaskTextDiv editable
+    subtaskTextDiv.contentEditable = 'true';
+    
+    // Set focus on the subtaskTextDiv and move cursor to the end of the text content
+    let range = document.createRange();
+    let selection = window.getSelection();
+    range.selectNodeContents(subtaskTextDiv);
+    range.collapse(false); // collapse range to end
+    selection.removeAllRanges();
+    selection.addRange(range);
+}
+
+
+function changeInputArrow(inputElement){
+    if (!inputElement.classList.contains('open')) {
+    inputElement.style.backgroundImage = "url('./assets/img/addTaskImg/inputArrowDownHover.svg')";}
+}
+
+function changeBackInputArrow(inputElement){
+
+    if (!inputElement.classList.contains('open')) {
+        inputElement.style.backgroundImage = "url('./assets/img/addTaskImg/inputArrowDown.svg')";
+      }
+   
 }
