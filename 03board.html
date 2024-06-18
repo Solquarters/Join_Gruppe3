@@ -10,6 +10,7 @@
     <script src="./assets/templates/templatesScript.js"></script>
     <link rel="stylesheet" href="./assets/templates/headerSidebar.css">
     <link rel="stylesheet" href="fonts.css">
+    <link rel="stylesheet" href="03boardResponse.css">
 </head>
 <body onload="includeHTML()"></body>
 
@@ -19,8 +20,12 @@
         <div class="mainDiv">
             <div class="headDiv">
                 <img id="boardImg" src="./assets/img/Frame 40.svg" alt="">
+                <div class="inputAddTask">
                 <input id="findTask" placeholder="Find Task">
-                <img id="addTask" src="./assets/img/Secondary-plus.svg" alt="">
+                <button onclick="addTask()" class="addTask"><img src="./assets/img/add.svg"
+                  alt="Contact add image">Add Task</button>
+               </div>
+
             </div>
             
     

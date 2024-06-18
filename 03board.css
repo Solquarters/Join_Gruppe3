@@ -1,18 +1,20 @@
 body {
     margin: 0;
     font-family: 'Inter';
-    position: fixed;
     background-color: #f6f7f8;
     
 }
 .mainDiv {
     margin-left: 232px;
     margin-top: 96px;
-    height: 100vh;
+    height: 100%;
+    width: 65%;
 }
 #findTask {
-    border-radius: 6px;
+    border-radius: 10px;
     padding: 12px;
+    border-style: solid;
+    border-color: #29abe2;
     /* border-color: ; */
 }
 .headDiv {
@@ -39,7 +41,7 @@ body {
 
 #addTask:hover {
     cursor: pointer;
-    fill: rect: x="0.5" y="0.5" width="159" height="47" rx="9.5" fill="#2A3647";
+    
 }
 .addLine {
     display: flex;
@@ -146,3 +148,37 @@ body {
     margin: 0;
 
   }
+  .addTask {
+    font-family: 'Inter';
+    cursor: pointer;
+    color: #FFFFFF;
+    background-color: #2A3647;
+    height: 48px;
+    width: 160px;
+    border-radius: 10px;
+    border: 1px solid #2A3647;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-size: 21px;
+    font-weight: 700;
+    margin-left: 24px;
+  }
+  .addTask:hover {
+    background-color: #29abe2;
+    border: none;
+    box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.2);
+}
+.contentDiv img:hover {
+ background-color: #6bc6ec;
+ border-radius: 8px;
+ box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+.inputAddTask {
+  display:flex;
+  margin-right: 32px;
+}
+
