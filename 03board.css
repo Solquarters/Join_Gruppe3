@@ -4,6 +4,10 @@ body {
     background-color: #f6f7f8;
     
 }
+.mainDivContainer {
+  margin: 128px 0px 0px 0px;
+}
+
 .mainDiv {
     margin-left: 232px;
     margin-top: 96px;
@@ -19,7 +23,6 @@ body {
 }
 .headDiv {
     margin-left: 64px;
-    margin-top: 180px;
     margin-right: 64px;
     display: flex;
     align-items: center;
@@ -27,7 +30,7 @@ body {
     
 }
 #boardImg {
-    margin-right: 200px;
+    margin-right: 260px;
 }
 
 .cardsDiv img:hover {
@@ -171,14 +174,59 @@ body {
     border: none;
     box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.2);
 }
-.contentDiv img:hover {
- background-color: #6bc6ec;
+/* .contentDiv img svg path:hover {
+  stroke: #29abe2;
+  fill: #29abe2;
+
  border-radius: 8px;
  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+} */
+
+
+
+
+.titel svg:hover rect {
+  stroke: #29abe2;
+  
 }
+.titel svg:hover path {
+  stroke: #29abe2;
+  
+}
+.titel svg:hover {
+  cursor: pointer;
+}
+
+
+
+
 
 .inputAddTask {
   display:flex;
   margin-right: 32px;
 }
+
+.containerInputField {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 330px;
+  height: 48px;
+  padding: 0px 20px 0px 20px;
+  border: 1px solid #146cdfd0;
+  border-radius: 10px;
+}
+
+.inputField {
+  background-color: none;
+  font-size: 20px;
+  border: none;
+  background: none;
+  border-style: none;
+}
+
+
+
+
+
 

@@ -16,12 +16,16 @@
 
 <!-- ///Header und Sidebar Div bei jeder HTML Datei hinzufügen, dazu auch im body: onload="includeHTML()" /// -->
 <div w3-include-html="./assets/templates/headerSidebar.html"></div>
-    <main>
+    <main class="mainDivContainer">
         <div class="mainDiv">
             <div class="headDiv">
                 <img id="boardImg" src="./assets/img/Frame 40.svg" alt="">
                 <div class="inputAddTask">
-                <input id="findTask" placeholder="Find Task">
+               <div class="containerInputField">
+                  <input placeholder="Find Task" required class="inputField">
+                  <img src="./assets/img/search.svg" alt="">
+               </div>
+                <!-- <input id="findTask" placeholder="Find Task"> -->
                 <button onclick="addTask()" class="addTask"><img src="./assets/img/add.svg"
                   alt="Contact add image">Add Task</button>
                </div>
@@ -35,7 +39,11 @@
                   <div id="card">
                      <div class="titel">
                         <div class="addLine"><span>To Do</span>
-                        <img src="./assets/img/plus button.svg" alt="">
+                           <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <rect x="1" y="1.5" width="22" height="22" rx="7" stroke="#2A3647" stroke-width="2"/>
+                              <path d="M12 8.5V16.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                              <path d="M16 12.5754L8 12.5754" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                              </svg>
                      </div>
                   </div>
                      
@@ -77,7 +85,11 @@
                  <div id="card">
                   <div class="titel">
                      <div class="addLine"><span>In Progress</span>
-                     <img src="./assets/img/plus button.svg" alt="">
+                        <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                           <rect x="1" y="1.5" width="22" height="22" rx="7" stroke="#2A3647" stroke-width="2"/>
+                           <path d="M12 8.5V16.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                           <path d="M16 12.5754L8 12.5754" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                           </svg>
                   </div>
                </div>
                   
@@ -117,7 +129,11 @@
                     <div id="card">
                         <div class="titel">
                            <div class="addLine"><span>Await Feedback</span>
-                           <img src="./assets/img/plus button.svg" alt="">
+                              <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                 <rect x="1" y="1.5" width="22" height="22" rx="7" stroke="#2A3647" stroke-width="2"/>
+                                 <path d="M12 8.5V16.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                                 <path d="M16 12.5754L8 12.5754" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                                 </svg>
                         </div>
                      </div>
                         
@@ -157,7 +173,11 @@
                     <div id="card">
                      <div class="titel">
                         <div class="addLine"><span>Done</span>
-                        <img src="./assets/img/plus button.svg" alt="">
+                           <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <rect x="1" y="1.5" width="22" height="22" rx="7" stroke="#2A3647" stroke-width="2"/>
+                              <path d="M12 8.5V16.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                              <path d="M16 12.5754L8 12.5754" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                              </svg>
                      </div>
                   </div>
                      
