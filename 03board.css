@@ -52,6 +52,8 @@ body {
     justify-content: space-between;
 }
 #card {
+    display: flex;
+    overflow-x: auto;
     width: 253px;
     margin: 12px;
 }
