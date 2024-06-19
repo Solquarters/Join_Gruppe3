@@ -4,6 +4,18 @@ const handle = document.querySelector('.resizeHandleClass');
 let initialHeight;
 let initialY;
 
+let temporarySelectedContactsArray =[];
+
+function initAddTaskSite(){
+    setCurrentDateInputMinValue();
+    
+    ////Render contact Circle, Full Name + Checkbox to assigned dropdown
+    ///On check of contact add to temporarySelectedContactsArray
+
+
+}
+
+
 ///////////////////////////
 ///Text area drag is buggy - when mouseup outside the textarea handler problems can occur!
 //////////////////////////
@@ -71,11 +83,19 @@ function setPriority(ButtonId,SVGfillId1,SVGfillId2){
 }
 
 
+////////////////////////// WORK HERE 17:55
+////////////////////////// WORK HERE 17:55
+////////////////////////// WORK HERE 17:55
+////////////////////////// WORK HERE 17:55
+//Render contacts to dropdown with index inside onclick=selectContactAndPushToTemporaryArray()
+//add element to temporarySelectedContactsArray, remove when CheckBox Unchecked 
+//Search function: oninput inside contactsInputId activate search function and render contacts in dropdown according to search input (check pokedex search)
+
 
 // Create a set to store the IDs of the added elements
 let addedIDs = new Set();
 
-function selectOption(element, nameSpanId) {
+function selectContactAndPushToTemporaryArray(element, nameSpanId) {
     let checkboxChecked = element.querySelector('.checkbox-checked');
     let checkboxUnchecked = element.querySelector('.checkbox-unchecked');
 
@@ -279,4 +299,79 @@ function changeBackInputArrow(inputElement){
         inputElement.style.backgroundImage = "url('./assets/img/addTaskImg/inputArrowDown.svg')";
       }
    
+}
+
+
+
+
+/////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////
+//Date picker input min value always on today:
+function setCurrentDateInputMinValue() {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0');
+    const day = String(today.getDate()).padStart(2, '0');
+    document.getElementById('datePickerInputId').setAttribute('min', `${year}-${month}-${day}`);
+}
+
+
+
+function submitAddTaskForm(){
+    // Get all the input elements
+    const input1 = document.getElementById('titleInputId');
+    const input2 = document.getElementById('datePickerInputId');
+    const input3 = document.getElementById('categorySelectId');
+ 
+    // Validate each input element
+    const isInput1Valid = input1.checkValidity();
+    const isInput2Valid = input2.checkValidity();
+    const isInput3Valid = input3.checkValidity();
+
+    // If any input is invalid, prevent form submission and show validation messages
+    if (!isInput1Valid || !isInput2Valid || !isInput3Valid ) {
+        // Optionally, display custom error messages
+        if (!isInput3Valid) input3.reportValidity();
+        if (!isInput2Valid) input2.reportValidity();
+        if (!isInput1Valid) input1.reportValidity();
+       
+    } else {
+       // If all inputs are valid, submit the form
+        ////Get all inputs by id 
+        ////push to toDoCardsJSON 
+        ///console log toDoJson to check
+        alert('Added new task!');
+    }
+};
+
+
+
+function pushNewCardToJson(){
+
+let newToDoCard = {
+    title: "title4",
+    description:"description4",
+    assignedToArray: [contactsJSON[0],contactsJSON[1],contactsJSON[3]],
+    dueDate: "14.02.2025",
+    prio: "low",
+    category: "Technical task",
+    subtaskJson: [
+        { subtaskText: "subtask4-0", subtaskDone: false},
+        { subtaskText: "subtask4-1", subtaskDone: false},
+        { subtaskText: "subtask4-2", subtaskDone: false},
+        { subtaskText: "subtask4-3", subtaskDone: false},
+        ],
+    toDoStatus: "In progress",
+}
+
+newToDoCard["title"] = document.getElementById('titleInputId').value;
+newToDoCard["description"] = document.getElementById('titleInputId').value;
+newToDoCard["assignedToArray"] = document.getElementById('titleInputId').value;
+newToDoCard["dueDate"] = document.getElementById('titleInputId').value;
+newToDoCard["category"] = document.getElementById('titleInputId').value;
+newToDoCard["subtaskArray"] = document.getElementById('titleInputId').value;
+newToDoCard["toDoStatus"] = document.getElementById('titleInputId').value;
+
+// Push the new object into the array
+toDoCardsJSON.push(newToDoCard);
 }
