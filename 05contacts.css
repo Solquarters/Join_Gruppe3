@@ -2,6 +2,7 @@ body {
     margin: 0;
     font-family: 'Inter';
     /* overflow: hidden; */
+    background-color: #f6f7f8;
 }
 
 .contactsSection {
@@ -19,10 +20,11 @@ body {
     border-radius: 10px;
     box-shadow: 4px 3px 7px rgba(0, 0, 0, 0.15);
     width: 456px;
-    /* height: 928px; */
+    height: 100vh;
     overflow-y: auto;
     max-height: calc(100vh - 117px);
     border: none;
+    background-color: #FFFFFF;
 }
 
 .addContactsBtn {
@@ -56,7 +58,9 @@ body {
 .showContactsText {
     display: flex;
     align-items: baseline;
-    padding: 50px 0 0 60px;
+    padding: 50px 0 0 0;
+    justify-content: center;
+    flex: 1;
 }
 
 .showContactsTextMain {
@@ -126,9 +130,12 @@ h2 {
 .nameShortOne {
     background-color: #FF7A00;
     border-radius: 50%;
-    border: 1px solid #FF7A00;
+    border: 2px solid #FFFFFF;
     font-size: 12px;
     padding: 12px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 
@@ -136,29 +143,30 @@ h2 {
     font-size: 20px;
     font-weight: 400;
 }
-/* span {
-    font-size: 20px;
-    font-weight: 400;
-} */
 
 .underContactMainTwo a {
     font-size: 16px;
     font-weight: 400;
     text-decoration: none;
+    color: #007CEE;
 }
 
 .underContactMain a {
     font-size: 16px;
     font-weight: 400;
     text-decoration: none;
+    color: #007CEE;
 }
 
 .nameShorttwo {
     background-color: #9327FF;
     border-radius: 50%;
-    border: 1px solid #9327FF;
+    border: 2px solid #FFFFFF;
     font-size: 12px;
     padding: 12px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .contactsContentMain {
@@ -180,8 +188,40 @@ h2 {
 .underContactMain {
     display: flex;
     gap: 40px;
-    padding: 0 0 30px 10px;
+    padding: 0 0 0 10px;
+    align-items: center;
+    width: 315px;
+    height: 90px;
 }
+
+.underContactMain:hover {
+    background: linear-gradient(to bottom, #f2f2f2, #ececec);
+    border-radius: 10px;
+}
+
+.underContactMain.active {
+    background-color: #2A3647;
+    color: #ffffff;
+    border-radius: 10px;
+}
+
+.underContactMainTwo.active,
+.underContactMain.active {
+    background-color: #2A3647;
+    color: #ffffff;
+}
+
+.underContactMainTwo.active:hover,
+.underContactMain.active:hover {
+    background-color: #2A3647;
+}
+
+/* Farbe der Links in aktiven Elementen */
+.underContactMain.active a,
+.underContactMainTwo.active a {
+    color: #0B6BC4;
+}
+
 
 .selectContact {
     display: flex;
@@ -197,57 +237,576 @@ h2 {
 .underContactMainTwo {
     display: flex;
     gap: 40px;
-    padding: 0 0 28px 10px;
+    padding: 0 0 0 10px;
+    align-items: center;
+    width: 315px;
+    height: 90px;
 }
 
 .underContactMainTwo:hover {
+    background: linear-gradient(to bottom, #f2f2f2, #ececec);
+    border-radius: 10px;
     cursor: pointer;
+}
+
+.underContactMainTwo.active {
+    background-color: #2A3647;
+    color: #ffffff;
+    border-radius: 10px;
 }
 
 .nameShortThree {
     background-color: #6E52FF;
     border-radius: 50%;
-    border: 1px solid #6E52FF;
+    border: 2px solid #FFFFFF;
     font-size: 12px;
     padding: 12px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .nameShortFour {
     background-color: #FC71FF;
     border-radius: 50%;
-    border: 1px solid #FC71FF;
+    border: 2px solid #FFFFFF;
     font-size: 12px;
     padding: 12px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .nameShortFive {
     background-color: #FFBB2B;
     border-radius: 50%;
-    border: 1px solid #FFBB2B;
+    border: 2px solid #FFFFFF;
     font-size: 12px;
-    padding: 12px 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 12px 12px 12px;
 }
 
 .nameShortSix {
     background-color: #1FD7C1;
     border-radius: 50%;
-    border: 1px solid #1FD7C1;
+    border: 2px solid #FFFFFF;
     font-size: 12px;
-    padding: 12px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 10px 12px 10px;
 }
 
 .nameShortSeven {
     background-color: #462F8A;
     border-radius: 50%;
-    border: 1px solid #462F8A;
+    border: 2px solid #FFFFFF;
     font-size: 12px;
-    padding: 12px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 10px 12px 10px;
 }
 
 .nameShortEight {
     background-color: #FF4646;
     border-radius: 50%;
-    border: 1px solid #FF4646;
+    border: 2px solid #FFFFFF;
     font-size: 12px;
-    padding: 12px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 10px 12px 10px;
+}
+
+/* ////////////////////////////////POP UP WINDOW///////////// */
+.popUp {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.popUpText {
+    display: flex;
+    flex-direction: column;
+}
+
+#name {
+    background-image: url(./img/person.png);
+    background-repeat: no-repeat;
+    background-position: center right 10px;
+}
+
+#email {
+    background-image: url(./img/mail.png);
+    background-repeat: no-repeat;
+    background-position: center right 10px;
+}
+
+#phone {
+    background-image: url(./img/call.png);
+    background-repeat: no-repeat;
+    background-position: center right 10px;
+}
+
+#name,
+#email,
+#phone {
+    padding: 10px;
+    width: 400px;
+    border-radius: 5px;
+    border-color: #d1d1d1;
+    border: 1px solid #d1d1d1;
+    text-indent: 10px;
+    font-family: "Inter";
+}
+
+.formButtonContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
+.closePopUp {
+    margin: 0 10px 50px 0;
+    border: none;
+    background-color: #FFFFFF;
+    font-size: 18px;
+    padding: 5px 9px 3px 9px;
+}
+
+.closePopUp:hover {
+    cursor: pointer;
+    background-color: #e7e7e7;
+    border-radius: 50%;
+}
+
+.formContent {
+    display: flex;
+}
+
+.leftSide {
+    background-color: #2A3647;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #FFFFFF;
+    padding: 0 20px 70px 20px;
+    gap: 5px;
+}
+
+.h1Main {
+    display: flex;
+    justify-content: center;
+    white-space: nowrap;
+}
+
+.leftSide h1 {
+    font-size: 60px;
+    font-weight: 700;
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+}
+
+.leftSide span {
+    font-size: 27px;
+    font-weight: 400;
+    white-space: nowrap;
+}
+
+.rightSide {
+    background-color: #FFFFFF;
+    padding: 40px 20px 100px 70px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.buttonContent {
+    display: flex;
+    justify-content: center;
+    padding: 30px 0 0 90px;
+    gap: 20px;
+}
+
+.formDetails {
+    display: flex;
+    align-items: center;
+}
+
+.formDetails img {
+    margin: 85px 0 0 0;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 0 42px;
+}
+
+form input {
+    margin: 10px;
+}
+
+.addContactCancel {
+    cursor: pointer;
+    border: 2px solid rgb(68, 79, 94);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row-reverse;
+    font-size: 20px;
+    font-weight: 400;
+    align-items: center;
+    padding: 15px 18px 15px 18px;
+    gap: 8px;
+    height: 48px;
+    transition: color 0.5s ease-in-out, border-color 0.5s ease-in-out;
+}
+
+.addContactCancel::before {
+    transform: translateY(-100%);
+    transition: transform 0.5s ease-in-out;
+}
+
+.addContactCancel:hover::before {
+    transform: translateY(0);
+}
+
+.addContactCancel:hover {
+    color: #29abe2;
+    border: 2px solid rgb(41, 171, 226);
+    box-shadow: 0 4px 3px rgba(0, 0, 0, 0.2);
+}
+
+.addContactCancel svg {
+    width: 23px;
+    height: 23px;
+    transition: stroke 0.5s ease-in-out;
+}
+
+.addContactCancel svg:hover path {
+    fill: #29abe2;
+}
+
+.createContact {
+    background-color: #2A3647;
+    cursor: pointer;
+    border: 2px solid rgb(68, 79, 94);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row-reverse;
+    font-size: 20px;
+    font-weight: 400;
+    align-items: center;
+    padding: 15px 18px 15px 18px;
+    gap: 8px;
+    height: 48px;
+    color: #FFFFFF;
+    border: none;
+}
+
+.createContact:hover {
+    box-shadow: 0 4px 3px rgba(0, 0, 0, 0.2);
+    background-color: #29abe2;
+}
+/* ////////////////////////////////POP UP WINDOW END///////////// */
+
+/* Media Queries */
+@media(max-width: 1285px) {
+    .showContactsText {
+        display: none;
+    }
+
+    .formContent {
+        display: grid;
+    }
+
+    .leftSide {
+        border-bottom-left-radius: 0;
+        border-top-right-radius: 30px;
+        border-top-left-radius: 30px;
+        padding: 50px 0 50px 50px;
+        align-items: flex-start;
+    }
+
+    .rightSide {
+        border-top-right-radius: 0;
+        border-bottom-left-radius: 30px;
+        border-bottom-right-radius: 30px;
+    }
+}
+
+@media(max-width: 1020px) {
+    .contactsSection {
+        margin: 96px 0 0 179px;
+    }
+}
+
+@media(max-width: 700px) {
+    .leftSide {
+        padding: 70px 20px 100px 20px;
+    }
+
+    .leftSide img {
+        display: none;
+    }
+
+    .rightSide {
+        padding: 0 0 0 0;
+        height: 58vh;
+    }
+
+    .formDetails {
+        flex-direction: column;
+    }
+
+    .formDetails img {
+        margin: 0 0 0 0;
+        position: relative;
+        top: -55px;
+    }
+
+    .addContactCancel {
+        display: none;
+    }
+
+    .closePopUpTop {
+        position: relative;
+        bottom: 50px;
+        left: 377px;
+        background-color: #2A3647;
+        color: #FFFFFF;
+        border-radius: 50%;
+        border: none;
+        padding: 5px 9px 3px 9px;
+        font-size: 18px;
+        display: inline;
+    }
+
+    .closePopUpTop:hover {
+        background-color: #2A3647;
+        cursor: pointer;
+    }
+
+    .closePopUpTop:active {
+        background-color: #29abe2;
+    }
+
+    .buttonContent {
+        padding: 30px 0 0 0;
+    }
+
+    .closePopUp {
+        display: none;
+    }
+
+    form {
+        margin: 0 0 0 0;
+    }
+}
+
+@media(max-width: 620px) {
+    .contactsSection {
+        margin: 70px 0 0 0;
+    }
+
+    .contactsContent {
+        margin: 0 0 50px 0;
+    }
+
+    .formContent {
+        margin: 0 0 5px 0;
+    }
+
+    .closePopUpTop {
+        bottom: 71px;
+    }
+
+    .rightSide {
+        height: 40vh;
+    }
+
+    .leftSide {
+        padding: 89px 20px 100px 20px;
+    }
+
+    form {
+        position: relative;
+        bottom: 40px;
+    }
+
+    .buttonContent {
+        padding: 0 0 0 0;
+        position: relative;
+        bottom: 25px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+
+    .addContactsBtn button {
+        font-size: 0;
+        padding: 0 6px 0 0;
+    }
+
+    .addContactsBtn {
+        padding: 0;
+        position: fixed;
+        bottom: 100px;
+        right: 30px;
+    }
+
+    .addContacts {
+        border-radius: 100px;
+        height: 55px;
+        width: 55px;
+        box-shadow: 0 4px 3px rgba(0, 0, 0, 0.2);
+    }
+
+    .addContacts:hover {
+        background-color: initial;
+    }
+
+    .addContacts:hover {
+        background-color: #2A3647;
+    }
+
+    .addContacts:active {
+        background-color: #29abe2;
+    }
+
+    #name,
+    #email,
+    #phone {
+        width: 280px;
+    }
+
+    .leftSide h1 {
+        font-size: 52px;
+    }
+
+    .leftSide span {
+        font-size: 22px;
+    }
+
+    .rightSide {
+        height: 42vh;
+    }
+
+    .closePopUpTop {
+        left: 287px;
+    }
+}
+
+@media(max-width: 380px) {
+    .contactsContent {
+        padding: 20px 0 0 0;
+        margin: 0 0 50px 0;
+    }
+
+    .contactSeperator {
+        width: 270px;
+    }
+
+    .underContactMain {
+        gap: 30px;
+        width: 259px;
+    }
+
+    .underContactMainTwo {
+        gap: 30px;
+        width: 259px;
+    }
+
+    .selectContact span {
+        font-size: 17px;
+    }
+
+    .underContactMain a {
+        font-size: 13px;
+    }
+
+    .underContactMainTwo a {
+        font-size: 13px;
+    }
+
+    .alphabet {
+        font-size: 17px;
+    }
+
+    .nameShortOne {
+        font-size: 11px;
+    }
+
+    .nameShorttwo {
+        font-size: 11px;
+    }
+
+    .nameShortThree {
+        font-size: 11px;
+    }
+
+    .nameShortFour {
+        font-size: 11px;
+    }
+
+    .nameShortFive {
+        font-size: 11px;
+    }
+
+    .nameShortSix {
+        font-size: 11px;
+    }
+
+    .nameShortSeven {
+        font-size: 11px;
+    }
+
+    .nameShortEight {
+        font-size: 11px;
+    }
+
+    #name,
+    #email,
+    #phone {
+        width: 250px;
+    }
+
+    .leftSide h1 {
+        font-size: 45px;
+    }
+
+    .leftSide span {
+        font-size: 19px;
+    }
+
+    .createContact {
+        padding: 0 10px 0 10px;
+        height: 40px;
+    }
+
+    .rightSide {
+        height: 43.6vh;
+    }
+
+    .closePopUpTop {
+        left: 248px;
+    }
+
+    .buttonContent {
+        bottom: 40px;
+    }
+
+    form {
+        bottom: 47px;
+    }
 }

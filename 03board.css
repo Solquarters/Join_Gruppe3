@@ -1,232 +1,244 @@
 body {
-    margin: 0;
-    font-family: 'Inter';
-    background-color: #f6f7f8;
-    
+  margin: 0;
+  font-family: 'Inter';
+  background-color: #f6f7f8;
+  
 }
 .mainDivContainer {
-  margin: 128px 0px 0px 0px;
+margin: 128px 0px 0px 0px;
 }
 
 .mainDiv {
-    margin-left: 232px;
-    margin-top: 96px;
-    height: 100%;
-    width: 65%;
+  margin-left: 232px;
+  margin-top: 96px;
+  height: 100%;
+  width: 65%;
 }
 #findTask {
-    border-radius: 10px;
-    padding: 12px;
-    border-style: solid;
-    border-color: #29abe2;
-    /* border-color: ; */
+  border-radius: 10px;
+  padding: 12px;
+  border-style: solid;
+  border-color: #29abe2;
+  /* border-color: ; */
 }
 .headDiv {
-    margin-left: 64px;
-    margin-right: 64px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    
+  margin-left: 64px;
+  margin-right: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
 }
 #boardImg {
-    margin-right: 260px;
+  margin-right: 260px;
 }
 
 .cardsDiv img:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 .cardsDiv {
-    display: flex;
-    margin-left: 64px;
-    margin-top: 48px;
+  display: flex;
+  margin-left: 64px;
+  margin-top: 48px;
 }
 
 #addTask:hover {
-    cursor: pointer;
-    
+  cursor: pointer;
+  
 }
 .addLine {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 #card {
-    display: flex;
-    overflow-x: auto;
-    width: 253px;
-    margin: 12px;
+  width: 253px;
+  margin: 12px;
 }
-#cardContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    border-style: solid;
-    border-radius: 12px;
-    border-width: 0;
-    background-color: white;
-    box-shadow: 6px 5px 5px rgb(212, 209, 209);
-    margin-top: 24px;
+.mainSingleCardDivClass{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-style: solid;
+  border-radius: 12px;
+  border-width: 0;
+  background-color: white;
+  box-shadow: 6px 5px 5px rgb(212, 209, 209);
+  margin-top: 24px;
 }
-#cardHeadline {
-    background-color: blue;
-    display: flex;
-    justify-content: center;
-    color: white;
-    width: 100px;
-    padding: 4px 16px 4px 16px;
-    border-radius: 6px;
-    margin: 16px 16px 4px 16px;
-    
+
+#cardContainer{
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+border-style: solid;
+border-radius: 12px;
+border-width: 0;
+background-color: white;
+box-shadow: 6px 5px 5px rgb(212, 209, 209);
+margin-top: 24px;
 }
-#block-3  {
-    width: 220px; height: 12px;
-    text-align:center; font-size:1em; box-sizing: border-box;   border:solid 1px #fff; line-height:50px; 
-    color: #000; background:#808080; margin:10px auto;
-     border:solid 1px #fff; 
-      
-      font-size: 1em;
-      letter-spacing: 1px;
-      border-radius: 6px;
-      display: block;
-      text-align: center;
-      cursor: pointer;
-      box-shadow: inset 0 0 0 0 rgb(68, 0, 255);
-      -webkit-transition: all ease 3s;
-      -moz-transition: all ease 3s;
-      transition: all linear 2s;
-     
-  }
-  #block-3:hover {
-      box-shadow: inset 220px 0 0 0 rgb(17, 0, 255);
-      color:white;  color:white; cursor:pointer; border:solid 6px green; 
-  }
+
+
+.cardHeadlineClass{
+  background-color: blue;
+  display: flex;
+  justify-content: center;
+  color: white;
+  width: 110px;
+  padding: 4px 8px 4px 8px;
+  border-radius: 6px;
+  margin: 16px 16px 4px 16px;
   
-  /* .wrapper { display:block; width:; height:5px; margin:0 auto;} */
-
-  .contactPrioDiv {
-    display: flex;
-    justify-content: space-between;
+}
+/* #block-3  {
+  width: 220px; height: 12px;
+  text-align:center; font-size:1em; box-sizing: border-box;   border:solid 1px #fff; line-height:50px; 
+  color: #000; background:#808080; margin:10px auto;
+   border:solid 1px #fff; 
     
-  }
-  #description {
-    margin: 16px 16px 16px 16px;
-    font-weight: normal;
-    color: #808080;
-  }
-  .cartContainerInnert {
-    margin-left: 16px;
-    height: 100vh;
-  }
-  #containerformular {
-    font-weight: bold;
-    margin: 16px 16px 4px 16px;
-  }
-  .contactPrioDiv {
-    margin: 16px 16px 4px 16px;
-  }
-  #contacts {
-    position: relative;
-    
-  }
-  #img1 {
-    z-index: 1;
-    margin-right: -14px;
-  }
-  #img2 {
-    z-index: 2;
-    margin-right: -14px;
-  }
-  #img3 {
-    z-index: 3;
-    margin-right: -14px;
-  }
-
-  .accept-field {
-    width: 24px;
-    height: 24px;
-    border-radius: 3px;
-    background-image: url(./assets/img/search.svg);
+    font-size: 1em;
+    letter-spacing: 1px;
+    border-radius: 6px;
+    display: block;
+    text-align: center;
     cursor: pointer;
-    display: inline-block;
-    appearance: none;
-    margin: 0;
+    box-shadow: inset 0 0 0 0 rgb(68, 0, 255);
+    -webkit-transition: all ease 3s;
+    -moz-transition: all ease 3s;
+    transition: all linear 2s;
+   
+}
+#block-3:hover {
+    box-shadow: inset 220px 0 0 0 rgb(17, 0, 255);
+    color:white;  color:white; cursor:pointer; border:solid 6px green; 
+}
+ */
+/* .wrapper { display:block; width:; height:5px; margin:0 auto;} */
 
-  }
-  .addTask {
-    font-family: 'Inter';
-    cursor: pointer;
-    color: #FFFFFF;
-    background-color: #2A3647;
-    height: 48px;
-    width: 160px;
-    border-radius: 10px;
-    border: 1px solid #2A3647;
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    font-size: 21px;
-    font-weight: 700;
-    margin-left: 24px;
-  }
-  .addTask:hover {
-    background-color: #29abe2;
-    border: none;
-    box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.2);
+.contactPrioDiv {
+  display: flex;
+  justify-content: space-between;
+  
+}
+.descriptionDivClass{
+  margin: 16px 16px 16px 16px;
+  font-weight: normal;
+  color: #808080;
+}
+.cartContainerInnert {
+  margin-left: 16px;
+  height: 100vh;
+}
+.containerformularDivClass {
+  font-weight: bold;
+  margin: 16px 16px 4px 16px;
+}
+.contactPrioDiv {
+  margin: 16px 16px 4px 16px;
+}
+.contactCirclesDivClass {
+  position: relative;
+  
+}
+#img1 {
+  z-index: 1;
+  margin-right: -14px;
+}
+#img2 {
+  z-index: 2;
+  margin-right: -14px;
+}
+#img3 {
+  z-index: 3;
+  margin-right: -14px;
+}
+
+.accept-field {
+  width: 24px;
+  height: 24px;
+  border-radius: 3px;
+  background-image: url(./assets/img/search.svg);
+  cursor: pointer;
+  display: inline-block;
+  appearance: none;
+  margin: 0;
+
+}
+.addTask {
+  font-family: 'Inter';
+  cursor: pointer;
+  color: #FFFFFF;
+  background-color: #2A3647;
+  height: 48px;
+  width: 160px;
+  border-radius: 10px;
+  border: 1px solid #2A3647;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-size: 21px;
+  font-weight: 700;
+  margin-left: 24px;
+}
+.addTask:hover {
+  background-color: #29abe2;
+  border: none;
+  box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.2);
 }
 .titel svg:hover rect {
-  stroke: #29abe2;
+stroke: #29abe2;
 }
 .titel svg:hover path {
-  stroke: #29abe2;
+stroke: #29abe2;
 }
 .titel svg:hover {
-  cursor: pointer;
+cursor: pointer;
 }
 .inputAddTask {
-  display:flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 32px;
+display:flex;
+align-items: center;
+justify-content: center;
+margin-right: 32px;
 }
 
 .containerInputField {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 312px;
-  height: 46px;
-  padding: 0px 20px 0px 20px;
-  border: 1px solid #146cdfd0;
-  border-radius: 10px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+width: 312px;
+height: 46px;
+padding: 0px 20px 0px 20px;
+border: 1px solid #146cdfd0;
+border-radius: 10px;
 }
 
 .inputField {
-  background-color: none;
-  font-size: 20px;
-  border: none;
-  background: none;
-  border-style: none;
+background-color: none;
+font-size: 20px;
+border: none;
+background: none;
+border-style: none;
 }
 
 .seperator {
-  background-color: #D1D1D1;
-  width: 1px;
-  height: 31px;
+background-color: #D1D1D1;
+width: 1px;
+height: 31px;
 }
 .containerDivCards1 {
-  display: flex;
+display: flex;
 
 }
 
 .containerDivCards2 {
-  display: flex;
+display: flex;
 }
 
 .mediaQuerryBoardAdd svg{
-  display: none;
+display: none;
 }
 
 

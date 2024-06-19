@@ -47,7 +47,7 @@ let toDoCardsJSON = [
         toDoStatus: "To do",
     },
     {
-        title: "title1",
+        title: "Yuhu wir habens geschafft!",
         description:"description1",
         assignedToArray: [contactsJSON[0],contactsJSON[1],],
         dueDate: "28.02.2025",
@@ -58,7 +58,7 @@ let toDoCardsJSON = [
             { subtaskText: "subtask1-1", subtaskDone: false},
             { subtaskText: "subtask1-2", subtaskDone: false},
             ],
-        toDoStatus: "In progress",
+        toDoStatus: "Await feedback",
     },
     {
         title: "title2",
@@ -70,7 +70,7 @@ let toDoCardsJSON = [
         subtaskJson: [
             { subtaskText: "subtask2-0", subtaskDone: false},
             ],
-        toDoStatus: "Await feedback",
+        toDoStatus: "To do",
     },
     {
         title: "title3",
