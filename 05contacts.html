@@ -16,7 +16,7 @@
 
 </head>
 
-<body onload="includeHTML()">
+<body onload="includeHTML(); renderContacts();">
     <div w3-include-html="./assets/templates/headerSidebar.html"></div>
     <section class="contactsSection">
         <div class="addContactsMain">
@@ -25,7 +25,7 @@
                         alt="Contact add image">Add new contact</button>
             </div>
             <div id="contactsContent" class="contactsContent">
-                <div class="contactsContentMain">
+                <!-- <div class="contactsContentMain">
                     <div class="underContainer">
                         <span class="alphabet">A</span>
                         <div class="contactSeperator"></div>
@@ -107,17 +107,52 @@
                         </div>
                     </div>
                 </div>
+            </div> -->
             </div>
-        </div>
-        <div id="showContactsText" class="showContactsText">
+            <!-- <div id="showContactsText" class="showContactsText">
             <div class="showContactsTextMain">
                 <h2>Contacts</h2>
                 <div class="seperator"></div>
                 <span class="contactsText">Better with a team</span>
             </div>
-        </div>
+        </div> -->
     </section>
-    <div id="popUpContent" class="popUp d-none"></div>
+    <div onclick="closePopUpContent()" id="popUpContent" class="popUp d-none">
+        <div class="formContent">
+            <div class="leftSide">
+                <button onclick="hideContacts()" id="closePopUp" class="closePopUpTop d-none">X</button>
+                <img src="./img/logoPopUp.png" alt="JOIN Logo" width="60px" height="70px">
+                <div class="popUpText">
+                    <div class="h1Main">
+                        <h1>Add contact</h1>
+                    </div>
+                    <span>Tasks are better with a team!</span>
+                </div>
+            </div>
+            <div class="rightSide">
+                <div class="formDetails">
+                    <img src="./img/contactIcon.png" alt="Contact icon" width="110px" height="110px">
+                    <div class="formButtonContainer">
+                        <button onclick="hideContacts()" id="closePopUp" class="closePopUp">X</button>
+                        <form>
+                            <input id="name" type="text" placeholder="Name" required>
+                            <input id="email" type="email" placeholder="Email" required>
+                            <input id="phone" type="tel" placeholder="Phone">
+                        </form>
+                    </div>
+                </div>
+                <div class="buttonContent">
+                    <button onclick="contactsWindowsCancel()" id="addContactCancel" class="addContactCancel"><svg
+                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M6 6L18 18M6 18L18 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>Cancel</button>
+                    <button onclick="createContact()" class="createContact"><img src="./img/check.png">Create
+                        contact</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="./js/05contactsScript.js"></script>
 </body>
 

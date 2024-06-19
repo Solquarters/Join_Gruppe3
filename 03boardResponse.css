@@ -1,0 +1,70 @@
+@media (max-width: 1410px) {
+    .containerDivCards1 {
+        display: flex;
+        flex-direction: column;
+      
+      }
+      
+      .containerDivCards2 {
+        display: flex;
+        flex-direction: column;
+      }
+      .headDiv {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+    .mediaQuerryBoardAdd {
+        display: flex;
+        align-items: center;
+        
+      }
+
+     
+}
+@media (max-width: 620px) {
+    .mainDiv {
+        margin-left: 4px;
+        width: 100%;
+        margin-bottom: 120px;
+    }
+
+    .cardsDiv {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-left: 0;
+    }
+    .headDiv {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+    
+    .inputAddTask {
+        display: flex;
+        margin: 0px;
+    }
+    .addTask {
+        display: none;
+    }
+    .containerDivCards1 {
+        display: flex;
+        flex-direction: column;
+      
+      }
+      .mediaQuerryBoardAdd {
+        display: flex;
+        align-items: center;
+      }
+      #boardImg {
+        margin: 0;
+      }
+      .mediaQuerryBoardAdd svg{
+        display: block;
+      }
+}
+
+@media (max-width: 390px) {
+    
+}
