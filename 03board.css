@@ -174,35 +174,19 @@ body {
     border: none;
     box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.2);
 }
-/* .contentDiv img svg path:hover {
-  stroke: #29abe2;
-  fill: #29abe2;
-
- border-radius: 8px;
- box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
-} */
-
-
-
-
 .titel svg:hover rect {
   stroke: #29abe2;
-  
 }
 .titel svg:hover path {
   stroke: #29abe2;
-  
 }
 .titel svg:hover {
   cursor: pointer;
 }
-
-
-
-
-
 .inputAddTask {
   display:flex;
+  align-items: center;
+  justify-content: center;
   margin-right: 32px;
 }
 
@@ -210,8 +194,8 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 330px;
-  height: 48px;
+  width: 312px;
+  height: 46px;
   padding: 0px 20px 0px 20px;
   border: 1px solid #146cdfd0;
   border-radius: 10px;
@@ -223,6 +207,24 @@ body {
   border: none;
   background: none;
   border-style: none;
+}
+
+.seperator {
+  background-color: #D1D1D1;
+  width: 1px;
+  height: 31px;
+}
+.containerDivCards1 {
+  display: flex;
+
+}
+
+.containerDivCards2 {
+  display: flex;
+}
+
+.mediaQuerryBoardAdd svg{
+  display: none;
 }
 
 
