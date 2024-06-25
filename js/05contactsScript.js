@@ -67,7 +67,7 @@ function renderContacts() {
     for (let i = 0; i < contactsJSON.length; i++) {
         let contactJSON = contactsJSON[i];
         contactsContent.innerHTML += /*html*/`
-        <div onclick="contactsInfoView(${i})" class="underContainer">
+        <div onclick="renderContactsInfo(${i})" class="underContainer">
             <span class="alphabet">${contactJSON['lastName'].charAt(0).toUpperCase()}</span>
             <div class="contactSeperator"></div>
             <div class="underContactMain">
@@ -82,21 +82,18 @@ function renderContacts() {
     }
 }
 
-function renderContactsInfo() {
+function renderContactsInfo(index) {
+
+    //Wenn man auf einen Contact links in der Seite klickt, soll der Inhalt davon rechts angezeigt werden
     let showContactsInfo = document.getElementById('showContactsInfo');
     showContactsInfo.innerHTML = '';
 
-    for (let index = 0; index < viewFullNames.length; index++) {
-        let viewFullName = viewFullNames[index];
-        let viewEmail = viewEmails[index];
-        let viewPhone = viewPhones[index];
-        let viewNameShort = viewNameShorts[index];
-        showContactsInfo.innerHTML += /*HTML*/`
+        showContactsInfo.innerHTML = /*HTML*/`
         <div>
             <div class="nameEditDelete">
-                <span style="background-color: ${getProfileRGB(index)};">${viewNameShort}</span>
+                <span style="background-color: ${getProfileRGB(index)};">${contactsJSON[index]["firstName"]}</span>
                 <div class="nameEditDeleteMain">
-                    <span><b>${viewFullName}</b></span>
+                    <span><b>${contactsJSON[index]["lastName"]}</b></span>
                     <div class="editDelete">
                         <button onclick="editContacts()" class="editButton">
                             <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -113,33 +110,33 @@ function renderContactsInfo() {
                 <span>Contact Information</span>
                 <div>
                     <span><b>Email</b></span>
-                    <a href="mailto:${viewEmail}">${viewEmail}</a>
+                    <a href="mailto:${contactsJSON[index].email}">${contactsJSON[index].email}</a>
                 </div>
                 <div>
                     <span><b>Phone</b></span>
-                    <a href="tel:${viewPhone}">${viewPhone}</a>
+                    <a href="tel:${contactsJSON[index].phone}">${contactsJSON[index].phone}</a>
                 </div>
             </div>
         </div>
         `;
-    }
+
 }
 
-function contactsInfoView(i) {
-    let contactJSON = contactsJSON[i];
+// function contactsInfoView(i) {
+//     let contactJSON = contactsJSON[i];
 
-    viewFullNames = [];
-    viewEmails = [];
-    viewPhones = [];
-    viewNameShorts = [];
+//     viewFullNames = [];
+//     viewEmails = [];
+//     viewPhones = [];
+//     viewNameShorts = [];
 
-    viewFullNames.push(`${contactJSON.firstName} ${contactJSON.lastName}`);
-    viewEmails.push(contactJSON.email);
-    viewPhones.push(contactJSON.phone);
-    viewNameShorts.push(`${contactJSON.firstName.charAt(0)}${contactJSON.lastName.charAt(0)}`);
+//     viewFullNames.push(`${contactJSON.firstName} ${contactJSON.lastName}`);
+//     viewEmails.push(contactJSON.email);
+//     viewPhones.push(contactJSON.phone);
+//     viewNameShorts.push(`${contactJSON.firstName.charAt(0)}${contactJSON.lastName.charAt(0)}`);
 
-    renderContactsInfo();
-}
+//     renderContactsInfo();
+// }
 
 function getProfileRGB(i) {
     return contactsJSON[i].profileRGB;

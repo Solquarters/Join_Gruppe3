@@ -356,7 +356,17 @@ h2 {
     height: 16px;
 }
 
-.editButton svg:hover path {
+/* .editButton svg:hover path {
+    fill: #29abe2;
+}
+
+.editButton:hover {
+    color: #29abe2;
+    font-weight: 600;
+} */
+
+
+.editButton:hover svg path {
     fill: #29abe2;
 }
 
