@@ -24,100 +24,18 @@
                 <button onclick="addContacts()" class="addContacts"><img src="./img/personAdd.png"
                         alt="Contact add image">Add new contact</button>
             </div>
-            <div id="contactsContent" class="contactsContent">
-                <!-- <div class="contactsContentMain">
-                    <div class="underContainer">
-                        <span class="alphabet">A</span>
-                        <div class="contactSeperator"></div>
-                        <div class="underContactMain">
-                            <span class="nameShortOne">AM</span>
-                            <div class="selectContact">
-                                <span>Anton Mayer</span>
-                                <a href="#">antom@gmail.com</a>
-                            </div>
-                        </div>
-                        <div class="underContactMainTwo">
-                            <span class="nameShorttwo">AS</span>
-                            <div class="selectContact">
-                                <span>Anja Schulz</span>
-                                <a href="#">schulz@hotmail.com</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="underContainer">
-                        <span class="alphabet">B</span>
-                        <div class="contactSeperator"></div>
-                        <div class="underContactMain">
-                            <span class="nameShortThree">BZ</span>
-                            <div class="selectContact">
-                                <span>Benedikt Ziegler</span>
-                                <a href="#">benedikt@gmail.com</a>
-                            </div>
-                        </div>
-                        <span class="alphabet">D</span>
-                    </div>
-                    <div class="underContainer">
-                        <div class="contactSeperator"></div>
-                        <div class="underContactMain">
-                            <span class="nameShortFour">DE</span>
-                            <div class="selectContact">
-                                <span>David Eisenberg</span>
-                                <a href="#">davidberg@gmail.com</a>
-                            </div>
-                        </div>
-                        <span class="alphabet">E</span>
-                    </div>
-                    <div class="underContainer">
-                        <div class="contactSeperator"></div>
-                        <div class="underContactMain">
-                            <span class="nameShortFive">EF</span>
-                            <div class="selectContact">
-                                <span>Eva Fischer</span>
-                                <a href="#">eva@gmail.com</a>
-                            </div>
-                        </div>
-                        <div class="underContactMainTwo">
-                            <span class="nameShortSix">EM</span>
-                            <div class="selectContact">
-                                <span>Emmanuel Mauer</span>
-                                <a href="#">emmanuelma@gmail.com</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="underContainer">
-                        <span class="alphabet">M</span>
-                        <div class="contactSeperator"></div>
-                        <div class="underContactMain">
-                            <span class="nameShortSeven">MB</span>
-                            <div class="selectContact">
-                                <span>Marcel Bauer</span>
-                                <a href="#">bauer@gmail.com</a>
-                            </div>
-                        </div>
-                        <span class="alphabet">T</span>
-                    </div>
-                    <div class="underContainer">
-                        <div class="contactSeperator"></div>
-                        <div class="underContactMain">
-                            <span class="nameShortEight">TW</span>
-                            <div class="selectContact">
-                                <span>Tatjana Wolf</span>
-                                <a href="#">wolf@gmail.com</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-            </div>
-            <!-- <div id="showContactsText" class="showContactsText">
+            <div id="contactsContent" class="contactsContent"></div>
+        </div>
+        <div class="showContactsText">
             <div class="showContactsTextMain">
                 <h2>Contacts</h2>
                 <div class="seperator"></div>
                 <span class="contactsText">Better with a team</span>
             </div>
-        </div> -->
+            <div id="showContactsInfo" class="contactsInfo"></div>
+        </div>
     </section>
-    <div onclick="closePopUpContent()" id="popUpContent" class="popUp d-none">
+    <div id="popUpContent" class="popUp d-none">
         <div class="formContent">
             <div class="leftSide">
                 <button onclick="hideContacts()" id="closePopUp" class="closePopUpTop d-none">X</button>
@@ -137,18 +55,21 @@
                         <form>
                             <input id="name" type="text" placeholder="Name" required>
                             <input id="email" type="email" placeholder="Email" required>
-                            <input id="phone" type="tel" placeholder="Phone">
+                            <input id="phone" type="tel" placeholder="Phone" required>
+                            <!-- <button type="submit" class="createContact"><img src="./img/check.png">Create
+                                contact</button> -->
+                            <div class="buttonContent">
+                                <button onclick="contactsWindowsCancel()" id="addContactCancel"
+                                    class="addContactCancel"><svg xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 24 24">
+                                        <path d="M6 6L18 18M6 18L18 6" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>Cancel</button>
+                                <button onclick="createContact()" class="createContact"><img
+                                        src="./img/check.png">Create contact</button>
+                            </div>
                         </form>
                     </div>
-                </div>
-                <div class="buttonContent">
-                    <button onclick="contactsWindowsCancel()" id="addContactCancel" class="addContactCancel"><svg
-                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M6 6L18 18M6 18L18 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" />
-                        </svg>Cancel</button>
-                    <button onclick="createContact()" class="createContact"><img src="./img/check.png">Create
-                        contact</button>
                 </div>
             </div>
         </div>
