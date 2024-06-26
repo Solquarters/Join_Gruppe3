@@ -1,31 +1,237 @@
-const textarea = document.getElementById('descriptionTextAreaId');
-const handle = document.querySelector('.resizeHandleClass');
+
 
 let initialHeight;
 let initialY;
 
-let temporarySelectedContactsArray =[];
+
+// Create a set to store the IDs of the added elements: AssignedTo Dropdown SpanId Set
+let addedIDs = new Set();
+
+let inEditCardMode = true;
+
+//Global single task/card Object, when submitting addTask or submit edit a card in board this is getting pushed to toDoCardsJSON
+let temporaryNewTaskSingleCardObject = {
+    title: "Title temp array",
+    description:"XXXXX",
+    assignedToArray: [
+        //////Aus diesem Array  WERDEN BEI JEDEM ASSIGNEN von Kontakten 
+        //      die Daten ins innerHTML der ID assignedUsersCircleDivId mit einer for schleife gepusht
+        {assignedFullName:"Stefan Schulz", assignedRGB:"rgb(0,170,0)"},
+         {assignedFullName:"Claudia Müller", assignedRGB:"rgb(190,0,0)"},
+        
+    ],
+    dueDate: "2028-10-10",
+    prio: "Low",
+    category: "User Story",
+    subtaskJson: [
+        {subtaskText: "XXXTempSubtask0-1asdfasdfasdasdf", subtaskDone: false },
+        {subtaskText: "AAATempSubtask0-2", subtaskDone: true },
+        {subtaskText: "TempSubtask0-3", subtaskDone: true },
+        {subtaskText: "TempSubtask0-4", subtaskDone: false },
+    ],
+    toDoStatus: "In Progress",
+};
+
+
+
+function emptyTempJson(){
+    temporaryNewTaskSingleCardObject = {
+        title: "",
+        description:"",
+        assignedToArray: [],
+        dueDate: "",
+        prio: "",
+        category: "",
+        subtaskJson: [],
+        toDoStatus: ""};
+}
 
 function initAddTaskSite(){
+    renderContactsDropdownMenuContent();
     setCurrentDateInputMinValue();
+    renderProfileCirclesFromTempArray();
+    renderSubtaskFromTempArray();
+    renderAddTaskSiteFromTempArray();
+
+    ///emptyTempJson() ///When editing card : setTempJson to Values of ToDoJson[index]
+
+
+    //ADDTASK DYNAMISCH RENDERN BEIM INIT()
+    //ADDTASK DYNAMISCH RENDERN BEIM INIT()
+    //ADDTASK DYNAMISCH RENDERN BEIM INIT()
+}
+
+
+////SEARCH FUNCTION FOR ASSIGNED CONTACTS
+// function searchAllPokemon() {
+//     let searchInput = document.getElementById("searchInputId").value;
+//     if (searchInput.length > 2) {
+//       document.getElementById("plusIconId").onclick = null;
+//       searchInput = searchInput.toLowerCase();
+//       let content = document.getElementById("content");
+//       content.innerHTML = "";
+  
+//       for (let i = 0; i < Object.keys(allPokemonJson).length; i++) {
+//         let pokemonName = allPokemonJson[i]["name"];
+//         if (pokemonName.toLowerCase().includes(searchInput)) {
+//           content.innerHTML += returnSmallPokemonCardHTML(i);
+//           renderTypes(i);
+//         }
+//       }
+//     }
+//     if (searchInput == "") {
+//       document.getElementById("plusIconId").onclick = render20More;
+//       content.innerHTML = "";
+//       renderedToIndex = 0;
+//       renderPokemon();
+//     }
+//   }
+
+function renderAddTaskSiteFromTempArray(){
+//////////////////RENDER ALLL ATTRIBUTES FROM TEMP ARRAY TO ADD TASK SITE
+document.getElementById('titleInputId').value = temporaryNewTaskSingleCardObject["title"];
+document.getElementById('descriptionTextAreaId').value = temporaryNewTaskSingleCardObject["description"];
+document.getElementById('datePickerInputId').value = temporaryNewTaskSingleCardObject["dueDate"];
+setPrioFromTempArray();
+setDropdownSelectionFromTempArray();
+renderContactsDropdownMenuContent();
+setCurrentDateInputMinValue();
+renderProfileCirclesFromTempArray();
+renderSubtaskFromTempArray();
+//////////////////RENDER ALLL ATTRIBUTES FROM TEMP ARRAY TO ADD TASK SITE
+}
+
+function setDropdownSelectionFromTempArray() {
+    const selectElement = document.getElementById('categoryDropdownPlaceholderId');
+    selectElement.innerText = temporaryNewTaskSingleCardObject.category;
+    document.getElementById('categorySelectId').style.setProperty('color', 'rgb(0, 0, 0)', 'important');
+}
+
+function setPrioFromTempArray(){
+    let switchExpression = temporaryNewTaskSingleCardObject["prio"];
+    switch(switchExpression) {
+        case "Urgent":
+            setPriority('prioButtonId1','prioIconfillId1','prioIconfillId2');
+            break;
+        case "Medium":
+            setPriority('prioButtonId2','prioIconfillId3','prioIconfillId4');
+            break;
+        case "Low":
+            setPriority('prioButtonId3','prioIconfillId5','prioIconfillId6');
+            break;
+      }
+}
+
+function renderContactsDropdownMenuContent(){
+    document.getElementById('dropdownContactAssignId').innerHTML = '';
+
+   if(inEditCardMode){
+
+    for(let i = 0; i < contactsJSON.length; i++)
+        {
+            let contactNameIsInsideAssignedArray = false;
+
+           for(let j = 0; j < temporaryNewTaskSingleCardObject.assignedToArray.length; j++){
+            
+                if(temporaryNewTaskSingleCardObject.assignedToArray[j].assignedFullName == getFullNameStringFromContacts(i)){
+                    contactNameIsInsideAssignedArray = true;
+                }
+           } 
+
+          if(contactNameIsInsideAssignedArray){
+            document.getElementById('dropdownContactAssignId').innerHTML += returnAssignContactsDropdownSELECTEDHTML(i);
+                    let element = document.getElementById(`assignedDropdownSingleLineDivId${i}`);
+                    let checkboxChecked = element.querySelector('.checkbox-checked');
+                    let checkboxUnchecked = element.querySelector('.checkbox-unchecked');
+                    checkboxChecked.style.display = 'block';
+                    checkboxUnchecked.style.display = 'none';
+                    addedIDs.add(`fistNameLastNameSpanId${i}`);
+                    contactNameIsInsideAssignedArray = false;
+          }
+          else{
+            document.getElementById('dropdownContactAssignId').innerHTML += returnAssignContactsDropdownHTML(i);
+            }
+        }
+   }
+   else{
+    for(let i = 0; i < contactsJSON.length; i++)
+        {
+            document.getElementById('dropdownContactAssignId').innerHTML += returnAssignContactsDropdownHTML(i);
+        }
+   }
+}
+
+function returnAssignContactsDropdownHTML(i){
+    return /*html*/ `
+    <div onclick="selectContactAndPushToTemporaryArray(this, 'fistNameLastNameSpanId${i}', ${i})">
+        <span class="circleAndNameSpanClass">
+            <!-- InitialsCircle -->
+            <span class="contactSvgCircleClass" id="fistNameLastNameSpanId${i}" style="background-color: ${getProfileRGB(i)};">${getNameInitials(i)}</span>
+            <!-- Full contact name -->
+            <span>${getFullNameStringFromContacts(i)}</span>
+        </span>
+
+        <svg class="checkbox" viewBox="0 0 24 24">
+            <rect width="24" height="24" fill="none" rx="4" ry="4"/>
+            <path class="checkbox-unchecked" d="M5 5 H19 V19 H5 Z" />
+            <path class="checkbox-checked" d="M7 13.5l3 3l7-7L14.5 8L10 12.5L8.5 11L7 13.5z" />
+        </svg>
+    </div>
     
-    ////Render contact Circle, Full Name + Checkbox to assigned dropdown
-    ///On check of contact add to temporarySelectedContactsArray
+    `;
+}
 
+function returnAssignContactsDropdownSELECTEDHTML(i){
+    return /*html*/ `
+    <div id="assignedDropdownSingleLineDivId${i}" onclick="selectContactAndPushToTemporaryArray(this, 'fistNameLastNameSpanId${i}', ${i})" class="selected">
+        <span class="circleAndNameSpanClass">
+            <!-- InitialsCircle -->
+            <span class="contactSvgCircleClass" id="fistNameLastNameSpanId${i}" style="background-color: ${getProfileRGB(i)};">${getNameInitials(i)}</span>
+            <!-- Full contact name -->
+            <span>${getFullNameStringFromContacts(i)}</span>
+        </span>
 
+        <svg class="checkbox" viewBox="0 0 24 24">
+            <rect width="24" height="24" fill="none" rx="4" ry="4"/>
+            <path class="checkbox-unchecked" d="M5 5 H19 V19 H5 Z" />
+            <path class="checkbox-checked" d="M7 13.5l3 3l7-7L14.5 8L10 12.5L8.5 11L7 13.5z" />
+        </svg>
+    </div>
+    
+    `;
+}
+
+function getNameInitials(i){
+    let firstInitial = contactsJSON[i].firstName.charAt(0).toUpperCase();
+    let lastInitial = contactsJSON[i].lastName.charAt(0).toUpperCase();
+    return firstInitial + lastInitial;
+}
+
+function getProfileRGB(i){
+    return contactsJSON[i].profileRGB;
 }
 
 
 ///////////////////////////
 ///Text area drag is buggy - when mouseup outside the textarea handler problems can occur!
 //////////////////////////
-handle.addEventListener('mousedown', function(e) {
-    // e.preventDefault();
-    initialHeight = textarea.offsetHeight;
-    initialY = e.clientY;
-    document.addEventListener('mousemove', resize);
-    document.addEventListener('mouseup', stopResize);
-});
+
+
+///Async function notwendig, wenn addTask Site HTML dynamisch gerendert wird, wird der Event listener hinzugefügt, bevor die Klassen existieren! 
+//Wie lasse ich handle.addEventListener darauf warten, bis die Site HTML gerendert ist ? 
+
+// const textarea = document.getElementById('descriptionTextAreaId');
+// const handle = document.querySelector('.resizeHandleClass');
+
+
+// handle.addEventListener('mousedown', function(e) {
+//     // e.preventDefault();
+//     initialHeight = textarea.offsetHeight;
+//     initialY = e.clientY;
+//     document.addEventListener('mousemove', resize);
+//     document.addEventListener('mouseup', stopResize);
+// });
+
 function stopResize() {
     document.removeEventListener('mousemove', resize);
     document.removeEventListener('mouseup', stopResize);
@@ -69,33 +275,32 @@ function setPriority(ButtonId,SVGfillId1,SVGfillId2){
     switch(ButtonId) {
         case "prioButtonId1":
             document.getElementById(ButtonId).style.backgroundColor = "#FF3D00";
+            temporaryNewTaskSingleCardObject.prio = "Urgent";
             break;
         case "prioButtonId2":
             document.getElementById(ButtonId).style.backgroundColor = "#FFA800";
+            temporaryNewTaskSingleCardObject.prio = "Medium";
             break;
         case "prioButtonId3":
             document.getElementById(ButtonId).style.backgroundColor = "#7AE229";
+            temporaryNewTaskSingleCardObject.prio = "Low";
             break;
       }
     document.getElementById(ButtonId).style.color ="white";
     document.getElementById(SVGfillId1).style.fill="white";
     document.getElementById(SVGfillId2).style.fill="white"; 
+
 }
 
 
-////////////////////////// WORK HERE 17:55
-////////////////////////// WORK HERE 17:55
-////////////////////////// WORK HERE 17:55
-////////////////////////// WORK HERE 17:55
-//Render contacts to dropdown with index inside onclick=selectContactAndPushToTemporaryArray()
-//add element to temporarySelectedContactsArray, remove when CheckBox Unchecked 
+////////////////////////// WORK HERE 
+////////////////////////// WORK HERE 
+////////////////////////// WORK HERE 
+////////////////////////// WORK HERE 
 //Search function: oninput inside contactsInputId activate search function and render contacts in dropdown according to search input (check pokedex search)
 
 
-// Create a set to store the IDs of the added elements
-let addedIDs = new Set();
-
-function selectContactAndPushToTemporaryArray(element, nameSpanId) {
+function selectContactAndPushToTemporaryArray(element, nameSpanId, i) {
     let checkboxChecked = element.querySelector('.checkbox-checked');
     let checkboxUnchecked = element.querySelector('.checkbox-unchecked');
 
@@ -106,7 +311,13 @@ function selectContactAndPushToTemporaryArray(element, nameSpanId) {
         
         // Remove the element from the set if it's deselected
         addedIDs.delete(nameSpanId);
+
         removeUserProfileCircle(nameSpanId);
+
+        ////Hier aus temp to do splicen
+        removeAssignedNameAndRgbFromTempArray(i);
+        renderProfileCirclesFromTempArray(i);
+
     } else {
         element.classList.add('selected');
         checkboxChecked.style.display = 'block';
@@ -116,19 +327,74 @@ function selectContactAndPushToTemporaryArray(element, nameSpanId) {
         if (!addedIDs.has(nameSpanId)) {
             addedIDs.add(nameSpanId);
 
-            // Render ProfileCircles below selection dropdown
-            // GET INITIALS HERE - from JSON or create a separate Function and read the first letter of firstName + first letter of lastName 
-
-            let nameSpanIdContent = document.getElementById(nameSpanId).innerText;
-            document.getElementById('assignedUsersCircleDivId').innerHTML += /*html*/`
-                <div class="userProfileCircleDivClass" id="circle-${nameSpanId}" style="background-color: ${generateRandomRGB()};">${nameSpanIdContent}</div>
-            `; 
+            ///Hier ins temp to do single card pushen
+            pushAssignedNameAndRgbToTempArray(i);
+            renderProfileCirclesFromTempArray(i);
         }
     }
 }
 
+function renderProfileCirclesFromTempArray(){
+    document.getElementById('assignedUsersCircleDivId').innerHTML = '';
+    for (let j = 0; j < temporaryNewTaskSingleCardObject.assignedToArray.length; j++) {
+        document.getElementById('assignedUsersCircleDivId').innerHTML += /*html*/`
+        <div class="userProfileCircleDivClass" style="background-color: ${getProfileRgbFromTempArray(j)};">${getNameInitialsFromTempArray(j)}</div>
+        `;
+    }
+}
 
+function getProfileRgbFromTempArray(j){
+    return temporaryNewTaskSingleCardObject.assignedToArray[j].assignedRGB;
+}
 
+function getNameInitialsFromTempArray(j){
+   let fullName = temporaryNewTaskSingleCardObject.assignedToArray[j].assignedFullName;
+    let namePartsArray = fullName.split(' ');
+    let firstName = namePartsArray[0];
+    let lastName = namePartsArray[1];
+    let initials = firstName.charAt(0).toUpperCase() + lastName.charAt(0).toUpperCase();
+    return initials;
+}
+
+function getFullNameStringFromContacts(i){
+    return contactsJSON[i].firstName + " " + contactsJSON[i].lastName;
+}
+
+function pushAssignedNameAndRgbToTempArray(i){
+    let assignedFullNameString = getFullNameStringFromContacts(i);
+    let assignedRGBString = contactsJSON[i].profileRGB;
+    const assignedObject = {
+        assignedFullName: assignedFullNameString,
+        assignedRGB: assignedRGBString
+    };
+    temporaryNewTaskSingleCardObject.assignedToArray.push(assignedObject);
+    ///debugging...
+    console.log(temporaryNewTaskSingleCardObject);
+}
+
+function removeAssignedNameAndRgbFromTempArray(i){
+    if (i < 0 || i >= contactsJSON.length) {
+        console.error("Invalid index");
+        return;
+      }
+      let assignedFullNameString = getFullNameStringFromContacts(i);
+      // Find the index of the assignedFullNameString in assignedToArray
+      let assignedToArrayIndex = -1;
+      for (let j = 0; j < temporaryNewTaskSingleCardObject.assignedToArray.length; j++) {
+        if (temporaryNewTaskSingleCardObject.assignedToArray[j].assignedFullName === assignedFullNameString) {
+          assignedToArrayIndex = j;
+          break;
+        }
+      }
+      // If found, splice it from the array
+      if (assignedToArrayIndex !== -1) {
+        temporaryNewTaskSingleCardObject.assignedToArray.splice(assignedToArrayIndex, 1);
+      } else {
+        console.log("Assigned full name " + assignedFullNameString + " not found in assignedToArray");
+      }
+      console.log(temporaryNewTaskSingleCardObject);
+    }
+    
 
 ////Remove added circles below assigned contacts selection
 function removeUserProfileCircle(nameSpanId) {
@@ -138,18 +404,6 @@ function removeUserProfileCircle(nameSpanId) {
     }
 }
 
-
-
-
-function generateRandomRGB() {
-    const r = Math.floor(Math.random() * 256);
-    const g = Math.floor(Math.random() * 256);
-    const b = Math.floor(Math.random() * 256);
-    return `rgb(${r}, ${g}, ${b})`;
-}
-
-
-
 ///////////////////////////
 // Dropdown Menu Contact script
 function toggleDropdown(thisElement) {
@@ -158,8 +412,6 @@ function toggleDropdown(thisElement) {
     dropdownButton.classList.toggle("active");
     dropdownContent.classList.toggle("show");
 
-    
-    
     if (thisElement.classList.contains('open')) {
         thisElement.style.backgroundImage = "url('./assets/img/addTaskImg/inputArrowDownHover.svg')";}
         else{
@@ -190,8 +442,6 @@ window.onclick = function(event) {
         contactInputId = document.getElementById('contactsInputId');
         contactInputId.classList.remove('open')
         contactInputId.style.backgroundImage = "url('./assets/img/addTaskImg/inputArrowDown.svg')";
-
-        
     }
 
     //On click outside the category input - change background arrow to default state
@@ -200,7 +450,6 @@ window.onclick = function(event) {
         categorySelectId.classList.remove('open')
         categorySelectId.style.backgroundImage = "url('./assets/img/addTaskImg/inputArrowDown.svg')";
     }
-
 }
 
 function toggleCategoryDropdown() {
@@ -209,7 +458,6 @@ function toggleCategoryDropdown() {
     dropdownButton.classList.toggle("active");
     dropdownContent.classList.toggle("show");
 }
-
 
 function displayAddAndDeleteSubtasksButtons(){
     document.getElementById('deleteSubtaskInputId').style.display="flex";
@@ -221,32 +469,53 @@ function displayAddAndDeleteSubtasksButtons(){
     }
 }
 
-
 function clearSubtaskInput(){
     document.getElementById('subtaskTextareaId').value = '';
     displayAddAndDeleteSubtasksButtons();
 }
 
 function renderAndSafeSubtask(){
-    if(document.getElementById('subtaskTextareaId').value == 0)
-        {return;}
-    /////////////Safe to Task JSON HERE/////////////
-    document.getElementById('subtasksDivContainerClass').innerHTML += 
-    //////////////PEN AND DELETE ICONS ////////////// TEXTAREA, make editable onclick
-    // onclick pen and trashbin
-    /*html*/ `
-    <div onclick="this.contentEditable='true';" class="subtaskDynamicDivClass" onmouseover="showIcons(this)" onmouseout="hideIcons(this)">
-    <div id="subtaskTextDivId">&nbsp&nbsp•&nbsp   ${document.getElementById('subtaskTextareaId').value} </div>
-    <div class="iconsClass">
-            <img src="./assets/img/addTaskImg/smallEditSVG.svg" alt=""  onclick="editParentDivText()">
-            <img src="./assets/img/addTaskImg/smallDeleteSVG.svg" alt="" onclick="deleteSubtask(this)" >
-        </div>
-    </div>
-    `
+    addSubtaskToTempArray();
+    renderSubtaskFromTempArray();
     document.getElementById('subtaskTextareaId').value = '';
-
     document.getElementById('deleteSubtaskInputId').style.display="none";
     document.getElementById('addSubtaskInputId').style.display="none";
+    }
+
+function renderSubtaskFromTempArray() {
+    const container = document.getElementById('subtasksDivContainerId');
+    container.innerHTML = '';
+    for (let m = 0; m < temporaryNewTaskSingleCardObject.subtaskJson.length; m++) {
+        container.innerHTML += /*html*/`
+            <div class="subtaskDynamicDivClass" contenteditable="true"   oninput="updateSubtaskArray(this, ${m})" onmouseover="showIcons(this)" onmouseout="hideIcons(this)">
+                <div id="subtaskTextDivId${m}"   class="subtaskFocusDivClass">
+                    &nbsp&nbsp•&nbsp <span id="subtaskTextSpanId${m}">${temporaryNewTaskSingleCardObject.subtaskJson[m].subtaskText}</span> 
+                </div>
+                <div class="iconsClass">
+                    <img src="./assets/img/addTaskImg/smallEditSVG.svg" alt="" onclick="editParentDivText(${m})">
+                    <img src="./assets/img/addTaskImg/smallDeleteSVG.svg" alt="" onclick="deleteSubtask(this, ${m})">
+                </div>
+            </div>
+        `;
+    }
+}
+
+function updateSubtaskArray(element, m) {
+    const subtaskTextDiv = document.getElementById(`subtaskTextDivId${m}`);
+    const spanElement = subtaskTextDiv.querySelector(`#subtaskTextSpanId${m}`);
+    if (spanElement) {
+        temporaryNewTaskSingleCardObject.subtaskJson[m].subtaskText = spanElement.innerText.trim();
+        if (spanElement.innerText.trim().length === 0) {
+            deleteSubtask(element, m);
+        }
+    } else {
+        console.error(`Span element with id #subtaskTextSpanId${m} not found.`);
+    }
+}
+
+    function addSubtaskToTempArray(){
+    let tempSubtask = { subtaskText: `${document.getElementById('subtaskTextareaId').value}`, subtaskDone: false };
+    temporaryNewTaskSingleCardObject.subtaskJson.push(tempSubtask);
     }
 
    function showIcons(element) {
@@ -258,20 +527,17 @@ function renderAndSafeSubtask(){
     element.querySelector('.iconsClass').style.display = 'none';
 }
 
-
-function deleteSubtask(element){
+function deleteSubtask(element, m){
     const grandparent = element.parentElement.parentElement;
     grandparent.remove();
-
+    temporaryNewTaskSingleCardObject.subtaskJson.splice(m, 1);
 }
 
-function editParentDivText() {
+function editParentDivText(m) {
     // Find the subtaskTextDivId within the parent div
-    let subtaskTextDiv = document.getElementById('subtaskTextDivId');
-    
+    let subtaskTextDiv = document.getElementById(`subtaskTextDivId${m}`);
     // Make the subtaskTextDiv editable
     subtaskTextDiv.contentEditable = 'true';
-    
     // Set focus on the subtaskTextDiv and move cursor to the end of the text content
     let range = document.createRange();
     let selection = window.getSelection();
@@ -281,14 +547,12 @@ function editParentDivText() {
     selection.addRange(range);
 }
 
-
 function changeInputArrow(inputElement){
     if (inputElement.classList.contains('open')) {
         inputElement.style.backgroundImage = "url('./assets/img/addTaskImg/inputArrowUpHover.svg')";}
     else{
         inputElement.style.backgroundImage = "url('./assets/img/addTaskImg/inputArrowDownHover.svg')";
     }
-    
 }
 
 function changeBackInputArrow(inputElement){
@@ -298,14 +562,8 @@ function changeBackInputArrow(inputElement){
     else{
         inputElement.style.backgroundImage = "url('./assets/img/addTaskImg/inputArrowDown.svg')";
       }
-   
 }
 
-
-
-
-/////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////
 //Date picker input min value always on today:
 function setCurrentDateInputMinValue() {
     const today = new Date();
@@ -314,8 +572,6 @@ function setCurrentDateInputMinValue() {
     const day = String(today.getDate()).padStart(2, '0');
     document.getElementById('datePickerInputId').setAttribute('min', `${year}-${month}-${day}`);
 }
-
-
 
 function submitAddTaskForm(){
     // Get all the input elements
@@ -341,37 +597,42 @@ function submitAddTaskForm(){
         ////push to toDoCardsJSON 
         ///console log toDoJson to check
         alert('Added new task!');
+        pushNewCardToJson();
+        console.log(toDoCardsJSON);
     }
 };
 
-
-
 function pushNewCardToJson(){
-
-let newToDoCard = {
-    title: "title4",
-    description:"description4",
-    assignedToArray: [contactsJSON[0],contactsJSON[1],contactsJSON[3]],
-    dueDate: "14.02.2025",
-    prio: "low",
-    category: "Technical task",
-    subtaskJson: [
-        { subtaskText: "subtask4-0", subtaskDone: false},
-        { subtaskText: "subtask4-1", subtaskDone: false},
-        { subtaskText: "subtask4-2", subtaskDone: false},
-        { subtaskText: "subtask4-3", subtaskDone: false},
-        ],
-    toDoStatus: "In progress",
-}
-
-newToDoCard["title"] = document.getElementById('titleInputId').value;
-newToDoCard["description"] = document.getElementById('titleInputId').value;
-newToDoCard["assignedToArray"] = document.getElementById('titleInputId').value;
-newToDoCard["dueDate"] = document.getElementById('titleInputId').value;
-newToDoCard["category"] = document.getElementById('titleInputId').value;
-newToDoCard["subtaskArray"] = document.getElementById('titleInputId').value;
-newToDoCard["toDoStatus"] = document.getElementById('titleInputId').value;
+temporaryNewTaskSingleCardObject["title"] = document.getElementById('titleInputId').value;
+temporaryNewTaskSingleCardObject["description"] = document.getElementById('descriptionTextAreaId').value;
+//Date Value correct?
+temporaryNewTaskSingleCardObject["dueDate"] = document.getElementById('datePickerInputId').value;
+//Category already changed onclick, if not clicked, it stays empty
 
 // Push the new object into the array
-toDoCardsJSON.push(newToDoCard);
+toDoCardsJSON.push(temporaryNewTaskSingleCardObject);
+console.log(temporaryNewTaskSingleCardObject);
+console.log(toDoCardsJSON[toDoCardsJSON.length-1]);
+
+
+///////////////////RESET ALL INPUT FIELDS
+///////////////////REDIRECT TO BOARD ?
+//////////////////WANN WIRD TEMPARRAY RESETTET ? Eigentlich hier
+/////////////Wenn dann im Board auf eine Karte geklick wird, sollen die Werte von ToDOJSON an der Index Stelle
+// ins TempArray gepusht werden und anhand dessen das AddTask Overlay gerendert. 
+}
+
+function changeCategoryInTempArray(categoryInput){
+    temporaryNewTaskSingleCardObject["category"] = `${categoryInput}`;
+}
+
+// function generateRandomRGB() {
+//     const r = Math.floor(Math.random() * 256);
+//     const g = Math.floor(Math.random() * 256);
+//     const b = Math.floor(Math.random() * 256);
+//     return `rgb(${r}, ${g}, ${b})`;
+// }
+
+function updateDateInTempArray(){
+    temporaryNewTaskSingleCardObject["dueDate"] = document.getElementById('datePickerInputId').value;
 }

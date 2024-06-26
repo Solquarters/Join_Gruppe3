@@ -119,3 +119,24 @@ function createPrioSvg(i) {
            }
            
 }
+
+
+
+// ROMAN EDIT 
+function openEmptyAddTaskOverlay(){
+    document.getElementById('addEmptyTaskMainOverlayId').style.display="flex";
+        //ZUGRIFF AUF GLOBAL SCRIPT
+        renderAddTaskHTMLForBoardOverlay();
+    
+        emptyTempJson();
+        renderContactsDropdownMenuContent();
+        setCurrentDateInputMinValue();
+        renderProfileCirclesFromTempArray();
+        renderSubtaskFromTempArray();
+        renderAddTaskSiteFromTempArray();
+    }
+    
+    
+    function closeAddTaskOverlay(){
+        document.getElementById('addEmptyTaskMainOverlayId').style.display="none";
+    }

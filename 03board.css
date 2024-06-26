@@ -244,5 +244,33 @@ display: none;
 
 
 
+/* ROMANS EDIT START  */
+
+
+.addEmptyTaskMainOverlayClass{
+  z-index: 10;
+  position: fixed;
+  top:0;
+  right:0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(104, 104, 104, 0.432);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#addEmptyTaskMainOverlayId{
+  display:none;
+}
+
+
+.addEmptyTaskChildOverlayClass{
+  width:80%;
+  height:80%;
+  background-color: white;
+  border-radius: 20px;
+}
+/* ROMANS EDIT ENDE */
 
 

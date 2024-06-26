@@ -10,12 +10,24 @@
     <script src="./assets/templates/templatesScript.js"></script>
    <script src="./js/03boardScript.js"></script>
    <script src="./js/01script.js"></script>
+   <script src="./js/04addTaskScript.js"></script>
 
     <link rel="stylesheet" href="./assets/templates/headerSidebar.css">
     <link rel="stylesheet" href="fonts.css">
     <link rel="stylesheet" href="03boardResponse.css">
+    <link rel="stylesheet" href="./04addTaskStyle.css">
+
+
 </head>
 <body onload="includeHTML(), initializeBoard()"></body>
+
+<!-- HIER ROMANS EDIT START  -->
+<div class="addEmptyTaskMainOverlayClass" id="addEmptyTaskMainOverlayId" onclick="closeAddTaskOverlay()">
+
+   <div class="addEmptyTaskChildOverlayClass" id="addEmptyTaskChildOverlayId" onclick="event.stopPropagation()"></div>
+</div>
+<!-- HIER ROMANS EDIT END -->
+ 
 
 <!-- ///Header und Sidebar Div bei jeder HTML Datei hinzufügen, dazu auch im body: onload="includeHTML()" /// -->
 <div w3-include-html="./assets/templates/headerSidebar.html"></div>
@@ -38,7 +50,7 @@
                   <img src="./assets/img/search.svg" alt="">
                </div>
                 <!-- <input id="findTask" placeholder="Find Task"> -->
-                <button onclick="addTask()" class="addTask"><img src="./assets/img/add.svg"
+                <button onclick="openEmptyAddTaskOverlay()" class="addTask"><img src="./assets/img/add.svg"
                   alt="Contact add image">Add Task</button>
                </div>
 

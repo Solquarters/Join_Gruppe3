@@ -113,6 +113,7 @@ textarea:focus {
   border-radius: 50%;
   margin: 8px 12px 0px 0px;
   font-weight: 800;
+
 }
 
 .categoryFormClass:hover.littleCircleDivClass{
@@ -133,12 +134,17 @@ textarea:focus {
   
   /* ////CHANGE FONT FAMILY TO GLOBAL FONT FAMILY///// */
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  color: #a5a5a5;
+  color: black;
   box-sizing: border-box;
   display: flex;
   border-radius: 8px;
   border: 1px solid #cccccc;
   cursor: pointer;
+}
+
+/* Datepicker placeholder color */
+input[type=date]:invalid::-webkit-datetime-edit {
+  color: #818181;
 }
 
 
@@ -505,7 +511,7 @@ border-radius: 50%;
 }
 
 
-#subtasksDivContainerClass{
+.subtasksDivContainerClass{
 display: flex;
 flex-direction: column;
 height: 80px;
@@ -540,6 +546,33 @@ filter: invert(0.1);
   justify-content: flex-end;
   cursor: pointer;
 }
+.subtaskFirstIconDiv{
+  margin: 0px 2px 0px 0px;
+  display: flex;
+  justify-content: space-between;
+  width: 48px;
+}
+
+.iconsClass{
+  width: 42px;
+   height: 0px;
+   display: none;
+   justify-content: space-between;
+   margin: 0px 12px 0px 0px;
+ }
+ .iconsClass img{
+   position: relative;
+   top: -8px;
+   margin: 0px 0px 0px 0px;
+   height: 16px;
+   width: 16px;
+   cursor: pointer;
+ 
+  
+ }
+ .iconsClass img:hover{
+   filter: brightness(3);
+ }
 
 
 .backGroundArrowClass{
@@ -573,22 +606,19 @@ filter: invert(0.1);
 
 }
 
-
-.iconsClass{
-  height: 0px;
-  display: none;
-  justify-content: flex-end;
+.subtaskFocusDivClass{
+  border-radius: 6px;
+  overflow-y: auto;
 }
-.iconsClass img{
-  position: relative;
-  top: -8px;
-  margin: 0px 6px 0px 0px;
-  height: 16px;
-  width: 16px;
-  cursor: pointer;
+.subtaskFocusDivClass:focus{
 
+  background-color: white;
+  width: 100%;
+  outline: none;
  
 }
-.iconsClass img:hover{
-  filter: brightness(3);
+
+.subtaskFocusDivClass {
+  max-height: 48px; /* Set maximum height */
+  overflow-y: auto; /* Enable vertical scrolling */
 }
