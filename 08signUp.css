@@ -5,61 +5,33 @@ body {
     font-family: 'Inter';
 }
 
-.logo-logIn {
+.logo-sign-up {
     margin: 80px 0px 0px 77px;
 }
 
-.container-sign-up-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    top: 67px;
-    right: 122px;
-    gap: 35px;
-}
-
-.sign-up-button {
-    width: 91px;
-    height: 49px;
-    border-radius: 8px;
-    gap: 10px;
-    font-size: 16px;
-    font-weight: 700;
-    border: 0;
-    color: white;
-    background-color: #2A3647;
-    cursor: pointer;
-}
-
-.sign-up-button:hover {
-    background-color: #29ABE2;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.5);
-}
-
-.logIn-container {
+.sign-up-container {
     background-color: white;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     position: relative;
-    width: 652px;
-    height: 493px;
-    margin-top: 65px;
+    width: 598px;
+    height: 630px;
     border-radius: 30px;
     gap: 32px;
     box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
+    margin-top: 20px;
 }
 
-.logIn-container-total {
+.sign-up-container-total {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
 
-.header-log-in-container {
+.header-sign-up-container {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -67,7 +39,7 @@ body {
     gap: 16px;
 }
 
-.headline-log-in {
+.headline-sign-up {
     font-size: 61px;
     font-weight: 700;
     margin: 6px;
@@ -79,7 +51,7 @@ body {
     background-color: #29ABE2;
 }
 
-.input-log-In {
+.input-sign-up {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -111,9 +83,9 @@ body {
 .container-remember-me {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
     width: 422px;
-    margin-left: 80px;
     margin-bottom: 10px;
 }
 
@@ -128,7 +100,7 @@ body {
     margin: 0;
 }
 
-.submit-container-log-in {
+.submit-container-sign-up {
     display: flex;
     gap: 35px;
 }
@@ -136,8 +108,8 @@ body {
 .logo-in-button {
     background-color: #2A3647;
     color: white;
-    width: 110px;
-    height: 48px;
+    width: 126px;
+    height: 55px;
     border-radius: 8px;
     gap: 10px;
     font-size: 21px;
@@ -151,7 +123,7 @@ body {
 }
 
 .logo-in-button-guest {
-    background-color: #ffffff;
+    background-color: white;
     width: 177px;
     height: 48px;
     border: 1px solid;
@@ -169,7 +141,7 @@ body {
 .link-legal-and-privacy-size {
     display: flex;
     gap: 40px;
-    margin-top: 110px;
+    margin-top: 20px;
     color: #A8A8A8;
 }
 
@@ -186,85 +158,20 @@ a:hover {
     transform: scale(1.08);
 }
 
-/*---------------------------Animation-Logo----------------------------*/
-
-body, html {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    background-color: #F6F7F8; /* Hintergrundfarbe */
+.privacy-i-accept-size {
+    text-decoration: none;
+    color: #29ABE2;
 }
 
-#preloader {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #F6F7F8;
-    z-index: 1000;
-    transition: opacity 1s ease;
+.privacy-i-accept-size:hover {
+    text-decoration: underline;
 }
 
-.logo {
-    width: 150px;
-    position: absolute;
-    transition: all 1s ease;
-}
-
-.content {
-    display: none;
-    opacity: 0;
-    transition: opacity 1s ease;
-}
-
-.loaded #preloader {
-    opacity: 1;
-    pointer-events: none;
-}
-
-@keyframes moveLogo {
-    from {
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
-    to {
-        top: -10px;
-        left: 77px;
-        transform: translate(1, 1);
-    }
-}
-
-.loaded .logo {
-    animation: moveLogo 1s forwards, fadeOutBg 1s forwards;
-}
-
-
-.loaded .content {
-    display: block;
-    opacity: 1;
-}
-
-@media (max-width: 600px) {
-    .logo {
-        width: 100px;
-        fill: white; /* Setzt die SVG-Farbe auf weiß */
-
-    }
-}
-
-/*--------------------------------------------------------------------*/
 
 @media (max-width: 750px) {
-    .logIn-container {
+    .sign-up-container {
         width: 502px;
-        height: 555px;
+        height: 600px;
         display: flex;
         margin-top: 0;
         justify-content: center;
@@ -281,7 +188,7 @@ body, html {
         gap: 35px;
     }
 
-    .submit-container-log-in {
+    .submit-container-sign-up {
         flex-direction: column;
     }
 
@@ -289,14 +196,14 @@ body, html {
     .link-legal-and-privacy-size {
         display: flex;
         gap: 20px;
-        margin-top: 180px;
+        margin-top: 100px;
     }
 
     svg {
         width: 70px;
     }
 
-    .logo-logIn {
+    .logo-sign-up {
         margin: 20px 0px 0px 57px;
     }
 
@@ -307,23 +214,23 @@ body, html {
 }
 
 @media (max-width: 600px) {
-    .logIn-container {
+    .sign-up-container {
         width: 442px;
-        height: 555px;
+        height: 600px;
         display: flex;
         margin-top: 0;
         justify-content: center;
         align-items: center;
     }
 
-    .submit-container-log-in {
+    .submit-container-sign-up {
         flex-direction: column;
     }
 
     .link-legal-and-privacy-size {
         display: flex;
         gap: 20px;
-        margin-top: 180px;
+        margin-top: 130px;
     }
 
     .container-sign-up-button {
@@ -341,35 +248,23 @@ body, html {
         padding: 0px 20px 0px 20px;
     }
 
-    .input-log-In {
+    .input-sign-up {
         width: 442px;
     }
-
-    .preloader svg path{
-        fill: white;
-    }
-
-    .preloader svg path.logo-color{
-        fill: #29ABE2;
-    }
     
-    #preloader{
-        background-color: #2A3647;
-    }
-
 }
 
 @media (max-width: 500px) {
-    .logIn-container {
+    .sign-up-container {
         width: 292px;
-        height: 505px;
+        height: 600px;
         display: flex;
         margin-top: 0px;
         justify-content: center;
         align-items: center;
     }
 
-    .submit-container-log-in {
+    .submit-container-sign-up {
         flex-direction: column;
     }
 
@@ -412,7 +307,7 @@ body, html {
         font-size: 19px;
     }
 
-    .headline-log-in {
+    .headline-sign-up {
         font-size: 51px;
     }
 
@@ -425,7 +320,7 @@ body, html {
         height: 39px;
     }
 
-    .input-log-In {
+    .input-sign-up {
         width: 292px;
     }
 }
@@ -437,8 +332,3 @@ body, html {
         margin-bottom: 20px;
     }
 }
-
-
-
-
-

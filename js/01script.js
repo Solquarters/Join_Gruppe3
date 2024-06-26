@@ -108,23 +108,7 @@ let toDoCardsJSON = [
 
 
 
-let userLoginJson = [
-    {
-        accountName: "accountName0",
-        email:"xyz@gmail.com",
-        password: "password0"
-    },
-    {
-        accountName: "accountName1",
-        email:"xyz@gmail.com",
-        password: "password1"
-    },
-    {
-        accountName: "accountName2",
-        email:"xyz@gmail.com",
-        password: "password2"
-    }
-];
+let userLoginJson = JSON.parse(localStorage.getItem('userLoginJson')) || [];
 
 
 
