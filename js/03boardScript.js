@@ -126,11 +126,6 @@ function moveTo(categoryInput) {
     renderSingleCard();
 }
 
-function removeHighlight() {
-    document.querySelectorAll('.drag-area-highlight').forEach(function(element) {
-        element.classList.remove('drag-area-highlight');
-    });
-}
 
 
 
@@ -152,6 +147,7 @@ function moveDraggedCardToCategoryInsideJson(categoryInput){
         toDoCardsJSON.splice(0, 0, tempObject);
     }
 }
+
 
 
 function highlight(mainCategoryDivId) {
