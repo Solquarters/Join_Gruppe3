@@ -59,12 +59,14 @@ function renderSingleCard(){
     }
 }
 
+let currentDraggedElement;
 
 function returnSingleCardHTML(i){
-
+    
     return /*html*/`
 
-    <div class="mainSingleCardDivClass" id="singleCardId${i}">
+    <div class="mainSingleCardDivClass" id="singleCardId${i}"
+    draggable="true" ondragstart="startDragging(${i})">
 
         <div class="cardContainerInnert">
             <div id="cardHeadlineId${i}" class="cardHeadlineClass">
@@ -100,10 +102,73 @@ function returnSingleCardHTML(i){
         </div>
     </div>
     `; 
-
-    
-
 }
+
+/////////////////////////////DRAG AND DROP FUNCTION START
+
+function startDragging(index) {
+    currentDraggedElement = index;
+}
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+function moveTo(categoryInput) {
+    moveDraggedCardToCategoryInsideJson(categoryInput);
+
+    /////////////////////RENDERE ALLE KARTEN NEU HIER
+    // updateHTML();
+
+
+    document.querySelectorAll('.drag-area-highlight').forEach(function(element) {
+        element.classList.remove('drag-area-highlight');
+    });
+
+    renderSingleCard();
+}
+
+function removeHighlight() {
+    document.querySelectorAll('.drag-area-highlight').forEach(function(element) {
+        element.classList.remove('drag-area-highlight');
+    });
+}
+
+
+
+
+
+
+function moveDraggedCardToCategoryInsideJson(categoryInput){
+    let tempObject = toDoCardsJSON[currentDraggedElement];
+
+    tempObject.toDoStatus = categoryInput;
+
+    let indexOfFirstCategoryinJson = findFirstAwaitFeedbackIndex(categoryInput);
+    toDoCardsJSON.splice(currentDraggedElement, 1);
+
+    if(indexOfFirstCategoryinJson >= 1){
+        toDoCardsJSON.splice(indexOfFirstCategoryinJson-1, 0, tempObject);
+    }
+    else{
+        toDoCardsJSON.splice(0, 0, tempObject);
+    }
+}
+
+
+function highlight(mainCategoryDivId) {
+    document.getElementById(mainCategoryDivId).classList.add('drag-area-highlight');
+}
+
+function removeHighlight(mainCategoryDivId) {
+    document.getElementById(mainCategoryDivId).classList.remove('drag-area-highlight');
+}
+
+function findFirstAwaitFeedbackIndex(categoryInput) {
+    return toDoCardsJSON.findIndex(item => item.toDoStatus === categoryInput);
+}
+
+
+/////////////////////////////DRAG AND DROP FUNCTION END
+
 function createPrioSvg(i) {
         
         if(toDoCardsJSON[i]["prio"] == "Low"){

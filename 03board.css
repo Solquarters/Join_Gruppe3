@@ -50,6 +50,9 @@ margin: 128px 0px 0px 0px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  font-size: 20px;
+  font-weight: 800;
 }
 #card {
   width: 253px;
@@ -58,6 +61,7 @@ margin: 128px 0px 0px 0px;
 .mainSingleCardDivClass{
   display: flex;
   flex-direction: column;
+  
   justify-content: space-between;
   border-style: solid;
   border-radius: 12px;
@@ -65,6 +69,11 @@ margin: 128px 0px 0px 0px;
   background-color: white;
   box-shadow: 6px 5px 5px rgb(212, 209, 209);
   margin-top: 24px;
+
+
+ 
+  width: 240px;
+  cursor: pointer;
 }
 
 #cardContainer{
@@ -85,7 +94,7 @@ margin-top: 24px;
   display: flex;
   justify-content: center;
   color: white;
-  width: 110px;
+  width: 112px;
   padding: 4px 8px 4px 8px;
   border-radius: 6px;
   margin: 16px 16px 4px 16px;
@@ -274,3 +283,30 @@ display: none;
 /* ROMANS EDIT ENDE */
 
 
+
+
+/* DRAG AND DROP START */
+
+.drag-area {
+  min-height: 100px;
+  min-width: 240px;
+  /* display: flex;
+  overflow-x: auto;
+  width: auto; */
+  border-radius: 16px;
+  padding: 0px 16px 24px 16px;
+  border: 1px solid rgba(148, 148, 148, 0.522);
+
+  /* background-color: rgba(0, 0, 0, 0.1);
+  
+  margin-bottom: 50px;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column; */
+}
+
+.drag-area-highlight {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+/* DRAG AND DROP END */

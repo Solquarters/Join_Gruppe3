@@ -71,33 +71,11 @@
                      </div>
                   </div>
                      
-                     <div id="toDoStatusDivId" class="mainCardContainerDivClass">
-                        <div class="cardContainerInnert">
-                        <div id="cardHeadline">
-                          <span id="">User Story</span>
-                        </div>
-                        <div id="containerformular">
-                          <span id="">Contact Form & Imprint</span>
-                        </div>
-                        <div id="description">
-                           <span id="">description: Define CSS naming conventions and structure...</span>
-                        </div>
-                          <div id="block-3"></div>
-                        
-                        
-                        <div class="contactPrioDiv">
-                           <div id="contacts">
-                              <div class="persons">
-                                  <img id="img1" src="./assets/img/Group 9 (1).svg">
-                                  <img id="img2" src="./assets/img/Group 9.svg">
-                                  <img id="img3" src="./assets/img/Profile badge.svg">
-                              </div>
-                           </div>
-                          
-                             
-                             
-                        </div>
-                        </div>
+                     <div id="toDoStatusDivId" class="mainCardContainerDivClass drag-area"
+                     ondrop="moveTo('To do')" ondragleave="removeHighlight('toDoStatusDivId')" ondragover="allowDrop(event); highlight('toDoStatusDivId')"
+                     >
+                        <!-- ID im Drag and Drop MiniProjekt: id="mainToDoDivId" -->
+                        <!-- HIER WERDEN ALLE OBJEKTE AUS DEM TODOJSON DYNAMISCH EINGEFÜGT, ABER NUR WENN SIE DIE KATEGORIE "TO DO" -->
                      </div>
                  </div>
                     
@@ -113,33 +91,12 @@
                   </div>
                </div>
                   
-                  <div id="inProgressStatusDivId" class="mainCardContainerDivClass">
-                     <div class="cardContainerInnert">
-                     <div id="cardHeadline">
-                       <span id="">User Story</span>
-                     </div>
-                     <div id="containerformular">
-                       <span id="">Contact Form & Imprint</span>
-                     </div>
-                     <div id="description">
-                        <span id="">description </span>
-                     </div>
-                       <div id="block-3"></div>
-                     
-                     
-                     <div class="contactPrioDiv">
-                        <div id="contacts">
-                           <div class="persons">
-                               <img id="img1" src="./assets/img/Group 9 (1).svg">
-                               <img id="img2" src="./assets/img/Group 9.svg">
-                               <img id="img3" src="./assets/img/Profile badge.svg">
-                           </div>
-                        </div>
-                      
-                          
-                          
-                     </div>
-                     </div>
+                  <div id="inProgressStatusDivId" class="mainCardContainerDivClass drag-area"
+                  ondrop="moveTo('In progress')" ondragleave="removeHighlight('inProgressStatusDivId')" ondragover="allowDrop(event); highlight('inProgressStatusDivId')"
+                  >
+                     <!-- ID im Drag and Drop MiniProjekt: id="mainInProgressDivId" -->
+                     <!-- HIER WERDEN ALLE OBJEKTE AUS DEM TODOJSON DYNAMISCH EINGEFÜGT, ABER NUR WENN SIE DIE KATEGORIE "IN PROGRESS" -->
+
                   </div>
               </div>
             </div>    
@@ -155,33 +112,12 @@
                         </div>
                      </div>
                         
-                     <div id="awaitFeedbackStatusDivId" class="mainCardContainerDivClass">
-                           <div class="cardContainerInnert">
-                           <div id="cardHeadline">
-                             <span id="">User Story</span>
-                           </div>
-                           <div id="containerformular">
-                             <span id="">Contact Form & Imprint</span>
-                           </div>
-                           <div id="description">
-                              <span id="">description, Define CSS naming conventions and structure..., Define CSS naming conventions and structure...</span>
-                           </div>
-                             <div id="block-3"></div>
-                           
-                           
-                           <div class="contactPrioDiv">
-                              <div id="contacts">
-                                 <div class="persons">
-                                     <img id="img1" src="./assets/img/Group 9 (1).svg">
-                                     <img id="img2" src="./assets/img/Group 9.svg">
-                                     <img id="img3" src="./assets/img/Profile badge.svg">
-                                 </div>
-                              </div>
-                            
-                                
-                                
-                           </div>
-                           </div>
+                     <div id="awaitFeedbackStatusDivId" class="mainCardContainerDivClass drag-area"
+                     ondrop="moveTo('Await feedback')" ondragleave="removeHighlight('awaitFeedbackStatusDivId')" ondragover="allowDrop(event); highlight('awaitFeedbackStatusDivId')"
+                     >
+                            <!-- ID im Drag and Drop MiniProjekt: id="awaitFeedbackDivId" -->
+                           <!-- HIER WERDEN ALLE OBJEKTE AUS DEM TODOJSON DYNAMISCH EINGEFÜGT, ABER NUR WENN SIE DIE KATEGORIE "Await feedback" -->
+
                         </div>
                     </div>
                     <div id="card">
@@ -195,34 +131,13 @@
                      </div>
                   </div>
                      
-                  <div id="doneStatusDivId" class="mainCardContainerDivClass">
-                        <div class="cardContainerInnert">
-                        <div id="cardHeadline">
-                          <span id="">User Story</span>
-                        </div>
-                        <div id="containerformular">
-                          <span id="">Contact Form & Imprint</span>
-                        </div>
-                        <div id="description">
-                           <span id="">description</span>
-                        </div>
-                          <div id="block-3"></div>
-                        
-                        
-                        <div class="contactPrioDiv">
-                          <div id="contacts">
-                             <div class="persons">
-                                 <img id="img1" src="./assets/img/Group 9 (1).svg">
-                                 <img id="img2" src="./assets/img/Group 9.svg">
-                                 <img id="img3" src="./assets/img/Profile badge.svg">
-                             </div>
-                          </div>
-                          
-                             
-                             
-                        </div>
-                        </div>
-                     </div>
+                  <div id="doneStatusDivId" class="mainCardContainerDivClass drag-area"
+                  ondrop="moveTo('Done')" ondragleave="removeHighlight('doneStatusDivId')" ondragover="allowDrop(event); highlight('doneStatusDivId')"
+                  >
+                        <!-- ID im Drag and Drop MiniProjekt: id="isDoneDivId" -->
+                           <!-- HIER WERDEN ALLE OBJEKTE AUS DEM TODOJSON DYNAMISCH EINGEFÜGT, ABER NUR WENN SIE DIE KATEGORIE "Await feedback" -->
+
+                  </div>
                  </div>
                </div> 
 
