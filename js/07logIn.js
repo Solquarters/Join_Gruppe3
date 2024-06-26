@@ -10,7 +10,31 @@ document.addEventListener("DOMContentLoaded", function() {
     },);
 });
 
-window.onload = function() {
-    var checkbox = document.getElementById('meineCheckbox');
-    checkbox.checked = true;
+function login() {
+    console.log(userLoginJson);
+    let email = document.getElementById('email').value;
+    let password = document.getElementById('password').value;
+    let rememberCheckbox = document.getElementById('rememberCheckbox').checked;
+
+    if (!rememberCheckbox) {
+        document.getElementById('loginMsgBox').innerHTML = "You must accept the remember me option";
+        return false;
+    }
+
+    let user = userLoginJson.find(u => u.email == email && u.password == password);
+    
+    if (user) {
+        document.getElementById('loginMsgBox').innerHTML = "Login successful";
+        window.location.href = '02summary.html'; // Weiterleitung nach erfolgreichem Login
+        return true;
+    } else {
+        document.getElementById('loginMsgBox').innerHTML = "Invalid email or password";
+        return false;
+    }
+}
+
+const urlParams = new URLSearchParams(window.location.search);
+const msg = urlParams.get('msg');
+if (msg) {
+    document.getElementById('loginMsgBox').innerHTML = msg;
 }
