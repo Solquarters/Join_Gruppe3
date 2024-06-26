@@ -14,8 +14,6 @@ function renderSingleCard(){
     //Get data from toDoCardsJSON
     for(let i = 0; i < Object.keys(toDoCardsJSON).length; i++ ){
 
-       console.log(toDoCardsJSON[i]["toDoStatus"]); 
-
        if(toDoCardsJSON[i]["toDoStatus"] == "To do"){
         document.getElementById('toDoStatusDivId').innerHTML += returnSingleCardHTML(i);
        }
@@ -69,9 +67,7 @@ function returnSingleCardHTML(i){
     draggable="true" ondragstart="startDragging(${i})">
 
         <div class="cardContainerInnert">
-            <div id="cardHeadlineId${i}" class="cardHeadlineClass">
-                <span id="">${toDoCardsJSON[i]["category"]}</span>
-            </div>
+            ${returnCategoryHTML(i)}
             <div id="containerformularId${i}" class="containerformularDivClass">
                 <span id="">${toDoCardsJSON[i]["title"]}</span>
             </div>
@@ -102,6 +98,21 @@ function returnSingleCardHTML(i){
         </div>
     </div>
     `; 
+}
+
+function returnCategoryHTML(i){
+    if(toDoCardsJSON[i]["category"] == "User Story"){
+        return /*html*/ `<div id="cardHeadlineId${i}" class="cardHeadlineClass userStoryClass">
+                <span id="">${toDoCardsJSON[i]["category"]}</span>
+            </div>`;
+    }
+    else if(toDoCardsJSON[i]["category"] == "Technical Task"){
+        return /*html*/ `<div id="cardHeadlineId${i}" class="cardHeadlineClass technicalTaskClass">
+        <span id="">${toDoCardsJSON[i]["category"]}</span>
+        </div>`;
+
+    }
+
 }
 
 /////////////////////////////DRAG AND DROP FUNCTION START
@@ -167,8 +178,6 @@ function handleDragLeave(event, mainCategoryDivId) {
     // Check if the mouse is outside the parent element
     if (x < rect.left || x > rect.right || y < rect.top || y > rect.bottom) {
 
-        // removeHighlight(mainCategoryDivId);
-
         document.querySelectorAll('.drag-area-highlight').forEach(function(element) {
             element.classList.remove('drag-area-highlight');
         });
@@ -214,9 +223,39 @@ function openEmptyAddTaskOverlay(){
         renderProfileCirclesFromTempArray();
         renderSubtaskFromTempArray();
         renderAddTaskSiteFromTempArray();
+
+        // eventListenerAddTaskOnClickWindowEvent();
+
+
+        disableScrolling();
+        /////SET CSS AND MEDIA QUERY HERE? 
+        fitAddTaskCssAttributesToBoardTemplate();
     }
     
     
     function closeAddTaskOverlay(){
         document.getElementById('addEmptyTaskMainOverlayId').style.display="none";
+        enableScrolling();
+    }
+
+    function disableScrolling() {
+        document.body.style.overflow = 'hidden';
+    }
+    
+    function enableScrolling() {
+        document.body.style.overflow = 'auto';
+    }
+
+    function fitAddTaskCssAttributesToBoardTemplate(){
+
+        const element = document.querySelector('.' + 'addTaskMainTemplateDivClass');
+    
+ 
+    if (element) {
+   
+     element.style.height = 'auto';
+        } else {
+     console.warn(`No element found with class ${className}`);
+        }
+
     }

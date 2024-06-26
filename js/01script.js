@@ -117,7 +117,7 @@ let toDoCardsJSON = [
                         ],
         dueDate: "17.05.2025",
         prio: "Urgent",
-        category: "Technical task",
+        category: "Technical Task",
         subtaskJson: [
             { subtaskText: "subtask2-0", subtaskDone: false},
             ],
@@ -150,7 +150,7 @@ let toDoCardsJSON = [
                         ],
         dueDate: "14.02.2025",
         prio: "Low",
-        category: "Technical task",
+        category: "Technical Task",
         subtaskJson: [
             { subtaskText: "subtask4-0", subtaskDone: false},
             { subtaskText: "subtask4-1", subtaskDone: false},
@@ -309,7 +309,7 @@ function returnAddTaskSiteHTML(){
             
              Category<span style="color: red;">*</span> 
                    <form >
-                   <select id="categorySelectId" required class="singleLineInputClass backGroundArrowClass categorySelectClass" onchange="changeCategoryInTempArray(this.value)" onmouseover="changeInputArrow(this)" onmouseleave="changeBackInputArrow(this)" onclick="toggleDropdown(this)" required style="color: gray;">
+                   <select id="categorySelectId" required class="singleLineInputClass backGroundArrowClass categorySelectClass" onchange="changeCategoryInTempArray(this.value)" onmouseover="changeInputArrow(this)" onmouseleave="changeBackInputArrow(this)" onclick="toggleDropdown2(this)" required style="color: gray;">
                        <option  value="" disabled selected hidden  id="categoryDropdownPlaceholderId">Select Task Category</option>
                        <option value="Technical Task" >Technical Task</option>
                        <option value="User Story" >User Story</option>
@@ -346,7 +346,7 @@ function returnAddTaskSiteHTML(){
        <div class="clearCreateTaskButtonDivClass">
            <span><span style="color: red;">*</span>This field is required</span>
            <div class="clearCreateTaskButtonDivChildClass">
-               <button class="clearCreateButtonClass1">Clear&nbsp
+               <button class="clearCreateButtonClass1" onclick="clearAddTaskForm()">Clear&nbsp
                    <svg width="13" height="14" viewBox="0 0 13 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                        <path d="M6.24959 6.99984L11.4926 12.2428M1.00659 12.2428L6.24959 6.99984L1.00659 12.2428ZM11.4926 1.75684L6.24859 6.99984L11.4926 1.75684ZM6.24859 6.99984L1.00659 1.75684L6.24859 6.99984Z" stroke="#2A3647" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                        </svg>  
@@ -363,3 +363,11 @@ function returnAddTaskSiteHTML(){
 
 `;
 }
+
+
+
+
+
+
+
+

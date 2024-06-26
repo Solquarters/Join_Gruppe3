@@ -47,18 +47,15 @@ function emptyTempJson(){
 }
 
 function initAddTaskSite(){
+    emptyTempJson();
     renderContactsDropdownMenuContent();
     setCurrentDateInputMinValue();
     renderProfileCirclesFromTempArray();
     renderSubtaskFromTempArray();
     renderAddTaskSiteFromTempArray();
 
-    ///emptyTempJson() ///When editing card : setTempJson to Values of ToDoJson[index]
+    // eventListenerAddTaskOnClickWindowEvent();
 
-
-    //ADDTASK DYNAMISCH RENDERN BEIM INIT()
-    //ADDTASK DYNAMISCH RENDERN BEIM INIT()
-    //ADDTASK DYNAMISCH RENDERN BEIM INIT()
 }
 
 
@@ -216,10 +213,6 @@ function getProfileRGB(i){
 ///Text area drag is buggy - when mouseup outside the textarea handler problems can occur!
 //////////////////////////
 
-
-///Async function notwendig, wenn addTask Site HTML dynamisch gerendert wird, wird der Event listener hinzugefügt, bevor die Klassen existieren! 
-//Wie lasse ich handle.addEventListener darauf warten, bis die Site HTML gerendert ist ? 
-
 // const textarea = document.getElementById('descriptionTextAreaId');
 // const handle = document.querySelector('.resizeHandleClass');
 
@@ -251,7 +244,7 @@ function autoResize(idName) {
     inputTextArea.style.height = height + "px";
   }
   
-function setPriority(ButtonId,SVGfillId1,SVGfillId2){
+function resetPrioButtons(){
     for(let i= 1; i < 4; i++){
         let prioButtonId = `prioButtonId${i}`;
         document.getElementById(prioButtonId).style.backgroundColor = "white";
@@ -272,6 +265,11 @@ function setPriority(ButtonId,SVGfillId1,SVGfillId2){
             break;
           }
     }
+
+}
+
+function setPriority(ButtonId,SVGfillId1,SVGfillId2){
+    resetPrioButtons();
     switch(ButtonId) {
         case "prioButtonId1":
             document.getElementById(ButtonId).style.backgroundColor = "#FF3D00";
@@ -291,13 +289,6 @@ function setPriority(ButtonId,SVGfillId1,SVGfillId2){
     document.getElementById(SVGfillId2).style.fill="white"; 
 
 }
-
-
-////////////////////////// WORK HERE 
-////////////////////////// WORK HERE 
-////////////////////////// WORK HERE 
-////////////////////////// WORK HERE 
-//Search function: oninput inside contactsInputId activate search function and render contacts in dropdown according to search input (check pokedex search)
 
 
 function selectContactAndPushToTemporaryArray(element, nameSpanId, i) {
@@ -407,9 +398,12 @@ function removeUserProfileCircle(nameSpanId) {
 ///////////////////////////
 // Dropdown Menu Contact script
 function toggleDropdown(thisElement) {
+
+    
     let dropdownButton = document.querySelector('.dropbtn');
-    let dropdownContent = document.getElementById("dropdownContactAssignId");
     dropdownButton.classList.toggle("active");
+
+    let dropdownContent = document.getElementById("dropdownContactAssignId");
     dropdownContent.classList.toggle("show");
 
     if (thisElement.classList.contains('open')) {
@@ -420,9 +414,25 @@ function toggleDropdown(thisElement) {
         thisElement.classList.toggle('open');
 }
 
+
+function toggleDropdown2(thisElement) {
+    let dropdownButton = document.querySelector('.dropbtn');
+    dropdownButton.classList.toggle("active");
+
+    if (thisElement.classList.contains('open')) {
+        thisElement.style.backgroundImage = "url('./assets/img/addTaskImg/inputArrowDownHover.svg')";}
+        else{
+            thisElement.style.backgroundImage = "url('./assets/img/addTaskImg/inputArrowUp.svg')";
+        }
+        thisElement.classList.toggle('open');
+}
+
+
+
+//////////////// WINDOW ONCLICK EVENT LISTENER AB HIER
+function eventListenerAddTaskOnClickWindowEvent(){}
 // Close the dropdown if the user clicks outside of it, except when clicking on the checkboxes
 window.onclick = function(event) {
-
     if (!event.target.matches('.dropbtn') && !event.target.closest('.dropdownContactDivClass')) {
         let dropdowns = document.getElementsByClassName("dropdownContactDivClass");
         let dropdownButtons = document.getElementsByClassName("dropbtn");
@@ -440,17 +450,28 @@ window.onclick = function(event) {
         }
         //On click outside the input - change background arrow to default state
         contactInputId = document.getElementById('contactsInputId');
-        contactInputId.classList.remove('open')
-        contactInputId.style.backgroundImage = "url('./assets/img/addTaskImg/inputArrowDown.svg')";
+        if (contactInputId) {
+            contactInputId.classList.remove('open')
+             contactInputId.style.backgroundImage = "url('./assets/img/addTaskImg/inputArrowDown.svg')";
+        }
+        
     }
 
     //On click outside the category input - change background arrow to default state
     if(!event.target.matches('.categorySelectClass')){
         categorySelectId = document.getElementById('categorySelectId');
-        categorySelectId.classList.remove('open')
-        categorySelectId.style.backgroundImage = "url('./assets/img/addTaskImg/inputArrowDown.svg')";
+        if (categorySelectId) {
+            categorySelectId.classList.remove('open')
+            categorySelectId.style.backgroundImage = "url('./assets/img/addTaskImg/inputArrowDown.svg')";
+        }
+       
     }
 }
+
+
+
+
+//////////////// WINDOW ONCLICK EVENT LISTENER BIS HIERHER
 
 function toggleCategoryDropdown() {
     let dropdownButton = document.querySelector('.dropbtn');
@@ -592,15 +613,19 @@ function submitAddTaskForm(){
         if (!isInput1Valid) input1.reportValidity();
        
     } else {
-       // If all inputs are valid, submit the form
-        ////Get all inputs by id 
-        ////push to toDoCardsJSON 
-        ///console log toDoJson to check
         alert('Added new task!');
         pushNewCardToJson();
-        console.log(toDoCardsJSON);
     }
 };
+
+function clearAddTaskForm(){
+    emptyTempJson();
+    renderAddTaskSiteFromTempArray();
+    resetPrioButtons();
+
+}
+
+
 
 function pushNewCardToJson(){
 temporaryNewTaskSingleCardObject["title"] = document.getElementById('titleInputId').value;
