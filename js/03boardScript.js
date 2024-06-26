@@ -64,7 +64,7 @@ function returnSingleCardHTML(i){
 
     return /*html*/`
 
-    <div class="mainSingleCardDivClass">
+    <div class="mainSingleCardDivClass" id="singleCardId${i}">
 
         <div class="cardContainerInnert">
             <div id="cardHeadlineId${i}" class="cardHeadlineClass">
