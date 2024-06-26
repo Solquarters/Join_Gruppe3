@@ -137,7 +137,7 @@ function moveDraggedCardToCategoryInsideJson(categoryInput){
 
     tempObject.toDoStatus = categoryInput;
 
-    let indexOfFirstCategoryinJson = findFirstAwaitFeedbackIndex(categoryInput);
+    let indexOfFirstCategoryinJson = findIndexOfFirstCategoryInMainJson(categoryInput);
     toDoCardsJSON.splice(currentDraggedElement, 1);
 
     if(indexOfFirstCategoryinJson >= 1){
@@ -158,7 +158,25 @@ function removeHighlight(mainCategoryDivId) {
     document.getElementById(mainCategoryDivId).classList.remove('drag-area-highlight');
 }
 
-function findFirstAwaitFeedbackIndex(categoryInput) {
+
+function handleDragLeave(event, mainCategoryDivId) {
+    let rect = document.getElementById(mainCategoryDivId).getBoundingClientRect();
+    let x = event.clientX;
+    let y = event.clientY;
+
+    // Check if the mouse is outside the parent element
+    if (x < rect.left || x > rect.right || y < rect.top || y > rect.bottom) {
+        // removeHighlight(mainCategoryDivId);
+
+        document.querySelectorAll('.drag-area-highlight').forEach(function(element) {
+            element.classList.remove('drag-area-highlight');
+        });
+    }
+}
+
+
+
+function findIndexOfFirstCategoryInMainJson(categoryInput) {
     return toDoCardsJSON.findIndex(item => item.toDoStatus === categoryInput);
 }
 

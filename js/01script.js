@@ -157,7 +157,7 @@ let toDoCardsJSON = [
             { subtaskText: "subtask4-2", subtaskDone: false},
             { subtaskText: "subtask4-3", subtaskDone: false},
             ],
-        toDoStatus: "Done",
+        toDoStatus: "In progress",
     }, {
         title: "0Title",
         description:"description0",

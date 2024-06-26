@@ -54,10 +54,14 @@ margin: 128px 0px 0px 0px;
   font-size: 20px;
   font-weight: 800;
 }
-#card {
+
+
+/* ////DIE ID CARD WAR AUF 4 CONTAINERN das hat zu Fehlern im CSS geführt , eine ID darf immer nur 1 mal vergeben werden */
+/* #card {
   width: 253px;
   margin: 12px;
-}
+} */
+
 .mainSingleCardDivClass{
   display: flex;
   flex-direction: column;

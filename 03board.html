@@ -60,7 +60,7 @@
             <div class="contentDiv">
                 <div class="cardsDiv">
 <div class="containerDivCards1">
-                  <div id="card">
+                  <div id="toDoAreaId">
                      <div class="titel">
                         <div class="addLine"><span>To Do</span>
                            <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -72,7 +72,7 @@
                   </div>
                      
                      <div id="toDoStatusDivId" class="mainCardContainerDivClass drag-area"
-                     ondrop="moveTo('To do')" ondragleave="removeHighlight('toDoStatusDivId')" ondragover="allowDrop(event); highlight('toDoStatusDivId')"
+                     ondrop="moveTo('To do')" ondragleave="handleDragLeave(event, 'toDoStatusDivId')" ondragover="allowDrop(event); highlight('toDoStatusDivId')"
                      >
                         <!-- ID im Drag and Drop MiniProjekt: id="mainToDoDivId" -->
                         <!-- HIER WERDEN ALLE OBJEKTE AUS DEM TODOJSON DYNAMISCH EINGEFÜGT, ABER NUR WENN SIE DIE KATEGORIE "TO DO" -->
@@ -80,7 +80,7 @@
                  </div>
                     
                     
-                 <div id="card">
+                 <div id="inProgressAreaId">
                   <div class="titel">
                      <div class="addLine"><span>In Progress</span>
                         <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -92,7 +92,7 @@
                </div>
                   
                   <div id="inProgressStatusDivId" class="mainCardContainerDivClass drag-area"
-                  ondrop="moveTo('In progress')" ondragleave="removeHighlight('inProgressStatusDivId')" ondragover="allowDrop(event); highlight('inProgressStatusDivId')"
+                  ondrop="moveTo('In progress')" ondragleave="handleDragLeave(event, 'inProgressStatusDivId')" ondragover="allowDrop(event); highlight('inProgressStatusDivId')"
                   >
                      <!-- ID im Drag and Drop MiniProjekt: id="mainInProgressDivId" -->
                      <!-- HIER WERDEN ALLE OBJEKTE AUS DEM TODOJSON DYNAMISCH EINGEFÜGT, ABER NUR WENN SIE DIE KATEGORIE "IN PROGRESS" -->
@@ -101,7 +101,7 @@
               </div>
             </div>    
             <div class="containerDivCards2">      
-                    <div id="card">
+                    <div id="awaitFeedbackAreaId">
                         <div class="titel">
                            <div class="addLine"><span>Await Feedback</span>
                               <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -113,14 +113,14 @@
                      </div>
                         
                      <div id="awaitFeedbackStatusDivId" class="mainCardContainerDivClass drag-area"
-                     ondrop="moveTo('Await feedback')" ondragleave="removeHighlight('awaitFeedbackStatusDivId')" ondragover="allowDrop(event); highlight('awaitFeedbackStatusDivId')"
+                     ondrop="moveTo('Await feedback')" ondragleave="handleDragLeave(event, 'awaitFeedbackStatusDivId')" ondragover="allowDrop(event); highlight('awaitFeedbackStatusDivId')"
                      >
                             <!-- ID im Drag and Drop MiniProjekt: id="awaitFeedbackDivId" -->
                            <!-- HIER WERDEN ALLE OBJEKTE AUS DEM TODOJSON DYNAMISCH EINGEFÜGT, ABER NUR WENN SIE DIE KATEGORIE "Await feedback" -->
 
                         </div>
                     </div>
-                    <div id="card">
+                    <div id="doneAreaId">
                      <div class="titel">
                         <div class="addLine"><span>Done</span>
                            <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -132,7 +132,7 @@
                   </div>
                      
                   <div id="doneStatusDivId" class="mainCardContainerDivClass drag-area"
-                  ondrop="moveTo('Done')" ondragleave="removeHighlight('doneStatusDivId')" ondragover="allowDrop(event); highlight('doneStatusDivId')"
+                  ondrop="moveTo('Done')" ondragleave="handleDragLeave(event, 'doneStatusDivId')" ondragover="allowDrop(event); highlight('doneStatusDivId')"
                   >
                         <!-- ID im Drag and Drop MiniProjekt: id="isDoneDivId" -->
                            <!-- HIER WERDEN ALLE OBJEKTE AUS DEM TODOJSON DYNAMISCH EINGEFÜGT, ABER NUR WENN SIE DIE KATEGORIE "Await feedback" -->
