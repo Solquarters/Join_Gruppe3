@@ -166,6 +166,7 @@ function handleDragLeave(event, mainCategoryDivId) {
 
     // Check if the mouse is outside the parent element
     if (x < rect.left || x > rect.right || y < rect.top || y > rect.bottom) {
+
         // removeHighlight(mainCategoryDivId);
 
         document.querySelectorAll('.drag-area-highlight').forEach(function(element) {
