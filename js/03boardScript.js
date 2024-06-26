@@ -106,15 +106,15 @@ function returnSingleCardHTML(i){
 }
 function createPrioSvg(i) {
         
-        if(toDoCardsJSON[i]["prio"] == "low"){
+        if(toDoCardsJSON[i]["prio"] == "Low"){
             document.getElementById(`prioDivId${i}`).innerHTML = `<img src="./assets/img/Priority symbols low.svg">`;
            }
 
-           if(toDoCardsJSON[i]["prio"] == "medium"){
+           if(toDoCardsJSON[i]["prio"] == "Medium"){
             document.getElementById(`prioDivId${i}`).innerHTML = `<img src="./assets/img/Priority symbols medium.svg">`;
            }
 
-           if(toDoCardsJSON[i]["prio"] == "medium"){
+           if(toDoCardsJSON[i]["prio"] == "Urgent"){
             document.getElementById(`prioDivId${i}`).innerHTML = `<img src="./assets/img/Priority symbols urgent.svg">`;
            }
            
