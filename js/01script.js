@@ -47,7 +47,7 @@ let toDoCardsJSON = [
         toDoStatus: "To do",
     },
     {
-        title: "Yuhu wir habens geschafft!",
+        title: "title1",
         description:"description1",
         assignedToArray: [contactsJSON[0],contactsJSON[1],],
         dueDate: "28.02.2025",

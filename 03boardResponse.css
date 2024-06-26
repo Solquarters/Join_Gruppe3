@@ -24,7 +24,7 @@
 }
 @media (max-width: 620px) {
     .mainDiv {
-        margin-left: 4px;
+        margin-left: 0;
         width: 100%;
         margin-bottom: 120px;
     }
@@ -32,18 +32,21 @@
     .cardsDiv {
         display: flex;
         flex-direction: column;
-        align-items: center;
-        margin-left: 0;
+        
+        margin: 0;
     }
     .headDiv {
         display: flex;
         justify-content: center;
         flex-direction: column;
+        margin: 0;
+        
     }
     
     .inputAddTask {
         display: flex;
         margin: 0px;
+        
     }
     .addTask {
         display: none;
@@ -56,6 +59,8 @@
       .mediaQuerryBoardAdd {
         display: flex;
         align-items: center;
+        justify-content: space-between;
+        width: 354px;
       }
       #boardImg {
         margin: 0;
@@ -63,8 +68,30 @@
       .mediaQuerryBoardAdd svg{
         display: block;
       }
+      .addLine {
+        width: 354px;
+      }
 }
 
 @media (max-width: 390px) {
+    .inputAddTask {
+      width: fit-content;
+    }
+
+    .containerInputField {
+      width: unset;
+      height: 32px;
+      padding: 0;
+    }
+    .mediaQuerryBoardAdd {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 270px;
+    }
+    .addLine {
+      width: 253px;
+    }
+    
     
 }

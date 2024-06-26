@@ -32,6 +32,8 @@ function renderSingleCard(){
         document.getElementById('doneStatusDivId').innerHTML += returnSingleCardHTML(i);
        }
 
+       createPrioSvg(i);
+
     // switch(toDoCardsJSON[i]["toDoStatus"]) {
     //     case "To do":
     //         document.getElementById('toDoStatusDivId').innerHTML += returnSingleCardHTML(i);
@@ -87,8 +89,8 @@ function returnSingleCardHTML(i){
                     </div>
                 </div>
 
-                <div id="prioDivId${i}">
-                    <div class="prioDiv">
+                <div>
+                    <div id="prioDivId${i}" class="prioDiv">
                         <!-- HIER DYNAMISCH SVG HIER EINFÜGEN, JE NACH CATEGORY -->
                         <!-- <img src="./assets/img/Priority symbols (1).svg"> -->
                         Prio:${toDoCardsJSON[i]["prio"]}
@@ -99,4 +101,21 @@ function returnSingleCardHTML(i){
     </div>
     `; 
 
+    
+
+}
+function createPrioSvg(i) {
+        
+        if(toDoCardsJSON[i]["prio"] == "low"){
+            document.getElementById(`prioDivId${i}`).innerHTML = `<img src="./assets/img/Priority symbols low.svg">`;
+           }
+
+           if(toDoCardsJSON[i]["prio"] == "medium"){
+            document.getElementById(`prioDivId${i}`).innerHTML = `<img src="./assets/img/Priority symbols medium.svg">`;
+           }
+
+           if(toDoCardsJSON[i]["prio"] == "medium"){
+            document.getElementById(`prioDivId${i}`).innerHTML = `<img src="./assets/img/Priority symbols urgent.svg">`;
+           }
+           
 }
