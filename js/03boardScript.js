@@ -62,7 +62,6 @@ let currentDraggedElement;
 function returnSingleCardHTML(i){
     
     return /*html*/`
-
     <div class="mainSingleCardDivClass" id="singleCardId${i}"
     draggable="true" ondragstart="startDragging(${i})">
 
@@ -114,6 +113,7 @@ function returnCategoryHTML(i){
     }
 
 }
+
 
 /////////////////////////////DRAG AND DROP FUNCTION START
 

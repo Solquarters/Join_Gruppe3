@@ -353,7 +353,15 @@ display: none;
   align-items: flex-start;
   flex-direction: column; */
 
-  
+  /* overflow-x: scroll;
+  overflow-y: hidden;
+  -ms-overflow-style: none;  
+  scrollbar-width: none;   */
+}
+
+
+.drag-area:-webkit-scrollbar {
+  /* display: none;  Chrome, Safari and Opera */
 }
 
 .drag-area-highlight {
