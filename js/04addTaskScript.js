@@ -43,7 +43,10 @@ function emptyTempJson(){
         prio: "",
         category: "",
         subtaskJson: [],
-        toDoStatus: ""};
+        toDoStatus: "To do",
+    };
+
+    addedIDs.clear();
 }
 
 function initAddTaskSite(){
@@ -411,7 +414,7 @@ function toggleDropdown(thisElement) {
         else{
             thisElement.style.backgroundImage = "url('./assets/img/addTaskImg/inputArrowUp.svg')";
         }
-        thisElement.classList.toggle('open');
+    thisElement.classList.toggle('open');
 }
 
 
@@ -453,8 +456,7 @@ window.onclick = function(event) {
         if (contactInputId) {
             contactInputId.classList.remove('open')
              contactInputId.style.backgroundImage = "url('./assets/img/addTaskImg/inputArrowDown.svg')";
-        }
-        
+        }  
     }
 
     //On click outside the category input - change background arrow to default state
@@ -464,7 +466,6 @@ window.onclick = function(event) {
             categorySelectId.classList.remove('open')
             categorySelectId.style.backgroundImage = "url('./assets/img/addTaskImg/inputArrowDown.svg')";
         }
-       
     }
 }
 
@@ -620,9 +621,10 @@ function submitAddTaskForm(){
 
 function clearAddTaskForm(){
     emptyTempJson();
-    renderAddTaskSiteFromTempArray();
+   
     resetPrioButtons();
 
+    renderAddTaskSiteFromTempArray();
 }
 
 
@@ -636,8 +638,13 @@ temporaryNewTaskSingleCardObject["dueDate"] = document.getElementById('datePicke
 
 // Push the new object into the array
 toDoCardsJSON.push(temporaryNewTaskSingleCardObject);
+renderAllCardToBoard();
+clearAddTaskForm();
+closeAddTaskOverlay();
+
 console.log(temporaryNewTaskSingleCardObject);
 console.log(toDoCardsJSON[toDoCardsJSON.length-1]);
+console.log(toDoCardsJSON[toDoCardsJSON.length-2]);
 
 
 ///////////////////RESET ALL INPUT FIELDS

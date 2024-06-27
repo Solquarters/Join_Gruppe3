@@ -22,9 +22,10 @@
 <body onload="includeHTML(), initializeBoard()"></body>
 
 <!-- HIER ROMANS EDIT START  -->
-<div class="addEmptyTaskMainOverlayClass" id="addEmptyTaskMainOverlayId" onclick="closeAddTaskOverlay()">
+<div class="addEmptyTaskMainOverlayClass" id="addEmptyTaskMainOverlayId" onclick="handleOverlayClick(event)">
 
-   <div class="addEmptyTaskChildOverlayClass" id="addEmptyTaskChildOverlayId" onclick="event.stopPropagation()"></div>
+   <div class="addEmptyTaskChildOverlayClass" id="addEmptyTaskChildOverlayId" ></div>
+   <!-- onclick="event.stopPropagation()" -->
 </div>
 <!-- HIER ROMANS EDIT END -->
  
