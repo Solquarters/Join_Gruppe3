@@ -152,29 +152,11 @@ h2 {
     font-weight: 400;
 }
 
-.underContactMainTwo a {
-    font-size: 16px;
-    font-weight: 400;
-    text-decoration: none;
-    color: #007CEE;
-}
-
 .underContactMain a {
     font-size: 16px;
     font-weight: 400;
     text-decoration: none;
     color: #007CEE;
-}
-
-.nameShorttwo {
-    background-color: #9327FF;
-    border-radius: 50%;
-    border: 2px solid #FFFFFF;
-    font-size: 12px;
-    padding: 12px 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .contactsContentMain {
@@ -217,20 +199,17 @@ h2 {
     border-radius: 10px;
 }
 
-.underContactMainTwo.active,
 .underContactMain.active {
     background-color: #2A3647;
     color: #ffffff;
 }
 
-.underContactMainTwo.active:hover,
 .underContactMain.active:hover {
     background-color: #2A3647;
 }
 
 /* Farbe der Links in aktiven Elementen */
-.underContactMain.active a,
-.underContactMainTwo.active a {
+.underContactMain.active a {
     color: #0B6BC4;
 }
 
@@ -244,93 +223,6 @@ h2 {
     font-size: 20px;
     font-weight: 400;
     padding: 0 0 20px 23px;
-}
-
-.underContactMainTwo {
-    display: flex;
-    gap: 40px;
-    padding: 0 0 0 10px;
-    align-items: center;
-    width: 315px;
-    height: 90px;
-}
-
-.underContactMainTwo:hover {
-    background: linear-gradient(to bottom, #f2f2f2, #ececec);
-    border-radius: 10px;
-    cursor: pointer;
-}
-
-.underContactMainTwo.active {
-    background-color: #2A3647;
-    color: #ffffff;
-    border-radius: 10px;
-}
-
-.nameShortThree {
-    background-color: #6E52FF;
-    border-radius: 50%;
-    border: 2px solid #FFFFFF;
-    font-size: 12px;
-    padding: 12px 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.nameShortFour {
-    background-color: #FC71FF;
-    border-radius: 50%;
-    border: 2px solid #FFFFFF;
-    font-size: 12px;
-    padding: 12px 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.nameShortFive {
-    background-color: #FFBB2B;
-    border-radius: 50%;
-    border: 2px solid #FFFFFF;
-    font-size: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 12px 12px 12px 12px;
-}
-
-.nameShortSix {
-    background-color: #1FD7C1;
-    border-radius: 50%;
-    border: 2px solid #FFFFFF;
-    font-size: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 12px 10px 12px 10px;
-}
-
-.nameShortSeven {
-    background-color: #462F8A;
-    border-radius: 50%;
-    border: 2px solid #FFFFFF;
-    font-size: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 12px 10px 12px 10px;
-}
-
-.nameShortEight {
-    background-color: #FF4646;
-    border-radius: 50%;
-    border: 2px solid #FFFFFF;
-    font-size: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 12px 10px 12px 10px;
 }
 
 .nameEditDelete {
@@ -448,6 +340,7 @@ h2 {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    width: 180px;
 }
 
 .phoneContainer span {
@@ -630,10 +523,6 @@ h2 {
 .formDetails {
     display: flex;
     align-items: center;
-}
-
-.formDetails img {
-    margin: 85px 0 0 0;
 }
 
 form {
@@ -976,7 +865,8 @@ form input {
         position: relative;
         left: 377px;
         top: 30px;
-        flex-shrink: 0; /* Verhindert, dass der Container schrumpft */
+        flex-shrink: 0;
+        /* Verhindert, dass der Container schrumpft */
     }
 
     .backArrow {
@@ -993,40 +883,176 @@ form input {
         width: 25.5px;
         height: 24.5px;
     }
-/* ////////////////////////////////POP UP WINDOW EDIT AND DELETE BUTTON START///////////// */
-    .dropDownMenu {
-        /* display: none; */
-        position: absolute;
-        bottom: 8vh;
-        right: 20px;
-        width: 60px;
-        border-radius: 100px;
-        background-color: #2a3647;
-        color: white;
-        font-size: 21px;
-        align-items: center;
-        justify-content: center;
-        height: 60px;
-        line-height: 25px;
-        flex-shrink: 0;
-        cursor: pointer;
+
+    .formContent {
+        position: static; /* Setzt die Position zurück */
     }
 
-    .editDelete {
-        /* display: none; */
-        position: absolute;
-        top: -80px;
-        right: -10px;
-        background-color: #2a3647;
-        min-width: 160px;
-        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-        padding: 12px 16px;
-        z-index: 1;
-        border-radius: 20px;
-        color: white;
+    /* ////////////////////////////////POP UP WINDOW EDIT AND DELETE BUTTON START///////////// */
+    .callDropDownMenuContainer {
+        display: inline;
     }
-    /* ////////////////////////////////POP UP WINDOW EDIT AND DELETE BUTTON END///////////// */
+
+    .callDropDownMenu {
+        position: fixed;
+        bottom: 100px;
+        right: 30px;
+        cursor: pointer;
+        background-color: #2A3647;
+        border-radius: 100px;
+        height: 55px;
+        width: 55px;
+        box-shadow: 0 4px 3px rgba(0, 0, 0, 0.2);
+        border: 1px solid #2A3647;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 3px;
+    }
+
+    .callDropDownMenu:active {
+        background-color: #29abe2;
+        border: none;
+    }
+
+    .point {
+        width: 5px;
+        height: 5px;
+        background-color: #FFFFFF;
+        border-radius: 50%;
+    }
+
+    .pointCenter {
+        width: 5px;
+        height: 5px;
+        background-color: #FFFFFF;
+        border-radius: 50%;
+    }
+
+    .pointLast {
+        width: 5px;
+        height: 5px;
+        background-color: #FFFFFF;
+        border-radius: 50%;
+    }
+
+    .dropDownMenu {
+        z-index: 999;
+        position: fixed;
+        width: 116px;
+        height: 100px;
+        background-color: #FFFFFF;
+        bottom: 90px;
+        right: 10px;
+        box-shadow: 0 4px 3px rgba(0, 0, 0, 0.2);
+        border-bottom-left-radius: 25px;
+        border-top-left-radius: 25px;
+        border-top-right-radius: 25px;
+    }
+
+    .dropDownMenu.active {
+        display: flex; /* Show when active */
+        animation: slideIn 0.6s ease-in-out forwards;
+    }
+
+    .dropDownMenu.inactive {
+        animation: slideOut 0.6s ease-in-out forwards;
+    }
+
+    @keyframes slideIn {
+        from {
+            right: -100%;
+            transform: translateX(100%);
+        }
+    
+        to {
+            right: 10px;
+            transform: translateX(0);
+        }
+    }
+    
+    @keyframes slideOut {
+        from {
+            right: 10px;
+            transform: translateX(0);
+        }
+    
+        to {
+            right: -100%;
+            transform: translateX(100%);
+        }
+    }
+
+    .dropDownUnderMenu {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        width: 100%;
+    }
+
+    .editButtonSame {
+        cursor: pointer;
+        border: none;
+        display: flex;
+        align-items: center;
+        font-size: 17px;
+        font-weight: 400;
+        gap: 10px;
+        background-color: #FFFFFF;
+        width: 100px;
+        height: 40px;
+    }
+
+    .editButtonSame:active {
+        color: #29abe2;
+        font-weight: 600;
+        background-color: #ececec;
+        border-radius: 10px;
+    }
+
+    .editButtonSame svg {
+        width: 20px;
+        height: 20px
+    }
+
+    .editButtonSame:active svg path {
+        fill: #29abe2;
+    }
+
+    .deleteButtonSame {
+        cursor: pointer;
+        border: none;
+        display: flex;
+        align-items: center;
+        font-size: 17px;
+        font-weight: 400;
+        gap: 10px;
+        background-color: #FFFFFF;
+        width: 100px;
+        height: 40px;
+    }
+
+    .deleteButtonSame:active {
+        color: #29abe2;
+        font-weight: 600;
+        background-color: #ececec;
+        border-radius: 10px;
+    }
+
+    .deleteButtonSame svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .deleteButtonSame:active svg path {
+        fill: #29abe2;
+    }
 }
+
+/* ////////////////////////////////POP UP WINDOW EDIT AND DELETE BUTTON END///////////// */
 
 @media(max-width: 416px) {
     .backArrowContainer {
@@ -1049,11 +1075,6 @@ form input {
         width: 259px;
     }
 
-    .underContactMainTwo {
-        gap: 30px;
-        width: 259px;
-    }
-
     .selectContact span {
         font-size: 17px;
     }
@@ -1062,43 +1083,11 @@ form input {
         font-size: 13px;
     }
 
-    .underContactMainTwo a {
-        font-size: 13px;
-    }
-
     .alphabet {
         font-size: 17px;
     }
 
     .nameShortOne {
-        font-size: 11px;
-    }
-
-    .nameShorttwo {
-        font-size: 11px;
-    }
-
-    .nameShortThree {
-        font-size: 11px;
-    }
-
-    .nameShortFour {
-        font-size: 11px;
-    }
-
-    .nameShortFive {
-        font-size: 11px;
-    }
-
-    .nameShortSix {
-        font-size: 11px;
-    }
-
-    .nameShortSeven {
-        font-size: 11px;
-    }
-
-    .nameShortEight {
         font-size: 11px;
     }
 
