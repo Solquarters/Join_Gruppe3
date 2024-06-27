@@ -1,9 +1,51 @@
+@media (max-width: 1750px) {
+  /* .containerDivCards1 {
+      display: flex;
+      flex-direction: column;
+    
+    } */
+    /* #boardImg {
+      margin: 0;
+    } */
+
+    .mainDivContainer {
+      margin: 128px 0px 0px 128px;
+      }
+    
+    .containerDivCards2 {
+      display: flex;
+      
+    }
+    .headDiv {
+      display: flex;
+      justify-content: center;
+      
+  }
+  .mediaQuerryBoardAdd {
+      display: flex;
+      align-items: center;
+      
+    }
+
+   
+}
+
+
+
+
 @media (max-width: 1410px) {
     .containerDivCards1 {
         display: flex;
         flex-direction: column;
       
       }
+      #boardImg {
+        margin: 0;
+      }
+
+      .mainDivContainer {
+        margin: 128px 0px 0px 0px;
+        }
       
       .containerDivCards2 {
         display: flex;
@@ -13,6 +55,7 @@
         display: flex;
         justify-content: center;
         flex-direction: column;
+        margin-left: 96px;
     }
     .mediaQuerryBoardAdd {
         display: flex;
@@ -22,6 +65,67 @@
 
      
 }
+@media (max-width: 830px)  {
+
+
+ .mainDivContainer {
+  margin-left: 48px
+ } 
+  .mainDiv {
+    margin-left: 110px;
+    width: 80%;
+    margin-bottom: 120px;
+}
+.cardsDiv {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  
+}
+.headDiv {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0;
+  
+}
+
+.inputAddTask {
+  display: flex;
+  margin: 0px;
+  
+}
+.addTask {
+  display: none;
+}
+.containerDivCards1 {
+  display: flex;
+  flex-direction: column;
+
+}
+.mediaQuerryBoardAdd {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 354px;
+}
+
+.mediaQuerryBoardAdd svg{
+  display: block;
+}
+
+.mediaQuerryBoardAdd:hover svg {
+  cursor: pointer;
+}
+.addLine {
+  width: 354px;
+}
+.drag-area {
+  width: 200px;
+}
+}
+
+
 @media (max-width: 620px) {
     .mainDiv {
         margin-left: 0;
@@ -32,8 +136,8 @@
     .cardsDiv {
         display: flex;
         flex-direction: column;
-        
         margin: 0;
+        
     }
     .headDiv {
         display: flex;
@@ -68,19 +172,38 @@
       .mediaQuerryBoardAdd svg{
         display: block;
       }
+
+      .mediaQuerryBoardAdd:hover svg {
+        cursor: pointer;
+      }
       .addLine {
         width: 354px;
+      }
+      .drag-area {
+        width: 200px;
+        display: flex;
+        overflow-x:auto;
+        
+      }
+      .mainSingleCardDivClass {
+        padding-left: 32px;
+        padding-right: 32px;
+        margin-right: 12px;
+      }
+      .mainDivContainer {
+        margin-left: 0;
       }
 }
 
 @media (max-width: 390px) {
-    .inputAddTask {
-      width: fit-content;
+    .inputField {
+      width: 220px;
+      border: none;
     }
 
     .containerInputField {
-      width: unset;
-      height: 32px;
+      width: 274px;
+      height: 34px;
       padding: 0;
     }
     .mediaQuerryBoardAdd {
@@ -90,7 +213,7 @@
       width: 270px;
     }
     .addLine {
-      width: 253px;
+      width: 270px;
     }
     
     
