@@ -157,6 +157,9 @@ background-color: #1FD7C1;
   height: 100vh;
 }
 .containerformularDivClass {
+
+  text-overflow: ellipsis;
+  overflow: hidden;
   font-weight: bold;
   margin: 16px 16px 4px 16px;
 }
