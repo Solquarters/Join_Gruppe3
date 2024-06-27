@@ -5,10 +5,11 @@ body {
   
 }
 .mainDivContainer {
-margin: 128px 0px 0px 0px;
+margin: 128px 0px 0px 128px;
 }
 
 .mainDiv {
+  
   margin-left: 232px;
   margin-top: 96px;
   height: 100%;
@@ -22,8 +23,8 @@ margin: 128px 0px 0px 0px;
   /* border-color: ; */
 }
 .headDiv {
-  margin-left: 64px;
-  margin-right: 64px;
+  /* margin-left: 128px;
+  margin-right: 64px; */
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -35,6 +36,11 @@ margin: 128px 0px 0px 0px;
 
 .cardsDiv img:hover {
   cursor: pointer;
+}
+
+.contentDiv {
+  display: flex;
+  justify-content: center;
 }
 .cardsDiv {
   display: flex;
