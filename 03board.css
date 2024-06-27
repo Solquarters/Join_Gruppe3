@@ -60,6 +60,11 @@ margin: 128px 0px 0px 128px;
   font-size: 20px;
   font-weight: 800;
   margin: 8px 8px 8px 8px;
+
+  -webkit-user-select: none; /* Safari */
+    -moz-user-select: none;    /* Firefox */
+    -ms-user-select: none;     /* Internet Explorer/Edge */
+    user-select: none;         /* Non-prefixed version, currently supported by Chrome, Opera, and Edge */
 }
 
 
@@ -151,6 +156,10 @@ background-color: #1FD7C1;
   margin: 16px 16px 16px 16px;
   font-weight: normal;
   color: #808080;
+  text-overflow: ellipsis;
+  overflow: hidden;
+
+
 }
 .cartContainerInnert {
   margin-left: 16px;
