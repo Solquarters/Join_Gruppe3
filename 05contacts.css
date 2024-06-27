@@ -75,8 +75,14 @@ h2 {
     font-weight: 700;
 }
 
+.contactsSeperatorContainer {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
 .seperator {
-    width: 3px;
+    width: 4px;
     height: 59px;
     background-color: #29abe2;
     border-radius: 10px;
@@ -329,16 +335,35 @@ h2 {
 
 .nameEditDelete {
     display: flex;
+    align-items: center;
+    gap: 54px;
 }
 
 .nameEditDeleteMain {
     display: flex;
     flex-direction: column;
+    gap: 8px;
+}
+
+.nameShortScript {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 47px;
+    font-weight: 500;
+    border-radius: 50%;
+    border: 3px solid #FFFFFF;
+    width: 120px;
+    height: 120px;
+}
+
+.nameContainer {
+    font-size: 38px;
+    font-weight: 500;
 }
 
 .editDelete {
     display: flex;
-    gap: 10px;
 }
 
 .editButton {
@@ -346,25 +371,17 @@ h2 {
     border: none;
     display: flex;
     align-items: center;
-    font-size: 16px;
+    font-size: 17px;
+    font-weight: 400;
     gap: 10px;
     background-color: #F6F7F8;
+    width: 77px;
 }
 
 .editButton svg {
-    width: 16px;
-    height: 16px;
+    width: 20px;
+    height: 20px;
 }
-
-/* .editButton svg:hover path {
-    fill: #29abe2;
-}
-
-.editButton:hover {
-    color: #29abe2;
-    font-weight: 600;
-} */
-
 
 .editButton:hover svg path {
     fill: #29abe2;
@@ -380,7 +397,8 @@ h2 {
     border: none;
     display: flex;
     align-items: center;
-    font-size: 16px;
+    font-size: 17px;
+    font-weight: 400;
     gap: 10px;
     background-color: #F6F7F8;
 }
@@ -391,20 +409,66 @@ h2 {
 }
 
 .deleteButton svg {
-    width: 16px;
-    height: 16px;
+    width: 20px;
+    height: 20px;
 }
 
-.deleteButton svg:hover path {
+.deleteButton:hover svg path {
     fill: #29abe2;
 }
 
+.contactEmailPhoneContainer {
+    padding: 50px 0 0 0;
+}
+
+.informationTxt {
+    font-size: 23px;
+    font-weight: 400;
+}
+
+.emailContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 50px 0 20px 0;
+}
+
+.emailContainer span {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.emailContainer a {
+    font-size: 16px;
+    font-weight: 400;
+    text-decoration: none;
+}
+
+.phoneContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.phoneContainer span {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.phoneContainer a {
+    font-size: 16px;
+    font-weight: 400;
+    text-decoration: none;
+    color: #000000;
+}
+
 /* ///////////////////////////POP UP ANIMATION START/////////////  */
-/* @keyframes slideIn {
+@keyframes slideIn {
     from {
         right: -100%;
         transform: translateX(100%);
     }
+
     to {
         right: 50%;
         transform: translateX(50%);
@@ -416,11 +480,12 @@ h2 {
         right: 50%;
         transform: translateX(50%);
     }
+
     to {
         right: -100%;
         transform: translateX(100%);
     }
-} */
+}
 
 .popUp {
     position: fixed;
@@ -431,26 +496,34 @@ h2 {
     background: rgba(0, 0, 0, 0.5);
     justify-content: center;
     align-items: center;
+    display: none;
+    /* Initially hidden */
     z-index: 999;
+}
+
+.popUp.active {
+    display: flex;
+    /* Show when active */
 }
 
 .formContent {
     position: absolute;
-    /* right: -100%; Start position outside the viewport */
-    /* transform: translateY(-50%); */
-    display: flex;
+    right: -100%;
+    /* Start position outside the viewport */
     transition: right 0.5s ease-in-out;
+    display: flex;
 }
 
-#popUpContent:target .formContent {
+.popUp.active .formContent {
     animation: slideIn 0.6s ease-in-out forwards;
     /* Animate to the center */
 }
 
-#popUpContent:not(:target) .formContent {
-    animation: slideOut 0.9s ease-in-out forwards;
+.popUp.inactive .formContent {
+    animation: slideOut 0.6s ease-in-out forwards;
     /* Animate back to the right */
 }
+
 
 /* ///////////////////////////POP UP ANIMATION END/////////////  */
 
@@ -719,7 +792,8 @@ form input {
     }
 
     .buttonContent {
-        padding: 30px 0 0 0;
+        display: flex;
+        justify-content: center;
     }
 
     .closePopUp {
@@ -728,6 +802,12 @@ form input {
 
     form {
         margin: 0 0 0 0;
+    }
+}
+
+@media(max-width: 650px) {
+    .showContactsTextMain {
+        gap: 9px;
     }
 }
 
@@ -762,9 +842,12 @@ form input {
     }
 
     .buttonContent {
-        padding: 0 0 0 0;
         position: relative;
         bottom: 25px;
+    }
+
+    .showContactsText {
+        padding: 10px 0 0 10px;
     }
 }
 
@@ -821,6 +904,133 @@ form input {
 
     .closePopUpTop {
         left: 287px;
+    }
+
+    .showContactsTextMain {
+        flex-direction: column;
+        gap: 0;
+        align-items: start;
+        margin: 0 0 50px 0;
+    }
+
+    h2 {
+        margin-block-end: 0.20em;
+        margin-block-start: 0em;
+        font-size: 47px;
+    }
+
+    .contactsSeperatorContainer {
+        flex-direction: column-reverse;
+        gap: 17px;
+        align-items: flex-start;
+    }
+
+    .seperator {
+        height: 4px;
+        width: 110px;
+    }
+
+    .nameEditDelete {
+        gap: 12px;
+    }
+
+    .editButton {
+        display: none;
+    }
+
+    .deleteButton {
+        display: none;
+    }
+
+    .nameShortScript {
+        width: 70px;
+        height: 70px;
+        font-size: 25px;
+    }
+
+    .nameContainer {
+        font-size: 27px;
+    }
+
+    .contactsText {
+        font-size: 24px;
+    }
+
+    .contactEmailPhoneContainer {
+        padding: 25px 0 0 0;
+    }
+
+    .informationTxt {
+        font-size: 20px;
+    }
+
+    .emailContainer {
+        padding: 25px 0 20px 0;
+    }
+
+    .backArrowContainer {
+        display: inline;
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+        position: relative;
+        left: 377px;
+        top: 30px;
+        flex-shrink: 0; /* Verhindert, dass der Container schrumpft */
+    }
+
+    .backArrow {
+        width: 25px;
+        height: 24px;
+        transition: transform 0.3s ease, width 0.3s ease, height 0.3s ease;
+        padding: 3px;
+    }
+
+    .backArrow:active {
+        border-radius: 50%;
+        background-color: #E7E7E7;
+        transform: scale(1.2);
+        width: 25.5px;
+        height: 24.5px;
+    }
+/* ////////////////////////////////POP UP WINDOW EDIT AND DELETE BUTTON START///////////// */
+    .dropDownMenu {
+        /* display: none; */
+        position: absolute;
+        bottom: 8vh;
+        right: 20px;
+        width: 60px;
+        border-radius: 100px;
+        background-color: #2a3647;
+        color: white;
+        font-size: 21px;
+        align-items: center;
+        justify-content: center;
+        height: 60px;
+        line-height: 25px;
+        flex-shrink: 0;
+        cursor: pointer;
+    }
+
+    .editDelete {
+        /* display: none; */
+        position: absolute;
+        top: -80px;
+        right: -10px;
+        background-color: #2a3647;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        padding: 12px 16px;
+        z-index: 1;
+        border-radius: 20px;
+        color: white;
+    }
+    /* ////////////////////////////////POP UP WINDOW EDIT AND DELETE BUTTON END///////////// */
+}
+
+@media(max-width: 416px) {
+    .backArrowContainer {
+        left: 340px;
     }
 }
 
@@ -919,11 +1129,17 @@ form input {
         left: 248px;
     }
 
-    .buttonContent {
-        bottom: 40px;
-    }
-
     form {
         bottom: 47px;
+    }
+
+    .backArrowContainer {
+        left: 310px;
+    }
+}
+
+@media(max-width: 350px) {
+    .backArrowContainer {
+        left: 275px;
     }
 }
