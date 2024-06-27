@@ -360,9 +360,7 @@ display: none;
 }
 
 
-.drag-area:-webkit-scrollbar {
-  /* display: none;  Chrome, Safari and Opera */
-}
+
 
 .drag-area-highlight {
   background-color: rgba(0, 0, 0, 0.2);
