@@ -19,18 +19,23 @@
 <body onload="includeHTML(); renderContacts();">
     <div w3-include-html="./assets/templates/headerSidebar.html"></div>
     <section class="contactsSection">
-        <div class="addContactsMain">
+        <div id="addContactsMain" class="addContactsMain">
             <div class="addContactsBtn">
                 <button onclick="addContacts()" class="addContacts"><img src="./img/personAdd.png"
                         alt="Contact add image">Add new contact</button>
             </div>
             <div id="contactsContent" class="contactsContent"></div>
         </div>
-        <div class="showContactsText">
+        <div id="showContactsText" class="showContactsText">
             <div class="showContactsTextMain">
+                <div class="backArrowContainer d-none">
+                    <img onclick="backStep()" class="backArrow" src="./img/Vector.png" alt="Back Arrow">
+                </div>
                 <h2>Contacts</h2>
-                <div class="seperator"></div>
-                <span class="contactsText">Better with a team</span>
+                <div class="contactsSeperatorContainer">
+                    <div class="seperator"></div>
+                    <span class="contactsText">Better with a team</span>
+                </div>
             </div>
             <div id="showContactsInfo" class="contactsInfo"></div>
         </div>

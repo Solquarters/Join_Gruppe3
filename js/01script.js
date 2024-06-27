@@ -250,7 +250,8 @@ function returnAddTaskSiteHTML(){
                <br>
                <span>Assigned to</span>    
                <div class="dropdown">
-                   <input type="text" id="contactsInputId" placeholder="Select contacts to assign" class="singleLineInputClass dropbtn backGroundArrowClass" onclick="toggleDropdown(this)" onmouseover="changeInputArrow(this)" onmouseleave="changeBackInputArrow(this)">
+                   <input type="text" id="contactsInputId" placeholder="Select contacts to assign" class="singleLineInputClass dropbtn backGroundArrowClass" 
+                   onclick="toggleDropdown(this)" onmouseover="changeInputArrow(this)" onmouseleave="changeBackInputArrow(this)">
                    
                    <div id="dropdownContactAssignId" class="dropdownContactDivClass">
                    </div>

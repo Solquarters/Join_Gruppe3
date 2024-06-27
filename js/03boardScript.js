@@ -1,9 +1,9 @@
 
 function initializeBoard(){
-    renderSingleCard();
+    renderAllCardToBoard();
 }
 
-function renderSingleCard(){
+function renderAllCardToBoard(){
     
     ///Reset all boards
     document.getElementById('toDoStatusDivId').innerHTML = '';
@@ -134,7 +134,7 @@ function moveTo(categoryInput) {
         element.classList.remove('drag-area-highlight');
     });
 
-    renderSingleCard();
+    renderAllCardToBoard();
 }
 
 
@@ -211,7 +211,7 @@ function createPrioSvg(i) {
 
 
 
-// ROMAN EDIT 
+///////////// ROMAN EDIT 
 function openEmptyAddTaskOverlay(){
     document.getElementById('addEmptyTaskMainOverlayId').style.display="flex";
         //ZUGRIFF AUF GLOBAL SCRIPT
@@ -238,6 +238,19 @@ function openEmptyAddTaskOverlay(){
         enableScrolling();
     }
 
+    function handleOverlayClick(event) {
+        // Check if the click happened outside the child element
+        if (event.target.id === 'addEmptyTaskMainOverlayId') {
+            closeAddTaskOverlay();
+        }
+    }
+    
+   
+  
+
+
+
+
     function disableScrolling() {
         document.body.style.overflow = 'hidden';
     }
@@ -259,3 +272,10 @@ function openEmptyAddTaskOverlay(){
         }
 
     }
+
+
+
+
+
+
+///////////// ROMAN EDIT ENDE
