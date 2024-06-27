@@ -186,12 +186,14 @@
         
       }
       .mainSingleCardDivClass {
-        padding-left: 32px;
-        padding-right: 32px;
+        
         margin-right: 12px;
       }
       .mainDivContainer {
         margin-left: 0;
+      }
+      .cardContainerInnert {
+        width: 240px;
       }
 }
 
