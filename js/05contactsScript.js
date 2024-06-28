@@ -67,7 +67,7 @@ function renderContacts() {
         <div id="contactsId" class="underContainer">
             <span class="alphabet">${contactJSON['lastName'].charAt(0).toUpperCase()}</span>
             <div class="contactSeperator"></div>
-            <div onclick="renderContactsInfo(${i})" class="underContactMain">
+            <div onclick="renderContactsInfo(${i}, this)" class="underContactMain">
                 <span class="nameShortOne" style="background-color: ${getProfileRGB(i)};">${contactJSON['firstName'].charAt(0)}${contactJSON['lastName'].charAt(0)}</span>
                 <div class="selectContact">
                     <span>${contactJSON['firstName']} ${contactJSON['lastName']}</span>
@@ -79,7 +79,16 @@ function renderContacts() {
     }
 }
 
-function renderContactsInfo(index) {
+function renderContactsInfo(index, divElement) {
+
+    // document.querySelectorAll('.active').forEach(function(element) {
+    //     element.classList.remove('active');
+    // });
+
+    ///hier css classe "active" hinzufügen
+    // divElement.classList.add('') 
+
+
     let showContactsInfo = document.getElementById('showContactsInfo');
     showContactsInfo.innerHTML = '';
 

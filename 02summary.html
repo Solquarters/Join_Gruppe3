@@ -10,10 +10,12 @@
     <link rel="stylesheet" href="./02summary.css">
     <link rel="stylesheet" href="fonts.css">
     <title>Summary</title>
+    <script src="./js/02summaryScript.js"></script>
+    <script src="./js/01script.js"></script>
 
 </head>
 
-<body onload="includeHTML()">
+<body onload="includeHTML(); renderSummaryInfos()">
     <!-- ///Header und Sidebar Div bei jeder HTML Datei hinzufügen, dazu auch im body: onload="includeHTML()" /// -->
     <div w3-include-html="./assets/templates/headerSidebar.html"></div> 
 
@@ -37,7 +39,7 @@
                     </svg>                
                 </div>
                 <div class="container-todo">
-                    <span class="number-size">1</span>
+                    <span class="number-size" id="summaryToDoNumberId">1</span>
                     <span class="text-size">To-do</span>
                 </div>
             </div>

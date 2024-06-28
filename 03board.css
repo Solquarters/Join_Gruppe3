@@ -535,6 +535,7 @@ text-align: left;
   justify-content: end;
   gap: 8px;
   width: 445px;
+  margin-bottom: 24px;
   
 }
 #deleteContactDivId:hover path {
