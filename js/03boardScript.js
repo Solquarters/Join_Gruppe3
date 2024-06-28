@@ -295,11 +295,71 @@ function openEmptyAddTaskOverlay(){
         
 
         ///EIGENE FUNKTION: GEHE DURCH JSONTODO[i].assignedTo Array und rendere den Kreis und den Namen
+        returnLargeCardAssignedHTML(i);
 
         //Eigene Funktion 2 : GEHE DURCH JSONTODO[i].subtask Array und rendere text und bool
         /// subtasksLargeCardContainerId
+        returnLargeCardSubtasksHTML(i);
     }
 
+function returnLargeCardSubtasksHTML(i){
+    document.getElementById('subtasksLargeCardContainerId').innerHTML = '';
+    for(let j = 0; j < toDoCardsJSON[i].subtaskJson.length; j++){
+
+        if(toDoCardsJSON[i].subtaskJson[j].subtaskDone){
+            document.getElementById('subtasksLargeCardContainerId').innerHTML += /*html*/`
+            <div class="subTaskSingleChildClass">
+                   <label class="container" >${toDoCardsJSON[i].subtaskJson[j].subtaskText} 
+                       <input type="checkbox" checked="checked" onclick="flipSubtaskCheckBool(${i},${j})">
+                       <span class="checkmark" ></span>
+                     </label>
+               </div>
+            `;
+        }
+        else{
+            document.getElementById('subtasksLargeCardContainerId').innerHTML += /*html*/`
+                <div  class="subTaskSingleChildClass">
+                   <label class="container" >${toDoCardsJSON[i].subtaskJson[j].subtaskText}
+                       <input type="checkbox" onclick="flipSubtaskCheckBool(${i},${j})">
+                       <span class="checkmark"></span>
+                     </label>
+               </div>
+            `;
+        }
+        
+    }
+
+}
+
+function flipSubtaskCheckBool(i,j){
+    console.log(toDoCardsJSON[i].subtaskJson[j].subtaskDone);
+    toDoCardsJSON[i].subtaskJson[j].subtaskDone = !toDoCardsJSON[i].subtaskJson[j].subtaskDone;
+    console.log(toDoCardsJSON[i].subtaskJson[j].subtaskDone);
+    return toDoCardsJSON[i].subtaskJson[j].subtaskDone; 
+}
+
+
+    function returnLargeCardAssignedHTML(i){
+        document.getElementById('assignedLargeCardContainerId').innerHTML = '';
+        for(let j = 0; j < toDoCardsJSON[i].assignedToArray.length; j++){
+            document.getElementById('assignedLargeCardContainerId').innerHTML += /*html*/`
+             <span class="circleAndNameSpanClass2">
+            <!-- InitialsCircle -->
+            <span class="contactSvgCircleClass2" style="background-color: ${toDoCardsJSON[i].assignedToArray[j].assignedRGB};">${returnInitialsFromTwoWordString(toDoCardsJSON[i].assignedToArray[j].assignedFullName)}</span>
+            <!-- Full contact name -->
+            <span>${toDoCardsJSON[i].assignedToArray[j].assignedFullName}</span>
+        </span>
+            `;
+        }
+    }
+
+    function returnInitialsFromTwoWordString(stringInput) {
+        let words = stringInput.split(' ');
+        if (words.length === 1) {return words[0][0].toUpperCase();}
+        let initials = words[0][0].toUpperCase() + words[1][0].toUpperCase();
+        return initials;
+      }
+    
     function closeLargeCardOverlay(){
         document.getElementById('mainLargeCardOverlayId').style.display= "none";
         enableScrolling();

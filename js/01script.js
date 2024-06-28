@@ -78,8 +78,8 @@ let toDoCardsJSON = [
         title: "0Title",
         description:"description0",
         assignedToArray: [
-         {assignedFullName:"assignedNameString1", assignedRGB:"rgb(r,g,b)"},
-         {assignedFullName:"assignedNameString2", assignedRGB:"rgb(r,g,b)"},
+         {assignedFullName:"Vorname00 Nachname00", assignedRGB:"rgb(0,100,0)"},
+         {assignedFullName:"Vorname01 Nachname01", assignedRGB:"rgb(100,0,0)"},
         ],
         dueDate: "05.01.2025",
         prio: "Low",
