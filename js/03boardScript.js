@@ -30,6 +30,7 @@ function renderAllCardToBoard(){
         document.getElementById('doneStatusDivId').innerHTML += returnSingleCardHTML(i);
        }
 
+       returnAssignedContactCircle(i);
     //    returnPrioSvgHTML(i);
 
     // switch(toDoCardsJSON[i]["toDoStatus"]) {
@@ -75,22 +76,19 @@ function returnSingleCardHTML(i){
                 <span id="descriptionSpanId${i}">${toDoCardsJSON[i]["description"]}</span>
             </div>
 
-            <br>Progress Bar PLACEHOLDER<br>
+            ${getProgressBarHTML(i)}
             
             <div class="contactPrioDiv">
-                <div id="contacts${i}" class="contactCirclesDivClass">
-                    <div class="persons">
-                        <img id="img1" src="./assets/img/Group 9 (1).svg">
-                        <img id="img2" src="./assets/img/Group 9.svg">
-                        <img id="img3" src="./assets/img/Profile badge.svg">
+                
+                    <div class="singleCardAssignedContactsParentDivClass" id="singleCardContactCircleDivId${i}">
+                        
+                        
+                        
                     </div>
-                </div>
+                
 
                 <div>
                     <div id="prioDivId${i}" class="prioDiv">
-                        <!-- HIER DYNAMISCH SVG HIER EINFÜGEN, JE NACH CATEGORY -->
-                        <!-- <img src="./assets/img/Priority symbols (1).svg"> -->
-                        
                         ${returnPrioSvgHTML(i)}
                     </div>
                 </div>     
@@ -98,6 +96,38 @@ function returnSingleCardHTML(i){
         </div>
     </div>
     `; 
+
+    
+}
+
+
+function returnAssignedContactCircle(i){
+    document.getElementById(`singleCardContactCircleDivId${i}`).innerHTML = '';
+    for(let j = 0; j < toDoCardsJSON[i].assignedToArray.length; j++){
+        document.getElementById(`singleCardContactCircleDivId${i}`).innerHTML += /*html*/`
+        <div class="singleCardCircleDivClass" style="background-color: ${toDoCardsJSON[i].assignedToArray[j].assignedRGB}">${returnInitialsFromTwoWordString(toDoCardsJSON[i].assignedToArray[j].assignedFullName)}</div>
+        `;
+    }
+}
+
+function getProgressBarHTML(i) {
+    let card = toDoCardsJSON[i];
+    if (!card || !card.subtaskJson) {
+        return '';
+    }
+    
+    let subtasks = card.subtaskJson;
+    let totalSubtasks = subtasks.length;
+    let completedSubtasks = subtasks.filter(subtask => subtask.subtaskDone==true).length;
+    let progress = (totalSubtasks > 0) ? (completedSubtasks / totalSubtasks) * 100 : 0;
+    
+    return `<div class="progessBarAndTextClass">
+        <div class="progressBarParentDivClass">
+            <div style="width: ${progress}%" class="innerProgressBarClass"></div>
+            
+        </div>
+        ${completedSubtasks}/${totalSubtasks} Subtasks
+    </div>`;
 }
 
 
@@ -344,6 +374,7 @@ function flipSubtaskCheckBool(i,j){
     function closeLargeCardOverlay(){
         document.getElementById('mainLargeCardOverlayId').style.display= "none";
         enableScrolling();
+        renderAllCardToBoard();
     }
    
     function handleLargeCardOverlayClick(event){
