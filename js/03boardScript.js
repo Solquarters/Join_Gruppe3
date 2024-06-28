@@ -214,23 +214,6 @@ function returnPrioSvgHTML(i) {
 }
 
 
-// function returnPrioSvgHTML(i) {
-        
-//     if(toDoCardsJSON[i]["prio"] == "Low"){
-//         document.getElementById(`prioDivId${i}`).innerHTML = `<img src="./assets/img/Priority symbols low.svg">`;
-//        }
-
-//        if(toDoCardsJSON[i]["prio"] == "Medium"){
-//         document.getElementById(`prioDivId${i}`).innerHTML = `<img src="./assets/img/Priority symbols medium.svg">`;
-//        }
-
-//        if(toDoCardsJSON[i]["prio"] == "Urgent"){
-//         document.getElementById(`prioDivId${i}`).innerHTML = `<img src="./assets/img/Priority symbols urgent.svg">`;
-//        }
-       
-// }
-
-
 
 ///////////// ROMAN EDIT 
 function openEmptyAddTaskOverlay(){
@@ -332,9 +315,7 @@ function returnLargeCardSubtasksHTML(i){
 }
 
 function flipSubtaskCheckBool(i,j){
-    console.log(toDoCardsJSON[i].subtaskJson[j].subtaskDone);
     toDoCardsJSON[i].subtaskJson[j].subtaskDone = !toDoCardsJSON[i].subtaskJson[j].subtaskDone;
-    console.log(toDoCardsJSON[i].subtaskJson[j].subtaskDone);
     return toDoCardsJSON[i].subtaskJson[j].subtaskDone; 
 }
 
