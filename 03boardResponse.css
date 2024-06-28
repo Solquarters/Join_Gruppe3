@@ -242,9 +242,16 @@
       .headLineCloseButton, .BoardOverlayHeadLinDivClass, .subTasksDivClass, .deleteEditContactDivClass 
         {
         width: 270px;
+        font-size: 18px;
       }
       .mainPopupDivClass {
         width: 260px;
+      }
+      .BoardOverlayHeadLinDivClass {
+        font-size: 42px;
+      }
+      .deleteEditContactDivClass {
+        margin-bottom: 10px;
       }
        
     }

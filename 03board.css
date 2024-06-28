@@ -417,7 +417,7 @@ display: none;
   right: 0;
 }
 .popupMainDiv {
-  height: 931px;
+  height: fit-content;
   width: 525px;
   background-color: white;
   border-radius: 30px;
@@ -519,6 +519,7 @@ display: none;
   border-radius: 50%;
 }
 
+
 .popupMainDiv:hover svg {
   cursor: pointer;
 }
@@ -554,6 +555,7 @@ text-align: left;
   justify-content: end;
   gap: 8px;
   width: 445px;
+  margin-bottom: 16px;
   
 }
 #deleteContactDivId:hover path {
