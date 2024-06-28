@@ -12,7 +12,7 @@ body {
   padding: 16px 48px 16px 48px;
   display: flex;
   flex-direction: column;
-  border: 2px solid rgba(150, 150, 150, 0.692);
+  /* border: 2px solid rgba(150, 150, 150, 0.692); */
   border-radius: 20px;
   height: 92%;
 }

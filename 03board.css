@@ -166,9 +166,17 @@ background-color: #1FD7C1;
   color: #808080;
   text-overflow: ellipsis;
   overflow: hidden;
-
-
 }
+
+.descriptionDivClass2{
+  margin: 16px 16px 16px 0px;
+  font-weight: normal;
+  color: #808080;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+
 .cartContainerInnert {
   margin-left: 16px;
   height: 100vh;
@@ -305,7 +313,7 @@ display: none;
 
 
 .addEmptyTaskMainOverlayClass{
-  z-index: 10;
+  z-index: 1001;
   position: fixed;
   top:0;
   right:0;
@@ -325,7 +333,7 @@ display: none;
 .addEmptyTaskChildOverlayClass{
   margin: 48px 0px 64px 0px;
   width:90%;
-  height:85%;
+  
   background-color: rgb(255, 255, 255);
   border-radius: 20px;
   overflow-y: auto;
@@ -509,7 +517,7 @@ display: none;
   width: 445px;
   color: white;
   margin-top: 36px;
-  margin-bottom: 36px;
+  margin-bottom: 16px;
   font-size: 23px;
   font-weight: 400;
 }
@@ -526,7 +534,7 @@ display: none;
 
 .BoardOverlayHeadLinDivClass {
   font-family: inter;
-  font-size: 61px;
+  font-size: 50px;
   font-weight: 700;
   width: 445px;
 }
@@ -677,4 +685,9 @@ fill: #2196F3;
   height: 100%; 
   background: #4589FF; 
   border-radius: 10px;
+}
+
+
+.rotateOnDrag{
+  transform: rotate(4deg);
 }
