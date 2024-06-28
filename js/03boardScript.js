@@ -228,9 +228,7 @@ function handleDragLeave(event, mainCategoryDivId) {
 
 
 
-function findIndexOfFirstCategoryInMainJson(categoryInput) {
-    return toDoCardsJSON.findIndex(item => item.toDoStatus === categoryInput);
-}
+
 
 
 /////////////////////////////DRAG AND DROP FUNCTION END
