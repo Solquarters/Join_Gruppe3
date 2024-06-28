@@ -30,7 +30,7 @@ function renderAllCardToBoard(){
         document.getElementById('doneStatusDivId').innerHTML += returnSingleCardHTML(i);
        }
 
-       createPrioSvg(i);
+    //    returnPrioSvgHTML(i);
 
     // switch(toDoCardsJSON[i]["toDoStatus"]) {
     //     case "To do":
@@ -63,7 +63,7 @@ function returnSingleCardHTML(i){
     
     return /*html*/`
     <div class="mainSingleCardDivClass" id="singleCardId${i}"
-    draggable="true" ondragstart="startDragging(${i})">
+    draggable="true" ondragstart="startDragging(${i})" onclick="openLargeCardOverlay(${i})">
 
         <div class="cardContainerInnert">
             ${returnCategoryHTML(i)}
@@ -90,7 +90,8 @@ function returnSingleCardHTML(i){
                     <div id="prioDivId${i}" class="prioDiv">
                         <!-- HIER DYNAMISCH SVG HIER EINFÜGEN, JE NACH CATEGORY -->
                         <!-- <img src="./assets/img/Priority symbols (1).svg"> -->
-                        Prio:${toDoCardsJSON[i]["prio"]}
+                        
+                        ${returnPrioSvgHTML(i)}
                     </div>
                 </div>     
             </div>
@@ -98,6 +99,9 @@ function returnSingleCardHTML(i){
     </div>
     `; 
 }
+
+
+
 
 function returnCategoryHTML(i){
     if(toDoCardsJSON[i]["category"] == "User Story"){
@@ -193,21 +197,38 @@ function findIndexOfFirstCategoryInMainJson(categoryInput) {
 
 /////////////////////////////DRAG AND DROP FUNCTION END
 
-function createPrioSvg(i) {
+function returnPrioSvgHTML(i) {
         
         if(toDoCardsJSON[i]["prio"] == "Low"){
-            document.getElementById(`prioDivId${i}`).innerHTML = `<img src="./assets/img/Priority symbols low.svg">`;
+            return `<img src="./assets/img/Priority symbols low.svg">`;
            }
 
            if(toDoCardsJSON[i]["prio"] == "Medium"){
-            document.getElementById(`prioDivId${i}`).innerHTML = `<img src="./assets/img/Priority symbols medium.svg">`;
+            return `<img src="./assets/img/Priority symbols medium.svg">`;
            }
 
            if(toDoCardsJSON[i]["prio"] == "Urgent"){
-            document.getElementById(`prioDivId${i}`).innerHTML = `<img src="./assets/img/Priority symbols urgent.svg">`;
+            return `<img src="./assets/img/Priority symbols urgent.svg">`;
            }
            
 }
+
+
+// function returnPrioSvgHTML(i) {
+        
+//     if(toDoCardsJSON[i]["prio"] == "Low"){
+//         document.getElementById(`prioDivId${i}`).innerHTML = `<img src="./assets/img/Priority symbols low.svg">`;
+//        }
+
+//        if(toDoCardsJSON[i]["prio"] == "Medium"){
+//         document.getElementById(`prioDivId${i}`).innerHTML = `<img src="./assets/img/Priority symbols medium.svg">`;
+//        }
+
+//        if(toDoCardsJSON[i]["prio"] == "Urgent"){
+//         document.getElementById(`prioDivId${i}`).innerHTML = `<img src="./assets/img/Priority symbols urgent.svg">`;
+//        }
+       
+// }
 
 
 
@@ -244,8 +265,52 @@ function openEmptyAddTaskOverlay(){
             closeAddTaskOverlay();
         }
     }
+
+
     
+    function openLargeCardOverlay(i){
+        document.getElementById('mainLargeCardOverlayId').style.display= "flex";
+        disableScrolling();
+
+        ////OVERLAY INHALT MIT JSON TO DO AN STELLE i BEFÜLLEN
+        ///////////////SOLLTE EIGENTLICH INS TEMPOBJECT gepackt werden
+        /////Bei Edit - AddTask mit TempObject befüllen
+        ///SaveChanges - TempArray zu JSON pushen, zu Large Card rendern
+        let categorySpan = document.getElementById('largeCardOverlayCategorySpanId')
+        categorySpan.innerText = toDoCardsJSON[i].category;
+        if(toDoCardsJSON[i]["category"] == "User Story"){
+            categorySpan.style.backgroundColor="blue";
+        }
+        else if(toDoCardsJSON[i]["category"] == "Technical Task"){
+            categorySpan.style.backgroundColor="#1FD7C1"; 
+        }
+
+        document.getElementById('largeCardTitleSpanId').innerText = toDoCardsJSON[i].title;
+
+        document.getElementById('largeCardDescriptionSpanId').innerText = toDoCardsJSON[i].description;
+       
+        document.getElementById('largeCardDateSpanId').innerText = toDoCardsJSON[i].dueDate;
+        
+        document.getElementById('largeCardPrioSpanId').innerHTML = /*html*/`${toDoCardsJSON[i].prio}&nbsp${returnPrioSvgHTML(i)}`;
+        
+
+        ///EIGENE FUNKTION: GEHE DURCH JSONTODO[i].assignedTo Array und rendere den Kreis und den Namen
+
+        //Eigene Funktion 2 : GEHE DURCH JSONTODO[i].subtask Array und rendere text und bool
+        /// subtasksLargeCardContainerId
+    }
+
+    function closeLargeCardOverlay(){
+        document.getElementById('mainLargeCardOverlayId').style.display= "none";
+        enableScrolling();
+    }
    
+    function handleLargeCardOverlayClick(event){
+    // Check if the click happened outside the child element
+    if (event.target.id === 'mainLargeCardOverlayId') {
+        closeLargeCardOverlay();
+        }
+    }
   
 
 
