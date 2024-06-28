@@ -416,3 +416,12 @@ function flipSubtaskCheckBool(i,j){
 
 
 ///////////// ROMAN EDIT ENDE
+
+
+
+function deleteSingleCard(i){
+    toDoCardsJSON
+closeLargeCardOverlay();
+
+
+}

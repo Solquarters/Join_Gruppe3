@@ -553,9 +553,10 @@ text-align: left;
 .deleteEditContactDivClass {
   display: flex;
   justify-content: end;
-  gap: 8px;
+  gap: 16px;
   width: 445px;
-  margin-bottom: 16px;
+  
+  margin: 0px 0px 20px 0px
   
 }
 #deleteContactDivId:hover path {
