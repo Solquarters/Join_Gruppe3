@@ -398,7 +398,7 @@ display: none;
   right: 0;
 }
 .popupMainDiv {
-  height: 931px;
+  height: fit-content;
   width: 525px;
   background-color: white;
   border-radius: 30px;
