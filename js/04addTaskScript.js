@@ -634,24 +634,43 @@ temporaryNewTaskSingleCardObject["title"] = document.getElementById('titleInputI
 temporaryNewTaskSingleCardObject["description"] = document.getElementById('descriptionTextAreaId').value;
 //Date Value correct?
 temporaryNewTaskSingleCardObject["dueDate"] = document.getElementById('datePickerInputId').value;
-//Category already changed onclick, if not clicked, it stays empty
+////////Category already changed onclick, if not clicked, it stays empty
 
+
+
+///HIER SUCHE INDEX DES ERSTEN TODO OBJECKTS
+//PUSHE TEMP ARRAY AN DIE STELL IM TODOJSON
 // Push the new object into the array
-toDoCardsJSON.push(temporaryNewTaskSingleCardObject);
-renderAllCardToBoard();
-clearAddTaskForm();
-closeAddTaskOverlay();
+
+let indexOfFirstToDoinMainJson = findIndexOfFirstCategoryInMainJson("To do");
+if(indexOfFirstToDoinMainJson >= 1){
+    toDoCardsJSON.splice(indexOfFirstToDoinMainJson-1, 0, temporaryNewTaskSingleCardObject);
+}
+else{
+    toDoCardsJSON.splice(0, 0, temporaryNewTaskSingleCardObject);
+}
+
+// toDoCardsJSON.push(temporaryNewTaskSingleCardObject);
+
+
+
+createNewTask();
 
 console.log(temporaryNewTaskSingleCardObject);
 console.log(toDoCardsJSON[toDoCardsJSON.length-1]);
 console.log(toDoCardsJSON[toDoCardsJSON.length-2]);
 
 
-///////////////////RESET ALL INPUT FIELDS
+
 ///////////////////REDIRECT TO BOARD ?
-//////////////////WANN WIRD TEMPARRAY RESETTET ? Eigentlich hier
-/////////////Wenn dann im Board auf eine Karte geklick wird, sollen die Werte von ToDOJSON an der Index Stelle
-// ins TempArray gepusht werden und anhand dessen das AddTask Overlay gerendert. 
+
+
+}
+
+function createNewTask(){
+    renderAllCardToBoard();
+    clearAddTaskForm();
+    closeAddTaskOverlay();
 }
 
 function changeCategoryInTempArray(categoryInput){
@@ -668,3 +687,8 @@ function changeCategoryInTempArray(categoryInput){
 function updateDateInTempArray(){
     temporaryNewTaskSingleCardObject["dueDate"] = document.getElementById('datePickerInputId').value;
 }
+
+
+
+/////Wenn dann im Board auf eine Karte geklick wird, sollen die Werte von ToDOJSON an der Index Stelle
+// ins TempArray gepusht werden und anhand dessen das AddTask Overlay gerendert. 

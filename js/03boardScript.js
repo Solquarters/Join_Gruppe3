@@ -62,14 +62,13 @@ let currentDraggedElement;
 function returnSingleCardHTML(i){
     
     return /*html*/`
-
     <div class="mainSingleCardDivClass" id="singleCardId${i}"
     draggable="true" ondragstart="startDragging(${i})">
 
         <div class="cardContainerInnert">
             ${returnCategoryHTML(i)}
             <div id="containerformularId${i}" class="containerformularDivClass">
-                <span id="">${toDoCardsJSON[i]["title"]}</span>
+                <span >${toDoCardsJSON[i]["title"]}</span>
             </div>
 
             <div id="descriptionDivId${i}" class="descriptionDivClass">
@@ -114,6 +113,7 @@ function returnCategoryHTML(i){
     }
 
 }
+
 
 /////////////////////////////DRAG AND DROP FUNCTION START
 
