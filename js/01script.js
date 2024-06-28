@@ -367,6 +367,11 @@ function returnAddTaskSiteHTML(){
 
 
 
+function findIndexOfFirstCategoryInMainJson(categoryInput) {
+    return toDoCardsJSON.findIndex(item => item.toDoStatus === categoryInput);
+}
+
+
 
 
 

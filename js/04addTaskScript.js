@@ -638,10 +638,9 @@ temporaryNewTaskSingleCardObject["dueDate"] = document.getElementById('datePicke
 
 
 
-///HIER SUCHE INDEX DES ERSTEN TODO OBJECKTS
-//PUSHE TEMP ARRAY AN DIE STELL IM TODOJSON
-// Push the new object into the array
 
+//PUSHE TEMP ARRAY AN DIE STELL IM TODOJSON
+///HIER SUCHE INDEX DES ERSTEN TODO OBJECKTS
 let indexOfFirstToDoinMainJson = findIndexOfFirstCategoryInMainJson("To do");
 if(indexOfFirstToDoinMainJson >= 1){
     toDoCardsJSON.splice(indexOfFirstToDoinMainJson-1, 0, temporaryNewTaskSingleCardObject);
@@ -650,20 +649,18 @@ else{
     toDoCardsJSON.splice(0, 0, temporaryNewTaskSingleCardObject);
 }
 
-// toDoCardsJSON.push(temporaryNewTaskSingleCardObject);
+
+///////////////HIER TODOJSON INS BACKEND PUSHEN
 
 
-
-createNewTask();
+///////////HIER NOCH CHECKEN OB AUF BOARD ODER AUF ADD TASK SEITE
+// if(auf Board){
+// createNewTask();
+// }
 
 console.log(temporaryNewTaskSingleCardObject);
 console.log(toDoCardsJSON[toDoCardsJSON.length-1]);
-console.log(toDoCardsJSON[toDoCardsJSON.length-2]);
-
-
-
 ///////////////////REDIRECT TO BOARD ?
-
 
 }
 
