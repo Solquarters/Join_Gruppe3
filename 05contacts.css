@@ -131,7 +131,7 @@ h2 {
     height: 1px;
     background-color: #D1D1D1;
     border-radius: 10px;
-    margin: 0 0 30px 0;
+    /* margin: 0 0 30px 0; */
 }
 
 .nameShortOne {
@@ -223,6 +223,7 @@ h2 {
     font-size: 20px;
     font-weight: 400;
     padding: 0 0 20px 23px;
+    margin: 12px 0px 0px 0px;
 }
 
 .nameEditDelete {

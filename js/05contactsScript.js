@@ -41,6 +41,20 @@ let contactsJSON = [{
     'profileRGB': 'rgb(255, 255, 0)'
 },
 {
+    'firstName': 'Emmanuel',
+    'lastName': 'Mauer',
+    'phone': '+49 1512 6789012',
+    'email': 'emmanuelma@gmail.com',
+    'profileRGB': 'rgb(255, 255, 0)'
+},
+{
+    'firstName': 'Emmanuel',
+    'lastName': 'Mauer',
+    'phone': '+49 1512 6789012',
+    'email': 'emmanuelma@gmail.com',
+    'profileRGB': 'rgb(255, 255, 0)'
+},
+{
     'firstName': 'Marcel',
     'lastName': 'Bauer',
     'phone': '+49 160 7890123',
@@ -55,18 +69,30 @@ let contactsJSON = [{
     'profileRGB': 'rgb(255, 192, 203)'
 }];
 
+
+    let alterBuchstabe = '#';
+    let neuerBuchstabe = 'A';
+
 load();
 
 function renderContacts() {
     let contactsContent = document.getElementById('contactsContent');
     contactsContent.innerHTML = '';
 
+    
+
     for (let i = 0; i < contactsJSON.length; i++) {
+
         let contactJSON = contactsJSON[i];
+
         contactsContent.innerHTML += /*html*/`
         <div id="contactsId" class="underContainer">
-            <span class="alphabet">${contactJSON['lastName'].charAt(0).toUpperCase()}</span>
-            <div class="contactSeperator"></div>
+
+
+            ${returnAlphabeticalSeperator(i)}
+
+           
+
             <div onclick="renderContactsInfo(${i}, this)" class="underContactMain">
                 <span class="nameShortOne" style="background-color: ${getProfileRGB(i)};">${contactJSON['firstName'].charAt(0)}${contactJSON['lastName'].charAt(0)}</span>
                 <div class="selectContact">
@@ -78,6 +104,27 @@ function renderContacts() {
         `;
     }
 }
+
+function returnAlphabeticalSeperator(i){
+
+    neuerBuchstabe = contactsJSON[i]['firstName'].charAt(0).toUpperCase();
+    
+    if(alterBuchstabe !== neuerBuchstabe){
+        alterBuchstabe = neuerBuchstabe;
+
+        return `
+        <span class="alphabet">${contactsJSON[i]['firstName'].charAt(0).toUpperCase()}</span>
+        <div class="contactSeperator"></div>
+        `;
+    }
+    else{
+        return ``;
+    }
+   
+ 
+}
+
+
 
 function renderContactsInfo(index, divElement) {
 
@@ -309,9 +356,15 @@ function save() {
 }
 
 function load() {
+
+    contactsJSON = sortContactsByFirstName(contactsJSON);
+
     let contactsJSONAsText = localStorage.getItem('contactsJSON');
     if (contactsJSONAsText) {
         contactsJSON = JSON.parse(contactsJSONAsText);
+
+        contactsJSON = sortContactsByFirstName(contactsJSON);
+
         renderContacts();
     }
 }
@@ -382,3 +435,17 @@ function load() {
 //         });
 //     });
 // }
+
+
+
+function sortContactsByFirstName(JSONARRAY) {
+    return JSONARRAY.sort((a, b) => {
+        if (a.firstName < b.firstName) {
+            return -1;
+        }
+        if (a.firstName > b.firstName) {
+            return 1;
+        }
+        return 0;
+    });
+}
