@@ -187,6 +187,7 @@ function createContact() {
 
 // Function for show a Pop Up window
 function addContacts() {
+    resetEditForm();
     let popUp = document.getElementById('popUpContent');
     popUp.style.display = 'flex'; // Ensure display is set to flex before adding active class
     popUp.classList.remove('inactive');
@@ -251,6 +252,7 @@ function editContact(index) {
         document.getElementById('email').value = editingContact.email;
         document.getElementById('phone').value = editingContact.phone;
     }
+    resetEditForm();
 }
 
 // Function to find a contact by index
