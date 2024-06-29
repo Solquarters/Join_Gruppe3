@@ -36,7 +36,7 @@
 <!-- LARGECARD OVERLAY START  -->
 <!-- LARGECARD OVERLAY START  -->
 
-<div class="mainContainer" id="mainLargeCardOverlayId" style="display: none;" onclick="handleLargeCardOverlayClick(event)">
+<div class="mainContainerOverlay" id="mainLargeCardOverlayId" style="display: none;" onclick="handleLargeCardOverlayClick(event)">
    <div class="popupMainDiv" id="popupMainDivId">
        <div class="headLineCloseButton">
            <span class="userStory" id="largeCardOverlayCategorySpanId">User Story</span>
@@ -164,31 +164,37 @@
 <div w3-include-html="./assets/templates/headerSidebar.html"></div>
     <main class="mainDivContainer">
         <div class="mainDiv">
-            <div class="headDiv">
-               <div class="mediaQuerryBoardAdd">
-                <img id="boardImg" src="./assets/img/Frame 40.svg" alt="">
-                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" onclick="openEmptyAddTaskOverlay()">
-                  <rect width="40" height="40" rx="10" fill="#2A3647"/>
-                  <path d="M20 10V30" stroke="white" stroke-width="2" stroke-linecap="round"/>
-                  <path d="M30 20L10.0005 20.138" stroke="white" stroke-width="2" stroke-linecap="round"/>
-                  </svg>
-               </div>
-                  
-                <div class="inputAddTask">
-               <div class="containerInputField">
-                  <input placeholder="Find Task" required class="inputField">
-                  <div class="seperator"></div>
-                  <img src="./assets/img/search.svg" alt="">
-               </div>
-                <!-- <input id="findTask" placeholder="Find Task"> -->
-                <button onclick="openEmptyAddTaskOverlay()" class="addTask"><img src="./assets/img/add.svg"
-                  alt="Contact add image">Add Task</button>
-               </div>
-
-            </div>
-            
+           
+         
     
             <div class="contentDiv">
+               <div class="headDiv">
+                  <div class="mediaQuerryBoardAdd">
+                   <img id="boardImg" src="./assets/img/Frame 40.svg" alt="">
+                   <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" onclick="openEmptyAddTaskOverlay()">
+                     <rect width="40" height="40" rx="10" fill="#2A3647"/>
+                     <path d="M20 10V30" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                     <path d="M30 20L10.0005 20.138" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                     </svg>
+                  </div>
+                     
+                   <div class="inputAddTask">
+                  <div class="containerInputField">
+                    
+                     <input placeholder="Find Task" required class="inputField">
+                     <div class="findTaskInputSeperatorAndLensDiv">
+                        <div class="seperator"></div>
+                        <img src="./assets/img/search.svg" alt="">
+                     </div>
+                     
+                  </div>
+                   <!-- <input id="findTask" placeholder="Find Task"> -->
+                   <button onclick="openEmptyAddTaskOverlay()" class="addTaskButtonClass"><img src="./assets/img/add.svg"
+                     alt="Contact add image">Add Task</button>
+                  </div>
+      
+               </div>
+              
                 <div class="cardsDiv">
 <div class="containerDivCards1">
                   <div id="toDoAreaId">
@@ -276,6 +282,7 @@
 
                 
             </div>
+         
         </div>
     </main>
 </body>
