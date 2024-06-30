@@ -131,7 +131,7 @@ h2 {
     height: 1px;
     background-color: #D1D1D1;
     border-radius: 10px;
-    /* margin: 0 0 30px 0; */
+    margin: 0 0 10px 0;
 }
 
 .nameShortOne {
@@ -156,7 +156,7 @@ h2 {
     font-size: 16px;
     font-weight: 400;
     text-decoration: none;
-    color: #007CEE;
+    color: #409DF2;
 }
 
 .contactsContentMain {
@@ -189,7 +189,7 @@ h2 {
 }
 
 .underContactMain:hover {
-    background: linear-gradient(to bottom, #f2f2f2, #ececec);
+    background: linear-gradient(to bottom, #fdfafa, #ececec);
     border-radius: 10px;
 }
 
@@ -199,13 +199,14 @@ h2 {
     border-radius: 10px;
 }
 
+.underContactMain a:active {
+    color: #0B6BC4;
+}
+
 .underContactMain.active {
     background-color: #2A3647;
     color: #ffffff;
-}
-
-.underContactMain.active:hover {
-    background-color: #2A3647;
+    pointer-events: none;
 }
 
 /* Farbe der Links in aktiven Elementen */
@@ -335,6 +336,7 @@ h2 {
     font-size: 16px;
     font-weight: 400;
     text-decoration: none;
+    color: #409DF2;
 }
 
 .phoneContainer {
@@ -467,8 +469,7 @@ h2 {
     margin: 0 10px 50px 0;
     border: none;
     background-color: #FFFFFF;
-    font-size: 18px;
-    padding: 5px 9px 3px 9px;
+    padding: 3px 3px 0 4px;
 }
 
 .closePopUp:hover {
@@ -623,11 +624,53 @@ form input {
         border-bottom-left-radius: 30px;
         border-bottom-right-radius: 30px;
     }
+
+    .backArrowContainer {
+        display: inline;
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+        position: relative;
+        left: 900px;
+        top: -69px;
+        flex-shrink: 0;
+        /* Verhindert, dass der Container schrumpft */
+    }
+}
+
+@media(max-width: 1210px) {
+    .backArrowContainer {
+        left: 800px;
+    }
+}
+
+@media(max-width: 1110px) {
+    .backArrowContainer {
+        left: 650px;
+    }
 }
 
 @media(max-width: 1020px) {
     .contactsSection {
         margin: 96px 0 0 179px;
+    }
+}
+
+@media(max-width: 910px) {
+    .backArrowContainer {
+        left: 600px;
+    }
+}
+
+@media(max-width: 860px) {
+    .backArrowContainer {
+        left: 500px;
+    }
+}
+
+@media(max-width: 755px) {
+    .backArrowContainer {
+        left: 390px;
     }
 }
 
@@ -655,21 +698,29 @@ form input {
         top: -55px;
     }
 
+    .createContact img {
+        top: 0;
+    }
+
     .addContactCancel {
         display: none;
     }
 
     .closePopUpTop {
         position: relative;
-        bottom: 50px;
-        left: 377px;
+        bottom: 58px;
+        left: 379px;
         background-color: #2A3647;
         color: #FFFFFF;
         border-radius: 50%;
         border: none;
-        padding: 5px 9px 3px 9px;
+        padding: 5px 4px 0 5px;
         font-size: 18px;
         display: inline;
+    }
+
+    .closePopUpTop svg path {
+        fill: #FFFFFF;
     }
 
     .closePopUpTop:hover {
@@ -693,11 +744,15 @@ form input {
     form {
         margin: 0 0 0 0;
     }
+
+    .showContactsText {
+        padding: 25px 0 0 25px;
+    }
 }
 
-@media(max-width: 650px) {
+@media(max-width: 680px) {
     .showContactsTextMain {
-        gap: 9px;
+        gap: 3px;
     }
 }
 
@@ -715,7 +770,7 @@ form input {
     }
 
     .closePopUpTop {
-        bottom: 71px;
+        bottom: 79px;
     }
 
     .rightSide {
@@ -738,6 +793,16 @@ form input {
 
     .showContactsText {
         padding: 10px 0 0 10px;
+    }
+
+    .backArrowContainer {
+        left: 480px;
+    }
+}
+
+@media(max-width: 520px) {
+    .backArrowContainer {
+        left: 400px;
     }
 }
 
@@ -793,7 +858,7 @@ form input {
     }
 
     .closePopUpTop {
-        left: 287px;
+        left: 291px;
     }
 
     .showContactsTextMain {
@@ -886,7 +951,8 @@ form input {
     }
 
     .formContent {
-        position: static; /* Setzt die Position zurück */
+        position: static;
+        /* Setzt die Position zurück */
     }
 
     /* ////////////////////////////////POP UP WINDOW EDIT AND DELETE BUTTON START///////////// */
@@ -953,7 +1019,8 @@ form input {
     }
 
     .dropDownMenu.active {
-        display: flex; /* Show when active */
+        display: flex;
+        /* Show when active */
         animation: slideIn 0.6s ease-in-out forwards;
     }
 
@@ -966,19 +1033,19 @@ form input {
             right: -100%;
             transform: translateX(100%);
         }
-    
+
         to {
             right: 10px;
             transform: translateX(0);
         }
     }
-    
+
     @keyframes slideOut {
         from {
             right: 10px;
             transform: translateX(0);
         }
-    
+
         to {
             right: -100%;
             transform: translateX(100%);
@@ -1116,7 +1183,7 @@ form input {
     }
 
     .closePopUpTop {
-        left: 248px;
+        left: 249px;
     }
 
     form {

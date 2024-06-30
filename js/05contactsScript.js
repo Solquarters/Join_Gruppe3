@@ -41,20 +41,6 @@ let contactsJSON = [{
     'profileRGB': 'rgb(255, 255, 0)'
 },
 {
-    'firstName': 'Emmanuel',
-    'lastName': 'Mauer',
-    'phone': '+49 1512 6789012',
-    'email': 'emmanuelma@gmail.com',
-    'profileRGB': 'rgb(255, 255, 0)'
-},
-{
-    'firstName': 'Emmanuel',
-    'lastName': 'Mauer',
-    'phone': '+49 1512 6789012',
-    'email': 'emmanuelma@gmail.com',
-    'profileRGB': 'rgb(255, 255, 0)'
-},
-{
     'firstName': 'Marcel',
     'lastName': 'Bauer',
     'phone': '+49 160 7890123',
@@ -70,8 +56,8 @@ let contactsJSON = [{
 }];
 
 
-    let alterBuchstabe = '#';
-    let neuerBuchstabe = 'A';
+let oldLetter = '#';
+let newLetter = 'A';
 
 load();
 
@@ -79,7 +65,7 @@ function renderContacts() {
     let contactsContent = document.getElementById('contactsContent');
     contactsContent.innerHTML = '';
 
-    
+
 
     for (let i = 0; i < contactsJSON.length; i++) {
 
@@ -87,12 +73,7 @@ function renderContacts() {
 
         contactsContent.innerHTML += /*html*/`
         <div id="contactsId" class="underContainer">
-
-
             ${returnAlphabeticalSeperator(i)}
-
-           
-
             <div onclick="renderContactsInfo(${i}, this)" class="underContactMain">
                 <span class="nameShortOne" style="background-color: ${getProfileRGB(i)};">${contactJSON['firstName'].charAt(0)}${contactJSON['lastName'].charAt(0)}</span>
                 <div class="selectContact">
@@ -105,36 +86,13 @@ function renderContacts() {
     }
 }
 
-function returnAlphabeticalSeperator(i){
-
-    neuerBuchstabe = contactsJSON[i]['firstName'].charAt(0).toUpperCase();
-    
-    if(alterBuchstabe !== neuerBuchstabe){
-        alterBuchstabe = neuerBuchstabe;
-
-        return `
-        <span class="alphabet">${contactsJSON[i]['firstName'].charAt(0).toUpperCase()}</span>
-        <div class="contactSeperator"></div>
-        `;
-    }
-    else{
-        return ``;
-    }
-   
- 
-}
-
-
-
 function renderContactsInfo(index, divElement) {
 
-    // document.querySelectorAll('.active').forEach(function(element) {
-    //     element.classList.remove('active');
-    // });
+    document.querySelectorAll('.active').forEach(function (element) {
+        element.classList.remove('active');
+    });
 
-    ///hier css classe "active" hinzufügen
-    // divElement.classList.add('') 
-
+    divElement.classList.add('active')
 
     let showContactsInfo = document.getElementById('showContactsInfo');
     showContactsInfo.innerHTML = '';
@@ -201,35 +159,83 @@ function renderContactsInfo(index, divElement) {
     }
 }
 
+function returnAlphabeticalSeperator(i) {
+
+    newLetter = contactsJSON[i]['firstName'].charAt(0).toUpperCase();
+
+    if (oldLetter !== newLetter) {
+        oldLetter = newLetter;
+
+        return `
+        <span class="alphabet">${contactsJSON[i]['firstName'].charAt(0).toUpperCase()}</span>
+        <div class="contactSeperator"></div>
+        `;
+    }
+    else {
+        return ``;
+    }
+}
+
+function sortContactsByFirstName(JSONARRAY) {
+    return JSONARRAY.sort((a, b) => {
+        if (a.firstName < b.firstName) {
+            return -1;
+        }
+        if (a.firstName > b.firstName) {
+            return 1;
+        }
+        return 0;
+    });
+}
+
 function getProfileRGB(i) {
     return contactsJSON[i].profileRGB;
 }
 
 function createContact() {
-    let fullName = document.getElementById('name').value;
-    let email = document.getElementById('email').value;
-    let phone = document.getElementById('phone').value;
-    // Get first and last name from the full name input
-    let nameParts = fullName.split(' ');
-    let firstName = nameParts[0];
-    let lastName = "";
-    if (nameParts.length > 1) {
-        lastName = nameParts.slice(1).join(' ');
+    let fullName = document.getElementById('name').value.trim();
+    let email = document.getElementById('email').value.trim();
+    let phone = document.getElementById('phone').value.trim();
+
+    // Check whether a contact already exists with this email
+    let emailExists = contactsJSON.some((contact, index) => contact.email === email && index !== editingIndex);
+
+    if (emailExists) {
+        alert("Diese E-Mail-Adresse existiert bereits, verwenden Sie bitte eine andere E-Mail-Adresse");
+    } else {
+        // Get first and last name from the full name input
+        let nameParts = fullName.split(' ');
+        let firstName = nameParts[0];
+        let lastName = nameParts.slice(1).join(' ');
+
+        if (editingIndex !== null) {
+            // Update existing contact
+            contactsJSON[editingIndex] = {
+                firstName: firstName,
+                lastName: lastName,
+                phone: phone,
+                email: email,
+                profileRGB: contactsJSON[editingIndex].profileRGB // Keep the existing color
+            };
+            editingIndex = null; // Reset editing index after saving
+        } else {
+            // Generate a random color for the profileRGB
+            let profileRGB = `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`;
+
+            // Create a new contact object
+            let newContact = {
+                firstName: firstName,
+                lastName: lastName,
+                phone: phone,
+                email: email,
+                profileRGB: profileRGB
+            };
+            contactsJSON.push(newContact);
+        }
+        renderContacts();
+        hideContacts();
+        save();
     }
-    // Generate a random color for the profileRGB
-    let profileRGB = `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`;
-    // Create a new contact object
-    let newContact = {
-        firstName: firstName,
-        lastName: lastName,
-        phone: phone,
-        email: email,
-        profileRGB: profileRGB
-    };
-    contactsJSON.push(newContact);
-    renderContacts();
-    hideContacts();
-    save();
 }
 
 // Function for show a Pop Up window
@@ -246,25 +252,21 @@ function callDropDownMenu() {
     dropDown.style.display = 'flex';
     dropDown.classList.add('active');
     dropDown.classList.remove('inactive');
-    document.addEventListener('click', function (event) {
-        let isClickInside = dropDown.contains(event.target) || event.target.matches('button[onclick="callDropDownMenu()"]');
-        if (!isClickInside) {
+
+    function closeDropdown(event) {
+        if (!dropDown.contains(event.target) && !event.target.closest('button[onclick="callDropDownMenu()"]')) {
             dropDown.classList.remove('active');
             dropDown.classList.add('inactive');
-            dropDown.addEventListener('animationend', function () {
+            dropDown.addEventListener('animationend', () => {
                 dropDown.style.display = 'none';
             }, { once: true });
+            document.removeEventListener('click', closeDropdown);
         }
-    });
-    document.querySelector('button[onclick="callDropDownMenu()"]').addEventListener('click', function (event) {
-        event.stopPropagation();
-    });
-}
+    }
 
-// function closeDropDownMenu() {
-//     document.getElementById('dropDownMenu').classList.add('d-none');
-//     console.log('funktioniert');
-// }
+    document.addEventListener('click', closeDropdown);
+    document.querySelector('button[onclick="callDropDownMenu()"]').addEventListener('click', event => event.stopPropagation());
+}
 
 function hideContacts() {
     let popUp = document.getElementById('popUpContent');
@@ -286,6 +288,8 @@ function contactsWindowsCancel() {
 }
 
 function editContact(index) {
+    editingIndex = index; // Set the index of the contact being edited
+
     // Open the modal
     let popUp = document.getElementById('popUpContent');
     popUp.style.display = 'flex'; // Ensure display is set to flex before adding active class
@@ -299,7 +303,6 @@ function editContact(index) {
         document.getElementById('email').value = editingContact.email;
         document.getElementById('phone').value = editingContact.phone;
     }
-    resetEditForm();
 }
 
 // Function to find a contact by index
@@ -338,6 +341,7 @@ function changeWidth() {
 
 function deleteContacts(index) {
     contactsJSON.splice(index, 1);
+    contactsJSON = sortContactsByFirstName(contactsJSON);
 
     let showContactsInfo = document.getElementById('showContactsInfo');
     showContactsInfo.innerHTML = '';
@@ -367,85 +371,4 @@ function load() {
 
         renderContacts();
     }
-}
-///////////////////////////////////////////
-// Vergleichsfunktion für Strings
-// function compareStrings(a, b) {
-//     // Annahme: Case-insensitive Vergleich
-//     a = a.toLowerCase();
-//     b = b.toLowerCase();
-
-//     return (a < b) ? -1 : (a > b) ? 1 : 0;
-// }
-
-// // Kontakte nach Vornamen sortieren
-// contactsJSON.sort(function (a, b) {
-//     return compareStrings(a.firstName, b.firstName);
-// });
-
-// ///////////////////////////////////////////////
-
-// // Sortieren der Kontakte nach dem Vornamen
-// contactsJSON.sort(function(a, b) {
-//     return a.firstName.localeCompare(b.firstName);
-// });
-
-// // Vergleichsfunktion für Strings
-// function compareStrings(a, b) {
-//     // Annahme: Case-insensitive Vergleich
-//     a = a.toLowerCase();
-//     b = b.toLowerCase();
-
-//     return a.localeCompare(b); // Direkter Vergleich für die Sortierung
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-// // Funktion zum Hinzufügen der 'active' Klasse zum angeklickten Kontakt und Entfernen bei den anderen
-// function selectContact(element) {
-//     let items = document.querySelectorAll('.underContactMain.active');
-//     items.forEach(function (item) {
-//         item.classList.remove('active');
-//     });
-//     element.classList.add('active');
-// }
-
-// // Funktion zum Hinzufügen von Event-Listenern zu allen Kontaktelementen
-// function addEventListeners() {
-//     let items = document.querySelectorAll('.underContactMain.active');
-//     items.forEach(function (item) {
-//         item.addEventListener('click', function (event) {
-//             event.stopPropagation();
-//             selectContact(item);
-//         });
-//     });
-
-//     document.addEventListener('click', function () {
-//         items.forEach(function (item) {
-//             item.classList.remove('active');
-//         });
-//     });
-// }
-
-
-
-function sortContactsByFirstName(JSONARRAY) {
-    return JSONARRAY.sort((a, b) => {
-        if (a.firstName < b.firstName) {
-            return -1;
-        }
-        if (a.firstName > b.firstName) {
-            return 1;
-        }
-        return 0;
-    });
 }
