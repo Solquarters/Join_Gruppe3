@@ -5,15 +5,14 @@ body {
   
 }
 .mainDivContainer {
-margin: 128px 0px 0px 128px;
+margin: 128px 0px 0px 232px;
 }
 
 .mainDiv {
   
-  margin-left: 232px;
-  margin-top: 96px;
-  height: 100%;
-  width: 65%;
+display:flex;
+flex-direction: column;
+align-items: center;
 }
 #findTask {
   border-radius: 10px;
@@ -26,13 +25,14 @@ margin: 128px 0px 0px 128px;
   /* margin-left: 128px;
   margin-right: 64px; */
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   justify-content: space-between;
+  width: 100%;
   
 }
-#boardImg {
+/* #boardImg {
   margin-right: 260px;
-}
+} */
 
 .cardsDiv img:hover {
   cursor: pointer;
@@ -40,11 +40,12 @@ margin: 128px 0px 0px 128px;
 
 .contentDiv {
   display: flex;
+  flex-direction: column;
   justify-content: center;
 }
 .cardsDiv {
   display: flex;
-  margin-left: 64px;
+
   margin-top: 32px;
 }
 
@@ -169,11 +170,12 @@ background-color: #1FD7C1;
 }
 
 .descriptionDivClass2{
-  margin: 16px 16px 16px 0px;
+
   font-weight: normal;
   color: #808080;
   text-overflow: ellipsis;
   overflow: hidden;
+  word-break: break-word;
 }
 
 
@@ -213,9 +215,17 @@ background-color: #1FD7C1;
 
 
 
+.headerAndContentParentDivClass{
+  display: flex;
+  flex-direction: column;
+}
 
-
-
+.findTaskInputSeperatorAndLensDiv{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
 
 
 
@@ -248,6 +258,28 @@ background-color: #1FD7C1;
   font-weight: 700;
   margin-left: 24px;
 }
+
+.addTaskButtonClass{
+  font-family: 'Inter';
+  cursor: pointer;
+  color: #FFFFFF;
+  background-color: #2A3647;
+  height: 48px;
+  min-width: 140px;
+  border-radius: 10px;
+  border: 1px solid #2A3647;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-size: 21px;
+  font-weight: 700;
+  margin-left: 24px;
+}
+
+
+
 .addTask:hover {
   background-color: #29abe2;
   border: none;
@@ -265,8 +297,8 @@ cursor: pointer;
 .inputAddTask {
 display:flex;
 align-items: center;
-justify-content: center;
-margin-right: 32px;
+/* justify-content: center; */
+
 }
 
 .containerInputField {
@@ -323,7 +355,7 @@ display: none;
 
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
 }
 #addEmptyTaskMainOverlayId{
   display:none;
@@ -357,7 +389,7 @@ display: none;
 
   .addEmptyTaskChildOverlayClass{
    
-    width:100%;
+    width:98%;
   }
 
 
@@ -412,10 +444,11 @@ display: none;
 
 /* ////////////////LARGE CARD OVERLAY CSS /////////////////////////////// */
 
-.mainContainer {
+.mainContainerOverlay {
   display: flex;
   justify-content: center;
   align-items: center;
+ 
   width: 100%;
   height: 100%;
   position: fixed;
@@ -423,16 +456,21 @@ display: none;
   z-index: 1000;
   top: 0;
   right: 0;
+
 }
 .popupMainDiv {
-  height: fit-content;
-  width: 525px;
+ height: 85%;
+  width: 400px;
   background-color: white;
   border-radius: 30px;
   border: solid 1px #00000029;
+
   display: flex;
   flex-direction: column;
-  align-items: center;
+  justify-content: flex-start;
+  margin: 16px 0px 0px 0px;
+  overflow-y: auto;
+
 }
 
 .userStory {
@@ -514,11 +552,11 @@ display: none;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 445px;
+  
   color: white;
-  margin-top: 36px;
-  margin-bottom: 16px;
-  font-size: 23px;
+ 
+  margin: 28px 26px 8px 28px;
+  font-size: 22px;
   font-weight: 400;
 }
 
@@ -534,9 +572,12 @@ display: none;
 
 .BoardOverlayHeadLinDivClass {
   font-family: inter;
-  font-size: 50px;
+  font-size: 42px;
   font-weight: 700;
-  width: 445px;
+  margin: 8px 28px 4px 28px;
+  word-break: break-word;
+ 
+
 }
 
 .SubTaskSpanClass {
@@ -560,11 +601,12 @@ text-align: left;
 
 .deleteEditContactDivClass {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   gap: 16px;
-  width: 445px;
+ 
   
-  margin: 0px 0px 20px 0px
+  margin: 8px 28px 8px 28px;
+  padding: 0px 0px 16px 0px;
   
 }
 #deleteContactDivId:hover path {
@@ -577,7 +619,7 @@ fill: #2196F3;
 
 .dateDivClass {
   margin-top: 24px;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
   
 }
 
@@ -585,7 +627,7 @@ fill: #2196F3;
   margin-left: 12px;
 }
 .priorityDivClass  {
-  margin-bottom: 24px;
+  margin-bottom: 16px;
   display: flex;
   align-items: center;
   gap: 25px;
@@ -596,8 +638,8 @@ fill: #2196F3;
 
 
 .assignetToNamesClass {
-  display: flex;
-  flex-direction: column;
+  /* display: flex;
+  flex-direction: column; */
 }
 
 .assignedToName1{
@@ -611,9 +653,9 @@ fill: #2196F3;
 
 /* //////assigned Container in Large Card ////////////// */
 #assignedLargeCardContainerId{
-  height: 100px;
+  height: 140px;
   overflow-y: auto;
-
+margin: 8px 0px 0px 0px;
 }
 
 #subtasksLargeCardContainerId{
@@ -629,7 +671,8 @@ fill: #2196F3;
 .subTasksDivClass {
   margin-top: 24px;
   margin-bottom: 24px;
-  width: 445px;  
+  
+  margin: 8px 28px 8px 28px;
 }
 
 
@@ -638,7 +681,8 @@ fill: #2196F3;
 }
 
 .mainPopupDivClass {
-  width: 445px;
+
+  margin: 8px 28px 8px 28px;
 }
 
 

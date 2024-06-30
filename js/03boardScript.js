@@ -228,9 +228,7 @@ function handleDragLeave(event, mainCategoryDivId) {
 
 
 
-function findIndexOfFirstCategoryInMainJson(categoryInput) {
-    return toDoCardsJSON.findIndex(item => item.toDoStatus === categoryInput);
-}
+
 
 
 /////////////////////////////DRAG AND DROP FUNCTION END
@@ -255,6 +253,9 @@ function returnPrioSvgHTML(i) {
 
 ///////////// ROMAN EDIT 
 function openEmptyAddTaskOverlay(){
+        inBoardAddTask = true;
+
+
     document.getElementById('addEmptyTaskMainOverlayId').style.display="flex";
         //ZUGRIFF AUF GLOBAL SCRIPT
         renderAddTaskHTMLForBoardOverlay();
@@ -290,6 +291,8 @@ function openEmptyAddTaskOverlay(){
 
     
     function openLargeCardOverlay(i){
+
+
         document.getElementById('mainLargeCardOverlayId').style.display= "flex";
         disableScrolling();
 
@@ -412,12 +415,7 @@ function flipSubtaskCheckBool(i,j){
         }
     }
 
-    function returnInitialsFromTwoWordString(stringInput) {
-        let words = stringInput.split(' ');
-        if (words.length === 1) {return words[0][0].toUpperCase();}
-        let initials = words[0][0].toUpperCase() + words[1][0].toUpperCase();
-        return initials;
-      }
+    
     
     function closeLargeCardOverlay(){
         document.getElementById('mainLargeCardOverlayId').style.display= "none";
@@ -471,12 +469,37 @@ function deleteSingleCard(i){
 toDoCardsJSON.splice(i, 1);
 closeLargeCardOverlay();
 renderAllCardToBoard();
+enableScrolling();
 }
 
 function editSingleCard(i){
-////////////////HIER WEITER! 
-////LADE TEMPARRAY MIT INFO AUS TODOJSON AN STELLE i
-////LADE ADDTASK HTML IN CONTAINER id: 'popupMainDivId'
-document.getElementById('popupMainDivId').innerHTML = returnAddTaskSiteHTML();
+    console.log(toDoCardsJSON[i]);
+    console.log(temporaryNewTaskSingleCardObject);
+    temporaryNewTaskSingleCardObject = toDoCardsJSON[i];
+    console.log(temporaryNewTaskSingleCardObject);
+
+    ///CSS stimmt hier nicht, aber idee ist richtig...
+    document.getElementById('popupMainDivId').innerHTML = returnAddTaskSiteHTML();
+
+    renderAddTaskSiteFromTempArray();
+    ////////////////HIER WEITER! 
+    ////Okay Button bei AddTask Edit Mode sollte eingeblendet werden
+    ////Evtl bool für Edit Mode benutzen, gibts schon
+    ////Contacts richtig fidnen und einblenden?
+    ////Datum wird nicht richtig übertragen, evtl falsch gespeichert im ToDo Json
+    /// Category Feld sollte schwarz color haben, gibts schon eine funktion dafür.
+
+
+
+    ////Wenn AddTask Edit Mode overlay geschlossen wird, soll beim nächsten öffnen einer Card Html im Overlay neu geladen werden
+
+
+
+
+
+
+    // openEmptyAddTaskOverlay();
+
+
 
 }

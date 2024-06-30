@@ -78,7 +78,7 @@ let toDoCardsJSON = [
         title: "0Title",
         description:"description0",
         assignedToArray: [
-         {assignedFullName:"Vorname00 Nachname00", assignedRGB:"rgb(0,100,0)"},
+         {assignedFullName:"Stefan hsfhhz", assignedRGB:"rgb(255,20,0)"},
          {assignedFullName:"Vorname01 Nachname01", assignedRGB:"rgb(100,0,0)"},
         ],
         dueDate: "05.01.2025",
@@ -213,7 +213,7 @@ let toDoCardsJSON = [
 
 let userLoginJson = JSON.parse(localStorage.getItem('userLoginJson')) || [];
 
-
+let inBoardAddTask = false;
 
 // ROMANS EDIT START 
 function renderAddTaskHTMLForBoardOverlay(){
@@ -309,11 +309,11 @@ function returnAddTaskSiteHTML(){
 
             
              Category<span style="color: red;">*</span> 
-                   <form >
-                   <select id="categorySelectId" required class="singleLineInputClass backGroundArrowClass categorySelectClass" onchange="changeCategoryInTempArray(this.value)" onmouseover="changeInputArrow(this)" onmouseleave="changeBackInputArrow(this)" onclick="toggleDropdown2(this)" required style="color: gray;">
+                   <form id="categoryMainFormId">
+                   <select id="categorySelectId" required class="singleLineInputClass backGroundArrowClass categorySelectClass" onchange="this.style.color='black'; changeCategoryInTempArray(this.value)" onmouseover="changeInputArrow(this)" onmouseleave="changeBackInputArrow(this)" onclick="toggleDropdown2(this)" required style="color: gray;">
                        <option  value="" disabled selected hidden  id="categoryDropdownPlaceholderId">Select Task Category</option>
-                       <option value="Technical Task" >Technical Task</option>
-                       <option value="User Story" >User Story</option>
+                       <option value="Technical Task" onclick="changeFontColorOfCategoryInput()">Technical Task</option>
+                       <option value="User Story" onclick="changeFontColorOfCategoryInput()">User Story</option>
                    </select>
                    </form>
 
@@ -372,7 +372,15 @@ function findIndexOfFirstCategoryInMainJson(categoryInput) {
 }
 
 
-
+function returnInitialsFromTwoWordString(stringInput) {
+    let nameArray = stringInput.split(' ');
+    if (nameArray.length === 1) {return nameArray[0][0].toUpperCase();}
+    if(nameArray.length === 2) {
+        let initials = nameArray[0][0].toUpperCase() + nameArray[1][0].toUpperCase();
+        return initials;
+    }
+    
+  }
 
 
 

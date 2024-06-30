@@ -8,19 +8,14 @@
       margin: 0;
     } */
 
-    .mainDivContainer {
-      margin: 128px 0px 0px 128px;
-      }
+ 
     
     .containerDivCards2 {
       display: flex;
       
     }
-    .headDiv {
-      display: flex;
-      justify-content: center;
-      
-  }
+    
+
   .mediaQuerryBoardAdd {
       display: flex;
       align-items: center;
@@ -34,59 +29,68 @@
 
 
 @media (max-width: 1410px) {
-    .containerDivCards1 {
+    /* .containerDivCards1 {
         display: flex;
         flex-direction: column;
-    }
+    } */
        
-      #boardImg {
+      /* #boardImg {
         margin: 0;
-      }
+      } */
 
-      .mainDivContainer {
-        margin: 128px 0px 0px 0px;
-        }
       
-      .containerDivCards2 {
+      
+      /* .containerDivCards2 {
         display: flex;
         flex-direction: column;
-      }
+      } */
       .headDiv {
         display: flex;
         justify-content: center;
         flex-direction: column;
-        margin-left: 96px;
+        /* margin-left: 96px; */
     }
     .mediaQuerryBoardAdd {
         display: flex;
         align-items: center;
         
       }
+      .cardsDiv{
+        flex-direction: column;
+      }
 
      
 }
+
+@media (max-width: 1020px) {
+.mainDivContainer{
+  margin: 128px 0px 0px 180px;
+}
+
+}
+
 @media (max-width: 830px)  {
 
 
- .mainDivContainer {
+ /* .mainDivContainer {
   margin-left: 48px
- } 
+ }  */
   .mainDiv {
-    margin-left: 160px;
-    width: 80%;
+    /* margin-left: 160px; */
+    /* width: 80%; */
     margin-bottom: 120px;
 }
-.cardsDiv {
+/* .cardsDiv {
   display: flex;
   flex-direction: column;
   margin: 0;
   
-}
+} */
 .headDiv {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  margin: 0;
+  /* margin: 0; */
   
 }
 
@@ -95,19 +99,24 @@
   margin: 0px;
   
 }
-.addTask {
+.addTaskButtonClass {
   display: none;
 }
-.containerDivCards1 {
+/* .containerDivCards1 {
   display: flex;
   flex-direction: column;
 
-}
+} */
 .mediaQuerryBoardAdd {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 354px;
+  /* width: 354px; */
+}
+
+.containerInputField{
+  width: 100%;
+  margin: 16px 0px 0px 0px;
 }
 
 .mediaQuerryBoardAdd svg{
@@ -117,17 +126,70 @@
 .mediaQuerryBoardAdd:hover svg {
   cursor: pointer;
 }
-.addLine {
+/* .addLine {
   width: 354px;
-}
-.drag-area {
+} */
+/* .drag-area {
   width: 324px;
   display: flex;
   overflow-x:auto;
+} */
 }
 
 
+@media (max-width: 775px) {
+  .drag-area {
+    width: 420px;
+    display: flex;
+    overflow-x:auto;
+   
+  }
+  .containerDivCards1{
+    flex-direction: column;
+  }
+
+  .containerDivCards2{
+    flex-direction: column;
+  }
+
+  .cardContainerInnert{
+    width: 240px;
+   
+    
+  }
+  .mainSingleCardDivClass{
+    margin: 8px 12px 0px 0px;
+  }
+  .addLine{
+    margin: 16px 0px 0px 0px;
+  }
+  .cardsDiv{
+    margin: 8px 0px 0px 0px;
+  }
+  .containerInputField{
+    margin: 16px 0px 0px 0px;
+  }
+
+}
+
+@media (max-width: 700px) {
+  .contentDiv{
+    width: 90%;
+  }
+  .drag-area {
+    /* width: 420px; */
+    
+   width: unset;
+  }
+}
+
+
+
+
 @media (max-width: 620px) {
+  .mainDivContainer{
+    margin: 84px 0px 0px 0px;
+  }
     .mainDiv {
         margin-left: 0;
         width: 100%;
@@ -153,7 +215,7 @@
         margin: 0px;
         
     }
-    .addTask {
+    .addTaskButtonClass {
         display: none;
     }
     .containerDivCards1 {
@@ -165,11 +227,11 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        width: 354px;
+        /* width: 354px; */
       }
-      #boardImg {
+      /* #boardImg {
         margin: 0;
-      }
+      } */
       .mediaQuerryBoardAdd svg{
         display: block;
       }
@@ -178,11 +240,12 @@
         cursor: pointer;
       }
       .addLine {
-        width: 354px;
+        /* width: 354px; */
+        /* width: 90%; */
       }
       
         
-      }
+    
       .mainSingleCardDivClass {
         
         margin-right: 12px;
@@ -197,26 +260,26 @@
 
 @media (max-width: 390px) {
     .inputField {
-      width: 220px;
+     width: 90%;
       border: none;
     }
 
     .containerInputField {
-      width: 274px;
-      height: 34px;
-      padding: 0;
+      /* width: 274px; */
+      /* height: 34px; */
+      /* padding: 0; */
     }
     .mediaQuerryBoardAdd {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      width: 270px;
+      /* width: 270px; */
     }
     .addLine {
-      width: 270px;
+      /* width: 270px; */
     }
     .drag-area {
-      width: 275px;
+      /* width: 275px; */
       
     }
   }
@@ -232,7 +295,7 @@
         border: solid 1px #00000029;
         display: flex;
         flex-direction: column;
-        align-items: center;
+     
       }
 
       .mainPopupDivClass {
@@ -260,7 +323,7 @@
     @media (max-width: 380px) {
       .popupMainDiv {
         height: fit-content;
-        width: 290px;
+        width: 312px;
         background-color: white;
         border-radius: 30px;
         border: solid 1px #00000029;
@@ -270,15 +333,12 @@
       }
 
       .mainPopupDivClass {
-        width: 270x;
+        width: 264px;
       }
 
       .headLineCloseButton, .BoardOverlayHeadLinDivClass, .subTasksDivClass, .deleteEditContactDivClass 
         {
-        width: 250px;
+        width: 264px;
       }
-      .mainPopupDivClass {
-        width: 240px;
-      }
-       
+      
     }

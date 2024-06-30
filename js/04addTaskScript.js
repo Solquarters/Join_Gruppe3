@@ -33,7 +33,6 @@ let temporaryNewTaskSingleCardObject = {
 };
 
 
-
 function emptyTempJson(){
     temporaryNewTaskSingleCardObject = {
         title: "",
@@ -41,7 +40,7 @@ function emptyTempJson(){
         assignedToArray: [],
         dueDate: "",
         prio: "",
-        category: "",
+        category: "Select a Category",
         subtaskJson: [],
         toDoStatus: "To do",
     };
@@ -50,15 +49,13 @@ function emptyTempJson(){
 }
 
 function initAddTaskSite(){
+    inBoardAddTask = false;
     emptyTempJson();
     renderContactsDropdownMenuContent();
     setCurrentDateInputMinValue();
     renderProfileCirclesFromTempArray();
     renderSubtaskFromTempArray();
     renderAddTaskSiteFromTempArray();
-
-    // eventListenerAddTaskOnClickWindowEvent();
-
 }
 
 
@@ -104,7 +101,7 @@ renderSubtaskFromTempArray();
 function setDropdownSelectionFromTempArray() {
     const selectElement = document.getElementById('categoryDropdownPlaceholderId');
     selectElement.innerText = temporaryNewTaskSingleCardObject.category;
-    document.getElementById('categorySelectId').style.setProperty('color', 'rgb(0, 0, 0)', 'important');
+    document.getElementById('categorySelectId').style.setProperty('color', 'rgb(#757575)', 'important');
 }
 
 function setPrioFromTempArray(){
@@ -215,11 +212,8 @@ function getProfileRGB(i){
 ///////////////////////////
 ///Text area drag is buggy - when mouseup outside the textarea handler problems can occur!
 //////////////////////////
-
 // const textarea = document.getElementById('descriptionTextAreaId');
 // const handle = document.querySelector('.resizeHandleClass');
-
-
 // handle.addEventListener('mousedown', function(e) {
 //     // e.preventDefault();
 //     initialHeight = textarea.offsetHeight;
@@ -330,25 +324,33 @@ function selectContactAndPushToTemporaryArray(element, nameSpanId, i) {
 
 function renderProfileCirclesFromTempArray(){
     document.getElementById('assignedUsersCircleDivId').innerHTML = '';
-    for (let j = 0; j < temporaryNewTaskSingleCardObject.assignedToArray.length; j++) {
-        document.getElementById('assignedUsersCircleDivId').innerHTML += /*html*/`
-        <div class="userProfileCircleDivClass" style="background-color: ${getProfileRgbFromTempArray(j)};">${getNameInitialsFromTempArray(j)}</div>
-        `;
+
+    if(temporaryNewTaskSingleCardObject.assignedToArray.length > 0){
+        for (let j = 0; j < temporaryNewTaskSingleCardObject.assignedToArray.length; j++) {
+            document.getElementById('assignedUsersCircleDivId').innerHTML += /*html*/`
+            <div class="userProfileCircleDivClass" style="background-color: ${getProfileRgbFromTempArray(j)};">${returnInitialsFromTwoWordString(temporaryNewTaskSingleCardObject.assignedToArray[j].assignedFullName)}</div>
+            `;
+        }
+
     }
+   
 }
 
 function getProfileRgbFromTempArray(j){
     return temporaryNewTaskSingleCardObject.assignedToArray[j].assignedRGB;
 }
 
-function getNameInitialsFromTempArray(j){
-   let fullName = temporaryNewTaskSingleCardObject.assignedToArray[j].assignedFullName;
-    let namePartsArray = fullName.split(' ');
-    let firstName = namePartsArray[0];
-    let lastName = namePartsArray[1];
-    let initials = firstName.charAt(0).toUpperCase() + lastName.charAt(0).toUpperCase();
-    return initials;
-}
+// function getNameInitialsFromTempArray(j){
+//    let fullName = temporaryNewTaskSingleCardObject.assignedToArray[j].assignedFullName;
+//     let namePartsArray = fullName.split(' ');
+//     let firstName = namePartsArray[0];
+//     let lastName = namePartsArray[1];
+//     let initials = firstName.charAt(0).toUpperCase() + lastName.charAt(0).toUpperCase();
+//     return initials;
+// }
+
+
+
 
 function getFullNameStringFromContacts(i){
     return contactsJSON[i].firstName + " " + contactsJSON[i].lastName;
@@ -399,7 +401,7 @@ function removeUserProfileCircle(nameSpanId) {
 }
 
 ///////////////////////////
-// Dropdown Menu Contact script
+// Dropdown Menu Contacts 
 function toggleDropdown(thisElement) {
 
     
@@ -430,10 +432,6 @@ function toggleDropdown2(thisElement) {
         thisElement.classList.toggle('open');
 }
 
-
-
-//////////////// WINDOW ONCLICK EVENT LISTENER AB HIER
-function eventListenerAddTaskOnClickWindowEvent(){}
 // Close the dropdown if the user clicks outside of it, except when clicking on the checkboxes
 window.onclick = function(event) {
     if (!event.target.matches('.dropbtn') && !event.target.closest('.dropdownContactDivClass')) {
@@ -465,14 +463,14 @@ window.onclick = function(event) {
         if (categorySelectId) {
             categorySelectId.classList.remove('open')
             categorySelectId.style.backgroundImage = "url('./assets/img/addTaskImg/inputArrowDown.svg')";
+            
         }
     }
 }
 
-
-
-
-//////////////// WINDOW ONCLICK EVENT LISTENER BIS HIERHER
+function changeFontColorOfCategoryInput(){
+    document.getElementById('categorySelectId').style.setProperty('color', 'rgb(#000000)', 'important');
+}
 
 function toggleCategoryDropdown() {
     let dropdownButton = document.querySelector('.dropbtn');
@@ -625,6 +623,11 @@ function clearAddTaskForm(){
     resetPrioButtons();
 
     renderAddTaskSiteFromTempArray();
+
+    document.getElementById('categoryMainFormId').reset();
+    document.getElementById('categorySelectId').style.color = 'gray';
+    
+    clearSubtaskInput();
 }
 
 
@@ -654,9 +657,9 @@ else{
 
 
 ///////////HIER NOCH CHECKEN OB AUF BOARD ODER AUF ADD TASK SEITE
-// if(auf Board){
-// createNewTask();
-// }
+if(inBoardAddTask){
+createNewTask();
+}
 
 console.log(temporaryNewTaskSingleCardObject);
 console.log(toDoCardsJSON[toDoCardsJSON.length-1]);
@@ -672,6 +675,7 @@ function createNewTask(){
 
 function changeCategoryInTempArray(categoryInput){
     temporaryNewTaskSingleCardObject["category"] = `${categoryInput}`;
+    
 }
 
 // function generateRandomRGB() {
