@@ -207,7 +207,32 @@ let toDoCardsJSON = [
 ];
 
 
+function findEarliestDueDate(toDoCards) {
+    if (!toDoCards || toDoCards.length === 0) {
+        return null;
+    }
 
+    let earliestDate = new Date(toDoCards[0].dueDate.split('.').reverse().join('-'));
+
+    toDoCards.forEach(card => {
+        let currentDate = new Date(card.dueDate.split('.').reverse().join('-'));
+        if (currentDate < earliestDate) {
+            earliestDate = currentDate;
+        }
+    });
+
+    return earliestDate;
+}
+
+function formatDate(date) {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return date.toLocaleDateString('de-DE', options);
+}
+
+let earliestDate = findEarliestDueDate(toDoCardsJSON);
+let formattedDate = earliestDate ? formatDate(earliestDate) : 'Keine Termine vorhanden';
+
+document.getElementById('due-date').textContent = formattedDate;
 
 
 

@@ -10,8 +10,6 @@
     <link rel="stylesheet" href="./02summary.css">
     <link rel="stylesheet" href="fonts.css">
     <title>Summary</title>
-    <script src="./js/02summaryScript.js"></script>
-    <script src="./js/01script.js"></script>
 
 </head>
 
@@ -51,7 +49,7 @@
                     </svg>
                 </div>
                 <div class="container-todo">
-                    <span class="number-size">1</span>
+                    <span class="number-size" id="summaryDoneNumberId">1</span>
                     <span class="text-size">Done</span>
                 </div>
             </div>
@@ -73,12 +71,12 @@
                     </svg>
                 </div>
                 <div class="container-todo">
-                    <span class="number-size">1</span>
-                    <span class="text-size">Done</span>
+                    <span class="number-size" id="summaryUrgentNumberId">1</span>
+                    <span class="text-size">Urgent</span>
                 </div>
                 <div class="dash-line"></div>
                 <div class="container-todo">
-                    <span class="data-year-size">August 16, 2024</span>
+                    <span id="due-date" class="data-year-size"></span>
                     <span class="text-size">Upcoming Deadline</span>
                 </div>
             </div>
@@ -90,19 +88,19 @@
         <section class="container-main-middle">
                 <div class="container-below-left">
                     <div class="container-todo">
-                        <span class="number-size">5</span>
+                        <span class="number-size" id="summaryBoardAllNumberId">5</span>
                         <span class="text-size">Tasks In<br>Board</span>
                     </div>
                 </div>
                 <div class="container-below-middle">
                     <div class="container-todo">
-                        <span class="number-size">2</span>
+                        <span class="number-size" id="summaryInProgressNumberId">2</span>
                         <span class="text-size">Tasks In<br>Progress</span>
                     </div>
                 </div>
                 <div class="container-below-right">
                     <div class="container-todo">
-                        <span class="number-size">2</span>
+                        <span class="number-size" id="summaryAwaitFeedbackNumberId">2</span>
                         <span class="text-size">Awaiting<br>Feedback</span>
                     </div>
                 </div>
@@ -112,7 +110,8 @@
 
 
 
-
+    <script src="./js/02summaryScript.js"></script>
+    <script src="./js/01script.js"></script>
     <script src="./assets/templates/templatesScript.js"></script>
 </body>
 
