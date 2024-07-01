@@ -48,10 +48,13 @@ textarea:focus {
 }
 .resizeHandleClass svg {
   position: relative;
-  cursor: pointer;
-  top: -26px;
-  right: 4px;
+cursor: pointer;
+top: -26px;
+right: 2px;
 }
+
+
+
 
 .resizeHandleClass svg:hover {
   filter: invert(0.2);
@@ -92,7 +95,6 @@ textarea:focus {
   margin: 20px 0px 0px 0px;
   display: flex;
   justify-content: space-between;
-  padding: 0px 0px 32px 0px;
 }
 
 .clearCreateTaskButtonDivChildClass {
@@ -403,7 +405,9 @@ input[type="date"]:-webkit-calendar-picker-indicator:hover {
 
   .addTaskDetailsParentDivClass {
     flex-direction: column;
+    align-items: center;
   }
+  
 
   textarea {
     min-width: 336px;
@@ -414,7 +418,7 @@ input[type="date"]:-webkit-calendar-picker-indicator:hover {
   }
 
   .resizeHandleClass {
-    min-width: 336px;
+    /* min-width: 336px; */
   }
 
   .verticalDivSeperatorClass {
@@ -425,9 +429,7 @@ input[type="date"]:-webkit-calendar-picker-indicator:hover {
     min-width: 336px;
   }
 
-  .addTaskDetailsParentDivClass {
-    align-items: center;
-  }
+  
 
   .leftSideChildDivClass {
     width: 90%;
@@ -521,7 +523,7 @@ border-radius: 50%;
 display: flex;
 flex-direction: column;
 /* height: 80px; */
-height: 48px;
+height: 64px;
 overflow-y: auto;
 }
 
