@@ -58,6 +58,7 @@ let contactsJSON = [{
 
 let oldLetter = '#';
 let newLetter = 'A';
+let editingIndex = null; // Added to track editing index
 
 load();
 
@@ -238,6 +239,7 @@ function createContact() {
     }
 }
 
+
 // Function for show a Pop Up window
 function addContacts() {
     resetEditForm();
@@ -272,7 +274,7 @@ function hideContacts() {
     let popUp = document.getElementById('popUpContent');
     popUp.classList.remove('active');
     popUp.classList.add('inactive');
-    setTimeout(() => popUp.style.display = 'none', 300); // Adjust the timeout to match the slideOut animation duration
+    setTimeout(() => popUp.style.display = 'none', 600); // Adjust the timeout to match the slideOut animation duration
 }
 
 function contactsWindowsCancel() {
@@ -368,7 +370,6 @@ function load() {
         contactsJSON = JSON.parse(contactsJSONAsText);
 
         contactsJSON = sortContactsByFirstName(contactsJSON);
-
         renderContacts();
     }
 }
