@@ -206,6 +206,7 @@ let toDoCardsJSON = [
     },
 ];
 
+let userLoginJson = JSON.parse(localStorage.getItem('userLoginJson')) || [];
 
 function findEarliestDueDate(toDoCards) {
     if (!toDoCards || toDoCards.length === 0) {
@@ -235,8 +236,6 @@ let formattedDate = earliestDate ? formatDate(earliestDate) : 'Keine Termine vor
 document.getElementById('due-date').textContent = formattedDate;
 
 
-
-let userLoginJson = JSON.parse(localStorage.getItem('userLoginJson')) || [];
 
 let inBoardAddTask = false;
 
