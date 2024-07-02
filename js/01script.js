@@ -453,7 +453,6 @@ async function putData(path="", data={}){
                 },
         body: JSON.stringify(data)
         });
-
     // return responseToJson = await response.json();
 }
 
@@ -463,3 +462,11 @@ async function loadData(path=""){
     let responseAsJson = await response.json();
     return responseAsJson;
 }
+
+
+
+
+
+/////openEmptyAddTaskOverlay()
+///Nach öffnen und Schließen des AddTask overlay funktioniert der EditModus nicht mehr richtig 
+///editSingleCard öffnet AddTask Overlay , HTML wird richtig gerendert, Inhalt aber leer und Funktionen gehen auch nicht 

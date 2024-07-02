@@ -141,7 +141,7 @@ function getProfileRGB(i) {
     return contactsJSON[i].profileRGB;
 }
 
-function createContact() {
+function createContact(){
     let fullName = document.getElementById('name').value.trim();
     let email = document.getElementById('email').value.trim();
     let phone = document.getElementById('phone').value.trim();

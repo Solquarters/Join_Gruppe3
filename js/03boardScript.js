@@ -2,6 +2,7 @@
 async function initializeBoard() {
     try {
         toDoCardsJSON = await loadData("/toDoJson");
+        contactsJSON = await loadData("/contactsJson");
       
     } catch (error) {
         console.error('Error loading data:', error);
@@ -392,15 +393,14 @@ function submitEditingCard(){
      if (!isInput1Valid) input1.reportValidity();
     
  } else {
-     alert('Added new task!');
+     
      temporaryNewTaskSingleCardObject["title"] = document.getElementById('titleInputId').value;
      temporaryNewTaskSingleCardObject["description"] = document.getElementById('descriptionTextAreaId').value;
      temporaryNewTaskSingleCardObject["dueDate"] = document.getElementById('datePickerInputId').value;
     
      toDoCardsJSON[currentLargeCardIndex] = temporaryNewTaskSingleCardObject;
-     
-     putData("/toDoJson", toDoCardsJSON);
 
+     putData("/toDoJson", toDoCardsJSON);
      openLargeCardOverlay(currentLargeCardIndex);
  }
 
@@ -435,6 +435,7 @@ function fitAddTaskCssAttributesToBoardTemplate(){
 ///////////// ROMAN EDIT ENDE
 function deleteSingleCard(i){
 toDoCardsJSON.splice(i, 1);
+putData("/toDoJson", toDoCardsJSON);
 closeLargeCardOverlay();
 renderAllCardToBoard();
 enableScrolling();
@@ -452,7 +453,7 @@ function editSingleCard(i){
     //Unterschied zwischen Referenztypen und Valuetypen !
     temporaryNewTaskSingleCardObject = structuredClone(toDoCardsJSON[i]);
 
-    // console.log(temporaryNewTaskSingleCardObject);
+    console.log(temporaryNewTaskSingleCardObject);
 
     document.getElementById('popupMainDivId').innerHTML = returnAddTaskSiteHTML();
     renderAddTaskSiteFromTempArray();
