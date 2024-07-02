@@ -243,6 +243,7 @@ function openEmptyAddTaskOverlay(){
     
     
     function closeAddTaskOverlay(){
+        document.getElementById('addEmptyTaskChildOverlayId').innerHTML = '';
         document.getElementById('addEmptyTaskMainOverlayId').style.display="none";
         enableScrolling();
     }
