@@ -146,7 +146,6 @@ h2 {
     width: 40px;
 }
 
-
 .selectContact span {
     font-size: 20px;
     font-weight: 400;
@@ -549,12 +548,12 @@ form input {
     padding: 15px 18px 15px 18px;
     gap: 8px;
     height: 48px;
-    transition: color 0.5s ease-in-out, border-color 0.5s ease-in-out;
+    transition: color 0.5s ease-in-out, border-color 1.0s ease-in-out;
 }
 
 .addContactCancel::before {
     transform: translateY(-100%);
-    transition: transform 0.5s ease-in-out;
+    transition: transform 0.2s ease-in-out;
 }
 
 .addContactCancel:hover::before {
@@ -597,6 +596,58 @@ form input {
 .createContact:hover {
     box-shadow: 0 4px 3px rgba(0, 0, 0, 0.2);
     background-color: #29abe2;
+}
+
+.saveContact {
+    background-color: #2A3647;
+    cursor: pointer;
+    border: 2px solid rgb(68, 79, 94);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row-reverse;
+    font-size: 20px;
+    font-weight: 400;
+    align-items: center;
+    padding: 15px 18px 15px 18px;
+    gap: 8px;
+    height: 48px;
+    color: #FFFFFF;
+    border: none;
+    display: none;
+}
+
+.saveContact:hover {
+    box-shadow: 0 4px 3px rgba(0, 0, 0, 0.2);
+    background-color: #29abe2;
+}
+
+.editDeleteContact {
+    cursor: pointer;
+    border: 2px solid rgb(68, 79, 94);
+    border-radius: 10px;
+    flex-direction: row-reverse;
+    font-size: 20px;
+    font-weight: 400;
+    align-items: center;
+    padding: 15px 18px 15px 18px;
+    gap: 8px;
+    height: 48px;
+    transition: color 0.5s ease-in-out, border-color 01.0s ease-in-out;
+}
+
+.editDeleteContact::before {
+    transform: translateY(-100%);
+    transition: transform 0.2s ease-in-out;
+}
+
+.editDeleteContact:hover::before {
+    transform: translateY(0);
+}
+
+.editDeleteContact:hover {
+    color: #29abe2;
+    border: 2px solid rgb(41, 171, 226);
+    box-shadow: 0 4px 3px rgba(0, 0, 0, 0.2);
 }
 
 /* ////////////////////////////////POP UP WINDOW END///////////// */
@@ -699,6 +750,10 @@ form input {
     }
 
     .createContact img {
+        top: 0;
+    }
+
+    .saveContact img {
         top: 0;
     }
 
@@ -1174,6 +1229,16 @@ form input {
     }
 
     .createContact {
+        padding: 0 10px 0 10px;
+        height: 40px;
+    }
+
+    .saveContact {
+        padding: 0 10px 0 10px;
+        height: 40px;
+    }
+
+    .editDeleteContact {
         padding: 0 10px 0 10px;
         height: 40px;
     }

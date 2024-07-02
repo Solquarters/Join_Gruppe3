@@ -1,61 +1,3 @@
-let contactsJSON = [{
-    'firstName': 'Anton',
-    'lastName': 'Mayer',
-    'phone': '+49 1573 1234567',
-    'email': 'antom@gmail.com',
-    'profileRGB': 'rgb(50, 205, 50)'
-},
-{
-    'firstName': 'Anja',
-    'lastName': 'Schulz',
-    'phone': '+49 1521 2345678',
-    'email': 'schulz@hotmail.com',
-    'profileRGB': 'rgb(173, 216, 230)'
-},
-{
-    'firstName': 'Benedikt',
-    'lastName': 'Ziegler',
-    'phone': '+49 1590 3456789',
-    'email': 'benedikt@gmail.com',
-    'profileRGB': 'rgb(255, 0, 0)'
-},
-{
-    'firstName': 'David',
-    'lastName': 'Eisenberg',
-    'phone': '+49 1525 4567890',
-    'email': 'davidberg@gmail.com',
-    'profileRGB': 'rgb(255, 165, 0)'
-},
-{
-    'firstName': 'Eva',
-    'lastName': 'Fischer',
-    'phone': '+49 1578 5678901',
-    'email': 'eva@gmail.com',
-    'profileRGB': 'rgb(186, 85, 211)'
-},
-{
-    'firstName': 'Emmanuel',
-    'lastName': 'Mauer',
-    'phone': '+49 1512 6789012',
-    'email': 'emmanuelma@gmail.com',
-    'profileRGB': 'rgb(255, 255, 0)'
-},
-{
-    'firstName': 'Marcel',
-    'lastName': 'Bauer',
-    'phone': '+49 160 7890123',
-    'email': 'bauer@gmail.com',
-    'profileRGB': 'rgb(0, 255, 255)'
-},
-{
-    'firstName': 'Tatjana',
-    'lastName': 'Wolf',
-    'phone': '+49 162 8901234',
-    'email': 'wolf@gmail.com',
-    'profileRGB': 'rgb(255, 192, 203)'
-}];
-
-
 let oldLetter = '#';
 let newLetter = 'A';
 let editingIndex = null; // Added to track editing index
@@ -239,7 +181,6 @@ function createContact() {
     }
 }
 
-
 // Function for show a Pop Up window
 function addContacts() {
     resetEditForm();
@@ -247,6 +188,7 @@ function addContacts() {
     popUp.style.display = 'flex'; // Ensure display is set to flex before adding active class
     popUp.classList.remove('inactive');
     popUp.classList.add('active');
+    document.querySelector('.addContacts').style.display = 'flex';
 }
 
 function callDropDownMenu() {
@@ -290,7 +232,29 @@ function contactsWindowsCancel() {
 }
 
 function editContact(index) {
-    editingIndex = index; // Set the index of the contact being edited
+    currentIndex = index;
+    let contact = contactsJSON[index];
+
+    // Filling the form with the contact's information
+    document.getElementById('name').value = `${contact.firstName} ${contact.lastName}`;
+    document.getElementById('email').value = contact.email;
+    document.getElementById('phone').value = contact.phone;
+
+    // Set the background color of the initials span
+    let initialsElement = document.querySelector('.nameShortScript');
+    initialsElement.style.backgroundColor = contact.profileRGB;
+
+    // Change the visibility of the buttons
+    document.querySelector('.createContact').style.display = 'none';
+    document.querySelector('.saveContact').style.display = 'flex';
+    document.querySelector('.editDeleteContact').style.display = 'flex';
+    document.querySelector('.addContactCancel').style.display = 'none';
+
+    //Set the submit handler to the save function for the edited contact
+    document.querySelector('form').onsubmit = function () {
+        saveEditedContact(index);
+        return false;
+    };
 
     // Open the modal
     let popUp = document.getElementById('popUpContent');
@@ -298,13 +262,54 @@ function editContact(index) {
     popUp.classList.remove('inactive');
     popUp.classList.add('active');
 
-    // Find the contact by index and pre-fill the form
-    let editingContact = findContactByIndex(index);
-    if (editingContact) {
-        document.getElementById('name').value = editingContact.firstName + ' ' + editingContact.lastName;
-        document.getElementById('email').value = editingContact.email;
-        document.getElementById('phone').value = editingContact.phone;
+    renderContacts();
+    // renderContactsInfo();
+}
+
+function editDeleteContact() {
+    deleteContacts();
+    renderContacts();
+}
+
+// Change Contacte
+function saveEditedContact(index) {
+    // Get the edited information from the form
+    let name = document.getElementById('name').value.trim().split(' ');
+    let email = document.getElementById('email').value.trim();
+    let phone = document.getElementById('phone').value.trim();
+
+    // Ensure that the name array has at least two parts (first and last name)
+    if (name.length < 2) {
+        alert('Bitte geben Sie sowohl den Vor- als auch den Nachnamen ein.');
+        return;
     }
+
+    // Update the contact in the list
+    contactsJSON[index] = {
+        'firstName': name[0],
+        'lastName': name.slice(1).join(' '), // Join remaining parts as last name
+        'phone': phone,
+        'email': email,
+        'profileRGB': contactsJSON[index].profileRGB // Keep the original color
+    };
+
+    // Reset the visibility of the buttons
+    document.querySelector('.createContact').style.display = 'flex';
+    document.querySelector('.saveContact').style.display = 'none';
+    document.querySelector('.editDeleteContact').style.display = 'none';
+
+    // Close Pop Up
+    let popUp = document.getElementById('popUpContent');
+    popUp.style.display = 'none';
+    popUp.classList.remove('active');
+    popUp.classList.add('inactive');
+
+    renderContacts();
+    // renderContactsInfo();
+    resetEditForm();
+    save();
+
+    alert('Änderungen wurden gespeichert.');
 }
 
 // Function to find a contact by index
@@ -354,6 +359,8 @@ function deleteContacts(index) {
     }
     renderContacts();
     save();
+
+    alert('Kontakt erfolgreich gelöscht!');
 }
 
 function save() {
@@ -362,7 +369,6 @@ function save() {
 }
 
 function load() {
-
     contactsJSON = sortContactsByFirstName(contactsJSON);
 
     let contactsJSONAsText = localStorage.getItem('contactsJSON');
