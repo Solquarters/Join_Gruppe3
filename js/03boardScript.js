@@ -1,7 +1,30 @@
 
-function initializeBoard(){
-    renderAllCardToBoard();
+async function initializeBoard() {
+    try {
+        toDoCardsJSON = await loadData("/toDoJson");
+        console.log(toDoCardsJSON);
+    } catch (error) {
+        console.error('Error loading data:', error);
+    }
+    finally{
+        renderAllCardToBoard();
+    }
 }
+
+
+
+// function initializeBoard(){
+
+//     loadData("/toDoJson")
+//     .then(toDoCardsJSON => {
+//         console.log(toDoCardsJSON);
+//     })
+//     .catch(error => {
+//         console.error('Error loading data:', error);
+//     });
+
+    
+// }
 
 function renderAllCardToBoard(){
     ///Reset all boards
@@ -153,9 +176,13 @@ function moveDraggedCardToCategoryInsideJson(categoryInput){
 
     if(indexOfFirstCategoryinJson >= 1){
         toDoCardsJSON.splice(indexOfFirstCategoryinJson-1, 0, tempObject);
+
+        putData("/toDoJson", toDoCardsJSON);
     }
     else{
         toDoCardsJSON.splice(0, 0, tempObject);
+
+        putData("/toDoJson", toDoCardsJSON);
     }
 }
 
@@ -316,6 +343,9 @@ function returnLargeCardSubtasksHTML(i){
 
 function flipSubtaskCheckBool(i,j){
     toDoCardsJSON[i].subtaskJson[j].subtaskDone = !toDoCardsJSON[i].subtaskJson[j].subtaskDone;
+
+    putData("/toDoJson", toDoCardsJSON);
+
     return toDoCardsJSON[i].subtaskJson[j].subtaskDone; 
 }
 

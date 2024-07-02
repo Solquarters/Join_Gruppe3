@@ -39,7 +39,6 @@ function renderContactsInfo(index, divElement) {
 
     updateContactsInfoHTML(index);
 
-   
 }
 
 function updateContactsInfoHTML(index){
