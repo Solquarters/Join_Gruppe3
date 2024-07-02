@@ -35,8 +35,14 @@ function renderContactsInfo(index, divElement) {
         element.classList.remove('active');
     });
 
-    divElement.classList.add('active')
+    divElement.classList.add('active');
 
+    updateContactsInfoHTML(index);
+
+   
+}
+
+function updateContactsInfoHTML(index){
     let showContactsInfo = document.getElementById('showContactsInfo');
     showContactsInfo.innerHTML = '';
 
@@ -100,6 +106,7 @@ function renderContactsInfo(index, divElement) {
         document.getElementById('addContactsMain').classList.remove('d-none');
         document.getElementById('showContactsText').style.display = 'block';
     }
+
 }
 
 function returnAlphabeticalSeperator(i) {
@@ -310,6 +317,9 @@ function saveEditedContact(index) {
     save();
 
     alert('Änderungen wurden gespeichert.');
+
+    //////////////
+    updateContactsInfoHTML(index);
 }
 
 // Function to find a contact by index

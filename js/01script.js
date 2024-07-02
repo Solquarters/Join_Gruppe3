@@ -369,7 +369,12 @@ function returnInitialsFromTwoWordString(stringInput) {
   }
 
 
-
+///Ins backend : ContactJson, toDoJson put im Vorfeld
+//Das wird beim Aufrufen der Summary, Board und Contacts aufgerufen, gefetcht.
+//Beim Edit in Board: Wenn subtask gecheckt wird, wenn Karte verschoben wird, oder Edit Add Task Mode 
+//submittet wird - update toDoJson lokal und dann push, beim neuladen load json aus backend
+//nur onload soll gefetcht werden, ansonsten wird nur lokal gespeichert und ausgelesen, parallel bei jeder änderung 
+//wird die PUT funktion aufgerufen. 
 
 
   ///klick auf kleine Karte => openLargeCardOverlay(i)
@@ -389,12 +394,6 @@ function returnInitialsFromTwoWordString(stringInput) {
 
 ///Datum String richtig umwandeln, in deutsche Schreibweise ...
 
-///Ins backend : ContactJson, toDoJson put im Vorfeld
-//Das wird beim Aufrufen der Summary, Board und Contacts aufgerufen, gefetcht.
-//Beim Edit in Board: Wenn subtask gecheckt wird, wenn Karte verschoben wird, oder Edit Add Task Mode 
-//submittet wird - update toDoJson lokal und dann push, beim neuladen load json aus backend
-//nur onload soll gefetcht werden, ansonsten wird nur lokal gespeichert und ausgelesen, parallel bei jeder änderung 
-//wird die PUT funktion aufgerufen. 
 
 
 ///Refactoring! 

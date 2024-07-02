@@ -420,7 +420,8 @@ function editSingleCard(i){
     //"structuredClone"
     //Unterschied zwischen Referenztypen und Valuetypen !
     temporaryNewTaskSingleCardObject = structuredClone(toDoCardsJSON[i]);
-    console.log(temporaryNewTaskSingleCardObject);
+
+    // console.log(temporaryNewTaskSingleCardObject);
 
     document.getElementById('popupMainDivId').innerHTML = returnAddTaskSiteHTML();
     renderAddTaskSiteFromTempArray();
