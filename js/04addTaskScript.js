@@ -48,14 +48,23 @@ function emptyTempJson(){
     addedIDs.clear();
 }
 
-function initAddTaskSite(){
-    inBoardAddTask = false;
-    emptyTempJson();
-    renderContactsDropdownMenuContent();
-    setCurrentDateInputMinValue();
-    renderProfileCirclesFromTempArray();
-    renderSubtaskFromTempArray();
-    renderAddTaskSiteFromTempArray();
+async function initAddTaskSite(){
+    try {
+        toDoCardsJSON = await loadData("/toDoJson");
+        contactsJSON = await loadData("/contactsJson");
+      
+    } catch (error) {
+        console.error('Error loading data:', error);
+    }
+    finally{
+        inBoardAddTask = false;
+        emptyTempJson();
+        renderContactsDropdownMenuContent();
+        setCurrentDateInputMinValue();
+        renderProfileCirclesFromTempArray();
+        renderSubtaskFromTempArray();
+        renderAddTaskSiteFromTempArray();
+    }
 }
 
 
@@ -652,15 +661,20 @@ temporaryNewTaskSingleCardObject["dueDate"] = document.getElementById('datePicke
 let indexOfFirstToDoinMainJson = findIndexOfFirstCategoryInMainJson("To do");
 if(indexOfFirstToDoinMainJson >= 1){
     toDoCardsJSON.splice(indexOfFirstToDoinMainJson-1, 0, temporaryNewTaskSingleCardObject);
+
+    putData("/toDoJson", toDoCardsJSON);
+    
 }
 else{
     toDoCardsJSON.splice(0, 0, temporaryNewTaskSingleCardObject);
+    putData("/toDoJson", toDoCardsJSON);
 }
 
 ///////////////HIER TODOJSON INS BACKEND PUSHEN
 ///////////HIER NOCH CHECKEN OB AUF BOARD ODER AUF ADD TASK SEITE
 if(inBoardAddTask){
 createNewTask();
+inBoardAddTask = false;
 }
 
 // console.log(temporaryNewTaskSingleCardObject);

@@ -1,7 +1,31 @@
 
-function initializeBoard(){
-    renderAllCardToBoard();
+async function initializeBoard() {
+    try {
+        toDoCardsJSON = await loadData("/toDoJson");
+        contactsJSON = await loadData("/contactsJson");
+      
+    } catch (error) {
+        console.error('Error loading data:', error);
+    }
+    finally{
+        renderAllCardToBoard();
+    }
 }
+
+
+
+// function initializeBoard(){
+
+//     loadData("/toDoJson")
+//     .then(toDoCardsJSON => {
+//         console.log(toDoCardsJSON);
+//     })
+//     .catch(error => {
+//         console.error('Error loading data:', error);
+//     });
+
+    
+// }
 
 function renderAllCardToBoard(){
     ///Reset all boards
@@ -153,9 +177,11 @@ function moveDraggedCardToCategoryInsideJson(categoryInput){
 
     if(indexOfFirstCategoryinJson >= 1){
         toDoCardsJSON.splice(indexOfFirstCategoryinJson-1, 0, tempObject);
+        putData("/toDoJson", toDoCardsJSON);
     }
     else{
         toDoCardsJSON.splice(0, 0, tempObject);
+        putData("/toDoJson", toDoCardsJSON);
     }
 }
 
@@ -316,6 +342,9 @@ function returnLargeCardSubtasksHTML(i){
 
 function flipSubtaskCheckBool(i,j){
     toDoCardsJSON[i].subtaskJson[j].subtaskDone = !toDoCardsJSON[i].subtaskJson[j].subtaskDone;
+
+    putData("/toDoJson", toDoCardsJSON);
+
     return toDoCardsJSON[i].subtaskJson[j].subtaskDone; 
 }
 
@@ -364,12 +393,14 @@ function submitEditingCard(){
      if (!isInput1Valid) input1.reportValidity();
     
  } else {
-     alert('Added new task!');
+     
      temporaryNewTaskSingleCardObject["title"] = document.getElementById('titleInputId').value;
      temporaryNewTaskSingleCardObject["description"] = document.getElementById('descriptionTextAreaId').value;
      temporaryNewTaskSingleCardObject["dueDate"] = document.getElementById('datePickerInputId').value;
     
      toDoCardsJSON[currentLargeCardIndex] = temporaryNewTaskSingleCardObject;
+
+     putData("/toDoJson", toDoCardsJSON);
      openLargeCardOverlay(currentLargeCardIndex);
  }
 
@@ -404,6 +435,7 @@ function fitAddTaskCssAttributesToBoardTemplate(){
 ///////////// ROMAN EDIT ENDE
 function deleteSingleCard(i){
 toDoCardsJSON.splice(i, 1);
+putData("/toDoJson", toDoCardsJSON);
 closeLargeCardOverlay();
 renderAllCardToBoard();
 enableScrolling();
@@ -421,7 +453,7 @@ function editSingleCard(i){
     //Unterschied zwischen Referenztypen und Valuetypen !
     temporaryNewTaskSingleCardObject = structuredClone(toDoCardsJSON[i]);
 
-    // console.log(temporaryNewTaskSingleCardObject);
+    console.log(temporaryNewTaskSingleCardObject);
 
     document.getElementById('popupMainDivId').innerHTML = returnAddTaskSiteHTML();
     renderAddTaskSiteFromTempArray();
