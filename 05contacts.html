@@ -19,7 +19,7 @@
 
 </head>
 
-<body onload="includeHTML(); renderContacts();">
+<body onload="includeHTML(); initContactSite()">
     <div w3-include-html="./assets/templates/headerSidebar.html"></div>
     <section class="contactsSection">
         <div id="addContactsMain" class="addContactsMain">
@@ -85,7 +85,7 @@
                         <form onsubmit="createContact()">
                             <input id="name" type="text" placeholder="Name" required>
                             <input id="email" type="email" placeholder="Email" required>
-                            <input id="phone" type="tel" placeholder="Phone" required>
+                            <input id="phone" type="tel" placeholder="Phone"  pattern="[0-9]*" inputmode="numeric" required>
                             <div class="buttonContent">
                                 <button onclick="contactsWindowsCancel()" id="addContactCancel"
                                     class="addContactCancel"><svg xmlns="http://www.w3.org/2000/svg"

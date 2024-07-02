@@ -2,7 +2,32 @@ let oldLetter = '#';
 let newLetter = 'A';
 let editingIndex = null; // Added to track editing index
 
-load();
+async function initContactSite(){
+    try {
+        contactsJSON = await loadData("/contactsJson");
+
+    } catch (error) {
+        console.error('Error loading data:', error);
+    }
+    finally{
+        contactsJSON = sortContactsByFirstName(contactsJSON);
+        await putData("/contactsJson", contactsJSON);
+        renderContacts();
+    }
+}
+
+
+
+
+
+
+function save() {
+    let contactsJSONAsText = JSON.stringify(contactsJSON);
+    localStorage.setItem('contactsJSON', contactsJSONAsText);
+}
+
+
+
 
 function renderContacts() {
     let contactsContent = document.getElementById('contactsContent');
@@ -141,7 +166,7 @@ function getProfileRGB(i) {
     return contactsJSON[i].profileRGB;
 }
 
-function createContact(){
+async function createContact(){
     let fullName = document.getElementById('name').value.trim();
     let email = document.getElementById('email').value.trim();
     let phone = document.getElementById('phone').value.trim();
@@ -166,6 +191,8 @@ function createContact(){
                 email: email,
                 profileRGB: contactsJSON[editingIndex].profileRGB // Keep the existing color
             };
+            await putData("/contactsJson", contactsJSON);
+
             editingIndex = null; // Reset editing index after saving
         } else {
             // Generate a random color for the profileRGB
@@ -180,10 +207,11 @@ function createContact(){
                 profileRGB: profileRGB
             };
             contactsJSON.push(newContact);
+            await putData("/contactsJson", contactsJSON);
         }
         renderContacts();
         hideContacts();
-        save();
+        // save();
     }
 }
 
@@ -278,7 +306,7 @@ function editDeleteContact() {
 }
 
 // Change Contacte
-function saveEditedContact(index) {
+async function saveEditedContact(index) {
     // Get the edited information from the form
     let name = document.getElementById('name').value.trim().split(' ');
     let email = document.getElementById('email').value.trim();
@@ -299,6 +327,8 @@ function saveEditedContact(index) {
         'profileRGB': contactsJSON[index].profileRGB // Keep the original color
     };
 
+    await putData("/contactsJson", contactsJSON);
+
     // Reset the visibility of the buttons
     document.querySelector('.createContact').style.display = 'flex';
     document.querySelector('.saveContact').style.display = 'none';
@@ -313,7 +343,7 @@ function saveEditedContact(index) {
     renderContacts();
     // renderContactsInfo();
     resetEditForm();
-    save();
+    // save();
 
     alert('Änderungen wurden gespeichert.');
 
@@ -355,9 +385,10 @@ function changeWidth() {
     }
 }
 
-function deleteContacts(index) {
+async function deleteContacts(index) {
     contactsJSON.splice(index, 1);
-    contactsJSON = sortContactsByFirstName(contactsJSON);
+    await putData("/contactsJson", contactsJSON);
+    // contactsJSON = sortContactsByFirstName(contactsJSON);
 
     let showContactsInfo = document.getElementById('showContactsInfo');
     showContactsInfo.innerHTML = '';
@@ -367,24 +398,11 @@ function deleteContacts(index) {
         document.getElementById('addContactsMain').classList.remove('d-none');
     }
     renderContacts();
-    save();
+    // save();
 
     alert('Kontakt erfolgreich gelöscht!');
 }
 
-function save() {
-    let contactsJSONAsText = JSON.stringify(contactsJSON);
-    localStorage.setItem('contactsJSON', contactsJSONAsText);
-}
 
-function load() {
-    contactsJSON = sortContactsByFirstName(contactsJSON);
 
-    let contactsJSONAsText = localStorage.getItem('contactsJSON');
-    if (contactsJSONAsText) {
-        contactsJSON = JSON.parse(contactsJSONAsText);
 
-        contactsJSON = sortContactsByFirstName(contactsJSON);
-        renderContacts();
-    }
-}
