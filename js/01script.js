@@ -454,16 +454,12 @@ async function putData(path="", data={}){
         body: JSON.stringify(data)
         });
 
-       
-    return responseToJson = await response.json();
+    // return responseToJson = await response.json();
 }
 
 ///Fetching data
 async function loadData(path=""){
     let response = await fetch(BASE_URL + path + ".json"); 
     let responseAsJson = await response.json();
-
-    // toDoCardsJSON = loadData("/toDoJson");
-    // console.log(responseAsJson);
     return responseAsJson;
 }

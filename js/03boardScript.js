@@ -2,7 +2,7 @@
 async function initializeBoard() {
     try {
         toDoCardsJSON = await loadData("/toDoJson");
-        console.log(toDoCardsJSON);
+      
     } catch (error) {
         console.error('Error loading data:', error);
     }
@@ -176,12 +176,10 @@ function moveDraggedCardToCategoryInsideJson(categoryInput){
 
     if(indexOfFirstCategoryinJson >= 1){
         toDoCardsJSON.splice(indexOfFirstCategoryinJson-1, 0, tempObject);
-
         putData("/toDoJson", toDoCardsJSON);
     }
     else{
         toDoCardsJSON.splice(0, 0, tempObject);
-
         putData("/toDoJson", toDoCardsJSON);
     }
 }
@@ -400,6 +398,9 @@ function submitEditingCard(){
      temporaryNewTaskSingleCardObject["dueDate"] = document.getElementById('datePickerInputId').value;
     
      toDoCardsJSON[currentLargeCardIndex] = temporaryNewTaskSingleCardObject;
+     
+     putData("/toDoJson", toDoCardsJSON);
+
      openLargeCardOverlay(currentLargeCardIndex);
  }
 
