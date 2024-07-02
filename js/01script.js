@@ -180,9 +180,6 @@ function returnInitialsFromTwoWordString(stringInput) {
 
 
 
-
-
-
 /////Database
 const BASE_URL = "https://testprojekt01-812cb-default-rtdb.europe-west1.firebasedatabase.app/";
 async function putData(path="", data={}){

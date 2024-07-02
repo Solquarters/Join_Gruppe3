@@ -1,4 +1,3 @@
-
 async function initSummarySite(){
     try {
         toDoCardsJSON = await loadData("/toDoJson");
@@ -10,9 +9,9 @@ async function initSummarySite(){
     finally{
         renderToDoInfos();
         renderBoardInfos();
+        displayNextToDo()
     }
 }
-
 
 function renderToDoInfos() {
     let toDoNumber = 0;
@@ -46,31 +45,19 @@ document.getElementById('summaryInProgressNumberId').innerText = inProgressNumbe
 document.getElementById('summaryAwaitFeedbackNumberId').innerText = awaitFeedbackNumber;
 }
 
-
-
  function renderBoardInfos() {
     let boardAllToDoNumbers = toDoCardsJSON.length;
     document.getElementById('summaryBoardAllNumberId').innerText = boardAllToDoNumbers;
 }
 
-
-
-
-
-function findEarliestDueDate(toDoCards) {
-    if (!toDoCards || toDoCards.length === 0) {
-        return null;
-    }
-
-    let earliestDate = new Date(toDoCards[0].dueDate.split('.').reverse().join('-'));
-
-    toDoCards.forEach(card => {
-        let currentDate = new Date(card.dueDate.split('.').reverse().join('-'));
+function findEarliestDueDate() {
+    let earliestDate = new Date(toDoCardsJSON[0].dueDate);
+    for(let i = 0; i < toDoCardsJSON.length; i++){
+        let currentDate = new Date(toDoCardsJSON[i].dueDate);
         if (currentDate < earliestDate) {
             earliestDate = currentDate;
         }
-    });
-
+    }
     return earliestDate;
 }
 
@@ -79,7 +66,8 @@ function formatDate(date) {
     return date.toLocaleDateString('de-DE', options);
 }
 
-let earliestDate = findEarliestDueDate(toDoCardsJSON);
-let formattedDate = earliestDate ? formatDate(earliestDate) : 'Keine Termine vorhanden';
-
-document.getElementById('due-date').textContent = formattedDate;
+function displayNextToDo(){
+    let earliestDate = findEarliestDueDate();
+    let formattedDate = earliestDate ? formatDate(earliestDate) : 'Keine Termine vorhanden';
+    document.getElementById('due-date').textContent = formattedDate;
+}
