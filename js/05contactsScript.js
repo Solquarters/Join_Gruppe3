@@ -33,8 +33,6 @@ function renderContacts() {
     let contactsContent = document.getElementById('contactsContent');
     contactsContent.innerHTML = '';
 
-
-
     for (let i = 0; i < contactsJSON.length; i++) {
 
         let contactJSON = contactsJSON[i];
@@ -63,7 +61,6 @@ function renderContactsInfo(index, divElement) {
     divElement.classList.add('active');
 
     updateContactsInfoHTML(index);
-
 }
 
 function updateContactsInfoHTML(index){
@@ -130,7 +127,6 @@ function updateContactsInfoHTML(index){
         document.getElementById('addContactsMain').classList.remove('d-none');
         document.getElementById('showContactsText').style.display = 'block';
     }
-
 }
 
 function returnAlphabeticalSeperator(i) {
