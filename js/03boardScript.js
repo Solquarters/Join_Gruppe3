@@ -4,28 +4,23 @@ function initializeBoard(){
 }
 
 function renderAllCardToBoard(){
-    
     ///Reset all boards
     document.getElementById('toDoStatusDivId').innerHTML = '';
     document.getElementById('inProgressStatusDivId').innerHTML = '';
     document.getElementById('awaitFeedbackStatusDivId').innerHTML = '';
     document.getElementById('doneStatusDivId').innerHTML = '';
-
     //Get data from toDoCardsJSON
     for(let i = 0; i < Object.keys(toDoCardsJSON).length; i++ ){
 
        if(toDoCardsJSON[i]["toDoStatus"] == "To do"){
         document.getElementById('toDoStatusDivId').innerHTML += returnSingleCardHTML(i);
        }
-
        if(toDoCardsJSON[i]["toDoStatus"] == "In progress"){
         document.getElementById('inProgressStatusDivId').innerHTML += returnSingleCardHTML(i);
        }
-
        if(toDoCardsJSON[i]["toDoStatus"] == "Await feedback"){
         document.getElementById('awaitFeedbackStatusDivId').innerHTML += returnSingleCardHTML(i);
        }
-
        if(toDoCardsJSON[i]["toDoStatus"] == "Done"){
         document.getElementById('doneStatusDivId').innerHTML += returnSingleCardHTML(i);
        }
@@ -53,40 +48,28 @@ function renderAllCardToBoard(){
     //     default:
     //       // code block
     //   }
-
-
     }
 }
 
 let currentDraggedElement;
 
 function returnSingleCardHTML(i){
-    
     return /*html*/`
     <div class="mainSingleCardDivClass" id="singleCardId${i}"
     draggable="true" ondragstart="startDragging(${i})" onclick="openLargeCardOverlay(${i})">
-
         <div class="cardContainerInnert">
             ${returnCategoryHTML(i)}
             <div id="containerformularId${i}" class="containerformularDivClass">
                 <span >${toDoCardsJSON[i]["title"]}</span>
             </div>
-
             <div id="descriptionDivId${i}" class="descriptionDivClass">
                 <span id="descriptionSpanId${i}">${toDoCardsJSON[i]["description"]}</span>
             </div>
-
             ${getProgressBarHTML(i)}
-            
             <div class="contactPrioDiv">
                 
                     <div class="singleCardAssignedContactsParentDivClass" id="singleCardContactCircleDivId${i}">
-                        
-                        
-                        
                     </div>
-                
-
                 <div>
                     <div id="prioDivId${i}" class="prioDiv">
                         ${returnPrioSvgHTML(i)}
@@ -96,10 +79,7 @@ function returnSingleCardHTML(i){
         </div>
     </div>
     `; 
-
-    
 }
-
 
 function returnAssignedContactCircle(i){
     document.getElementById(`singleCardContactCircleDivId${i}`).innerHTML = '';
@@ -112,10 +92,7 @@ function returnAssignedContactCircle(i){
 
 function getProgressBarHTML(i) {
     let card = toDoCardsJSON[i];
-    if (!card || !card.subtaskJson) {
-        return '';
-    }
-    
+    if (!card || !card.subtaskJson) {return '';}
     let subtasks = card.subtaskJson;
     let totalSubtasks = subtasks.length;
     let completedSubtasks = subtasks.filter(subtask => subtask.subtaskDone==true).length;
@@ -129,9 +106,6 @@ function getProgressBarHTML(i) {
         ${completedSubtasks}/${totalSubtasks} Subtasks
     </div>`;
 }
-
-
-
 
 function returnCategoryHTML(i){
     if(toDoCardsJSON[i]["category"] == "User Story"){
@@ -148,42 +122,26 @@ function returnCategoryHTML(i){
 
 }
 
-
 /////////////////////////////DRAG AND DROP FUNCTION START
-
 function startDragging(index) {
     currentDraggedElement = index;
-
     document.getElementById(`singleCardId${index}`).classList.add('rotateOnDrag');
-
-
 }
+
 function allowDrop(ev) {
     ev.preventDefault();
 }
+
 function moveTo(categoryInput) {
     moveDraggedCardToCategoryInsideJson(categoryInput);
-
-    /////////////////////RENDERE ALLE KARTEN NEU HIER
-    // updateHTML();
-
-
     document.querySelectorAll('.drag-area-highlight').forEach(function(element) {
         element.classList.remove('drag-area-highlight');
     });
-
     document.querySelectorAll('.rotateOnDrag').forEach(function(element) {
         element.classList.remove('rotateOnDrag');
     });
-
     renderAllCardToBoard();
 }
-
-
-
-
-
-
 
 function moveDraggedCardToCategoryInsideJson(categoryInput){
     let tempObject = toDoCardsJSON[currentDraggedElement];
@@ -201,8 +159,6 @@ function moveDraggedCardToCategoryInsideJson(categoryInput){
     }
 }
 
-
-
 function highlight(mainCategoryDivId) {
     document.getElementById(mainCategoryDivId).classList.add('drag-area-highlight');
 }
@@ -210,7 +166,6 @@ function highlight(mainCategoryDivId) {
 function removeHighlight(mainCategoryDivId) {
     document.getElementById(mainCategoryDivId).classList.remove('drag-area-highlight');
 }
-
 
 function handleDragLeave(event, mainCategoryDivId) {
     let rect = document.getElementById(mainCategoryDivId).getBoundingClientRect();
@@ -227,14 +182,8 @@ function handleDragLeave(event, mainCategoryDivId) {
 }
 
 
-
-
-
-
 /////////////////////////////DRAG AND DROP FUNCTION END
-
 function returnPrioSvgHTML(i) {
-        
         if(toDoCardsJSON[i]["prio"] == "Low"){
             return `<img src="./assets/img/Priority symbols low.svg">`;
            }
@@ -246,32 +195,21 @@ function returnPrioSvgHTML(i) {
            if(toDoCardsJSON[i]["prio"] == "Urgent"){
             return `<img src="./assets/img/Priority symbols urgent.svg">`;
            }
-           
 }
-
-
 
 ///////////// ROMAN EDIT 
 function openEmptyAddTaskOverlay(){
-        inBoardAddTask = true;
-
-
+    inBoardAddTask = true;
     document.getElementById('addEmptyTaskMainOverlayId').style.display="flex";
         //ZUGRIFF AUF GLOBAL SCRIPT
         renderAddTaskHTMLForBoardOverlay();
-    
         emptyTempJson();
         renderContactsDropdownMenuContent();
         setCurrentDateInputMinValue();
         renderProfileCirclesFromTempArray();
         renderSubtaskFromTempArray();
         renderAddTaskSiteFromTempArray();
-
-        // eventListenerAddTaskOnClickWindowEvent();
-
-
         disableScrolling();
-        /////SET CSS AND MEDIA QUERY HERE? 
         fitAddTaskCssAttributesToBoardTemplate();
     }
     
@@ -288,17 +226,14 @@ function openEmptyAddTaskOverlay(){
         }
     }
 
-
-    
     function openLargeCardOverlay(i){
-
+        currentLargeCardIndex = i;
 
         document.getElementById('mainLargeCardOverlayId').style.display= "flex";
+        document.getElementById('popupMainDivId').innerHTML = returnLargeCardOverlayHTML();
+        document.getElementById('popupMainDivId').scrollTop = 0;
         disableScrolling();
 
-        ////OVERLAY INHALT MIT JSON TO DO AN STELLE i BEFÜLLEN
-        ///////////////SOLLTE EIGENTLICH INS TEMPOBJECT gepackt werden
-        /////Bei Edit - AddTask mit TempObject befüllen
         ///SaveChanges - TempArray zu JSON pushen, zu Large Card rendern
         let categorySpan = document.getElementById('largeCardOverlayCategorySpanId')
         categorySpan.innerText = toDoCardsJSON[i].category;
@@ -310,25 +245,18 @@ function openEmptyAddTaskOverlay(){
         }
 
         document.getElementById('largeCardTitleSpanId').innerText = toDoCardsJSON[i].title;
-
         document.getElementById('largeCardDescriptionSpanId').innerText = toDoCardsJSON[i].description;
-       
         document.getElementById('largeCardDateSpanId').innerText = toDoCardsJSON[i].dueDate;
-        
         document.getElementById('largeCardPrioSpanId').innerHTML = /*html*/`${toDoCardsJSON[i].prio}&nbsp${returnPrioSvgHTML(i)}`;
         
-
         ///EIGENE FUNKTION: GEHE DURCH JSONTODO[i].assignedTo Array und rendere den Kreis und den Namen
         returnLargeCardAssignedHTML(i);
-
-        //Eigene Funktion 2 : GEHE DURCH JSONTODO[i].subtask Array und rendere text und bool
-        /// subtasksLargeCardContainerId
         returnLargeCardSubtasksHTML(i);
-
-        ////////////////////////DELETE UND EDIT BUTTONS MÜSSEN JEWEILIGEN INDEX WEITERGEBEN
         renderDeleteAndEditButton(i);
-
     }
+
+    
+
 
 
 function renderDeleteAndEditButton(i){
@@ -356,15 +284,8 @@ function renderDeleteAndEditButton(i){
     </g>
     <path d="M33.4091 17.5V5.86364H40.4318V7.11364H34.8182V11.0455H40.0682V12.2955H34.8182V16.25H40.5227V17.5H33.4091ZM46.0852 17.6818C45.358 17.6818 44.7159 17.4981 44.1591 17.1307C43.6023 16.7595 43.1667 16.2367 42.8523 15.5625C42.5379 14.8845 42.3807 14.0833 42.3807 13.1591C42.3807 12.2424 42.5379 11.447 42.8523 10.7727C43.1667 10.0985 43.6042 9.57765 44.1648 9.21023C44.7254 8.8428 45.3731 8.65909 46.108 8.65909C46.6761 8.65909 47.125 8.75379 47.4545 8.94318C47.7879 9.12879 48.0417 9.34091 48.2159 9.57955C48.3939 9.81439 48.5322 10.0076 48.6307 10.1591H48.7443V5.86364H50.0852V17.5H48.7898V16.1591H48.6307C48.5322 16.3182 48.392 16.5189 48.2102 16.7614C48.0284 17 47.7689 17.214 47.4318 17.4034C47.0947 17.589 46.6458 17.6818 46.0852 17.6818ZM46.267 16.4773C46.8049 16.4773 47.2595 16.3371 47.6307 16.0568C48.0019 15.7727 48.2841 15.3807 48.4773 14.8807C48.6705 14.3769 48.767 13.7955 48.767 13.1364C48.767 12.4848 48.6723 11.9148 48.483 11.4261C48.2936 10.9337 48.0133 10.5511 47.642 10.2784C47.2708 10.0019 46.8125 9.86364 46.267 9.86364C45.6989 9.86364 45.2254 10.0095 44.8466 10.3011C44.4716 10.589 44.1894 10.9811 44 11.4773C43.8144 11.9697 43.7216 12.5227 43.7216 13.1364C43.7216 13.7576 43.8163 14.322 44.0057 14.8295C44.1989 15.3333 44.483 15.7348 44.858 16.0341C45.2367 16.3295 45.7064 16.4773 46.267 16.4773ZM52.7273 17.5V8.77273H54.0682V17.5H52.7273ZM53.4091 7.31818C53.1477 7.31818 52.9223 7.22917 52.733 7.05114C52.5473 6.87311 52.4545 6.65909 52.4545 6.40909C52.4545 6.15909 52.5473 5.94508 52.733 5.76705C52.9223 5.58902 53.1477 5.5 53.4091 5.5C53.6705 5.5 53.8939 5.58902 54.0795 5.76705C54.2689 5.94508 54.3636 6.15909 54.3636 6.40909C54.3636 6.65909 54.2689 6.87311 54.0795 7.05114C53.8939 7.22917 53.6705 7.31818 53.4091 7.31818ZM60.3196 8.77273V9.90909H55.7969V8.77273H60.3196ZM57.1151 6.68182H58.456V15C58.456 15.3788 58.5109 15.6629 58.6207 15.8523C58.7344 16.0379 58.8783 16.1629 59.0526 16.2273C59.2306 16.2879 59.4181 16.3182 59.6151 16.3182C59.7628 16.3182 59.884 16.3106 59.9787 16.2955C60.0734 16.2765 60.1491 16.2614 60.206 16.25L60.4787 17.4545C60.3878 17.4886 60.2609 17.5227 60.098 17.5568C59.9351 17.5947 59.7287 17.6136 59.4787 17.6136C59.0999 17.6136 58.7287 17.5322 58.3651 17.3693C58.0052 17.2064 57.706 16.9583 57.4673 16.625C57.2325 16.2917 57.1151 15.8712 57.1151 15.3636V6.68182Z" fill="#2A3647"/>
     </svg>
-                       
-    
-    
     `;
-
-
 }
-
-
 
 function returnLargeCardSubtasksHTML(i){
     document.getElementById('subtasksLargeCardContainerId').innerHTML = '';
@@ -390,9 +311,7 @@ function returnLargeCardSubtasksHTML(i){
                </div>
             `;
         }
-        
     }
-
 }
 
 function flipSubtaskCheckBool(i,j){
@@ -400,8 +319,7 @@ function flipSubtaskCheckBool(i,j){
     return toDoCardsJSON[i].subtaskJson[j].subtaskDone; 
 }
 
-
-    function returnLargeCardAssignedHTML(i){
+function returnLargeCardAssignedHTML(i){
         document.getElementById('assignedLargeCardContainerId').innerHTML = '';
         for(let j = 0; j < toDoCardsJSON[i].assignedToArray.length; j++){
             document.getElementById('assignedLargeCardContainerId').innerHTML += /*html*/`
@@ -413,58 +331,77 @@ function flipSubtaskCheckBool(i,j){
         </span>
             `;
         }
-    }
+}
 
+function closeLargeCardOverlay(){
+    document.getElementById('mainLargeCardOverlayId').style.display= "none";
+    enableScrolling();
+    renderAllCardToBoard();
+}
+
+function submitEditingCard(){
+    ///push edit to temp array
+    ///push temp array to json
+    ///render Large Card from currentLargeCardIndex
     
-    
-    function closeLargeCardOverlay(){
-        document.getElementById('mainLargeCardOverlayId').style.display= "none";
-        enableScrolling();
-        renderAllCardToBoard();
-    }
-   
-    function handleLargeCardOverlayClick(event){
-    // Check if the click happened outside the child element
-    if (event.target.id === 'mainLargeCardOverlayId') {
-        closeLargeCardOverlay();
-        }
-    }
-  
+    //Category already changed onclick, if not clicked, it stays empty
 
-
-
-
-    function disableScrolling() {
-        document.body.style.overflow = 'hidden';
-    }
-    
-    function enableScrolling() {
-        document.body.style.overflow = 'auto';
-    }
-
-    function fitAddTaskCssAttributesToBoardTemplate(){
-
-        const element = document.querySelector('.' + 'addTaskMainTemplateDivClass');
-    
+ // Get all the input elements
+ const input1 = document.getElementById('titleInputId');
+ const input2 = document.getElementById('datePickerInputId');
  
-    if (element) {
+
+ // Validate each input element
+ const isInput1Valid = input1.checkValidity();
+ const isInput2Valid = input2.checkValidity();
+ 
+
+ // If any input is invalid, prevent form submission and show validation messages
+ if (!isInput1Valid || !isInput2Valid) {
+     // Optionally, display custom error messages
+    
+     if (!isInput2Valid) input2.reportValidity();
+     if (!isInput1Valid) input1.reportValidity();
+    
+ } else {
+     alert('Added new task!');
+     temporaryNewTaskSingleCardObject["title"] = document.getElementById('titleInputId').value;
+     temporaryNewTaskSingleCardObject["description"] = document.getElementById('descriptionTextAreaId').value;
+     temporaryNewTaskSingleCardObject["dueDate"] = document.getElementById('datePickerInputId').value;
+    
+     toDoCardsJSON[currentLargeCardIndex] = temporaryNewTaskSingleCardObject;
+     openLargeCardOverlay(currentLargeCardIndex);
+ }
+
+
+}
    
-     element.style.height = 'auto';
-        } else {
-     console.warn(`No element found with class ${className}`);
-        }
-
+function handleLargeCardOverlayClick(event){
+// Check if the click happened outside the child element
+    if (event.target.id === 'mainLargeCardOverlayId') {
+    closeLargeCardOverlay();
     }
+}
+  
+function disableScrolling() {
+        document.body.style.overflow = 'hidden';
+}
+    
+function enableScrolling() {
+        document.body.style.overflow = 'auto';
+}
 
-
-
-
-
+function fitAddTaskCssAttributesToBoardTemplate(){
+    const element = document.querySelector('.' + 'addTaskMainTemplateDivClass');
+    if (element){
+     element.style.height = 'auto';
+        } 
+    else{
+     console.warn(`No element found with class ${className}`);
+    }
+}
 
 ///////////// ROMAN EDIT ENDE
-
-
-
 function deleteSingleCard(i){
 toDoCardsJSON.splice(i, 1);
 closeLargeCardOverlay();
@@ -473,33 +410,153 @@ enableScrolling();
 }
 
 function editSingleCard(i){
-    console.log(toDoCardsJSON[i]);
-    console.log(temporaryNewTaskSingleCardObject);
-    temporaryNewTaskSingleCardObject = toDoCardsJSON[i];
+    /////REFERENCE TO TODOJSON ???
+    // temporaryNewTaskSingleCardObject = toDoCardsJSON[i];
+
+    //KOPIEREN OHNE REFERENCE
+    // temporaryNewTaskSingleCardObject = { ...toDoCardsJSON[i] };
+    ////HIER BRAUCHEN WIR EINE DEEP COPY UND KEINE SHALLOW COPY !!!
+    ///die Funktion die wir brauchen ist eine Javascript spezifische:
+    //"structuredClone"
+    //Unterschied zwischen Referenztypen und Valuetypen !
+    temporaryNewTaskSingleCardObject = structuredClone(toDoCardsJSON[i]);
     console.log(temporaryNewTaskSingleCardObject);
 
-    ///CSS stimmt hier nicht, aber idee ist richtig...
     document.getElementById('popupMainDivId').innerHTML = returnAddTaskSiteHTML();
-
     renderAddTaskSiteFromTempArray();
-    ////////////////HIER WEITER! 
-    ////Okay Button bei AddTask Edit Mode sollte eingeblendet werden
-    ////Evtl bool für Edit Mode benutzen, gibts schon
-    ////Contacts richtig fidnen und einblenden?
+    
+
+    document.getElementById('popupMainDivId').scrollTop = 0;
+
+///CSS Klassen anpassen: Media queries...
+let singleLineInputClass = document.querySelectorAll('.singleLineInputClass');
+singleLineInputClass.forEach(function(element) {element.style.minWidth = "unset";});
+let textarea = document.querySelectorAll('textarea');
+textarea.forEach(function(element) {element.style.minWidth = "unset";});
+let drobbtn = document.querySelectorAll('.drobbtn');
+drobbtn.forEach(function(element) {element.style.minWidth = "unset";});
+let select = document.querySelectorAll('select');
+select.forEach(function(element) {element.style.minWidth = "unset";});
+let addTaskMainTemplateDivClass = document.querySelectorAll('.addTaskMainTemplateDivClass');
+addTaskMainTemplateDivClass.forEach(function(element) {element.style.maxHeight = "90vh"; element.style.padding = "0px 8px"});
+let prioButtonDivClass = document.querySelectorAll('.prioButtonDivClass');
+prioButtonDivClass.forEach(function(element) {element.style.gap = "2px"});
+let priorityButtonClass = document.querySelectorAll('.priorityButtonClass');
+priorityButtonClass.forEach(function(element) {element.style.fontSize="14px" });
+//mainContainerOverlay width 100% beeinflusst AddTask Overlay
+document.getElementById('mainLargeCardOverlayId').style.width = "100%";
+//clear und create button display none, okay button display
+document.getElementById('clearCreateDivId1').style.display ="none";
+document.getElementById('clearCreateDivId2').style.display ="none";
+document.getElementById('clearCreateDivId3').style.display ="block";
+document.getElementById('divSeperatorId1').style.display = "none";
+
+//.addTaskDetailsParentDivClass
+let addTaskDetailsParentDivClass = document.querySelectorAll('.addTaskDetailsParentDivClass');
+addTaskDetailsParentDivClass.forEach(function(element) {element.style.display = "unset"});
+
+
+
+
+let leftSideChildDivClass = document.querySelectorAll('.leftSideChildDivClass');
+leftSideChildDivClass.forEach(function(element) {element.style.width = "unset"});
+let rightSideChildDivClass = document.querySelectorAll('.rightSideChildDivClass');
+rightSideChildDivClass.forEach(function(element) {element.style.width = "unset"});
+
+
+
+setDateFromTempArray();
+
+    ////Wenn AddTask Edit Mode overlay geschlossen wird, soll beim nächsten öffnen einer Card Html im Overlay neu geladen werden
     ////Datum wird nicht richtig übertragen, evtl falsch gespeichert im ToDo Json
     /// Category Feld sollte schwarz color haben, gibts schon eine funktion dafür.
 
+}
+
+function setDateFromTempArray(){
+    let dateInput = document.getElementById('datePickerInputId');
+    if (dateInput) {
+        dateInput.value = temporaryNewTaskSingleCardObject.dueDate;
+    }
 
 
-    ////Wenn AddTask Edit Mode overlay geschlossen wird, soll beim nächsten öffnen einer Card Html im Overlay neu geladen werden
+}
 
+function returnLargeCardOverlayHTML(){
+return /*html*/`
+<div class="headLineCloseButton">
+           <span class="userStory" id="largeCardOverlayCategorySpanId">User Story</span>
+           <svg width="32" height="32" viewBox="0 0 32 32" fill="none" onclick="closeLargeCardOverlay()">
+               <mask id="mask0_192516_3247" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="4" y="4" width="24" height="24">
+               <rect x="4" y="4" width="24" height="24" fill="#D9D9D9"/>
+               </mask>
+               <g mask="url(#mask0_192516_3247)">
+               <path d="M16 17.4L11.1 22.3C10.9167 22.4834 10.6833 22.575 10.4 22.575C10.1167 22.575 9.88332 22.4834 9.69999 22.3C9.51665 22.1167 9.42499 21.8834 9.42499 21.6C9.42499 21.3167 9.51665 21.0834 9.69999 20.9L14.6 16L9.69999 11.1C9.51665 10.9167 9.42499 10.6834 9.42499 10.4C9.42499 10.1167 9.51665 9.88338 9.69999 9.70005C9.88332 9.51672 10.1167 9.42505 10.4 9.42505C10.6833 9.42505 10.9167 9.51672 11.1 9.70005L16 14.6L20.9 9.70005C21.0833 9.51672 21.3167 9.42505 21.6 9.42505C21.8833 9.42505 22.1167 9.51672 22.3 9.70005C22.4833 9.88338 22.575 10.1167 22.575 10.4C22.575 10.6834 22.4833 10.9167 22.3 11.1L17.4 16L22.3 20.9C22.4833 21.0834 22.575 21.3167 22.575 21.6C22.575 21.8834 22.4833 22.1167 22.3 22.3C22.1167 22.4834 21.8833 22.575 21.6 22.575C21.3167 22.575 21.0833 22.4834 20.9 22.3L16 17.4Z" fill="#2A3647"/>
+               </g>
+               </svg>
+       </div>
+           <div class="BoardOverlayHeadLinDivClass">
+               <span id="largeCardTitleSpanId">Kochwelt Page & Recipe Recommender</span>
+           </div>
+       <div class="mainPopupDivClass">
+           <div class="descriptionDivClass2">
+               <span id="largeCardDescriptionSpanId">Build start page with recipe recommendation</span>
+           </div>
+           <div class="dateDivClass">
+               <span class="dueDateSpan">Due date:</span>
+               <span class="dateFormatSpan" id="largeCardDateSpanId">21/06/2024</span>
+           </div>
+           <div class="priorityDivClass">
+               <span>Priority:</span>
+               <span id="largeCardPrioSpanId"></span>
+           </div>
+           <div class="assignetToNamesClass">
+               <span>Assigned To:</span><br>
+               <div id="assignedLargeCardContainerId">
 
+            <div class="assignedToName1">
+               <svg width="42" height="42" viewBox="0 0 42 42" fill="none" >
+                   <rect width="42" height="42" rx="21" fill="white"/>
+                   <circle cx="21" cy="21" r="20" fill="#462F8A" stroke="white" stroke-width="2"/>
+                   <path d="M12.8166 16.2727H14.0779L17.0439 23.517H17.1461L20.112 16.2727H21.3734V25H20.3848V18.3693H20.2995L17.5723 25H16.6177L13.8904 18.3693H13.8052V25H12.8166V16.2727ZM23.4924 25V16.2727H26.5435C27.1515 16.2727 27.6529 16.3778 28.0478 16.5881C28.4426 16.7955 28.7367 17.0753 28.9299 17.4276C29.123 17.777 29.2196 18.1648 29.2196 18.5909C29.2196 18.9659 29.1529 19.2756 29.0194 19.5199C28.8887 19.7642 28.7154 19.9574 28.4995 20.0994C28.2864 20.2415 28.0549 20.3466 27.8049 20.4148V20.5C28.0719 20.517 28.3404 20.6108 28.6103 20.7812C28.8801 20.9517 29.106 21.196 29.2878 21.5142C29.4696 21.8324 29.5605 22.2216 29.5605 22.6818C29.5605 23.1193 29.4611 23.5128 29.2623 23.8622C29.0634 24.2116 28.7495 24.4886 28.3205 24.6932C27.8915 24.8977 27.3333 25 26.6458 25H23.4924ZM24.5492 24.0625H26.6458C27.3361 24.0625 27.8262 23.929 28.1159 23.6619C28.4086 23.392 28.5549 23.0653 28.5549 22.6818C28.5549 22.3864 28.4796 22.1136 28.329 21.8636C28.1784 21.6108 27.964 21.4091 27.6855 21.2585C27.4071 21.1051 27.0776 21.0284 26.6969 21.0284H24.5492V24.0625ZM24.5492 20.108H26.5094C26.8276 20.108 27.1145 20.0455 27.3702 19.9205C27.6287 19.7955 27.8333 19.6193 27.9838 19.392C28.1373 19.1648 28.214 18.8977 28.214 18.5909C28.214 18.2074 28.0804 17.8821 27.8134 17.6151C27.5463 17.3452 27.123 17.2102 26.5435 17.2102H24.5492V20.108Z" fill="white"/>
+                   </svg>
+                   
+               <span class="namesSpan">Emmanuel Mauer</span>
+            </div>
+         </div>
+           </div>
 
+       </div>
 
+           <div class="subTasksDivClass">
+               <span class="SubTaskSpanClass">Subtasks</span>
+            <div id="subtasksLargeCardContainerId">
 
+               <div  class="subTaskSingleChildClass">
+                   <label class="container">Implement Recipe Recommendation
+                       <input type="checkbox" checked="checked">
+                       <span class="checkmark"></span>
+                     </label>
+               </div>
 
-    // openEmptyAddTaskOverlay();
+               <div  class="subTaskSingleChildClass">
+                   <label class="container">Start Page Layout
+                       <input type="checkbox">
+                       <span class="checkmark"></span>
+                     </label>
+               </div>
+            </div>
+           </div>
 
+           <div class="deleteEditContactDivClass">
+               <div id="deleteContactDivId" >
+                   
+                       
+               </div>
+               <div id="editContactDivId">
+                   
+               </div>
 
-
+           </div>
+`;
 }

@@ -55,172 +55,146 @@ let contactsJSON = [{
     'profileRGB': 'rgb(255, 192, 203)'
 }];
 
-let toDoCardsJSON = [
-    {
-        title: "0Title",
-        description:"description0",
-        assignedToArray: [
-         {assignedFullName:"Stefan hsfhhz", assignedRGB:"rgb(255,20,0)"},
-         {assignedFullName:"Vorname01 Nachname01", assignedRGB:"rgb(100,0,0)"},
-        ],
-        dueDate: "05.01.2025",
-        prio: "Low",
-        category: "Technical Task",
-        subtaskJson: [
-        { subtaskText: "subtask0-0", subtaskDone: true},
-        { subtaskText: "subtask0-1", subtaskDone: false},
-        ],
-        toDoStatus: "To do",
-    },
-    {
-        title: "1Yuhu wir habens geschafft!",
-        description:"description1",
-        assignedToArray:[
-         {assignedFullName:"assignedNameString0", assignedRGB:"rgb(0,150,220)"},
-         {assignedFullName:"assignedNameString1", assignedRGB:"rgb(0,150,220)"},
-         {assignedFullName:"assignedNameString2", assignedRGB:"rgb(0,150,220)"},
-        ],
-        dueDate: "28.02.2025",
-        prio: "Medium",
-        category: "User Story",
-        subtaskJson: [
-         { subtaskText: "subtask1-0", subtaskDone: false},
-         { subtaskText: "subtask1-1", subtaskDone: true},
-         { subtaskText: "subtask1-2", subtaskDone: true},
-        ],
-        toDoStatus: "Await feedback",
-    },
-    {
-        title: "2title2",
-        description:"description2",
-        assignedToArray: [{assignedFullName:"assignedNameString0", assignedRGB:"rgb(150,0,220)"},
-                         {assignedFullName:"assignedNameString1", assignedRGB:"rgb(150,0,220)"},
-                         {assignedFullName:"assignedNameString2", assignedRGB:"rgb(150,0,220)"},
-                        ],
-        dueDate: "17.05.2025",
-        prio: "Urgent",
-        category: "Technical Task",
-        subtaskJson: [
-            { subtaskText: "subtask2-0", subtaskDone: false},
-            ],
-        toDoStatus: "To do",
-    },
-    {
-        title: "3title3",
-        description:"description3",
-        assignedToArray: [{assignedFullName:"assignedNameString0", assignedRGB:"rgb(220,150,0)"},
-                         {assignedFullName:"assignedNameString1", assignedRGB:"rgb(220,150,0)"},
-                         {assignedFullName:"assignedNameString2", assignedRGB:"rgb(220,150,0)"},
-                        ],
-        dueDate: "05.07.2024",
-        prio: "Medium",
-        category: "User Story",
-        subtaskJson: [
-            { subtaskText: "subtask3-0", subtaskDone: true},
-            { subtaskText: "subtask3-1", subtaskDone: true},
-            { subtaskText: "subtask3-2", subtaskDone: true},
-            { subtaskText: "subtask3-3", subtaskDone: false},
-            ],
-        toDoStatus: "Done",
-    },
-    {
-        title: "4title4",
-        description:"description4",
-        assignedToArray: [{assignedFullName:"assignedNameString0", assignedRGB:"rgb(0,150,220)"},
-                         {assignedFullName:"assignedNameString1", assignedRGB:"rgb(0,150,220)"},
-                         {assignedFullName:"assignedNameString2", assignedRGB:"rgb(0,150,220)"},
-                        ],
-        dueDate: "14.02.2025",
-        prio: "Low",
-        category: "Technical Task",
-        subtaskJson: [
-            { subtaskText: "subtask4-0", subtaskDone: false},
-            { subtaskText: "subtask4-1", subtaskDone: false},
-            { subtaskText: "subtask4-2", subtaskDone: false},
-            { subtaskText: "subtask4-3", subtaskDone: false},
-            ],
-        toDoStatus: "In progress",
-    }, {
-        title: "0Title",
-        description:"description0",
-        assignedToArray: [
-         {assignedFullName:"assignedNameString1", assignedRGB:"rgb(50,170,170)"},
-         {assignedFullName:"assignedNameString2", assignedRGB:"rgb(200,170,50)"},
-        ],
-        dueDate: "05.01.2025",
-        prio: "Low",
-        category: "Technical Task",
-        subtaskJson: [
-        { subtaskText: "subtask0-0", subtaskDone: false},
-        { subtaskText: "subtask0-1", subtaskDone: false},
-        ],
-        toDoStatus: "Await feedback",
-    }, {
-        title: "0Title",
-        description:"description0",
-        assignedToArray: [
-         {assignedFullName:"assignedNameString1", assignedRGB:"rgb(0,0,0)"},
-         {assignedFullName:"assignedNameString2", assignedRGB:"rgb(70,70,70)"},
-        ],
-        dueDate: "05.01.2025",
-        prio: "Low",
-        category: "Technical Task",
-        subtaskJson: [
-        { subtaskText: "subtask0-0", subtaskDone: false},
-        { subtaskText: "subtask0-1", subtaskDone: false},
-        ],
-        toDoStatus: "Done",
-    }, {
-        title: "0Title",
-        description:"description0",
-        assignedToArray: [
-         {assignedFullName:"assignedNameString1", assignedRGB:"rgb(100,0,200)"},
-         {assignedFullName:"assignedNameString2", assignedRGB:"rgb(70,200,100)"},
-        ],
-        dueDate: "05.01.2025",
-        prio: "Low",
-        category: "Technical Task",
-        subtaskJson: [
-        { subtaskText: "subtask0-0", subtaskDone: false},
-        { subtaskText: "subtask0-1", subtaskDone: false},
-        ],
-        toDoStatus: "To do",
-    },
-];
-
-
-function findEarliestDueDate(toDoCards) {
-    if (!toDoCards || toDoCards.length === 0) {
-        return null;
-    }
-
-    let earliestDate = new Date(toDoCards[0].dueDate.split('.').reverse().join('-'));
-
-    toDoCards.forEach(card => {
-        let currentDate = new Date(card.dueDate.split('.').reverse().join('-'));
-        if (currentDate < earliestDate) {
-            earliestDate = currentDate;
-        }
-    });
-
-    return earliestDate;
-}
-
-function formatDate(date) {
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
-    return date.toLocaleDateString('de-DE', options);
-}
-
-let earliestDate = findEarliestDueDate(toDoCardsJSON);
-let formattedDate = earliestDate ? formatDate(earliestDate) : 'Keine Termine vorhanden';
-
-document.getElementById('due-date').textContent = formattedDate;
-
-
+// let toDoCardsJSON = [
+//     {
+//         title: "0Title",
+//         description:"description0",
+//         assignedToArray: [
+//          {assignedFullName:"Stefan hsfhhz", assignedRGB:"rgb(255,20,0)"},
+//          {assignedFullName:"Vorname01 Nachname01", assignedRGB:"rgb(100,0,0)"},
+//         ],
+//         dueDate: "05.01.2025",
+//         prio: "Low",
+//         category: "Technical Task",
+//         subtaskJson: [
+//         { subtaskText: "subtask0-0", subtaskDone: true},
+//         { subtaskText: "subtask0-1", subtaskDone: false},
+//         ],
+//         toDoStatus: "To do",
+//     },
+//     {
+//         title: "1Yuhu wir habens geschafft!",
+//         description:"description1",
+//         assignedToArray:[
+//          {assignedFullName:"assignedNameString0", assignedRGB:"rgb(0,150,220)"},
+//          {assignedFullName:"assignedNameString1", assignedRGB:"rgb(0,150,220)"},
+//          {assignedFullName:"assignedNameString2", assignedRGB:"rgb(0,150,220)"},
+//         ],
+//         dueDate: "28.02.2025",
+//         prio: "Medium",
+//         category: "User Story",
+//         subtaskJson: [
+//          { subtaskText: "subtask1-0", subtaskDone: false},
+//          { subtaskText: "subtask1-1", subtaskDone: true},
+//          { subtaskText: "subtask1-2", subtaskDone: true},
+//         ],
+//         toDoStatus: "Await feedback",
+//     },
+//     {
+//         title: "2title2",
+//         description:"description2",
+//         assignedToArray: [{assignedFullName:"assignedNameString0", assignedRGB:"rgb(150,0,220)"},
+//                          {assignedFullName:"assignedNameString1", assignedRGB:"rgb(150,0,220)"},
+//                          {assignedFullName:"assignedNameString2", assignedRGB:"rgb(150,0,220)"},
+//                         ],
+//         dueDate: "17.05.2025",
+//         prio: "Urgent",
+//         category: "Technical Task",
+//         subtaskJson: [
+//             { subtaskText: "subtask2-0", subtaskDone: false},
+//             ],
+//         toDoStatus: "To do",
+//     },
+//     {
+//         title: "3title3",
+//         description:"description3",
+//         assignedToArray: [{assignedFullName:"assignedNameString0", assignedRGB:"rgb(220,150,0)"},
+//                          {assignedFullName:"assignedNameString1", assignedRGB:"rgb(220,150,0)"},
+//                          {assignedFullName:"assignedNameString2", assignedRGB:"rgb(220,150,0)"},
+//                         ],
+//         dueDate: "05.07.2024",
+//         prio: "Medium",
+//         category: "User Story",
+//         subtaskJson: [
+//             { subtaskText: "subtask3-0", subtaskDone: true},
+//             { subtaskText: "subtask3-1", subtaskDone: true},
+//             { subtaskText: "subtask3-2", subtaskDone: true},
+//             { subtaskText: "subtask3-3", subtaskDone: false},
+//             ],
+//         toDoStatus: "Done",
+//     },
+//     {
+//         title: "4title4",
+//         description:"description4",
+//         assignedToArray: [{assignedFullName:"assignedNameString0", assignedRGB:"rgb(0,150,220)"},
+//                          {assignedFullName:"assignedNameString1", assignedRGB:"rgb(0,150,220)"},
+//                          {assignedFullName:"assignedNameString2", assignedRGB:"rgb(0,150,220)"},
+//                         ],
+//         dueDate: "14.02.2025",
+//         prio: "Low",
+//         category: "Technical Task",
+//         subtaskJson: [
+//             { subtaskText: "subtask4-0", subtaskDone: false},
+//             { subtaskText: "subtask4-1", subtaskDone: false},
+//             { subtaskText: "subtask4-2", subtaskDone: false},
+//             { subtaskText: "subtask4-3", subtaskDone: false},
+//             ],
+//         toDoStatus: "In progress",
+//     }, {
+//         title: "0Title",
+//         description:"description0",
+//         assignedToArray: [
+//          {assignedFullName:"assignedNameString1", assignedRGB:"rgb(50,170,170)"},
+//          {assignedFullName:"assignedNameString2", assignedRGB:"rgb(200,170,50)"},
+//         ],
+//         dueDate: "05.01.2025",
+//         prio: "Low",
+//         category: "Technical Task",
+//         subtaskJson: [
+//         { subtaskText: "subtask0-0", subtaskDone: false},
+//         { subtaskText: "subtask0-1", subtaskDone: false},
+//         ],
+//         toDoStatus: "Await feedback",
+//     }, {
+//         title: "0Title",
+//         description:"description0",
+//         assignedToArray: [
+//          {assignedFullName:"assignedNameString1", assignedRGB:"rgb(0,0,0)"},
+//          {assignedFullName:"assignedNameString2", assignedRGB:"rgb(70,70,70)"},
+//         ],
+//         dueDate: "05.01.2025",
+//         prio: "Low",
+//         category: "Technical Task",
+//         subtaskJson: [
+//         { subtaskText: "subtask0-0", subtaskDone: false},
+//         { subtaskText: "subtask0-1", subtaskDone: false},
+//         ],
+//         toDoStatus: "Done",
+//     }, {
+//         title: "0Title",
+//         description:"description0",
+//         assignedToArray: [
+//          {assignedFullName:"assignedNameString1", assignedRGB:"rgb(100,0,200)"},
+//          {assignedFullName:"assignedNameString2", assignedRGB:"rgb(70,200,100)"},
+//         ],
+//         dueDate: "05.01.2025",
+//         prio: "Low",
+//         category: "Technical Task",
+//         subtaskJson: [
+//         { subtaskText: "subtask0-0", subtaskDone: false},
+//         { subtaskText: "subtask0-1", subtaskDone: false},
+//         ],
+//         toDoStatus: "To do",
+//     },
+// ];
 
 let userLoginJson = JSON.parse(localStorage.getItem('userLoginJson')) || [];
 
+
+
+
 let inBoardAddTask = false;
+let currentLargeCardIndex = -1;
 
 // ROMANS EDIT START 
 function renderAddTaskHTMLForBoardOverlay(){
@@ -351,15 +325,20 @@ function returnAddTaskSiteHTML(){
                    <div class="subtasksDivContainerClass" id="subtasksDivContainerId"></div>
        </div>
        </div>
-       <div class="clearCreateTaskButtonDivClass">
+       <div class="clearCreateTaskButtonDivClass" >
            <span><span style="color: red;">*</span>This field is required</span>
-           <div class="clearCreateTaskButtonDivChildClass">
-               <button class="clearCreateButtonClass1" onclick="clearAddTaskForm()">Clear&nbsp
+           <div class="clearCreateTaskButtonDivChildClass" style="padding: 0px 0px 20px 0px">
+               <button class="clearCreateButtonClass1" onclick="clearAddTaskForm()" id="clearCreateDivId1">Clear&nbsp
                    <svg width="13" height="14" viewBox="0 0 13 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                        <path d="M6.24959 6.99984L11.4926 12.2428M1.00659 12.2428L6.24959 6.99984L1.00659 12.2428ZM11.4926 1.75684L6.24859 6.99984L11.4926 1.75684ZM6.24859 6.99984L1.00659 1.75684L6.24859 6.99984Z" stroke="#2A3647" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                        </svg>  
                </button>
-              <button class="clearCreateButtonClass2" onclick="submitAddTaskForm()">Create Task&nbsp
+              <button class="clearCreateButtonClass2" onclick="submitAddTaskForm()" id="clearCreateDivId2">Create Task&nbsp
+               <svg width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                   <path d="M5.79923 9.15L14.2742 0.675C14.4742 0.475 14.7117 0.375 14.9867 0.375C15.2617 0.375 15.4992 0.475 15.6992 0.675C15.8992 0.875 15.9992 1.1125 15.9992 1.3875C15.9992 1.6625 15.8992 1.9 15.6992 2.1L6.49923 11.3C6.29923 11.5 6.0659 11.6 5.79923 11.6C5.53256 11.6 5.29923 11.5 5.09923 11.3L0.79923 7C0.59923 6.8 0.503397 6.5625 0.51173 6.2875C0.520064 6.0125 0.62423 5.775 0.82423 5.575C1.02423 5.375 1.26173 5.275 1.53673 5.275C1.81173 5.275 2.04923 5.375 2.24923 5.575L5.79923 9.15Z" fill="white"/>
+                   </svg> 
+              </button> 
+              <button class="clearCreateButtonClass2" onclick="submitEditingCard()" id="clearCreateDivId3" style="display:none">Ok&nbsp
                <svg width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                    <path d="M5.79923 9.15L14.2742 0.675C14.4742 0.475 14.7117 0.375 14.9867 0.375C15.2617 0.375 15.4992 0.475 15.6992 0.675C15.8992 0.875 15.9992 1.1125 15.9992 1.3875C15.9992 1.6625 15.8992 1.9 15.6992 2.1L6.49923 11.3C6.29923 11.5 6.0659 11.6 5.79923 11.6C5.53256 11.6 5.29923 11.5 5.09923 11.3L0.79923 7C0.59923 6.8 0.503397 6.5625 0.51173 6.2875C0.520064 6.0125 0.62423 5.775 0.82423 5.575C1.02423 5.375 1.26173 5.275 1.53673 5.275C1.81173 5.275 2.04923 5.375 2.24923 5.575L5.79923 9.15Z" fill="white"/>
                    </svg> 
@@ -392,3 +371,164 @@ function returnInitialsFromTwoWordString(stringInput) {
 
 
 
+
+  ///klick auf kleine Karte => openLargeCardOverlay(i)
+  // klick auf edit im Large Card Overlay => editSingleCard(i)
+///SUchfunktion für AddTask Contacts Dropdown
+//Suchfunktion für Board Cards 
+
+//wenn Kontakt gelöscht wird - alle assignedArrays durchsuchen nach dem fullName string und splicen, 
+//wenn gefunden
+
+//AssignedContacts Circle auf der Karte - limit container width, overflow-x, circle squish... 
+
+////Wenn auf Category + gedrückt wird ... tempArray auf geklickten toDoStatus setzen und AddTask Overlay aufrufen,
+//on submit: addtask soll vor die erste selbe toDoStatus im toDoJson gepusht werden 
+
+//CSS Animation slide in 
+
+///Datum String richtig umwandeln, in deutsche Schreibweise ...
+
+///Ins backend : ContactJson, toDoJson put im Vorfeld
+//Das wird beim Aufrufen der Summary, Board und Contacts aufgerufen, gefetcht.
+//Beim Edit in Board: Wenn subtask gecheckt wird, wenn Karte verschoben wird, oder Edit Add Task Mode 
+//submittet wird - update toDoJson lokal und dann push, beim neuladen load json aus backend
+//nur onload soll gefetcht werden, ansonsten wird nur lokal gespeichert und ausgelesen, parallel bei jeder änderung 
+//wird die PUT funktion aufgerufen. 
+
+
+///Refactoring! 
+///JS DOC !!! 
+
+
+let toDoCardsJSON = [
+    {
+        title: "0Title",
+        description:"description0",
+        assignedToArray: [
+         {assignedFullName:"Stefan hsfhhz", assignedRGB:"rgb(255,20,0)"},
+         {assignedFullName:"Vorname01 Nachname01", assignedRGB:"rgb(100,0,0)"},
+        ],
+        dueDate: "2028-10-11",
+        prio: "Low",
+        category: "Technical Task",
+        subtaskJson: [
+        { subtaskText: "subtask0-0", subtaskDone: true},
+        { subtaskText: "subtask0-1", subtaskDone: false},
+        ],
+        toDoStatus: "To do",
+    },
+    {
+        title: "1Yuhu wir habens geschafft!",
+        description:"description1",
+        assignedToArray:[
+         {assignedFullName:"Julia Roberts", assignedRGB:"rgb(0,0,0)"},
+        
+        ],
+        dueDate: "2028-10-12",
+        prio: "Medium",
+        category: "User Story",
+        subtaskJson: [
+         { subtaskText: "subtask1-0", subtaskDone: false},
+         { subtaskText: "subtask1-1", subtaskDone: true},
+         { subtaskText: "subtask1-2", subtaskDone: true},
+        ],
+        toDoStatus: "Await feedback",
+    },
+    {
+        title: "2title2",
+        description:"description2",
+        assignedToArray: [{assignedFullName:"assignedNameString0", assignedRGB:"rgb(150,0,220)"},
+                         {assignedFullName:"assignedNameString1", assignedRGB:"rgb(150,0,220)"},
+                         {assignedFullName:"assignedNameString2", assignedRGB:"rgb(150,0,220)"},
+                        ],
+        dueDate: "2028-10-13",
+        prio: "Urgent",
+        category: "Technical Task",
+        subtaskJson: [
+            { subtaskText: "subtask2-0", subtaskDone: false},
+            ],
+        toDoStatus: "To do",
+    },
+    {
+        title: "3title3",
+        description:"description3",
+        assignedToArray: [{assignedFullName:"assignedNameString0", assignedRGB:"rgb(220,150,0)"},
+                         {assignedFullName:"assignedNameString1", assignedRGB:"rgb(220,150,0)"},
+                         {assignedFullName:"assignedNameString2", assignedRGB:"rgb(220,150,0)"},
+                        ],
+        dueDate: "2028-10-14",
+        prio: "Medium",
+        category: "User Story",
+        subtaskJson: [
+            { subtaskText: "subtask3-0", subtaskDone: true},
+            { subtaskText: "subtask3-1", subtaskDone: true},
+            { subtaskText: "subtask3-2", subtaskDone: true},
+            { subtaskText: "subtask3-3", subtaskDone: false},
+            ],
+        toDoStatus: "Done",
+    },
+    {
+        title: "4title4",
+        description:"description4",
+        assignedToArray: [{assignedFullName:"assignedNameString0", assignedRGB:"rgb(0,150,220)"},
+                         {assignedFullName:"assignedNameString1", assignedRGB:"rgb(0,150,220)"},
+                         {assignedFullName:"assignedNameString2", assignedRGB:"rgb(0,150,220)"},
+                        ],
+        dueDate: "2028-10-15",
+        prio: "Low",
+        category: "Technical Task",
+        subtaskJson: [
+            { subtaskText: "subtask4-0", subtaskDone: false},
+            { subtaskText: "subtask4-1", subtaskDone: false},
+            { subtaskText: "subtask4-2", subtaskDone: false},
+            { subtaskText: "subtask4-3", subtaskDone: false},
+            ],
+        toDoStatus: "In progress",
+    }, {
+        title: "0Title",
+        description:"description0",
+        assignedToArray: [
+         {assignedFullName:"assignedNameString1", assignedRGB:"rgb(50,170,170)"},
+         {assignedFullName:"assignedNameString2", assignedRGB:"rgb(200,170,50)"},
+        ],
+        dueDate: "2028-10-16",
+        prio: "Low",
+        category: "Technical Task",
+        subtaskJson: [
+        { subtaskText: "subtask0-0", subtaskDone: false},
+        { subtaskText: "subtask0-1", subtaskDone: false},
+        ],
+        toDoStatus: "Await feedback",
+    }, {
+        title: "0Title",
+        description:"description0",
+        assignedToArray: [
+         {assignedFullName:"assignedNameString1", assignedRGB:"rgb(0,0,0)"},
+         {assignedFullName:"assignedNameString2", assignedRGB:"rgb(70,70,70)"},
+        ],
+        dueDate: "2028-10-17",
+        prio: "Low",
+        category: "Technical Task",
+        subtaskJson: [
+        { subtaskText: "subtask0-0", subtaskDone: false},
+        { subtaskText: "subtask0-1", subtaskDone: false},
+        ],
+        toDoStatus: "Done",
+    }, {
+        title: "0Title",
+        description:"description0",
+        assignedToArray: [
+         {assignedFullName:"assignedNameString1", assignedRGB:"rgb(100,0,200)"},
+         {assignedFullName:"assignedNameString2", assignedRGB:"rgb(70,200,100)"},
+        ],
+        dueDate: "2028-10-18",
+        prio: "Low",
+        category: "Technical Task",
+        subtaskJson: [
+        { subtaskText: "subtask0-0", subtaskDone: false},
+        { subtaskText: "subtask0-1", subtaskDone: false},
+        ],
+        toDoStatus: "To do",
+    },
+];

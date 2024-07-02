@@ -288,7 +288,7 @@
 
     @media (max-width: 550px) {
       .popupMainDiv {
-        height: fit-content;
+        /* height: fit-content; */
         width: 320px;
         background-color: white;
         border-radius: 30px;
@@ -299,29 +299,31 @@
       }
 
       .mainPopupDivClass {
-        width: 300px;
+        /* width: 300px; */
+      }
+      .mainPopupDivClass {
+        /* width: 260px; */
+        margin:  28px 0px 8px 28px;
       }
 
       .headLineCloseButton, .BoardOverlayHeadLinDivClass, .subTasksDivClass, .deleteEditContactDivClass 
         {
-        width: 270px;
+        /* width: 270px; */
         font-size: 18px;
       }
-      .mainPopupDivClass {
-        width: 260px;
-      }
+     
       .BoardOverlayHeadLinDivClass {
         font-size: 42px;
       }
       .deleteEditContactDivClass {
         
-        margin: 0px 10px 20px 0px
+        margin: 0px 28px 16px 0px
       }
        
     }
 
     @media (max-width: 380px) {
-      .popupMainDiv {
+      /* .popupMainDiv {
         height: fit-content;
         width: 312px;
         background-color: white;
@@ -330,15 +332,15 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-      }
+      } */
 
-      .mainPopupDivClass {
+      /* .mainPopupDivClass {
         width: 264px;
       }
 
       .headLineCloseButton, .BoardOverlayHeadLinDivClass, .subTasksDivClass, .deleteEditContactDivClass 
         {
         width: 264px;
-      }
+      } */
       
     }

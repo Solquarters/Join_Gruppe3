@@ -101,7 +101,14 @@ renderSubtaskFromTempArray();
 function setDropdownSelectionFromTempArray() {
     const selectElement = document.getElementById('categoryDropdownPlaceholderId');
     selectElement.innerText = temporaryNewTaskSingleCardObject.category;
-    document.getElementById('categorySelectId').style.setProperty('color', 'rgb(#757575)', 'important');
+
+    if(temporaryNewTaskSingleCardObject.category == 'Select a Category'){
+        document.getElementById('categorySelectId').style.setProperty('color', 'gray', 'important');
+    }
+    else{
+        document.getElementById('categorySelectId').style.setProperty('color', 'black', 'important');
+    }
+   
 }
 
 function setPrioFromTempArray(){
@@ -365,7 +372,7 @@ function pushAssignedNameAndRgbToTempArray(i){
     };
     temporaryNewTaskSingleCardObject.assignedToArray.push(assignedObject);
     ///debugging...
-    console.log(temporaryNewTaskSingleCardObject);
+    // console.log(temporaryNewTaskSingleCardObject);
 }
 
 function removeAssignedNameAndRgbFromTempArray(i){
@@ -388,7 +395,7 @@ function removeAssignedNameAndRgbFromTempArray(i){
       } else {
         console.log("Assigned full name " + assignedFullNameString + " not found in assignedToArray");
       }
-      console.log(temporaryNewTaskSingleCardObject);
+    //   console.log(temporaryNewTaskSingleCardObject);
     }
     
 
@@ -535,6 +542,11 @@ function updateSubtaskArray(element, m) {
 
     function addSubtaskToTempArray(){
     let tempSubtask = { subtaskText: `${document.getElementById('subtaskTextareaId').value}`, subtaskDone: false };
+
+    /////ACHTUNG: temporaryNewTaskSingleCardObject.subtaskJson ist eine direkte Referenz auf das subtask Array im toDoJson !!!
+    /// das liegt an einer shallow kopie, die im boardScript in Zeile 390 passiert
+    /// temporaryNewTaskSingleCardObject = { ...toDoCardsJSON[i] }; 
+    //Das referenziert die arrays innerhalb des toDoJson Objekts und macht nicht einfach nur kopien
     temporaryNewTaskSingleCardObject.subtaskJson.push(tempSubtask);
     }
 
@@ -619,14 +631,10 @@ function submitAddTaskForm(){
 
 function clearAddTaskForm(){
     emptyTempJson();
-   
     resetPrioButtons();
-
     renderAddTaskSiteFromTempArray();
-
     document.getElementById('categoryMainFormId').reset();
     document.getElementById('categorySelectId').style.color = 'gray';
-    
     clearSubtaskInput();
 }
 
@@ -639,9 +647,6 @@ temporaryNewTaskSingleCardObject["description"] = document.getElementById('descr
 temporaryNewTaskSingleCardObject["dueDate"] = document.getElementById('datePickerInputId').value;
 ////////Category already changed onclick, if not clicked, it stays empty
 
-
-
-
 //PUSHE TEMP ARRAY AN DIE STELL IM TODOJSON
 ///HIER SUCHE INDEX DES ERSTEN TODO OBJECKTS
 let indexOfFirstToDoinMainJson = findIndexOfFirstCategoryInMainJson("To do");
@@ -652,17 +657,14 @@ else{
     toDoCardsJSON.splice(0, 0, temporaryNewTaskSingleCardObject);
 }
 
-
 ///////////////HIER TODOJSON INS BACKEND PUSHEN
-
-
 ///////////HIER NOCH CHECKEN OB AUF BOARD ODER AUF ADD TASK SEITE
 if(inBoardAddTask){
 createNewTask();
 }
 
-console.log(temporaryNewTaskSingleCardObject);
-console.log(toDoCardsJSON[toDoCardsJSON.length-1]);
+// console.log(temporaryNewTaskSingleCardObject);
+// console.log(toDoCardsJSON[toDoCardsJSON.length-1]);
 ///////////////////REDIRECT TO BOARD ?
 
 }
@@ -678,18 +680,17 @@ function changeCategoryInTempArray(categoryInput){
     
 }
 
+function updateDateInTempArray(){
+    temporaryNewTaskSingleCardObject["dueDate"] = document.getElementById('datePickerInputId').value;
+}
+
+/////Wenn dann im Board auf eine Karte geklick wird, sollen die Werte von ToDOJSON an der Index Stelle
+// ins TempArray gepusht werden und anhand dessen das AddTask Overlay gerendert. 
+
+
 // function generateRandomRGB() {
 //     const r = Math.floor(Math.random() * 256);
 //     const g = Math.floor(Math.random() * 256);
 //     const b = Math.floor(Math.random() * 256);
 //     return `rgb(${r}, ${g}, ${b})`;
 // }
-
-function updateDateInTempArray(){
-    temporaryNewTaskSingleCardObject["dueDate"] = document.getElementById('datePickerInputId').value;
-}
-
-
-
-/////Wenn dann im Board auf eine Karte geklick wird, sollen die Werte von ToDOJSON an der Index Stelle
-// ins TempArray gepusht werden und anhand dessen das AddTask Overlay gerendert. 
