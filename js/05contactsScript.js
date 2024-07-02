@@ -16,18 +16,10 @@ async function initContactSite(){
     }
 }
 
-
-
-
-
-
 function save() {
     let contactsJSONAsText = JSON.stringify(contactsJSON);
     localStorage.setItem('contactsJSON', contactsJSONAsText);
 }
-
-
-
 
 function renderContacts() {
     let contactsContent = document.getElementById('contactsContent');
@@ -207,7 +199,6 @@ async function createContact(){
         }
         renderContacts();
         hideContacts();
-        // save();
     }
 }
 
@@ -293,7 +284,6 @@ function editContact(index) {
     popUp.classList.add('active');
 
     renderContacts();
-    // renderContactsInfo();
 }
 
 function editDeleteContact() {
@@ -337,14 +327,10 @@ async function saveEditedContact(index) {
     popUp.classList.add('inactive');
 
     renderContacts();
-    // renderContactsInfo();
     resetEditForm();
-    // save();
+    updateContactsInfoHTML(index);
 
     alert('Änderungen wurden gespeichert.');
-
-    //////////////
-    updateContactsInfoHTML(index);
 }
 
 // Function to find a contact by index
@@ -384,7 +370,6 @@ function changeWidth() {
 async function deleteContacts(index) {
     contactsJSON.splice(index, 1);
     await putData("/contactsJson", contactsJSON);
-    // contactsJSON = sortContactsByFirstName(contactsJSON);
 
     let showContactsInfo = document.getElementById('showContactsInfo');
     showContactsInfo.innerHTML = '';
@@ -394,11 +379,6 @@ async function deleteContacts(index) {
         document.getElementById('addContactsMain').classList.remove('d-none');
     }
     renderContacts();
-    // save();
 
     alert('Kontakt erfolgreich gelöscht!');
 }
-
-
-
-
