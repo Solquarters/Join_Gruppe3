@@ -1,142 +1,8 @@
 let contactsJSON = [];
 
-// let toDoCardsJSON = [
-//     {
-//         title: "0Title",
-//         description:"description0",
-//         assignedToArray: [
-//          {assignedFullName:"Stefan hsfhhz", assignedRGB:"rgb(255,20,0)"},
-//          {assignedFullName:"Vorname01 Nachname01", assignedRGB:"rgb(100,0,0)"},
-//         ],
-//         dueDate: "05.01.2025",
-//         prio: "Low",
-//         category: "Technical Task",
-//         subtaskJson: [
-//         { subtaskText: "subtask0-0", subtaskDone: true},
-//         { subtaskText: "subtask0-1", subtaskDone: false},
-//         ],
-//         toDoStatus: "To do",
-//     },
-//     {
-//         title: "1Yuhu wir habens geschafft!",
-//         description:"description1",
-//         assignedToArray:[
-//          {assignedFullName:"assignedNameString0", assignedRGB:"rgb(0,150,220)"},
-//          {assignedFullName:"assignedNameString1", assignedRGB:"rgb(0,150,220)"},
-//          {assignedFullName:"assignedNameString2", assignedRGB:"rgb(0,150,220)"},
-//         ],
-//         dueDate: "28.02.2025",
-//         prio: "Medium",
-//         category: "User Story",
-//         subtaskJson: [
-//          { subtaskText: "subtask1-0", subtaskDone: false},
-//          { subtaskText: "subtask1-1", subtaskDone: true},
-//          { subtaskText: "subtask1-2", subtaskDone: true},
-//         ],
-//         toDoStatus: "Await feedback",
-//     },
-//     {
-//         title: "2title2",
-//         description:"description2",
-//         assignedToArray: [{assignedFullName:"assignedNameString0", assignedRGB:"rgb(150,0,220)"},
-//                          {assignedFullName:"assignedNameString1", assignedRGB:"rgb(150,0,220)"},
-//                          {assignedFullName:"assignedNameString2", assignedRGB:"rgb(150,0,220)"},
-//                         ],
-//         dueDate: "17.05.2025",
-//         prio: "Urgent",
-//         category: "Technical Task",
-//         subtaskJson: [
-//             { subtaskText: "subtask2-0", subtaskDone: false},
-//             ],
-//         toDoStatus: "To do",
-//     },
-//     {
-//         title: "3title3",
-//         description:"description3",
-//         assignedToArray: [{assignedFullName:"assignedNameString0", assignedRGB:"rgb(220,150,0)"},
-//                          {assignedFullName:"assignedNameString1", assignedRGB:"rgb(220,150,0)"},
-//                          {assignedFullName:"assignedNameString2", assignedRGB:"rgb(220,150,0)"},
-//                         ],
-//         dueDate: "05.07.2024",
-//         prio: "Medium",
-//         category: "User Story",
-//         subtaskJson: [
-//             { subtaskText: "subtask3-0", subtaskDone: true},
-//             { subtaskText: "subtask3-1", subtaskDone: true},
-//             { subtaskText: "subtask3-2", subtaskDone: true},
-//             { subtaskText: "subtask3-3", subtaskDone: false},
-//             ],
-//         toDoStatus: "Done",
-//     },
-//     {
-//         title: "4title4",
-//         description:"description4",
-//         assignedToArray: [{assignedFullName:"assignedNameString0", assignedRGB:"rgb(0,150,220)"},
-//                          {assignedFullName:"assignedNameString1", assignedRGB:"rgb(0,150,220)"},
-//                          {assignedFullName:"assignedNameString2", assignedRGB:"rgb(0,150,220)"},
-//                         ],
-//         dueDate: "14.02.2025",
-//         prio: "Low",
-//         category: "Technical Task",
-//         subtaskJson: [
-//             { subtaskText: "subtask4-0", subtaskDone: false},
-//             { subtaskText: "subtask4-1", subtaskDone: false},
-//             { subtaskText: "subtask4-2", subtaskDone: false},
-//             { subtaskText: "subtask4-3", subtaskDone: false},
-//             ],
-//         toDoStatus: "In progress",
-//     }, {
-//         title: "0Title",
-//         description:"description0",
-//         assignedToArray: [
-//          {assignedFullName:"assignedNameString1", assignedRGB:"rgb(50,170,170)"},
-//          {assignedFullName:"assignedNameString2", assignedRGB:"rgb(200,170,50)"},
-//         ],
-//         dueDate: "05.01.2025",
-//         prio: "Low",
-//         category: "Technical Task",
-//         subtaskJson: [
-//         { subtaskText: "subtask0-0", subtaskDone: false},
-//         { subtaskText: "subtask0-1", subtaskDone: false},
-//         ],
-//         toDoStatus: "Await feedback",
-//     }, {
-//         title: "0Title",
-//         description:"description0",
-//         assignedToArray: [
-//          {assignedFullName:"assignedNameString1", assignedRGB:"rgb(0,0,0)"},
-//          {assignedFullName:"assignedNameString2", assignedRGB:"rgb(70,70,70)"},
-//         ],
-//         dueDate: "05.01.2025",
-//         prio: "Low",
-//         category: "Technical Task",
-//         subtaskJson: [
-//         { subtaskText: "subtask0-0", subtaskDone: false},
-//         { subtaskText: "subtask0-1", subtaskDone: false},
-//         ],
-//         toDoStatus: "Done",
-//     }, {
-//         title: "0Title",
-//         description:"description0",
-//         assignedToArray: [
-//          {assignedFullName:"assignedNameString1", assignedRGB:"rgb(100,0,200)"},
-//          {assignedFullName:"assignedNameString2", assignedRGB:"rgb(70,200,100)"},
-//         ],
-//         dueDate: "05.01.2025",
-//         prio: "Low",
-//         category: "Technical Task",
-//         subtaskJson: [
-//         { subtaskText: "subtask0-0", subtaskDone: false},
-//         { subtaskText: "subtask0-1", subtaskDone: false},
-//         ],
-//         toDoStatus: "To do",
-//     },
-// ];
+let toDoCardsJSON = [];
 
 let userLoginJson = JSON.parse(localStorage.getItem('userLoginJson')) || [];
-
-
-
 
 let inBoardAddTask = false;
 let currentLargeCardIndex = -1;
@@ -297,7 +163,6 @@ function returnAddTaskSiteHTML(){
 }
 
 
-
 function findIndexOfFirstCategoryInMainJson(categoryInput) {
     return toDoCardsJSON.findIndex(item => item.toDoStatus === categoryInput);
 }
@@ -312,6 +177,36 @@ function returnInitialsFromTwoWordString(stringInput) {
     }
     
   }
+
+
+
+
+
+
+/////Database
+const BASE_URL = "https://testprojekt01-812cb-default-rtdb.europe-west1.firebasedatabase.app/";
+async function putData(path="", data={}){
+    let response = await fetch(BASE_URL + path + ".json",{
+        method: "PUT",
+        header: {
+            "Content-Type": "application/json",
+                },
+        body: JSON.stringify(data)
+        });
+    // return responseToJson = await response.json();
+}
+
+///Fetching data
+async function loadData(path=""){
+    let response = await fetch(BASE_URL + path + ".json"); 
+    let responseAsJson = await response.json();
+    return responseAsJson;
+}
+
+
+/////openEmptyAddTaskOverlay()
+///Nach öffnen und Schließen des AddTask overlay funktioniert der EditModus nicht mehr richtig 
+///editSingleCard öffnet AddTask Overlay , HTML wird richtig gerendert, Inhalt aber leer und Funktionen gehen auch nicht 
 
 
 ///Ins backend : ContactJson, toDoJson put im Vorfeld
@@ -343,49 +238,3 @@ function returnInitialsFromTwoWordString(stringInput) {
 
 ///Refactoring! 
 ///JS DOC !!! 
-
-
-let toDoCardsJSON = [
-    
-];
-
-
-
-
-/////Database
-const BASE_URL = "https://testprojekt01-812cb-default-rtdb.europe-west1.firebasedatabase.app/";
-
-// contactsJSON = await loadData("/contactsJson");
-// await putData("/contactsJson", contactsJSON);
-
-
-// toDoCardsJSON = await loadData("/toDoJson");
-// await putData("/toDoJson", toDoCardsJSON);
-
-
-
-async function putData(path="", data={}){
-    let response = await fetch(BASE_URL + path + ".json",{
-        method: "PUT",
-        header: {
-            "Content-Type": "application/json",
-                },
-        body: JSON.stringify(data)
-        });
-    // return responseToJson = await response.json();
-}
-
-///Fetching data
-async function loadData(path=""){
-    let response = await fetch(BASE_URL + path + ".json"); 
-    let responseAsJson = await response.json();
-    return responseAsJson;
-}
-
-
-
-
-
-/////openEmptyAddTaskOverlay()
-///Nach öffnen und Schließen des AddTask overlay funktioniert der EditModus nicht mehr richtig 
-///editSingleCard öffnet AddTask Overlay , HTML wird richtig gerendert, Inhalt aber leer und Funktionen gehen auch nicht 

@@ -38,3 +38,10 @@ const msg = urlParams.get('msg');
 if (msg) {
     document.getElementById('loginMsgBox').innerHTML = msg;
 }
+
+
+
+document.getElementById('guestLoginButton').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent form submission
+    window.location.href = './02summary.html'; // Redirect to guest login page
+});

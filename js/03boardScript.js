@@ -230,11 +230,13 @@ function openEmptyAddTaskOverlay(){
         //ZUGRIFF AUF GLOBAL SCRIPT
         renderAddTaskHTMLForBoardOverlay();
         emptyTempJson();
+        renderAddTaskSiteFromTempArray();
+
         renderContactsDropdownMenuContent();
         setCurrentDateInputMinValue();
         renderProfileCirclesFromTempArray();
         renderSubtaskFromTempArray();
-        renderAddTaskSiteFromTempArray();
+        
         disableScrolling();
         fitAddTaskCssAttributesToBoardTemplate();
     }
@@ -453,7 +455,7 @@ function editSingleCard(i){
     //Unterschied zwischen Referenztypen und Valuetypen !
     temporaryNewTaskSingleCardObject = structuredClone(toDoCardsJSON[i]);
 
-    console.log(temporaryNewTaskSingleCardObject);
+    // console.log(temporaryNewTaskSingleCardObject);
 
     document.getElementById('popupMainDivId').innerHTML = returnAddTaskSiteHTML();
     renderAddTaskSiteFromTempArray();
