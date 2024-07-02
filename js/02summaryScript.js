@@ -1,11 +1,22 @@
-function renderSummaryInfos(){
-    renderToDoInfos();
-    renderDoneInfos();
-    renderUrgentInfos();
-    renderInProgressInfos();
-    renderAwaitFeedbackInfos();
-    renderBoardInfos();
+
+async function initSummarySite(){
+    try {
+        toDoCardsJSON = await loadData("/toDoJson");
+        contactsJSON = await loadData("/contactsJson");
+      
+    } catch (error) {
+        console.error('Error loading data:', error);
+    }
+    finally{
+        renderToDoInfos();
+        renderDoneInfos();
+        renderUrgentInfos();
+        renderInProgressInfos();
+        renderAwaitFeedbackInfos();
+        renderBoardInfos();
+    }
 }
+
 
 function renderToDoInfos() {
     let toDoNumber = 0;
