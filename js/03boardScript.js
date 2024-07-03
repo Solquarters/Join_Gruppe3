@@ -111,10 +111,19 @@ function returnAssignedContactCircle(i){
     
 
     if (toDoCardsJSON[i].assignedToArray) {
+        let renderedCircles = 0;
+
         for(let j = 0; j < toDoCardsJSON[i].assignedToArray.length; j++){
+            if(renderedCircles == 7){
+                document.getElementById(`singleCardContactCircleDivId${i}`).innerHTML += /*html*/`
+            <div class="singleCardCircleDivClass" style="background-color: #2A3647">+${toDoCardsJSON[i].assignedToArray.length-7}</div>
+            `;
+            return;
+            }
             document.getElementById(`singleCardContactCircleDivId${i}`).innerHTML += /*html*/`
             <div class="singleCardCircleDivClass" style="background-color: ${toDoCardsJSON[i].assignedToArray[j].assignedRGB}">${returnInitialsFromTwoWordString(toDoCardsJSON[i].assignedToArray[j].assignedFullName)}</div>
             `;
+            renderedCircles++;
         }
     }
     
