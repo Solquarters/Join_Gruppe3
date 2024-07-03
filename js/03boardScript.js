@@ -107,6 +107,12 @@ function returnSingleCardHTML(i){
 
 function returnAssignedContactCircle(i){
     document.getElementById(`singleCardContactCircleDivId${i}`).innerHTML = '';
+
+    if (!toDoCardsJSON[i].assignedToArray || !Array.isArray(toDoCardsJSON[i].assignedToArray) || toDoCardsJSON[i].assignedToArray.length === 0) {
+        // console.log(`assignedToArray does not exist or is empty for item at index ${i}`);
+        return; // Exit the function if the condition is not met
+    }
+
     for(let j = 0; j < toDoCardsJSON[i].assignedToArray.length; j++){
         document.getElementById(`singleCardContactCircleDivId${i}`).innerHTML += /*html*/`
         <div class="singleCardCircleDivClass" style="background-color: ${toDoCardsJSON[i].assignedToArray[j].assignedRGB}">${returnInitialsFromTwoWordString(toDoCardsJSON[i].assignedToArray[j].assignedFullName)}</div>
@@ -243,7 +249,7 @@ function openEmptyAddTaskOverlay(){
     
     
     function closeAddTaskOverlay(){
-        document.getElementById('addEmptyTaskChildOverlayId').innerHTML = '';
+        // document.getElementById('addEmptyTaskChildOverlayId').innerHTML = '';
         document.getElementById('addEmptyTaskMainOverlayId').style.display="none";
         enableScrolling();
     }
@@ -318,6 +324,8 @@ function renderDeleteAndEditButton(i){
 
 function returnLargeCardSubtasksHTML(i){
     document.getElementById('subtasksLargeCardContainerId').innerHTML = '';
+    let card = toDoCardsJSON[i];
+    if (!card || !card.subtaskJson) {return '';}
     for(let j = 0; j < toDoCardsJSON[i].subtaskJson.length; j++){
 
         if(toDoCardsJSON[i].subtaskJson[j].subtaskDone){
@@ -353,6 +361,10 @@ function flipSubtaskCheckBool(i,j){
 
 function returnLargeCardAssignedHTML(i){
         document.getElementById('assignedLargeCardContainerId').innerHTML = '';
+        if (!toDoCardsJSON[i].assignedToArray || !Array.isArray(toDoCardsJSON[i].assignedToArray) || toDoCardsJSON[i].assignedToArray.length === 0) {
+            // console.log(`assignedToArray does not exist or is empty for item at index ${i}`);
+            return; // Exit the function if the condition is not met
+        }
         for(let j = 0; j < toDoCardsJSON[i].assignedToArray.length; j++){
             document.getElementById('assignedLargeCardContainerId').innerHTML += /*html*/`
              <span class="circleAndNameSpanClass2">

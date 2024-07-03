@@ -37,11 +37,11 @@ function emptyTempJson(){
     temporaryNewTaskSingleCardObject = {
         title: "",
         description:"",
-        assignedToArray: [],
+        assignedToArray: [""],
         dueDate: "",
         prio: "",
         category: "Select a Category",
-        subtaskJson: [],
+        subtaskJson: [""],
         toDoStatus: "To do",
     };
 
@@ -144,12 +144,14 @@ function renderContactsDropdownMenuContent(){
         {
             let contactNameIsInsideAssignedArray = false;
 
-           for(let j = 0; j < temporaryNewTaskSingleCardObject.assignedToArray.length; j++){
-            
-                if(temporaryNewTaskSingleCardObject.assignedToArray[j].assignedFullName == getFullNameStringFromContacts(i)){
-                    contactNameIsInsideAssignedArray = true;
-                }
-           } 
+           //Checking if assigned to array even exists
+            if (temporaryNewTaskSingleCardObject.assignedToArray) {
+                for(let j = 0; j < temporaryNewTaskSingleCardObject.assignedToArray.length; j++){
+                    if(temporaryNewTaskSingleCardObject.assignedToArray[j].assignedFullName == getFullNameStringFromContacts(i)){
+                        contactNameIsInsideAssignedArray = true;
+                    }
+               } 
+            }
 
           if(contactNameIsInsideAssignedArray){
             document.getElementById('dropdownContactAssignId').innerHTML += returnAssignContactsDropdownSELECTEDHTML(i);
