@@ -39,7 +39,7 @@ function emptyTempJson(){
         description:"",
         assignedToArray: [],
         dueDate: "",
-        prio: "",
+        prio: "Medium",
         category: "Select a Category",
         subtaskJson: [],
         toDoStatus: "To do",
