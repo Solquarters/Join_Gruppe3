@@ -267,7 +267,7 @@ background-color: #1FD7C1;
   height: 48px;
   min-width: 140px;
   border-radius: 10px;
-  border: 1px solid #2A3647;
+  border: none;
   display: flex;
   flex-direction: row-reverse;
   justify-content: center;
@@ -276,6 +276,9 @@ background-color: #1FD7C1;
   font-size: 21px;
   font-weight: 700;
   margin-left: 24px;
+}
+.addTaskButtonClass:hover{
+  background-color: #29ABE2;
 }
 
 
@@ -406,7 +409,7 @@ display: none;
 /* DRAG AND DROP START */
 
 .drag-area {
-  min-height: 80px;
+  min-height: 60px;
   min-width: 240px;
   /* display: flex;
   overflow-x: auto;
@@ -431,7 +434,7 @@ display: none;
 
 .emptyDragareaClass{
   width: 100%;
-  height: auto;
+  height: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -484,7 +487,8 @@ display: none;
   flex-direction: column;
   justify-content: flex-start;
   /* margin: 16px 0px 0px 0px; */
-  overflow-y: auto;
+  /* overflow-y: auto; */
+  overflow: auto;
 
 }
 
@@ -668,13 +672,13 @@ fill: #2196F3;
 
 /* //////assigned Container in Large Card ////////////// */
 #assignedLargeCardContainerId{
-  height: 140px;
+  max-height: 140px;
   overflow-y: auto;
 margin: 8px 0px 0px 0px;
 }
 
 #subtasksLargeCardContainerId{
-  height: 100px;
+  max-height: 100px;
   overflow-y: auto;
 }
 
@@ -750,3 +754,6 @@ margin: 8px 0px 0px 0px;
 .rotateOnDrag{
   transform: rotate(4deg);
 }
+
+
+

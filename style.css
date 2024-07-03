@@ -2,3 +2,29 @@ body{
     margin: 0;
     font-family: 'inter';
 }
+
+
+
+::-webkit-scrollbar {
+    width: 10px; /* Width of the vertical scrollbar */
+    /* height: 12px; Height of the horizontal scrollbar */
+    background: #f3f3f3; /* Background color of the scrollbar */
+    border-radius: 12px; /* Rounded corners for the scrollbar */
+    overflow: auto;
+  }
+  
+  /* Styles for the scrollbar thumb */
+  ::-webkit-scrollbar-thumb {
+    background: #d6d6d6; /* Default background color of the scrollbar thumb */
+    border-radius: 1ex; /* Rounded corners for the scrollbar thumb */
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #a4a4a4; /* Default background color of the scrollbar thumb */
+    border-radius: 1ex; /* Rounded corners for the scrollbar thumb */
+  }
+  
+  /* Styles for the corner where the horizontal and vertical scrollbars meet */
+  ::-webkit-scrollbar-corner {
+    background: #ededed; /* Background color of the scrollbar corner */
+  }
+  
