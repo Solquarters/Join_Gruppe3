@@ -678,7 +678,7 @@ margin: 8px 0px 0px 0px;
 }
 
 #subtasksLargeCardContainerId{
-  max-height: 100px;
+  max-height: 102px;
   overflow-y: auto;
 }
 

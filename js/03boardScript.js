@@ -77,7 +77,15 @@ function renderAllCardToBoard(){
 
     if(document.getElementById('toDoStatusDivId').innerHTML == ''){
         document.getElementById('toDoStatusDivId').innerHTML = `<div class="emptyDragareaClass"><span>No tasks to do</span></div>`
-        
+    }
+    if(document.getElementById('inProgressStatusDivId').innerHTML == ''){
+        document.getElementById('inProgressStatusDivId').innerHTML = `<div class="emptyDragareaClass"><span>No tasks in progress</span></div>`
+    }
+    if(document.getElementById('awaitFeedbackStatusDivId').innerHTML == ''){
+        document.getElementById('awaitFeedbackStatusDivId').innerHTML = `<div class="emptyDragareaClass"><span>No tasks awaiting feedback</span></div>`
+    }
+    if(document.getElementById('doneStatusDivId').innerHTML == ''){
+        document.getElementById('doneStatusDivId').innerHTML = `<div class="emptyDragareaClass"><span>No tasks done</span></div>`
     }
 }
 
