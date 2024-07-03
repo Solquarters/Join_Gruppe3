@@ -73,6 +73,12 @@ function renderAllCardToBoard(){
     //       // code block
     //   }
     }
+
+
+    if(document.getElementById('toDoStatusDivId').innerHTML == ''){
+        document.getElementById('toDoStatusDivId').innerHTML = `<div class="emptyDragareaClass"><span>No tasks to do</span></div>`
+        
+    }
 }
 
 let currentDraggedElement;
