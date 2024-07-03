@@ -620,7 +620,7 @@ function setCurrentDateInputMinValue() {
     document.getElementById('datePickerInputId').setAttribute('min', `${year}-${month}-${day}`);
 }
 
-function submitAddTaskForm(){
+async function submitAddTaskForm(){
     // Get all the input elements
     const input1 = document.getElementById('titleInputId');
     const input2 = document.getElementById('datePickerInputId');
@@ -639,7 +639,7 @@ function submitAddTaskForm(){
         if (!isInput1Valid) input1.reportValidity();
        
     } else {
-        pushNewCardToJson();
+        await pushNewCardToJson();
         //Link to Board site 
         navigateTo("./03board.html");
     }
@@ -660,7 +660,7 @@ function clearAddTaskForm(){
 
 
 
-function pushNewCardToJson(){
+async function pushNewCardToJson(){
 temporaryNewTaskSingleCardObject["title"] = document.getElementById('titleInputId').value;
 temporaryNewTaskSingleCardObject["description"] = document.getElementById('descriptionTextAreaId').value;
 //Date Value correct?
@@ -673,12 +673,12 @@ let indexOfFirstToDoinMainJson = findIndexOfFirstCategoryInMainJson("To do");
 if(indexOfFirstToDoinMainJson >= 1){
     toDoCardsJSON.splice(indexOfFirstToDoinMainJson-1, 0, temporaryNewTaskSingleCardObject);
 
-    putData("/toDoJson", toDoCardsJSON);
+    await putData("/toDoJson", toDoCardsJSON);
     
 }
 else{
     toDoCardsJSON.splice(0, 0, temporaryNewTaskSingleCardObject);
-    putData("/toDoJson", toDoCardsJSON);
+    await putData("/toDoJson", toDoCardsJSON);
 }
 
 ///////////////HIER TODOJSON INS BACKEND PUSHEN
