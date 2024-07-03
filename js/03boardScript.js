@@ -108,16 +108,16 @@ function returnSingleCardHTML(i){
 function returnAssignedContactCircle(i){
     document.getElementById(`singleCardContactCircleDivId${i}`).innerHTML = '';
 
-    if (!toDoCardsJSON[i].assignedToArray || !Array.isArray(toDoCardsJSON[i].assignedToArray) || toDoCardsJSON[i].assignedToArray.length === 0) {
-        // console.log(`assignedToArray does not exist or is empty for item at index ${i}`);
-        return; // Exit the function if the condition is not met
-    }
+    
 
-    for(let j = 0; j < toDoCardsJSON[i].assignedToArray.length; j++){
-        document.getElementById(`singleCardContactCircleDivId${i}`).innerHTML += /*html*/`
-        <div class="singleCardCircleDivClass" style="background-color: ${toDoCardsJSON[i].assignedToArray[j].assignedRGB}">${returnInitialsFromTwoWordString(toDoCardsJSON[i].assignedToArray[j].assignedFullName)}</div>
-        `;
+    if (toDoCardsJSON[i].assignedToArray) {
+        for(let j = 0; j < toDoCardsJSON[i].assignedToArray.length; j++){
+            document.getElementById(`singleCardContactCircleDivId${i}`).innerHTML += /*html*/`
+            <div class="singleCardCircleDivClass" style="background-color: ${toDoCardsJSON[i].assignedToArray[j].assignedRGB}">${returnInitialsFromTwoWordString(toDoCardsJSON[i].assignedToArray[j].assignedFullName)}</div>
+            `;
+        }
     }
+    
 }
 
 function getProgressBarHTML(i) {
@@ -361,20 +361,24 @@ function flipSubtaskCheckBool(i,j){
 
 function returnLargeCardAssignedHTML(i){
         document.getElementById('assignedLargeCardContainerId').innerHTML = '';
-        if (!toDoCardsJSON[i].assignedToArray || !Array.isArray(toDoCardsJSON[i].assignedToArray) || toDoCardsJSON[i].assignedToArray.length === 0) {
+        // if (!toDoCardsJSON[i].assignedToArray || !Array.isArray(toDoCardsJSON[i].assignedToArray) || toDoCardsJSON[i].assignedToArray.length === 0) {
             // console.log(`assignedToArray does not exist or is empty for item at index ${i}`);
-            return; // Exit the function if the condition is not met
+        //     return; 
+        // }
+
+        if (toDoCardsJSON[i].assignedToArray) {
+            for(let j = 0; j < toDoCardsJSON[i].assignedToArray.length; j++){
+                document.getElementById('assignedLargeCardContainerId').innerHTML += /*html*/`
+                 <span class="circleAndNameSpanClass2">
+                <!-- InitialsCircle -->
+                <span class="contactSvgCircleClass2" style="background-color: ${toDoCardsJSON[i].assignedToArray[j].assignedRGB};">${returnInitialsFromTwoWordString(toDoCardsJSON[i].assignedToArray[j].assignedFullName)}</span>
+                <!-- Full contact name -->
+                <span>${toDoCardsJSON[i].assignedToArray[j].assignedFullName}</span>
+            </span>
+                `;
+            }
         }
-        for(let j = 0; j < toDoCardsJSON[i].assignedToArray.length; j++){
-            document.getElementById('assignedLargeCardContainerId').innerHTML += /*html*/`
-             <span class="circleAndNameSpanClass2">
-            <!-- InitialsCircle -->
-            <span class="contactSvgCircleClass2" style="background-color: ${toDoCardsJSON[i].assignedToArray[j].assignedRGB};">${returnInitialsFromTwoWordString(toDoCardsJSON[i].assignedToArray[j].assignedFullName)}</span>
-            <!-- Full contact name -->
-            <span>${toDoCardsJSON[i].assignedToArray[j].assignedFullName}</span>
-        </span>
-            `;
-        }
+       
 }
 
 function closeLargeCardOverlay(){

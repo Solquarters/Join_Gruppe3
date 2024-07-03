@@ -37,11 +37,11 @@ function emptyTempJson(){
     temporaryNewTaskSingleCardObject = {
         title: "",
         description:"",
-        assignedToArray: [""],
+        assignedToArray: [],
         dueDate: "",
         prio: "",
         category: "Select a Category",
-        subtaskJson: [""],
+        subtaskJson: [],
         toDoStatus: "To do",
     };
 
@@ -523,19 +523,23 @@ function renderAndSafeSubtask(){
 function renderSubtaskFromTempArray() {
     const container = document.getElementById('subtasksDivContainerId');
     container.innerHTML = '';
-    for (let m = 0; m < temporaryNewTaskSingleCardObject.subtaskJson.length; m++) {
-        container.innerHTML += /*html*/`
-            <div class="subtaskDynamicDivClass" contenteditable="true"   oninput="updateSubtaskArray(this, ${m})" onmouseover="showIcons(this)" onmouseout="hideIcons(this)">
-                <div id="subtaskTextDivId${m}"   class="subtaskFocusDivClass">
-                    &nbsp&nbsp•&nbsp <span id="subtaskTextSpanId${m}">${temporaryNewTaskSingleCardObject.subtaskJson[m].subtaskText}</span> 
+    if(temporaryNewTaskSingleCardObject.subtaskJson){
+        for (let m = 0; m < temporaryNewTaskSingleCardObject.subtaskJson.length; m++) {
+            container.innerHTML += /*html*/`
+                <div class="subtaskDynamicDivClass" contenteditable="true"   oninput="updateSubtaskArray(this, ${m})" onmouseover="showIcons(this)" onmouseout="hideIcons(this)">
+                    <div id="subtaskTextDivId${m}"   class="subtaskFocusDivClass">
+                        &nbsp&nbsp•&nbsp <span id="subtaskTextSpanId${m}">${temporaryNewTaskSingleCardObject.subtaskJson[m].subtaskText}</span> 
+                    </div>
+                    <div class="iconsClass">
+                        <img src="./assets/img/addTaskImg/smallEditSVG.svg" alt="" onclick="editParentDivText(${m})">
+                        <img src="./assets/img/addTaskImg/smallDeleteSVG.svg" alt="" onclick="deleteSubtask(this, ${m})">
+                    </div>
                 </div>
-                <div class="iconsClass">
-                    <img src="./assets/img/addTaskImg/smallEditSVG.svg" alt="" onclick="editParentDivText(${m})">
-                    <img src="./assets/img/addTaskImg/smallDeleteSVG.svg" alt="" onclick="deleteSubtask(this, ${m})">
-                </div>
-            </div>
-        `;
+            `;
+        }
+
     }
+    
 }
 
 function updateSubtaskArray(element, m) {
@@ -635,10 +639,15 @@ function submitAddTaskForm(){
         if (!isInput1Valid) input1.reportValidity();
        
     } else {
-        alert('Added new task!');
         pushNewCardToJson();
+        //Link to Board site 
+        navigateTo("./03board.html");
     }
 };
+
+function navigateTo(url) {
+    window.location.href = url;
+}
 
 function clearAddTaskForm(){
     emptyTempJson();

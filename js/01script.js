@@ -168,15 +168,46 @@ function findIndexOfFirstCategoryInMainJson(categoryInput) {
 }
 
 
-function returnInitialsFromTwoWordString(stringInput) {
-    let nameArray = stringInput.split(' ');
-    if (nameArray.length === 1) {return nameArray[0][0].toUpperCase();}
-    if(nameArray.length === 2) {
-        let initials = nameArray[0][0].toUpperCase() + nameArray[1][0].toUpperCase();
-        return initials;
+// function returnInitialsFromTwoWordString(stringInput) {
+//     if(stringInput){
+//         let nameArray = stringInput.split(' ');
+//         if(nameArray.length === 0){return '';}
+//         if (nameArray.length === 1) {return nameArray[0][0].toUpperCase();}
+//         if(nameArray.length === 2) {
+//             let initials = nameArray[0][0].toUpperCase() + nameArray[1][0].toUpperCase();
+//             return initials;
+//         }
+//     }
+//   }
+  function returnInitialsFromTwoWordString(stringInput) {
+    if (stringInput) {
+        // Trim any leading or trailing spaces from the input
+        stringInput = stringInput.trim();
+        
+        // Split the string by spaces
+        let nameArray = stringInput.split(' ');
+
+        // Filter out any empty strings from the array (in case of multiple spaces)
+        nameArray = nameArray.filter(name => name.length > 0);
+
+        // Handle different cases based on the length of the nameArray
+        if (nameArray.length === 0) {
+            return ''; // No words in the string
+        } else if (nameArray.length === 1) {
+            return nameArray[0][0].toUpperCase(); // Single word, return its first letter
+        } else if (nameArray.length >= 2) {
+            // Two or more words, return the initials of the first two words
+            let initials = nameArray[0][0].toUpperCase() + nameArray[1][0].toUpperCase();
+            return initials;
+        }
+    } else {
+        return ''; // If stringInput is falsy (e.g., null or undefined), return an empty string
     }
-    
-  }
+}
+
+
+
+
 
 
 
@@ -235,3 +266,11 @@ async function loadData(path=""){
 
 ///Refactoring! 
 ///JS DOC !!! 
+
+
+
+// Undefined bug
+////renderAndSafeSubtask()
+
+//returnInitialsFromTwoWordString
+//bug
