@@ -513,7 +513,7 @@ drobbtn.forEach(function(element) {element.style.minWidth = "unset";});
 let select = document.querySelectorAll('select');
 select.forEach(function(element) {element.style.minWidth = "unset";});
 let addTaskMainTemplateDivClass = document.querySelectorAll('.addTaskMainTemplateDivClass');
-addTaskMainTemplateDivClass.forEach(function(element) {element.style.maxHeight = "90vh"; element.style.padding = "0px 8px"});
+addTaskMainTemplateDivClass.forEach(function(element) {element.style.maxHeight = "94vh"; element.style.padding = "10px 10px"});
 let prioButtonDivClass = document.querySelectorAll('.prioButtonDivClass');
 prioButtonDivClass.forEach(function(element) {element.style.gap = "2px"});
 let priorityButtonClass = document.querySelectorAll('.priorityButtonClass');

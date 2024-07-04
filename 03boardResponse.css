@@ -289,13 +289,13 @@
     @media (max-width: 550px) {
       .popupMainDiv {
         /* height: fit-content; */
+        max-height: 92vh;
         width: 320px;
         background-color: white;
         border-radius: 30px;
         border: solid 1px #00000029;
         display: flex;
         flex-direction: column;
-     
       }
 
       .mainPopupDivClass {

@@ -477,7 +477,7 @@ display: none;
 
 }
 .popupMainDiv {
- height: 92%;
+ max-height: 94vh;
   width: 400px;
   background-color: white;
   border-radius: 30px;
