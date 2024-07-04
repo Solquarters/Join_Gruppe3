@@ -235,28 +235,15 @@ async function loadData(path=""){
 
 ///SUchfunktion für AddTask Contacts Dropdown
 //Suchfunktion für Board Cards 
+//CSS Animation slide in 
+///Datum String auf der Karte richtig umwandeln, in deutsche Schreibweise ...
 
 //wenn Kontakt gelöscht wird - alle assignedArrays durchsuchen nach dem fullName string und splicen, 
 //wenn gefunden
 
-//AssignedContacts Circle auf der Karte - limit container width, overflow-x, circle squish... 
-
 ////Wenn auf Category + gedrückt wird ... tempArray auf geklickten toDoStatus setzen und AddTask Overlay aufrufen,
 //on submit: addtask soll vor die erste selbe toDoStatus im toDoJson gepusht werden 
-
-//CSS Animation slide in 
-
-///Datum String richtig umwandeln, in deutsche Schreibweise ...
-
-
 
 ///Refactoring! 
 ///JS DOC !!! 
 
-
-
-// Undefined bug
-////renderAndSafeSubtask()
-
-//returnInitialsFromTwoWordString
-//bug
