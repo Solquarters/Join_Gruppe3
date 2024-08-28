@@ -247,3 +247,11 @@ async function loadData(path=""){
 ///Refactoring! 
 ///JS DOC !!! 
 
+
+
+
+//26.08.2024
+//Login User Initial im Kreis
+//Contacts: Bei Hinzufügen, soll contacts neu sortiert werden
+
+//BIG : object keys benutzen zum rendern und zugreifen auf Firebase daten !

@@ -711,11 +711,3 @@ function updateDateInTempArray(){
 
 /////Wenn dann im Board auf eine Karte geklick wird, sollen die Werte von ToDOJSON an der Index Stelle
 // ins TempArray gepusht werden und anhand dessen das AddTask Overlay gerendert. 
-
-
-// function generateRandomRGB() {
-//     const r = Math.floor(Math.random() * 256);
-//     const g = Math.floor(Math.random() * 256);
-//     const b = Math.floor(Math.random() * 256);
-//     return `rgb(${r}, ${g}, ${b})`;
-// }
