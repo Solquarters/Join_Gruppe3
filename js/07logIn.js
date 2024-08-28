@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function() {
         // Entferne den Preloader nach der Animation
         setTimeout(function() {
             document.getElementById('preloader').style.display = 'none';
-        }, 1000); // 1 Sekunde Verzögerung, um die CSS-Animation zu beenden
+        }, 2000); // 1 Sekunde Verzögerung, um die CSS-Animation zu beenden
     },);
 });
 
