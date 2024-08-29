@@ -1,11 +1,13 @@
 document.addEventListener("DOMContentLoaded", function() {
     // Simuliere eine Ladeverzögerung
+    document.body.style = "overflow-y: hidden;"
     setTimeout(function() {
         document.body.classList.add('loaded');
         
         // Entferne den Preloader nach der Animation
         setTimeout(function() {
             document.getElementById('preloader').style.display = 'none';
+            document.body.style = "overflow-y: auto;"
         }, 2000); // 1 Sekunde Verzögerung, um die CSS-Animation zu beenden
     },);
 });
@@ -92,14 +94,14 @@ document.getElementById('guestLoginButton').addEventListener('click', function(e
 //     checkOverlap();
 // });
 
-// document.addEventListener('scroll', function() {
-//     var scrollY = document.documentElement.scrollTop || document.body.scrollTop;
-//     console.log('Scroll event triggered, scrollY:', scrollY);
+document.addEventListener('scroll', function() {
+    var scrollY = document.documentElement.scrollTop || document.body.scrollTop;
+    console.log('Scroll event triggered, scrollY:', scrollY);
     
-//     var container = document.getElementById("logoId");
-//     if (scrollY === 0) {
-//         container.style.opacity = "1";
-//     } else {
-//         container.style.opacity = "0";
-//     }
-// });
+    var container = document.getElementById("logoId");
+    if (scrollY === 0) {
+        container.style.opacity = "1";
+    } else {
+        container.style.opacity = "0";
+    }
+});
