@@ -5,6 +5,10 @@ body {
     font-family: 'Inter';
 }
 
+input:-webkit-autofill { 
+    -webkit-background-clip: text;
+}
+
 .logo-sign-up {
     margin: 80px 0px 0px 77px;
 }

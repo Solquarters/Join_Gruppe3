@@ -18,10 +18,18 @@ input:-webkit-autofill {
     display: flex;
     align-items: center;
     justify-content: center;
-    position: absolute;
+    /* position: absolute;
     top: 67px;
     right: 122px;
-    gap: 35px;
+    gap: 35px; */
+}
+
+#desktopSignUpDivId{
+    position: absolute; top: 5%; right: 5%;
+    gap: 32px;
+}
+#mobileSignupDivId{
+    display:none;
 }
 
 .sign-up-button {
@@ -43,6 +51,7 @@ input:-webkit-autofill {
 }
 
 .logIn-container {
+  
     background-color: white;
     display: flex;
     justify-content: center;
@@ -114,7 +123,6 @@ input:-webkit-autofill {
 }
 
 .container-remember-me {
-    cursor: pointer;
     display: flex;
     align-items: center;
     gap: 8px;
@@ -122,6 +130,7 @@ input:-webkit-autofill {
     margin-left: 80px;
     margin-bottom: 10px;
 }
+.container-remember-me input{cursor: pointer;}
 
 .accept-field {
     width: 24px;
@@ -176,8 +185,8 @@ input:-webkit-autofill {
 
 .link-legal-and-privacy-size {
     display: flex;
-    gap: 40px;
-    margin-top: 110px;
+    /* gap: 40px; */
+    /* margin-top: 110px; */
     color: #A8A8A8;
 }
 
@@ -313,10 +322,16 @@ body, html {
         display: flex;
         align-items: center;
         justify-content: center;
-        position: relative;
+        /* position: relative;
         right: 0;
         top: 690px;
-        gap: 35px;
+        gap: 35px; */
+    }
+    #desktopSignUpDivId{
+        display:none;
+    }
+    #mobileSignupDivId{
+        display:flex;
     }
 
     .submit-container-log-in {
@@ -326,8 +341,8 @@ body, html {
 
     .link-legal-and-privacy-size {
         display: flex;
-        gap: 20px;
-        margin-top: 180px;
+        /* gap: 20px;
+        margin-top: 180px; */
     }
     .logo-logIn {
         margin: 20px 0px 0px 57px;
@@ -375,14 +390,14 @@ body, html {
 
     .link-legal-and-privacy-size {
         display: flex;
-        gap: 20px;
-        margin-top: 180px;
+        /* gap: 20px;
+        margin-top: 180px; */
     }
 
-    .container-sign-up-button {
+    /* .container-sign-up-button {
         top: 690px;
         display: flex;
-    }
+    } */
 
     .logo-in-button {
         width: 177px;
@@ -428,13 +443,13 @@ body, html {
 
     .link-legal-and-privacy-size {
         display: flex;
-        margin-top: 120px;
+        /* margin-top: 120px; */
     }
 
-    .container-sign-up-button {
+    /* .container-sign-up-button {
         top: 590px;
         
-    }
+    } */
 
     .logo-in-button {
         width: 147px;
@@ -520,8 +535,8 @@ height: 120px;
 @media (max-width: 375px) {
     .link-legal-and-privacy-size {
         display: flex;
-        margin-top: 120px;
-        margin-bottom: 20px;
+        /* margin-top: 120px;
+        margin-bottom: 20px; */
     }
 }
 
