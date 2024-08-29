@@ -45,3 +45,61 @@ document.getElementById('guestLoginButton').addEventListener('click', function(e
     event.preventDefault(); // Prevent form submission
     window.location.href = './02summary.html'; // Redirect to guest login page
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ///Logo Overlap 
+// function isOverlapping(container, otherElement) {
+//     const containerRect = container.getBoundingClientRect();
+//     const otherRect = otherElement.getBoundingClientRect();
+
+//     return !(
+//         containerRect.right < otherRect.left ||
+//         containerRect.left > otherRect.right ||
+//         containerRect.bottom < otherRect.top ||
+//         containerRect.top > otherRect.bottom
+//     );
+// }
+
+// function checkOverlap() {
+//     const container = document.getElementById('overlapMainContId');
+//     const otherElement = document.getElementById('logoId');
+
+//     if (isOverlapping(container, otherElement)) {
+//         otherElement.style.opacity = '0'; // Fade out
+//     } else {
+//         otherElement.style.opacity = '1'; // Fade in
+//     }
+// }
+
+// // Attach event listeners for scroll and resize
+// window.addEventListener('scroll', checkOverlap);
+// window.addEventListener('resize', checkOverlap);
+
+// // Initial check in case elements are already overlapping on page load
+// document.addEventListener('DOMContentLoaded', () => {
+//     checkOverlap();
+// });
+
+// document.addEventListener('scroll', function() {
+//     var scrollY = document.documentElement.scrollTop || document.body.scrollTop;
+//     console.log('Scroll event triggered, scrollY:', scrollY);
+    
+//     var container = document.getElementById("logoId");
+//     if (scrollY === 0) {
+//         container.style.opacity = "1";
+//     } else {
+//         container.style.opacity = "0";
+//     }
+// });

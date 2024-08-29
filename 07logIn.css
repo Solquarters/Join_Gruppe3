@@ -34,7 +34,7 @@ input:-webkit-autofill {
 }
 #mobileSignupDivId{
     display:none;
-    margin: 16px 0px;
+    margin: 32px 0px 16px 0px;
 }
 
 .sign-up-button {
@@ -76,7 +76,7 @@ input:-webkit-autofill {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding: 100px 0px 0px 0px;
+    margin: 100px 0px 0px 0px;
 }
 
 .header-log-in-container {
@@ -194,7 +194,8 @@ input:-webkit-autofill {
     /* gap: 40px; */
     /* margin-top: 110px; */
     color: #A8A8A8;
-    margin: 16px 0px 32px 0px;
+    margin: 32px 0px 32px 0px;
+    gap:32px;
 }
 
 
@@ -374,7 +375,7 @@ body, html {
             transform: translate(-3.5%, -5%) scale(0.6);
         }
     }
-    body{overflow-y: scroll;}
+    body{overflow-y: auto;}
 
     
 
@@ -506,6 +507,8 @@ body, html {
 
     .logo-logIn {
         margin: 0px 0px 0px 0px;
+        height: 50px;
+        width: 50px;
     }
 
 
