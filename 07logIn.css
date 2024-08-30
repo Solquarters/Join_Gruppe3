@@ -34,6 +34,7 @@ input:-webkit-autofill {
 }
 
 .sign-up-button {
+    transition: all 200ms ease-in-out;
     width: 91px;
     height: 49px;
     border-radius: 8px;
@@ -151,6 +152,7 @@ input:-webkit-autofill {
 }
 
 .logo-in-button {
+    transition: all 200ms ease-in-out;
     cursor: pointer;
     background-color: #2A3647;
     color: white;
@@ -169,6 +171,7 @@ input:-webkit-autofill {
 }
 
 .logo-in-button-guest {
+    transition: all 200ms ease-in-out;
     cursor: pointer;
     background-color: #ffffff;
     width: 177px;
@@ -350,7 +353,7 @@ body, html {
     height: 100%;
     aspect-ratio: 1;
     border-radius: 50%;
-    background: #29ABE2; /* Change this to the desired color */
+    background: #29ABE2; 
     clip-path: inset(0 0 49%);
     transform-origin: -100% 50%;
     animation: l27 .5s infinite alternate ease-in-out;
@@ -361,9 +364,9 @@ body, html {
 }
 @keyframes l27 {
     0%,40% {transform:scaleY(var(--s,1)) rotate(0)}
-    100%   {transform:scaleY(var(--s,1)) rotate(calc(var(--s,1)*-25deg))}
+    100%   {transform:scaleY(var(--s,1)) rotate(calc(var(--s,1)*-20deg))}
 }
-
+/* ///////////////////////////// */
 
 
 /*--------------------------------------------------------------------*/
