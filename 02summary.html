@@ -14,6 +14,18 @@
 </head>
 
 <body onload="includeHTML();initSummarySite()">
+
+    <script>
+        //Preventing Site Access without login
+        let userLoginJsonTest = JSON.parse(localStorage.getItem('userLoginJson'));
+        if (userLoginJsonTest.findIndex(u => u.loggedIn==true) == -1) {
+            // If not authenticated, redirect to login page
+            window.location.href = '07logIn.html';
+        }
+        </script>
+
+
+
     <!-- ///Header und Sidebar Div bei jeder HTML Datei hinzufügen, dazu auch im body: onload="includeHTML()" /// -->
     <div w3-include-html="./assets/templates/headerSidebar.html"></div> 
 

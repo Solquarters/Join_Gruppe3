@@ -367,6 +367,7 @@ display: none;
 
 
 .addEmptyTaskChildOverlayClass{
+  max-width: 1400px;
   margin: 48px 0px 64px 0px;
   width:90%;
   

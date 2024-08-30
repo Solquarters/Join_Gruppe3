@@ -50,28 +50,7 @@ function renderAllCardToBoard(){
        }
 
        returnAssignedContactCircle(i);
-    //    returnPrioSvgHTML(i);
-
-    // switch(toDoCardsJSON[i]["toDoStatus"]) {
-    //     case "To do":
-    //         document.getElementById('toDoStatusDivId').innerHTML += returnSingleCardHTML(i);
-    //       break;
-
-    //     case "In progress":
-    //         document.getElementById('inProgressStatusDivId').innerHTML += returnSingleCardHTML(i);
-    //       break;
-
-    //       case "Await feedback":
-    //         document.getElementById('awaitFeedbackStatusDivId').innerHTML += returnSingleCardHTML(i);
-    //       break;
-
-    //       case "Done":
-    //         document.getElementById('doneStatusDivId').innerHTML += returnSingleCardHTML(i);
-    //       break;
-
-    //     default:
-    //       // code block
-    //   }
+  
     }
 
 
@@ -254,8 +233,15 @@ function returnPrioSvgHTML(i) {
 
 ///////////// ROMAN EDIT 
 function openEmptyAddTaskOverlay(){
+
+
+    
+
     inBoardAddTask = true;
     document.getElementById('addEmptyTaskMainOverlayId').style.display="flex";
+
+
+    
         //ZUGRIFF AUF GLOBAL SCRIPT
         renderAddTaskHTMLForBoardOverlay();
         emptyTempJson();
@@ -468,6 +454,7 @@ function fitAddTaskCssAttributesToBoardTemplate(){
     const element = document.querySelector('.' + 'addTaskMainTemplateDivClass');
     if (element){
      element.style.height = 'auto';
+     element.style.width = 'unset';
         } 
     else{
      console.warn(`No element found with class ${className}`);
@@ -635,3 +622,6 @@ return /*html*/`
            </div>
 `;
 }
+
+
+

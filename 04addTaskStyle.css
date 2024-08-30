@@ -1,5 +1,9 @@
+html{
+  height: 100%;
+}
 body {
   background-color: #f6f7f8;
+  height: 100%;
   /* padding: 96px 0px 0px 232px; */
 }
 
@@ -8,6 +12,7 @@ body {
 }
 
 .addTaskMainTemplateDivClass {
+  
   z-index: 1;
   padding: 16px 48px 16px 48px;
   display: flex;
@@ -380,6 +385,26 @@ input[type="date"]:-webkit-calendar-picker-indicator:hover {
 /* ////MEDIA QUERIES //// */
 /* ////MEDIA QUERIES //// */
 /* ////MEDIA QUERIES //// */
+
+@media screen and (min-width: 1400px) {
+  .addTaskMainSiteDivClass {
+    padding: 96px 0px 0px 232px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .addTaskMainTemplateDivClass {
+    max-width: 1400px;
+    width: 100%;
+ 
+  }
+
+}
+
+
+
+
+
 
 @media screen and (max-width: 1020px) {
   .clearCreateTaskButtonDivChildClass {

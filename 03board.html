@@ -20,7 +20,16 @@
 
 
 </head>
-<body onload="includeHTML(), initializeBoard()"></body>
+<body onload="includeHTML(), initializeBoard()">
+   
+   <script>
+      //Preventing Site Access without login
+      let userLoginJsonTest = JSON.parse(localStorage.getItem('userLoginJson'));
+      if (userLoginJsonTest.findIndex(u => u.loggedIn==true) == -1) {
+          // If not authenticated, redirect to login page
+          window.location.href = '07logIn.html';
+      }
+      </script>
 
 <!-- HIER ROMANS EDIT START  -->
 <div class="addEmptyTaskMainOverlayClass" id="addEmptyTaskMainOverlayId" onclick="handleOverlayClick(event)">
