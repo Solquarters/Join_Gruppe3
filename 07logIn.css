@@ -22,10 +22,6 @@ input:-webkit-autofill {
     align-items: center;
     justify-content: center;
     gap: 32px;
-    /* position: absolute;
-    top: 67px;
-    right: 122px;
-    gap: 35px; */
 }
 
 #desktopSignUpDivId{
@@ -191,8 +187,6 @@ input:-webkit-autofill {
 
 .link-legal-and-privacy-size {
     display: flex;
-    /* gap: 40px; */
-    /* margin-top: 110px; */
     color: #A8A8A8;
     margin: 32px 0px 32px 0px;
     gap:32px;
@@ -316,6 +310,24 @@ body, html {
         fill: #2A3647;
     }
 }
+
+
+
+
+/* ////////////////NEU */
+#loginMsgBox{
+    display: none;
+    margin: 16px 0px;
+    font-weight: 700;
+    padding: 8px;
+    border: 1px solid #2A3647;
+    border-radius: 8px;
+    color: #2A3647;
+}
+
+
+
+
 
 /*--------------------------------------------------------------------*/
 

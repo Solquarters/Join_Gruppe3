@@ -19,6 +19,7 @@ function login() {
     let rememberCheckbox = document.getElementById('rememberCheckbox').checked;
 
     if (!rememberCheckbox) {
+        document.getElementById('loginMsgBox').style.display = 'flex';
         document.getElementById('loginMsgBox').innerHTML = "You must accept the remember me option";
         return false;
     }
@@ -26,10 +27,12 @@ function login() {
     let user = userLoginJson.find(u => u.email == email && u.password == password);
     
     if (user) {
+        document.getElementById('loginMsgBox').style.display = 'flex';
         document.getElementById('loginMsgBox').innerHTML = "Login successful";
         window.location.href = '02summary.html'; // Weiterleitung nach erfolgreichem Login
         return true;
     } else {
+        document.getElementById('loginMsgBox').style.display = 'flex';
         document.getElementById('loginMsgBox').innerHTML = "Invalid email or password";
         return false;
     }
@@ -38,6 +41,7 @@ function login() {
 const urlParams = new URLSearchParams(window.location.search);
 const msg = urlParams.get('msg');
 if (msg) {
+    document.getElementById('loginMsgBox').style.display = 'flex';
     document.getElementById('loginMsgBox').innerHTML = msg;
 }
 
