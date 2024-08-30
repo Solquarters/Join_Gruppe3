@@ -446,7 +446,7 @@ margin: 96px 0px 0px 328px;
 
 @media (max-width: 620px) {
     .container-all {
-        margin: 96px 0px 0px 0px;
+        margin: 96px 0px 32px 0px;
         display: flex;
         flex-direction: column;
         justify-content: center;

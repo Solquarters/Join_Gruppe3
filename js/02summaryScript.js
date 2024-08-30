@@ -75,3 +75,11 @@ function displayNextToDo(){
 
 
 
+document.addEventListener("DOMContentLoaded", function() {
+
+    let currentUserIndex = userLoginJson.findIndex(u => u.loggedIn == true);
+    document.getElementById('userNameGreetingId').innerHTML = userLoginJson[currentUserIndex].accountName;
+
+});
+
+

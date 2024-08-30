@@ -20,6 +20,17 @@
 </head>
 
 <body onload="includeHTML(); initContactSite()">
+    <!-- //Preventing Site Access without login -->
+    <script>
+        let userLoginJsonTest = JSON.parse(localStorage.getItem('userLoginJson'));
+        if (userLoginJsonTest.findIndex(u => u.loggedIn==true) == -1) {
+            // If not authenticated, redirect to login page
+            window.location.href = '07logIn.html';
+        }
+        </script>
+
+
+
     <div w3-include-html="./assets/templates/headerSidebar.html"></div>
     <section class="contactsSection">
         <div id="addContactsMain" class="addContactsMain">

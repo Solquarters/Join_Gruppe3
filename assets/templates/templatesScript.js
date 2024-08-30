@@ -20,7 +20,7 @@ function includeHTML() {
                     if (mutation.type === "childList") {
                         var userCircle = document.getElementById("currentUserCircleId");
                         if (userCircle) {
-                            userCircle.innerHTML = "G"; // Change to the desired content
+                             // Change to the desired content
                             let userIndex = userLoginJson.findIndex(u => u.loggedIn === true);
                             if (userIndex > 0 ) {
                                 let userNameInitial1 = userLoginJson[userIndex].accountName?.charAt(0).toUpperCase() ?? '';
@@ -31,6 +31,9 @@ function includeHTML() {
                                   userNameInitial2 = nameParts[1].charAt(0).toUpperCase();
                               } 
                                 userCircle.innerHTML = userNameInitial1 + userNameInitial2;
+                            }
+                            else{
+                              userCircle.innerHTML = "G";
                             }
                             observer.disconnect(); // Stop observing after the change
                         }
