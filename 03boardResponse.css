@@ -1,15 +1,5 @@
 @media (max-width: 1750px) {
-  /* .containerDivCards1 {
-      display: flex;
-      flex-direction: column;
-    
-    } */
-    /* #boardImg {
-      margin: 0;
-    } */
 
- 
-    
     .containerDivCards2 {
       display: flex;
       
@@ -29,26 +19,12 @@
 
 
 @media (max-width: 1410px) {
-    /* .containerDivCards1 {
-        display: flex;
-        flex-direction: column;
-    } */
-       
-      /* #boardImg {
-        margin: 0;
-      } */
-
-      
-      
-      /* .containerDivCards2 {
-        display: flex;
-        flex-direction: column;
-      } */
+   
       .headDiv {
         display: flex;
         justify-content: center;
         flex-direction: column;
-        /* margin-left: 96px; */
+       
     }
     .mediaQuerryBoardAdd {
         display: flex;
@@ -71,26 +47,16 @@
 
 @media (max-width: 830px)  {
 
-
- /* .mainDivContainer {
-  margin-left: 48px
- }  */
   .mainDiv {
-    /* margin-left: 160px; */
-    /* width: 80%; */
+ 
     margin-bottom: 120px;
 }
-/* .cardsDiv {
-  display: flex;
-  flex-direction: column;
-  margin: 0;
-  
-} */
+
 .headDiv {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  /* margin: 0; */
+
   
 }
 
@@ -102,16 +68,12 @@
 .addTaskButtonClass {
   display: none;
 }
-/* .containerDivCards1 {
-  display: flex;
-  flex-direction: column;
 
-} */
 .mediaQuerryBoardAdd {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* width: 354px; */
+
 }
 
 .containerInputField{
@@ -126,14 +88,7 @@
 .mediaQuerryBoardAdd:hover svg {
   cursor: pointer;
 }
-/* .addLine {
-  width: 354px;
-} */
-/* .drag-area {
-  width: 324px;
-  display: flex;
-  overflow-x:auto;
-} */
+
 }
 
 
@@ -177,8 +132,6 @@
     width: 90%;
   }
   .drag-area {
-    /* width: 420px; */
-    
    width: unset;
   }
 }
@@ -227,11 +180,9 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        /* width: 354px; */
+       
       }
-      /* #boardImg {
-        margin: 0;
-      } */
+    
       .mediaQuerryBoardAdd svg{
         display: block;
       }
@@ -239,12 +190,7 @@
       .mediaQuerryBoardAdd:hover svg {
         cursor: pointer;
       }
-      .addLine {
-        /* width: 354px; */
-        /* width: 90%; */
-      }
-      
-        
+     
     
       .mainSingleCardDivClass {
         
@@ -264,31 +210,21 @@
       border: none;
     }
 
-    .containerInputField {
-      /* width: 274px; */
-      /* height: 34px; */
-      /* padding: 0; */
-    }
+    
     .mediaQuerryBoardAdd {
       display: flex;
       align-items: center;
       justify-content: space-between;
       /* width: 270px; */
     }
-    .addLine {
-      /* width: 270px; */
-    }
-    .drag-area {
-      /* width: 275px; */
-      
-    }
+   
   }
     
     /* ////////////////LARGE CARD OVERLAY CSS RESPONSIVE /////////////////////////////// */
 
     @media (max-width: 550px) {
       .popupMainDiv {
-        /* height: fit-content; */
+   
         max-height: 92vh;
         width: 320px;
         background-color: white;
@@ -298,49 +234,21 @@
         flex-direction: column;
       }
 
+    
       .mainPopupDivClass {
-        /* width: 300px; */
-      }
-      .mainPopupDivClass {
-        /* width: 260px; */
+      
         margin:  28px 0px 8px 28px;
       }
 
       .headLineCloseButton, .BoardOverlayHeadLinDivClass, .subTasksDivClass, .deleteEditContactDivClass 
         {
-        /* width: 270px; */
+       
         font-size: 18px;
       }
      
       .BoardOverlayHeadLinDivClass {
         font-size: 42px;
       }
-      .deleteEditContactDivClass {
-        
-        /* margin: 0px 28px 16px 0px */
-      }
-       
+     
     }
 
-    @media (max-width: 380px) {
-      /* .popupMainDiv {
-        height: fit-content;
-        width: 312px;
-        background-color: white;
-        border-radius: 30px;
-        border: solid 1px #00000029;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      } */
-
-      /* .mainPopupDivClass {
-        width: 264px;
-      }
-
-      .headLineCloseButton, .BoardOverlayHeadLinDivClass, .subTasksDivClass, .deleteEditContactDivClass 
-        {
-        width: 264px;
-      } */
-      
-    }

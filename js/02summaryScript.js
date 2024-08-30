@@ -71,3 +71,7 @@ function displayNextToDo(){
     let formattedDate = earliestDate ? formatDate(earliestDate) : 'Keine Termine vorhanden';
     document.getElementById('due-date').textContent = formattedDate;
 }
+
+
+
+

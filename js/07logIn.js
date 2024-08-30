@@ -12,11 +12,17 @@ document.addEventListener("DOMContentLoaded", function() {
     }, 200);
 
     ////////IF LOCAL STORAGE NULL SET LOCAL STORAGE TO DEFAULT LOGINJSON
-       let userLoginJson = localStorage.getItem('userLoginJson');
+       let userLoginJson = JSON.parse(localStorage.getItem('userLoginJson'));
     if (!userLoginJson || userLoginJson === "[]" || userLoginJson === "{}") {
-        userLoginJson = [{ accountName: "Guest", email: "guest@guest.com", password: "guestpassword", loggedIn: false }];
+        userLoginJson = [{ accountName: "Guest", email: "account@guest.com", password: "guestpassword", loggedIn: false }];
         localStorage.setItem('userLoginJson', JSON.stringify(userLoginJson));
     }
+
+
+  
+    ///Display message "already logged in, if true"
+    loggedInUserIndex = findLoggedInUserIndex(userLoginJson);
+    returnAlreadyLoggedInHTML(loggedInUserIndex);
 
 });
 
@@ -94,3 +100,36 @@ function guestLogin(event){
 }
 
 
+function findLoggedInUserIndex(userLoginJson) {
+    // Loop through the array and find the first object with loggedIn set to true
+    for (let i = 0; i < userLoginJson.length; i++) {
+        if (userLoginJson[i].loggedIn === true) {
+            return i; // Return the index if found
+        }
+    }
+    return -1; // Return -1 if no loggedIn user is found
+}
+
+
+function logout(){
+    for (let i = 0; i < userLoginJson.length; i++) {
+        userLoginJson[i].loggedIn = false;
+    }
+    localStorage.setItem('userLoginJson', JSON.stringify(userLoginJson));
+    window.location.href = '07logIn.html';
+
+}
+
+
+function returnAlreadyLoggedInHTML(loggedInUserIndex){
+    if(loggedInUserIndex !== -1){
+        //logged in as 
+        document.getElementById('overlapMainContId').innerHTML = /*html*/`
+        <p style="font-size: 20px; margin: 16px 0px 0px 0px;">You are already logged in as:</p>
+        <p style="font-size: 20px; font-weight: 700;">${userLoginJson[loggedInUserIndex].accountName}</p>
+        <a href="02summary.html"><button class="logo-in-button">Go to startpage</button><br></a> 
+        <button onclick=logout() class="logo-in-button" style="background-color: red; margin: 0px 0px 16px 0px;">Logout</button>
+        `
+        
+    }
+}

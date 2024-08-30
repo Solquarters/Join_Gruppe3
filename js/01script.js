@@ -255,3 +255,8 @@ async function loadData(path=""){
 //Contacts: Bei Hinzufügen, soll contacts neu sortiert werden
 
 //BIG : object keys benutzen zum rendern und zugreifen auf Firebase daten !
+
+
+
+
+
