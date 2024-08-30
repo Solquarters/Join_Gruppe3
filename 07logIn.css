@@ -177,6 +177,7 @@ input:-webkit-autofill {
     font-size: 21px;
     font-weight: 700;
     border-radius: 8px;
+    margin: 0px 0px 8px 0px;
 }
 
 .logo-in-button-guest:hover {
@@ -212,9 +213,8 @@ body, html {
     padding: 0;
     width: 100%;
     height: 100%;
-    body{
-        overflow-y: auto;
-    }
+    overflow-y: auto;
+    
     background-color: #F6F7F8; /* Hintergrundfarbe */
 }
 
@@ -317,6 +317,7 @@ body, html {
 /* ////////////////NEU */
 #loginMsgBox{
     display: none;
+    align-items: center;
     margin: 16px 0px;
     font-weight: 700;
     padding: 8px;
@@ -326,6 +327,42 @@ body, html {
 }
 
 
+/* /////LOADING SPINNER */
+/* HTML: <div class="loader"></div> */
+.loader {
+    display: flex;
+    align-items: center;
+    height: 15px;
+    aspect-ratio: 4;
+    --_g: no-repeat radial-gradient(farthest-side,#000 94%,#0000); 
+    background:
+      var(--_g) left,
+      var(--_g) right;
+    background-size: 25% 100%;
+    display: grid;
+    margin: 0px 12px 0px 12px;
+}
+.loader:before,
+.loader:after {
+    content: "";
+    grid-area: 1/1;
+    margin: auto;
+    height: 100%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: #29ABE2; /* Change this to the desired color */
+    clip-path: inset(0 0 49%);
+    transform-origin: -100% 50%;
+    animation: l27 .5s infinite alternate ease-in-out;
+}
+.loader:after {
+    --s:-1;
+    transform-origin: 200% 50%;
+}
+@keyframes l27 {
+    0%,40% {transform:scaleY(var(--s,1)) rotate(0)}
+    100%   {transform:scaleY(var(--s,1)) rotate(calc(var(--s,1)*-25deg))}
+}
 
 
 
@@ -408,11 +445,12 @@ body, html {
 @media (max-width: 600px) {
     .logIn-container {
         width: 442px;
-        height: 555px;
+        height: auto;
         display: flex;
         margin-top: 0;
         justify-content: center;
         align-items: center;
+        padding: 16px 0px;
     }
 
     .submit-container-log-in {
@@ -461,7 +499,7 @@ body, html {
 @media (max-width: 500px) {
     .logIn-container {
         width: 90%;
-        height: 505px;
+        /* height: 505px; */
         display: flex;
         margin-top: 0px;
         justify-content: center;

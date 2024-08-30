@@ -62,9 +62,9 @@ function addUser() {
         return false;
     }
 
-    userLoginJson.push({ accountName: name, email: email, password: password });
+    userLoginJson.push({ accountName: name, email: email, password: password, loggedIn: false });
     saveUsers();
-    window.location.href = '07logIn.html?msg=Du hast dich erfolgreich registriert';
+    window.location.href = '07logIn.html?msg=Signed up successfully';
     return true;
 }
 
