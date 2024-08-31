@@ -19,8 +19,8 @@
 
 <body onload="addTaskSiteHTML(); initAddTaskSite(), includeHTML()">
 
+    <!-- //Preventing Site Access without login -->
     <script>
-        //Preventing Site Access without login
         let userLoginJsonTest = JSON.parse(localStorage.getItem('userLoginJson'));
         if (userLoginJsonTest.findIndex(u => u.loggedIn==true) == -1) {
             // If not authenticated, redirect to login page
@@ -28,7 +28,7 @@
         }
         </script>
 
-        
+
     <div w3-include-html="./assets/templates/headerSidebar.html"></div> 
 
     <div class="addTaskMainSiteDivClass" id="addTaskMotherDivId">

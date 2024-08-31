@@ -76,10 +76,66 @@ function displayNextToDo(){
 
 
 document.addEventListener("DOMContentLoaded", function() {
+ // Get the current time in German Standard Time (GMT+1 or GMT+2 depending on daylight saving time)
+ let currentDate = new Date();
+ let currentHour = currentDate.getUTCHours() + 1; // Add 1 hour to convert UTC to GMT+1
 
+ // Adjust for daylight saving time (DST) in Central European Time (CET)
+ let startDST = new Date(currentDate.getFullYear(), 2, 31).getUTCDay();
+ let endDST = new Date(currentDate.getFullYear(), 9, 31).getUTCDay();
+ if ((currentDate >= startDST && currentDate <= endDST) && currentDate.getTimezoneOffset() < 0) {
+     currentHour += 1; // Add another hour if DST is in effect
+ }
+
+ // Determine the appropriate greeting
+ let greeting;
+ if (currentHour >= 5 && currentHour < 12) {
+     greeting = "Good Morning,";
+ } else if (currentHour >= 12 && currentHour < 18) {
+     greeting = "Good Day,";
+ } else {
+    greeting = "Good Evening,";
+ }
+
+    document.getElementById('daytimeGreetingSpanId').innerHTML = greeting; 
+
+    ///Get current user name
     let currentUserIndex = userLoginJson.findIndex(u => u.loggedIn == true);
     document.getElementById('userNameGreetingId').innerHTML = userLoginJson[currentUserIndex].accountName;
+
+
+    ////Mobile:
+    document.getElementById('childGreetingOverlayId').innerHTML = /*html*/ `
+    <h1 class="welcome-headline">${greeting}</h1>
+    <span class="welcome-under-headline" style="text-align: center;">${userLoginJson[currentUserIndex].accountName}</span>
+    `; 
+
+
+
+let overlay = document.getElementById('mainGreetingOverlayId');
+ 
+    setTimeout(function() {
+        overlay.style.opacity = '0';
+  
+        setTimeout(function() {
+            overlay.style.display = 'none';
+        
+        }, 1500); 
+    }, 1000);
 
 });
 
 
+// window.onload = function() {
+//     // Get the overlay and content elements
+//     let overlay = document.getElementById('mainGreetingOverlayId');
+ 
+//     setTimeout(function() {
+//         overlay.style.opacity = '0';
+  
+//         setTimeout(function() {
+//             overlay.style.display = 'none';
+        
+//         }, 3000); 
+//     }, 3000);
+// }

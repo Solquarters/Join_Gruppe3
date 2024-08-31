@@ -29,6 +29,11 @@
     <!-- ///Header und Sidebar Div bei jeder HTML Datei hinzufügen, dazu auch im body: onload="includeHTML()" /// -->
     <div w3-include-html="./assets/templates/headerSidebar.html"></div> 
 
+
+    <div id="mainGreetingOverlayId">
+        <div id="childGreetingOverlayId"></div>
+    </div>
+
     <div class="container-all">
         <section class="container-headline">
             <h1 class="headline-join">Join 360</h1>
@@ -93,7 +98,7 @@
                 </div>
             </div>
             <div class="welcome-container">
-                <span class="welcome-headline">Good morning,</span>
+                <span class="welcome-headline" id="daytimeGreetingSpanId"></span>
                 <span class="welcome-under-headline" id="userNameGreetingId"></span>
             </div>
         </section>
