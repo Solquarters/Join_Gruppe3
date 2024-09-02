@@ -35,6 +35,7 @@ function includeHTML() {
                             else{
                               userCircle.innerHTML = "G";
                             }
+                          
                             observer.disconnect(); // Stop observing after the change
                         }
                     }
@@ -58,11 +59,19 @@ function includeHTML() {
     }
   }
   
+  function openAccountMenu() {
+    var menu = document.getElementById('accountMenuDivId');
+    if (menu.style.display === 'none' || menu.style.display === '') {
+        menu.style.display = 'flex'; // Show the element before triggering the transition
+        setTimeout(function() {
+            menu.classList.add('open');
+        }, 10); // Small timeout to ensure the display:block takes effect
+    } else {
+        menu.classList.remove('open');
+        setTimeout(function() {
+            menu.style.display = 'none';
+        }, 500); // Match the duration of the CSS transition to hide after it slides out
+    }
+}
 
 
-
-
-
-  function openAccountMenu(){
-
-  }

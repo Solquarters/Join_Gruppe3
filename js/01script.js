@@ -260,3 +260,11 @@ async function loadData(path=""){
 
 
 
+function logout(){
+    for (let i = 0; i < userLoginJson.length; i++) {
+        userLoginJson[i].loggedIn = false;
+    }
+    localStorage.setItem('userLoginJson', JSON.stringify(userLoginJson));
+    window.location.href = '07logIn.html';
+
+}
