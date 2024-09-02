@@ -593,3 +593,13 @@ flex-direction: column;
         height: 82px;
     }
 }
+
+
+
+@media (max-width: 350px) {
+    .welcome-headline {
+       text-align: center;
+    }
+
+}
+
