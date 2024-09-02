@@ -1,0 +1,40 @@
+body {
+    margin: 0;
+    font-family: "inter";
+  }
+  
+  .legalNoticeMotherDiv {
+    display: flex;
+    flex-direction: column;
+    padding: 100px 32px 0px 264px;
+  }
+  
+
+  
+  
+  
+  
+    @media (max-width: 1020px) {
+      .legalNoticeMotherDiv {
+          padding: 100px 32px 0px 192px;
+        }
+  
+  
+    }
+  
+  
+    @media (max-width: 620px) {
+      .legalNoticeMotherDiv {
+          padding: 64px 32px 64px 32px;
+        }
+  
+  
+    }
+  
+    @media (max-width: 380px) {
+      .legalNoticeMotherDiv {
+          padding: 64px 16px 64px 16px;
+        }
+  
+  
+    }

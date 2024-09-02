@@ -51,7 +51,8 @@ header{
 }
 .userProfileDivClass:hover{
     cursor: pointer;
-    border: 3px solid #498ae4;
+  
+    background-color: #dedede;
 }
 #accountMenuDivId{
     position: absolute;
@@ -70,7 +71,7 @@ header{
     display: flex;
 }
 
-#accountMenuDivId span{
+#accountMenuDivId a{
     cursor: pointer;
     background-color: #2A3647;
     color: white;
@@ -79,14 +80,15 @@ header{
     font-weight: 400;
     width: 100%;
     height: 100%;
+    text-decoration: none;
 }
-#accountMenuDivId span:hover{
+#accountMenuDivId a:hover{
     background-color: #596980;
 }
-#accountMenuDivId span:nth-child(1){
+#accountMenuDivId a:nth-child(1){
     border-radius: 16px 0px 0px 0px;
 }
-#accountMenuDivId span:nth-child(4){
+#accountMenuDivId a:nth-child(4){
     border-radius: 0px  0px 16px  16px ;
     background-color: #dd0000;
 }
@@ -146,19 +148,22 @@ height: 120px;
 }
 
 .legalNoticeSidebarDivClass{
+    
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    color: gray;
+    
     padding:  0px 0px 64px 0px;
 }
-.legalNoticeSidebarDivClass span{
+.legalNoticeSidebarDivClass a{
     padding: 6px 0px;
     cursor: pointer;
+    text-decoration: none;
+    color: gray;
 }
 
-.legalNoticeSidebarDivClass span:hover{
+.legalNoticeSidebarDivClass a:hover{
     color: #29ABE2;
     
 }

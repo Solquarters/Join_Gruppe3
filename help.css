@@ -1,0 +1,68 @@
+body {
+  margin: 0;
+  font-family: "inter";
+}
+
+.helpMotherDiv {
+  display: flex;
+  flex-direction: column;
+  padding: 100px 32px 0px 264px;
+}
+
+.step-guide {
+  margin: 20px;
+}
+.step-guide h2 {
+  margin-bottom: 20px;
+}
+.step-guide ol {
+  list-style: none;
+  padding-left: 0;
+}
+.step-guide ol li {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e0e0e0;
+}
+.step-guide ol li:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+.step-number {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+.contact-info {
+  margin-top: 20px;
+  font-style: italic;
+}
+
+
+
+
+
+
+  @media (max-width: 1020px) {
+    .helpMotherDiv {
+        padding: 100px 32px 0px 192px;
+      }
+
+
+  }
+
+
+  @media (max-width: 620px) {
+    .helpMotherDiv {
+        padding: 64px 32px 64px 32px;
+      }
+
+
+  }
+
+  @media (max-width: 380px) {
+    .helpMotherDiv {
+        padding: 64px 16px 64px 16px;
+      }
+
+
+  }
