@@ -67,7 +67,7 @@ header{
     transition: right 0.2s ease-in-out;
 }
 #accountMenuDivId.open {
-    right: 64px;
+    right: 62px;
     display: flex;
 }
 
@@ -274,8 +274,11 @@ header{
 
 #accountMenuDivId{
   
-    top: 69px;}
-
+    top: 69px;
+}
+#accountMenuDivId.open {
+    right: 58px;
+}
 
 }
 
