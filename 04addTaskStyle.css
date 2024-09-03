@@ -393,7 +393,7 @@ input[type="date"]:-webkit-calendar-picker-indicator:hover {
   
   .addTaskMainTemplateDivClass {
     max-width: 1400px;
-    width: 100%;
+    width: 94%;
  
   }
 
@@ -482,7 +482,29 @@ input[type="date"]:-webkit-calendar-picker-indicator:hover {
   .addTaskMainTemplateDivClass {
     padding: 10px 10px 32px 10px;
   }
+
+
+  .prioButtonDivClass {
+    justify-content: center;
+    gap: 8px;
+  }
 }
+
+
+@media screen and (max-width: 400px) {
+  .leftSideChildDivClass{
+    width: 100%;
+  }
+  .rightSideChildDivClass{
+    width: 100%;
+  }
+  .clearCreateTaskButtonDivClass{
+    width: 100%;
+  }
+}
+
+
+
 
 @media screen and (max-width: 372px) {
   .priorityButtonClass {
@@ -490,8 +512,8 @@ input[type="date"]:-webkit-calendar-picker-indicator:hover {
     font-size: 14px;
   }
   .prioButtonDivClass {
-    justify-content: space-between;
-    gap: 0;
+    
+    gap: 4px;
   }
 
   .dropbtn {

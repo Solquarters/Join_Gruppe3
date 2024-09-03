@@ -367,7 +367,7 @@ display: none;
 
 
 .addEmptyTaskChildOverlayClass{
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 48px 0px 64px 0px;
   width:90%;
   
@@ -390,14 +390,14 @@ display: none;
 
 
 
-@media screen and (max-width: 420px) {
+@media screen and (max-width: 450px) {
 
   .addEmptyTaskChildOverlayClass{
    
-    width:98%;
+    width:100%;
   }
 
-
+  .addEmptyTaskChildOverlayClass .addTaskMainTemplateDivClass .rightSideChildDivClass .prioButtonDivClass{ gap: 2px;}
 
 }
 
