@@ -11,7 +11,8 @@ body {
 }
 
 .addTaskMainTemplateDivClass {
-  
+  /* ///////////////////////////////////////////////////////////////// NEU 3.09. */
+  position:relative;
   z-index: 1;
   padding: 16px 48px 16px 48px;
   display: flex;
@@ -379,6 +380,71 @@ input[type="date"]:-webkit-calendar-picker-indicator:hover {
 }
 
 
+
+
+
+.successMessageMainDiv{
+  position: absolute;
+  z-index: 9;
+  
+  width: auto;
+  height: auto;
+  padding: 32px;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 16px;
+  background-color: #F6F7F8;
+  border: 2px solid black;
+  border-radius: 16px;
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.successMessageMainDiv p{
+  font-size: 18px;
+  font-weight: 700;
+}
+/* /////LOADING SPINNER */
+/* HTML: <div class="loader"></div> */
+.loader {
+  display: flex;
+  align-items: center;
+  height: 15px;
+  aspect-ratio: 4;
+  --_g: no-repeat radial-gradient(farthest-side,#000 94%,#0000); 
+  background:
+    var(--_g) left,
+    var(--_g) right;
+  background-size: 25% 100%;
+  display: grid;
+  margin: 0px 12px 0px 12px;
+}
+.loader:before,
+.loader:after {
+  content: "";
+  grid-area: 1/1;
+  margin: auto;
+  height: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #29ABE2; 
+  clip-path: inset(0 0 49%);
+  transform-origin: -100% 50%;
+  animation: l27 .5s infinite alternate ease-in-out;
+}
+.loader:after {
+  --s:-1;
+  transform-origin: 200% 50%;
+}
+@keyframes l27 {
+  0%,40% {transform:scaleY(var(--s,1)) rotate(0)}
+  100%   {transform:scaleY(var(--s,1)) rotate(calc(var(--s,1)*-20deg))}
+}
+/* ///////////////////////////// */
 
 /* ////MEDIA QUERIES //// */
 /* ////MEDIA QUERIES //// */

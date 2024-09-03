@@ -21,8 +21,19 @@ document.getElementById('addTaskMotherDivId').innerHTML = returnAddTaskSiteHTML(
 function returnAddTaskSiteHTML(){
    return /*html*/ `
    <div class="addTaskMainTemplateDivClass">
+
+   <div class="successMessageMainDiv">
+            <p>Added new card to the board!</p>
+           
+            <p>Redirecting to board...</p>
+            
+            <div class="loader" style="margin: 18px 0px"></div>
+    </div>
+
        <h1>Add Task</h1>
        <div class="addTaskDetailsParentDivClass">
+
+        
 
            <div class="leftSideChildDivClass">
                <span>Title<span style="color: red;">*</span></span>
@@ -158,6 +169,8 @@ function returnAddTaskSiteHTML(){
        </div>
 
    </div>
+</div>
+
 
 `;
 }
