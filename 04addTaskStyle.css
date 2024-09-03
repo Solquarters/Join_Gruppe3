@@ -384,11 +384,12 @@ input[type="date"]:-webkit-calendar-picker-indicator:hover {
 
 
 .successMessageMainDiv{
-  position: absolute;
+  position: fixed;
   z-index: 9;
   
   width: auto;
   height: auto;
+  min-width: 240px;
   padding: 32px;
   
   display: flex;
