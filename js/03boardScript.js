@@ -238,9 +238,10 @@ function openEmptyAddTaskOverlay(){
     
 
     inBoardAddTask = true;
-    document.getElementById('addEmptyTaskMainOverlayId').style.display="flex";
 
 
+  
+    slideInAddTaskOverlay();
     
         //ZUGRIFF AUF GLOBAL SCRIPT
         renderAddTaskHTMLForBoardOverlay();
@@ -252,21 +253,57 @@ function openEmptyAddTaskOverlay(){
         renderProfileCirclesFromTempArray();
         renderSubtaskFromTempArray();
         
-        disableScrolling();
+        // disableScrolling();
         fitAddTaskCssAttributesToBoardTemplate();
     }
     
+    function slideInAddTaskOverlay(){
+        const parentOverlay = document.getElementById('addEmptyTaskMainOverlayId');
+        const childOverlay = document.getElementById('addEmptyTaskChildOverlayId');
+    
+        // Show the parent overlay first
+        parentOverlay.style.display = "flex"; // Set display to flex immediately
+        setTimeout(() => {
+            parentOverlay.style.opacity = "1"; // Fade in the parent
+        }, 0); // Short delay to ensure it is applied after display is set
+    
+        // Slide in the child overlay
+        setTimeout(() => {
+            childOverlay.classList.add('active'); // Add active class to start the slide
+        }, 50); // Small delay to ensure display change takes effect
+    }
+
+    function slideOutAddTaskOverlay(){
+        const parentOverlay = document.getElementById('addEmptyTaskMainOverlayId');
+        const childOverlay = document.getElementById('addEmptyTaskChildOverlayId');
+    
+        // Remove the active class to slide the child out
+        childOverlay.classList.remove('active');
+        
+        // Wait for the slide-out animation to finish (500ms matches the CSS transition)
+        setTimeout(() => {
+            parentOverlay.style.opacity = "0"; // Fade out the parent
+        }, 500); // Delay matches the child overlay's transition duration
+    
+        // After the fade-out completes, hide the parent
+        setTimeout(() => {
+            parentOverlay.style.display = "none"; // Set display to none after opacity transition
+        }, 700); // This delay accounts for both the slide-out and fade-out transitions
+    }
+
     
     function closeAddTaskOverlay(){
-        document.getElementById('addEmptyTaskChildOverlayId').innerHTML = '';
-        document.getElementById('addEmptyTaskMainOverlayId').style.display="none";
-        enableScrolling();
+        slideOutAddTaskOverlay();
+        setTimeout(() => {
+            document.getElementById('addEmptyTaskChildOverlayId').innerHTML = '';
+        }, 500); 
     }
 
     function handleOverlayClick(event) {
         // Check if the click happened outside the child element
         if (event.target.id === 'addEmptyTaskMainOverlayId') {
             closeAddTaskOverlay();
+            
         }
     }
 

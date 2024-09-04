@@ -361,9 +361,7 @@ display: none;
   justify-content: center;
   align-items: center;
 }
-#addEmptyTaskMainOverlayId{
-  display:none;
-}
+
 
 
 .addEmptyTaskChildOverlayClass{
@@ -375,6 +373,53 @@ display: none;
   border-radius: 20px;
   overflow-y: auto;
 }
+
+/* ////////////////SLIDE IN ADD TASK */
+/* Initial state: Div is hidden off-screen to the right */
+#addEmptyTaskChildOverlayId {
+  position: relative;
+  right: -100%; /* Hide off the screen */
+  transition: right 500ms ease-in-out; /* Animate the right property */
+}
+
+/* When the active class is added, slide the div into view */
+#addEmptyTaskChildOverlayId.active {
+  right: 0; /* Slide in from the right */
+}
+
+/* ///////////////////////////TRYING NEW */
+
+
+#addEmptyTaskMainOverlayId {
+  display: none;
+  opacity: 0;
+  transition: opacity 200ms ease-in-out;
+}
+
+/* Child overlay: Start off-screen */
+#addEmptyTaskChildOverlayId {
+  position: relative;
+  right: -100%; /* Hide off the screen */
+  transition: right 300ms ease-in-out, opacity 200ms ease-in-out;
+  opacity: 0; /* Ensure opacity is also 0 initially */
+}
+
+/* When the active class is added, slide into view */
+#addEmptyTaskChildOverlayId.active {
+  right: 0; /* Slide in from the right */
+  opacity: 1; /* Fade in */
+}
+
+
+
+
+
+
+
+
+
+
+
 
 /* /////////////////MEDIA QUERY */
 @media screen and (max-width: 905px) {

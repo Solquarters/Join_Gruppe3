@@ -13,6 +13,7 @@ function includeHTML() {
 
                       // Directly trigger the user initials update after HTML is loaded
                       updateUserInitials();
+                      showActiveSiteinSidebar();
 
                   }
                   if (this.status == 404) {
@@ -65,5 +66,30 @@ function updateUserInitials() {
         }, 500); // Match the duration of the CSS transition to hide after it slides out
     }
 }
+
+
+
+
+
+function showActiveSiteinSidebar(){
+    // Get the current URL path
+    const currentPath = window.location.pathname;
+
+    // Select all the anchor tags inside the sidebar container
+    const navLinks = document.querySelectorAll('.sideBarNavigationDivClass a');
+
+    // Iterate through each anchor tag
+    navLinks.forEach(link => {
+      // Get the href attribute from each anchor tag
+      const href = link.getAttribute('href');
+
+      // Check if the current URL path contains the href value (ignoring any query params)
+      if (currentPath.includes(href)) {
+        // Add style to the parent div to change the background
+        link.querySelector('.navLinksClass').style.background= '#455a75'; 
+      }
+    });
+}
+
 
 

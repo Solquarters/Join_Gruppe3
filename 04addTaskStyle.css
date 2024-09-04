@@ -398,6 +398,7 @@ input[type="date"]:-webkit-calendar-picker-indicator:hover {
 
 #successOverlayId.fade-in {
   opacity: 1; /* Will fade in once the class is added */
+  /* color: #455a75 */
 }
 
 
