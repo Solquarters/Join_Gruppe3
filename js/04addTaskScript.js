@@ -640,9 +640,13 @@ async function submitAddTaskForm(){
        
     } else {
         await pushNewCardToJson();
-        //Link to Board site 
-        navigateTo("./03board.html");
     }
+
+
+    //Display success message and redirect to board
+    displaySuccessAddingTask();
+    
+
 };
 
 function navigateTo(url) {
@@ -711,3 +715,24 @@ function updateDateInTempArray(){
 
 /////Wenn dann im Board auf eine Karte geklick wird, sollen die Werte von ToDOJSON an der Index Stelle
 // ins TempArray gepusht werden und anhand dessen das AddTask Overlay gerendert. 
+
+
+
+/////////////////////////////ADAPT TO ADD TASK 
+function displaySuccessAddingTask() {
+
+    let overlay = document.getElementById('successOverlayId');
+    
+    // Show the overlay by setting the display to 'flex'
+    overlay.style.display = 'flex';
+
+    // Trigger the fade-in effect by adding the class
+    setTimeout(function() {
+        overlay.classList.add('fade-in');
+    }, 10);  // Slight delay to allow for the CSS transition to take effect
+
+    setTimeout(function() {
+        window.location.href = '03board.html';
+    }, 2000); // Redirects after 2 seconds
+}
+

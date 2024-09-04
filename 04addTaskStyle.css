@@ -382,9 +382,30 @@ input[type="date"]:-webkit-calendar-picker-indicator:hover {
 
 
 
+.successMainOverlayParent{
+  
+}
+#successOverlayId {
+  display: none; /* Initially hidden */
+  position: fixed;
+  z-index: 9;
+  width: 100%;
+  height: 100%;
+  background-color: #4d4d4d76;
+  opacity: 0; /* Starts hidden */
+  transition: opacity 300ms ease-in; /* Smooth transition for opacity */
+}
+
+#successOverlayId.fade-in {
+  opacity: 1; /* Will fade in once the class is added */
+}
+
 
 .successMessageMainDiv{
   position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   z-index: 9;
   
   width: auto;
@@ -398,14 +419,14 @@ input[type="date"]:-webkit-calendar-picker-indicator:hover {
   flex-direction: column;
   gap: 16px;
   background-color: #F6F7F8;
-  border: 2px solid black;
+  border: 2px solid rgb(193, 193, 193);
   border-radius: 16px;
 
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+ 
+  margin: 0px 0px 0px 115px;
 }
 .successMessageMainDiv p{
+  text-align: center;
   font-size: 18px;
   font-weight: 700;
 }
@@ -488,6 +509,11 @@ input[type="date"]:-webkit-calendar-picker-indicator:hover {
   .addTaskMainSiteDivClass {
     padding: 96px 0px 0px 180px;
   }
+
+
+  .successMessageMainDiv{
+    margin: 0px 0px 0px 90px;
+  }
 }
 
 @media screen and (max-width: 906px) {
@@ -554,6 +580,10 @@ input[type="date"]:-webkit-calendar-picker-indicator:hover {
   .prioButtonDivClass {
     justify-content: center;
     gap: 8px;
+  }
+
+  .successMessageMainDiv{
+    margin: 0px 0px 0px 0px;
   }
 }
 

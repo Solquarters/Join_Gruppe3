@@ -19,16 +19,20 @@ document.getElementById('addTaskMotherDivId').innerHTML = returnAddTaskSiteHTML(
 
 
 function returnAddTaskSiteHTML(){
-   return /*html*/ `
-   <div class="addTaskMainTemplateDivClass">
-
-   <div class="successMessageMainDiv">
+   return /*HTML*/`
+   <div class="successMainOverlayParent" id="successOverlayId">
+    <div class="successMessageMainDiv">
             <p>Added new card to the board!</p>
            
             <p>Redirecting to board...</p>
             
             <div class="loader" style="margin: 18px 0px"></div>
     </div>
+   </div>
+   <div class="addTaskMainTemplateDivClass">
+
+   
+  
 
        <h1>Add Task</h1>
        <div class="addTaskDetailsParentDivClass">
@@ -281,3 +285,5 @@ function logout(){
     window.location.href = '07logIn.html';
 
 }
+
+

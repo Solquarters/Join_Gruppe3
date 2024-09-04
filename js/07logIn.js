@@ -12,7 +12,8 @@ document.addEventListener("DOMContentLoaded", function() {
     }, 200);
 
     ////////IF LOCAL STORAGE NULL SET LOCAL STORAGE TO DEFAULT LOGINJSON
-       let userLoginJson = JSON.parse(localStorage.getItem('userLoginJson'));
+       userLoginJson = JSON.parse(localStorage.getItem('userLoginJson'));
+
     if (!userLoginJson || userLoginJson === "[]" || userLoginJson === "{}") {
         userLoginJson = [{ accountName: "Guest", email: "account@guest.com", password: "guestpassword", loggedIn: false }];
         localStorage.setItem('userLoginJson', JSON.stringify(userLoginJson));
