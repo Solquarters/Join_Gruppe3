@@ -69,29 +69,27 @@ async function initAddTaskSite(){
 
 
 ////SEARCH FUNCTION FOR ASSIGNED CONTACTS
-// function searchAllPokemon() {
-//     let searchInput = document.getElementById("searchInputId").value;
-//     if (searchInput.length > 2) {
-//       document.getElementById("plusIconId").onclick = null;
-//       searchInput = searchInput.toLowerCase();
-//       let content = document.getElementById("content");
-//       content.innerHTML = "";
-  
-//       for (let i = 0; i < Object.keys(allPokemonJson).length; i++) {
-//         let pokemonName = allPokemonJson[i]["name"];
-//         if (pokemonName.toLowerCase().includes(searchInput)) {
-//           content.innerHTML += returnSmallPokemonCardHTML(i);
-//           renderTypes(i);
-//         }
-//       }
-//     }
-//     if (searchInput == "") {
-//       document.getElementById("plusIconId").onclick = render20More;
-//       content.innerHTML = "";
-//       renderedToIndex = 0;
-//       renderPokemon();
-//     }
-//   }
+//ADAPT TO CONTACTS DROPDOWN! 
+///ON INPUT CHANGE OF contactsInputId call this function
+function searchContactsDropdown() {
+    let searchInput = document.getElementById("contactsInputId").value;
+
+    if (searchInput == "") {
+        content.innerHTML = "";
+        ///Render all contacts
+        renderContactsDropdownMenuContent();
+      }
+    if(searchInput.length < 1){
+        return;
+    }
+    searchInput = searchInput.toLowerCase();
+      for (let i = 0; i < Object.keys(allPokemonJson).length; i++) {
+        let pokemonName = allPokemonJson[i]["name"];
+        if (pokemonName.toLowerCase().includes(searchInput)) {
+          content.innerHTML += returnSmallPokemonCardHTML(i);
+        }
+      }
+  }
 
 function renderAddTaskSiteFromTempArray(){
 //////////////////RENDER ALLL ATTRIBUTES FROM TEMP ARRAY TO ADD TASK SITE
@@ -138,7 +136,13 @@ function setPrioFromTempArray(){
 function renderContactsDropdownMenuContent(){
     document.getElementById('dropdownContactAssignId').innerHTML = '';
 
-   if(inEditCardMode){
+   if(!inEditCardMode){
+    for(let i = 0; i < contactsJSON.length; i++)
+        {
+            document.getElementById('dropdownContactAssignId').innerHTML += returnAssignContactsDropdownHTML(i);
+        }
+        return;
+   }
 
     for(let i = 0; i < contactsJSON.length; i++)
         {
@@ -166,13 +170,7 @@ function renderContactsDropdownMenuContent(){
           else{
             document.getElementById('dropdownContactAssignId').innerHTML += returnAssignContactsDropdownHTML(i);
             }
-        }
-   }
-   else{
-    for(let i = 0; i < contactsJSON.length; i++)
-        {
-            document.getElementById('dropdownContactAssignId').innerHTML += returnAssignContactsDropdownHTML(i);
-        }
+        
    }
 }
 
