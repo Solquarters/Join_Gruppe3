@@ -1,4 +1,5 @@
 
+
 async function initializeBoard() {
     try {
         toDoCardsJSON = await loadData("/toDoJson");
@@ -11,6 +12,7 @@ async function initializeBoard() {
         renderAllCardToBoard();
     }
 }
+
 
 
 
@@ -232,29 +234,30 @@ function returnPrioSvgHTML(i) {
 }
 
 ///////////// ROMAN EDIT 
-function openEmptyAddTaskOverlay(){
-
-
+function openEmptyAddTaskOverlay(toDoStatus){
     
-
     inBoardAddTask = true;
-
-
-  
     slideInAddTaskOverlay();
-    
         //ZUGRIFF AUF GLOBAL SCRIPT
         renderAddTaskHTMLForBoardOverlay();
         emptyTempJson();
-        renderAddTaskSiteFromTempArray();
+        ///Hier Category temp array setzen /////////////////////////////////////////////
+         setToDoStatusInTempArray(toDoStatus);
 
+        renderAddTaskSiteFromTempArray();
         renderContactsDropdownMenuContent();
         setCurrentDateInputMinValue();
         renderProfileCirclesFromTempArray();
         renderSubtaskFromTempArray();
-        
-        // disableScrolling();
         fitAddTaskCssAttributesToBoardTemplate();
+    }
+    function setToDoStatusInTempArray(toDoStatus){
+
+
+      temporaryNewTaskSingleCardObject.toDoStatus = toDoStatus;
+       
+
+
     }
     
     function slideInAddTaskOverlay(){
@@ -437,39 +440,30 @@ function submitEditingCard(){
     ///push edit to temp array
     ///push temp array to json
     ///render Large Card from currentLargeCardIndex
-    
     //Category already changed onclick, if not clicked, it stays empty
 
  // Get all the input elements
  const input1 = document.getElementById('titleInputId');
  const input2 = document.getElementById('datePickerInputId');
- 
 
  // Validate each input element
  const isInput1Valid = input1.checkValidity();
  const isInput2Valid = input2.checkValidity();
- 
 
  // If any input is invalid, prevent form submission and show validation messages
  if (!isInput1Valid || !isInput2Valid) {
      // Optionally, display custom error messages
-    
      if (!isInput2Valid) input2.reportValidity();
      if (!isInput1Valid) input1.reportValidity();
-    
  } else {
      
      temporaryNewTaskSingleCardObject["title"] = document.getElementById('titleInputId').value;
      temporaryNewTaskSingleCardObject["description"] = document.getElementById('descriptionTextAreaId').value;
      temporaryNewTaskSingleCardObject["dueDate"] = document.getElementById('datePickerInputId').value;
-    
      toDoCardsJSON[currentLargeCardIndex] = temporaryNewTaskSingleCardObject;
-
      putData("/toDoJson", toDoCardsJSON);
      openLargeCardOverlay(currentLargeCardIndex);
  }
-
-
 }
    
 function handleLargeCardOverlayClick(event){

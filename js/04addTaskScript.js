@@ -673,7 +673,7 @@ temporaryNewTaskSingleCardObject["dueDate"] = document.getElementById('datePicke
 
 //PUSHE TEMP ARRAY AN DIE STELL IM TODOJSON
 ///HIER SUCHE INDEX DES ERSTEN TODO OBJECKTS
-let indexOfFirstToDoinMainJson = findIndexOfFirstCategoryInMainJson("To do");
+let indexOfFirstToDoinMainJson = findIndexOfFirstCategoryInMainJson(temporaryNewTaskSingleCardObject.toDoStatus);
 if(indexOfFirstToDoinMainJson >= 1){
     toDoCardsJSON.splice(indexOfFirstToDoinMainJson-1, 0, temporaryNewTaskSingleCardObject);
 
