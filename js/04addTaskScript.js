@@ -73,22 +73,24 @@ async function initAddTaskSite(){
 ///ON INPUT CHANGE OF contactsInputId call this function
 function searchContactsDropdown() {
     let searchInput = document.getElementById("contactsInputId").value;
-
+    document.getElementById('dropdownContactAssignId').innerHTML = "";
     if (searchInput == "") {
-        content.innerHTML = "";
+        
         ///Render all contacts
         renderContactsDropdownMenuContent();
       }
-    if(searchInput.length < 1){
-        return;
-    }
     searchInput = searchInput.toLowerCase();
-      for (let i = 0; i < Object.keys(allPokemonJson).length; i++) {
-        let pokemonName = allPokemonJson[i]["name"];
-        if (pokemonName.toLowerCase().includes(searchInput)) {
-          content.innerHTML += returnSmallPokemonCardHTML(i);
-        }
-      }
+
+
+    //WENN NACH DER SUCHE EIN KONTAKT GECHECKT WIRD, SOLL ES WÄHREND DER WEITEREN SUCHE AUCH GECHECKT BLEIBEN!
+    //Aktuell: Wenn man Anja eingibt, dann Anja checkt und dann nochmal Anja sucht: solange was im suchfeld steht, wird eine ungechekte anja angezeigt...
+    for(let i = 0; i < contactsJSON.length; i++)
+        {
+            if(getFullNameStringFromContacts(i).toLowerCase().includes(searchInput)){
+                document.getElementById('dropdownContactAssignId').innerHTML += returnAssignContactsDropdownHTML(i);    
+            }
+            
+   }
   }
 
 function renderAddTaskSiteFromTempArray(){

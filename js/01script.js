@@ -58,7 +58,7 @@ function returnAddTaskSiteHTML(){
                <span>Assigned to</span>    
                <div class="dropdown">
                    <input type="text" id="contactsInputId" placeholder="Select contacts to assign" class="singleLineInputClass dropbtn backGroundArrowClass" 
-                   onclick="toggleDropdown(this)" onmouseover="changeInputArrow(this)" onmouseleave="changeBackInputArrow(this)">
+                   onclick="toggleDropdown(this)" onmouseover="changeInputArrow(this)" onmouseleave="changeBackInputArrow(this)" oninput="searchContactsDropdown()" >
                    
                    <div id="dropdownContactAssignId" class="dropdownContactDivClass">
                    </div>
@@ -252,14 +252,10 @@ async function loadData(path=""){
 
 ///SUchfunktion für AddTask Contacts Dropdown
 //Suchfunktion für Board Cards 
-//CSS Animation slide in 
 ///Datum String auf der Karte richtig umwandeln, in deutsche Schreibweise ...
 
 //wenn Kontakt gelöscht wird - alle assignedArrays durchsuchen nach dem fullName string und splicen, 
 //wenn gefunden
-
-////Wenn auf Category + gedrückt wird ... tempArray auf geklickten toDoStatus setzen und AddTask Overlay aufrufen,
-//on submit: addtask soll vor die erste selbe toDoStatus im toDoJson gepusht werden 
 
 ///Refactoring! 
 ///JS DOC !!! 
@@ -268,7 +264,6 @@ async function loadData(path=""){
 
 
 //26.08.2024
-//Login User Initial im Kreis
 //Contacts: Bei Hinzufügen, soll contacts neu sortiert werden
 
 //BIG : object keys benutzen zum rendern und zugreifen auf Firebase daten !
