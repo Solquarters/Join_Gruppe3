@@ -1,4 +1,5 @@
-let currentDraggedElement;
+let currentDraggedElement = null;
+let touchStartX = 0, touchStartY = 0;
 
 async function initializeBoard() {
     try {
