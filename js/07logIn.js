@@ -15,8 +15,7 @@ document.addEventListener("DOMContentLoaded", function() {
        userLoginJson = JSON.parse(localStorage.getItem('userLoginJson'));
 
     if (!userLoginJson || userLoginJson === "[]" || userLoginJson === "{}") {
-        userLoginJson = [{ accountName: "Guest", email: "account@guest.com", password: "guestpassword", loggedIn: false }];
-        localStorage.setItem('userLoginJson', JSON.stringify(userLoginJson));
+       setGuestAccountToLocalStorage();
     }
 
 
@@ -27,6 +26,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
 });
 
+async function setGuestAccountToLocalStorage(){
+    await localStorage.setItem('userLoginJson', JSON.stringify(userLoginJson));
+}
 
 function login() {
     console.log(userLoginJson);

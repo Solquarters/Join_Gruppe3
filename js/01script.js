@@ -2,7 +2,7 @@ let contactsJSON = [];
 
 let toDoCardsJSON = [];
 
-let userLoginJson = JSON.parse(localStorage.getItem('userLoginJson')) || [];
+let userLoginJson = JSON.parse(localStorage.getItem('userLoginJson')) || [{ accountName: "Guest", email: "account@guest.com", password: "guestpassword", loggedIn: false }];
 
 let inBoardAddTask = false;
 let currentLargeCardIndex = -1;
