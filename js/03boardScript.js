@@ -1,4 +1,4 @@
-
+let currentDraggedElement;
 
 async function initializeBoard() {
     try {
@@ -12,22 +12,6 @@ async function initializeBoard() {
         renderAllCardToBoard();
     }
 }
-
-
-
-
-// function initializeBoard(){
-
-//     loadData("/toDoJson")
-//     .then(toDoCardsJSON => {
-//         console.log(toDoCardsJSON);
-//     })
-//     .catch(error => {
-//         console.error('Error loading data:', error);
-//     });
-
-    
-// }
 
 function renderAllCardToBoard(){
     ///Reset all boards
@@ -70,7 +54,7 @@ function renderAllCardToBoard(){
     }
 }
 
-let currentDraggedElement;
+
 
 function returnSingleCardHTML(i){
     return /*html*/`
@@ -103,8 +87,6 @@ function returnSingleCardHTML(i){
 function returnAssignedContactCircle(i){
     document.getElementById(`singleCardContactCircleDivId${i}`).innerHTML = '';
 
-    
-
     if (toDoCardsJSON[i].assignedToArray) {
         let renderedCircles = 0;
 
@@ -121,7 +103,6 @@ function returnAssignedContactCircle(i){
             renderedCircles++;
         }
     }
-    
 }
 
 function getProgressBarHTML(i) {
@@ -151,12 +132,10 @@ function returnCategoryHTML(i){
         return /*html*/ `<div id="cardHeadlineId${i}" class="cardHeadlineClass technicalTaskClass">
         <span id="">${toDoCardsJSON[i]["category"]}</span>
         </div>`;
-
     }
-
 }
 
-/////////////////////////////DRAG AND DROP FUNCTION START
+///DRAG AND DROP FUNCTION START
 function startDragging(index) {
     currentDraggedElement = index;
     document.getElementById(`singleCardId${index}`).classList.add('rotateOnDrag');
@@ -217,8 +196,48 @@ function handleDragLeave(event, mainCategoryDivId) {
     }
 }
 
+///MOBILE DRAG DROP FUNCTION:
+// Mobile: Handle touch move (equivalent to dragover)
+function handleTouchMove(event, mainCategoryDivId) {
+    // Prevent scrolling while dragging
+    event.preventDefault();
+    
+    const touch = event.touches[0];
+    const rect = document.getElementById(mainCategoryDivId).getBoundingClientRect();
+    
+    // Track touch coordinates
+    let x = touch.pageX;
+    let y = touch.pageY;
 
-/////////////////////////////DRAG AND DROP FUNCTION END
+    if (x > rect.left && x < rect.right && y > rect.top && y < rect.bottom) {
+        // Inside the container, add highlight
+        highlight(mainCategoryDivId);
+    } else {
+        // Outside the container, remove highlight
+        removeHighlight(mainCategoryDivId);
+    }
+}
+
+// Mobile: Handle touch end (equivalent to drop)
+function handleTouchEnd(categoryInput, mainCategoryDivId) {
+    const element = document.getElementById(mainCategoryDivId);
+    const rect = element.getBoundingClientRect();
+    
+    // After touch ends, move card if it's over a valid drop area
+    let x = touchStartX;
+    let y = touchStartY;
+
+    if (x > rect.left && x < rect.right && y > rect.top && y < rect.bottom) {
+        moveTo(categoryInput);
+    }
+
+    document.querySelectorAll('.drag-area-highlight').forEach(function(element) {
+        element.classList.remove('drag-area-highlight');
+    });
+}
+
+
+///DRAG AND DROP FUNCTION END
 function returnPrioSvgHTML(i) {
         if(toDoCardsJSON[i]["prio"] == "Low"){
             return `<img src="./assets/img/Priority symbols low.svg">`;
@@ -233,17 +252,14 @@ function returnPrioSvgHTML(i) {
            }
 }
 
-///////////// ROMAN EDIT 
 function openEmptyAddTaskOverlay(toDoStatus){
     
     inBoardAddTask = true;
     slideInAddTaskOverlay();
-        //ZUGRIFF AUF GLOBAL SCRIPT
+        //Accessing GLOBAL SCRIPT
         renderAddTaskHTMLForBoardOverlay();
         emptyTempJson();
-        ///Hier Category temp array setzen /////////////////////////////////////////////
-         setToDoStatusInTempArray(toDoStatus);
-
+        setToDoStatusInTempArray(toDoStatus);
         renderAddTaskSiteFromTempArray();
         renderContactsDropdownMenuContent();
         setCurrentDateInputMinValue();
@@ -251,13 +267,9 @@ function openEmptyAddTaskOverlay(toDoStatus){
         renderSubtaskFromTempArray();
         fitAddTaskCssAttributesToBoardTemplate();
     }
+
     function setToDoStatusInTempArray(toDoStatus){
-
-
       temporaryNewTaskSingleCardObject.toDoStatus = toDoStatus;
-       
-
-
     }
     
     function slideInAddTaskOverlay(){
@@ -306,13 +318,11 @@ function openEmptyAddTaskOverlay(toDoStatus){
         // Check if the click happened outside the child element
         if (event.target.id === 'addEmptyTaskMainOverlayId') {
             closeAddTaskOverlay();
-            
         }
     }
 
     function openLargeCardOverlay(i){
         currentLargeCardIndex = i;
-
         document.getElementById('mainLargeCardOverlayId').style.display= "flex";
         document.getElementById('popupMainDivId').innerHTML = returnLargeCardOverlayHTML();
         document.getElementById('popupMainDivId').scrollTop = 0;
@@ -437,11 +447,6 @@ function closeLargeCardOverlay(){
 }
 
 function submitEditingCard(){
-    ///push edit to temp array
-    ///push temp array to json
-    ///render Large Card from currentLargeCardIndex
-    //Category already changed onclick, if not clicked, it stays empty
-
  // Get all the input elements
  const input1 = document.getElementById('titleInputId');
  const input2 = document.getElementById('datePickerInputId');
@@ -456,7 +461,6 @@ function submitEditingCard(){
      if (!isInput2Valid) input2.reportValidity();
      if (!isInput1Valid) input1.reportValidity();
  } else {
-     
      temporaryNewTaskSingleCardObject["title"] = document.getElementById('titleInputId').value;
      temporaryNewTaskSingleCardObject["description"] = document.getElementById('descriptionTextAreaId').value;
      temporaryNewTaskSingleCardObject["dueDate"] = document.getElementById('datePickerInputId').value;
@@ -492,7 +496,6 @@ function fitAddTaskCssAttributesToBoardTemplate(){
     }
 }
 
-///////////// ROMAN EDIT ENDE
 function deleteSingleCard(i){
 toDoCardsJSON.splice(i, 1);
 putData("/toDoJson", toDoCardsJSON);
@@ -502,25 +505,18 @@ enableScrolling();
 }
 
 function editSingleCard(i){
-    /////REFERENCE TO TODOJSON ???
-    // temporaryNewTaskSingleCardObject = toDoCardsJSON[i];
-
-    //KOPIEREN OHNE REFERENCE
-    // temporaryNewTaskSingleCardObject = { ...toDoCardsJSON[i] };
-    ////HIER BRAUCHEN WIR EINE DEEP COPY UND KEINE SHALLOW COPY !!!
-    ///die Funktion die wir brauchen ist eine Javascript spezifische:
-    //"structuredClone"
-    //Unterschied zwischen Referenztypen und Valuetypen !
+    //When copying: temporaryNewTaskSingleCardObject = toDoCardsJSON[i] - this actually creates a direct reference to each other.
+    //Copy without reference: temporaryNewTaskSingleCardObject = structuredClone(toDoCardsJSON[i]) OR temporaryNewTaskSingleCardObject = { ...toDoCardsJSON[i] };
+    //Attention, this is a difference between referencetype and valuetype!
     temporaryNewTaskSingleCardObject = structuredClone(toDoCardsJSON[i]);
-
-    // console.log(temporaryNewTaskSingleCardObject);
-
     document.getElementById('popupMainDivId').innerHTML = returnAddTaskSiteHTML();
     renderAddTaskSiteFromTempArray();
-    
-
     document.getElementById('popupMainDivId').scrollTop = 0;
+    setStyleAdaptationForSingleCardHTML();
+    setDateFromTempArray();
+}
 
+function setStyleAdaptationForSingleCardHTML(){
 ///CSS Klassen anpassen: Media queries...
 let singleLineInputClass = document.querySelectorAll('.singleLineInputClass');
 singleLineInputClass.forEach(function(element) {element.style.minWidth = "unset";});
@@ -536,35 +532,22 @@ let prioButtonDivClass = document.querySelectorAll('.prioButtonDivClass');
 prioButtonDivClass.forEach(function(element) {element.style.gap = "2px"});
 let priorityButtonClass = document.querySelectorAll('.priorityButtonClass');
 priorityButtonClass.forEach(function(element) {element.style.fontSize="14px" });
-//mainContainerOverlay width 100% beeinflusst AddTask Overlay
+//mainContainerOverlay width 100% influences AddTask Overlay
 document.getElementById('mainLargeCardOverlayId').style.width = "100%";
 //clear und create button display none, okay button display
 document.getElementById('clearCreateDivId1').style.display ="none";
 document.getElementById('clearCreateDivId2').style.display ="none";
 document.getElementById('clearCreateDivId3').style.display ="block";
 document.getElementById('divSeperatorId1').style.display = "none";
-
-//.addTaskDetailsParentDivClass
 let addTaskDetailsParentDivClass = document.querySelectorAll('.addTaskDetailsParentDivClass');
 addTaskDetailsParentDivClass.forEach(function(element) {element.style.display = "unset"});
-
-
-
-
 let leftSideChildDivClass = document.querySelectorAll('.leftSideChildDivClass');
 leftSideChildDivClass.forEach(function(element) {element.style.width = "unset"});
 let rightSideChildDivClass = document.querySelectorAll('.rightSideChildDivClass');
 rightSideChildDivClass.forEach(function(element) {element.style.width = "unset"});
-
-
-
-setDateFromTempArray();
-
-    ////Wenn AddTask Edit Mode overlay geschlossen wird, soll beim nächsten öffnen einer Card Html im Overlay neu geladen werden
-    ////Datum wird nicht richtig übertragen, evtl falsch gespeichert im ToDo Json
-    /// Category Feld sollte schwarz color haben, gibts schon eine funktion dafür.
-
 }
+
+
 
 function setDateFromTempArray(){
     let dateInput = document.getElementById('datePickerInputId');
