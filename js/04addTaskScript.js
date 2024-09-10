@@ -16,8 +16,8 @@ let temporaryNewTaskSingleCardObject = {
     assignedToArray: [
         //////Aus diesem Array  WERDEN BEI JEDEM ASSIGNEN von Kontakten 
         //      die Daten ins innerHTML der ID assignedUsersCircleDivId mit einer for schleife gepusht
-        {assignedFullName:"Stefan Schulz", assignedRGB:"rgb(0,170,0)"},
-         {assignedFullName:"Claudia Müller", assignedRGB:"rgb(190,0,0)"},
+        // {assignedFullName:"Stefan Schulz", assignedRGB:"rgb(0,170,0)"},
+        //  {assignedFullName:"Claudia Müller", assignedRGB:"rgb(190,0,0)"},
         
     ],
     dueDate: "2028-10-10",
@@ -68,14 +68,10 @@ async function initAddTaskSite(){
 }
 
 
-////SEARCH FUNCTION FOR ASSIGNED CONTACTS
-//ADAPT TO CONTACTS DROPDOWN! 
-///ON INPUT CHANGE OF contactsInputId call this function
 function searchContactsDropdown() {
     let searchInput = document.getElementById("contactsInputId").value;
     document.getElementById('dropdownContactAssignId').innerHTML = "";
     if (searchInput == "") {
-        
         ///Render all contacts
         renderContactsDropdownMenuContent();
       }
@@ -86,6 +82,15 @@ function searchContactsDropdown() {
     //Aktuell: Wenn man Anja eingibt, dann Anja checkt und dann nochmal Anja sucht: solange was im suchfeld steht, wird eine ungechekte anja angezeigt...
     for(let i = 0; i < contactsJSON.length; i++)
         {
+
+            //IF temp array contains name string
+            if(){
+                document.getElementById('dropdownContactAssignId').innerHTML += returnAssignContactsDropdownSELECTEDHTML(i);
+                continue;
+            }
+            
+
+
             if(getFullNameStringFromContacts(i).toLowerCase().includes(searchInput)){
                 document.getElementById('dropdownContactAssignId').innerHTML += returnAssignContactsDropdownHTML(i);    
             }
@@ -138,6 +143,7 @@ function setPrioFromTempArray(){
 function renderContactsDropdownMenuContent(){
     document.getElementById('dropdownContactAssignId').innerHTML = '';
 
+    ///Render all contacts unselected
    if(!inEditCardMode){
     for(let i = 0; i < contactsJSON.length; i++)
         {
@@ -150,7 +156,7 @@ function renderContactsDropdownMenuContent(){
         {
             let contactNameIsInsideAssignedArray = false;
 
-           //Checking if assigned to array even exists
+           //Checking if assigned to array even exists/ is having values
             if (temporaryNewTaskSingleCardObject.assignedToArray) {
                 for(let j = 0; j < temporaryNewTaskSingleCardObject.assignedToArray.length; j++){
                     if(temporaryNewTaskSingleCardObject.assignedToArray[j].assignedFullName == getFullNameStringFromContacts(i)){
@@ -226,19 +232,6 @@ function getProfileRGB(i){
     return contactsJSON[i].profileRGB;
 }
 
-
-///////////////////////////
-///Text area drag is buggy - when mouseup outside the textarea handler problems can occur!
-//////////////////////////
-// const textarea = document.getElementById('descriptionTextAreaId');
-// const handle = document.querySelector('.resizeHandleClass');
-// handle.addEventListener('mousedown', function(e) {
-//     // e.preventDefault();
-//     initialHeight = textarea.offsetHeight;
-//     initialY = e.clientY;
-//     document.addEventListener('mousemove', resize);
-//     document.addEventListener('mouseup', stopResize);
-// });
 
 function stopResize() {
     document.removeEventListener('mousemove', resize);
