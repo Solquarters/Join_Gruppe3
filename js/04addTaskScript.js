@@ -76,25 +76,20 @@ function searchContactsDropdown() {
         renderContactsDropdownMenuContent();
       }
     searchInput = searchInput.toLowerCase();
-
-
-    //WENN NACH DER SUCHE EIN KONTAKT GECHECKT WIRD, SOLL ES WÄHREND DER WEITEREN SUCHE AUCH GECHECKT BLEIBEN!
-    //Aktuell: Wenn man Anja eingibt, dann Anja checkt und dann nochmal Anja sucht: solange was im suchfeld steht, wird eine ungechekte anja angezeigt...
+    
+    //If searching for contacts, all already selected contacts stay selected
     for(let i = 0; i < contactsJSON.length; i++)
         {
-
-            //IF temp array contains name string
-            if(){
-                document.getElementById('dropdownContactAssignId').innerHTML += returnAssignContactsDropdownSELECTEDHTML(i);
-                continue;
-            }
-            
-
-
             if(getFullNameStringFromContacts(i).toLowerCase().includes(searchInput)){
-                document.getElementById('dropdownContactAssignId').innerHTML += returnAssignContactsDropdownHTML(i);    
+                if(contactAtIndexIsInsideTempArray(i)){
+                    document.getElementById('dropdownContactAssignId').innerHTML += returnAssignContactsDropdownSELECTEDHTML(i);
+                    setStylingForSelectedContact(i);
+                    addedIDs.add(`fistNameLastNameSpanId${i}`);
+                  }
+                  else{
+                    document.getElementById('dropdownContactAssignId').innerHTML += returnAssignContactsDropdownHTML(i);
+                    }
             }
-            
    }
   }
 
@@ -154,32 +149,27 @@ function renderContactsDropdownMenuContent(){
 
     for(let i = 0; i < contactsJSON.length; i++)
         {
-            let contactNameIsInsideAssignedArray = false;
-
-           //Checking if assigned to array even exists/ is having values
-            if (temporaryNewTaskSingleCardObject.assignedToArray) {
-                for(let j = 0; j < temporaryNewTaskSingleCardObject.assignedToArray.length; j++){
-                    if(temporaryNewTaskSingleCardObject.assignedToArray[j].assignedFullName == getFullNameStringFromContacts(i)){
-                        contactNameIsInsideAssignedArray = true;
-                    }
-               } 
-            }
-
-          if(contactNameIsInsideAssignedArray){
+          if(contactAtIndexIsInsideTempArray(i)){
             document.getElementById('dropdownContactAssignId').innerHTML += returnAssignContactsDropdownSELECTEDHTML(i);
-                    let element = document.getElementById(`assignedDropdownSingleLineDivId${i}`);
-                    let checkboxChecked = element.querySelector('.checkbox-checked');
-                    let checkboxUnchecked = element.querySelector('.checkbox-unchecked');
-                    checkboxChecked.style.display = 'block';
-                    checkboxUnchecked.style.display = 'none';
-                    addedIDs.add(`fistNameLastNameSpanId${i}`);
-                    contactNameIsInsideAssignedArray = false;
+            setStylingForSelectedContact(i);
+            addedIDs.add(`fistNameLastNameSpanId${i}`);
           }
           else{
             document.getElementById('dropdownContactAssignId').innerHTML += returnAssignContactsDropdownHTML(i);
             }
         
    }
+}
+
+function contactAtIndexIsInsideTempArray(i){
+    if(temporaryNewTaskSingleCardObject.assignedToArray){
+        for(let j = 0; j < temporaryNewTaskSingleCardObject.assignedToArray.length; j++){
+            if(temporaryNewTaskSingleCardObject.assignedToArray[j].assignedFullName == getFullNameStringFromContacts(i)){
+                return true;
+            } 
+        }
+    }
+    return false;
 }
 
 function returnAssignContactsDropdownHTML(i){
@@ -220,6 +210,14 @@ function returnAssignContactsDropdownSELECTEDHTML(i){
     </div>
     
     `;
+}
+
+function setStylingForSelectedContact(i){
+    let element = document.getElementById(`assignedDropdownSingleLineDivId${i}`);
+    let checkboxChecked = element.querySelector('.checkbox-checked');
+    let checkboxUnchecked = element.querySelector('.checkbox-unchecked');
+    checkboxChecked.style.display = 'block';
+    checkboxUnchecked.style.display = 'none';
 }
 
 function getNameInitials(i){
