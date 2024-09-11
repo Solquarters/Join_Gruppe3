@@ -2,7 +2,15 @@ let contactsJSON = [];
 
 let toDoCardsJSON = [];
 
-let userLoginJson = JSON.parse(localStorage.getItem('userLoginJson')) || [{ accountName: "Guest", email: "account@guest.com", password: "guestpassword", loggedIn: false }];
+let defaultGuestAccount = [{ 
+    accountName: "Guest", 
+    email: "account@guest.com", 
+    password: "guestpassword", 
+    loggedIn: false 
+}];
+
+// Fetch user login data from local storage
+let userLoginJson = JSON.parse(localStorage.getItem('userLoginJson')) || defaultGuestAccount;
 
 let inBoardAddTask = false;
 let currentLargeCardIndex = -1;

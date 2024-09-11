@@ -1,34 +1,36 @@
 document.addEventListener("DOMContentLoaded", function() {
-    // Simuliere eine Ladeverzögerung
-    // document.body.style = "overflow-y: hidden;"
+    // Simulate a loading time
     setTimeout(function() {
         document.body.classList.add('loaded');
         
-        // Entferne den Preloader nach der Animation
+        // remove preloader after animation
         setTimeout(function() {
             document.getElementById('preloader').style.display = 'none';
             document.body.style = "overflow-y: auto;"
-        }, 2000); // 1 Sekunde Verzögerung, um die CSS-Animation zu beenden
+        }, 2000); // 1 sec delay to end the css animation
     }, 200);
 
-    ////////IF LOCAL STORAGE NULL SET LOCAL STORAGE TO DEFAULT LOGINJSON
-       userLoginJson = JSON.parse(localStorage.getItem('userLoginJson'));
-
-    if (!userLoginJson || userLoginJson === "[]" || userLoginJson === "{}") {
-       setGuestAccountToLocalStorage();
+      // Check if localStorage data is missing or invalid
+      if (!Array.isArray(userLoginJson) || userLoginJson.length === 0) {
+        setGuestAccountToLocalStorage();
     }
 
-
-  
-    ///Display message "already logged in, if true"
-    loggedInUserIndex = findLoggedInUserIndex(userLoginJson);
+    let loggedInUserIndex = findLoggedInUserIndex(userLoginJson);
     returnAlreadyLoggedInHTML(loggedInUserIndex);
 
+    
 });
 
-async function setGuestAccountToLocalStorage(){
+async function setGuestAccountToLocalStorage() {
+    userLoginJson = defaultGuestAccount;  // Reset global variable
     await localStorage.setItem('userLoginJson', JSON.stringify(userLoginJson));
 }
+
+document.addEventListener('scroll', function() {
+    let scrollY = document.documentElement.scrollTop || document.body.scrollTop;
+    let container = document.getElementById("logoId");
+    container.style.opacity = (scrollY === 0) ? "1" : "0";
+});
 
 function login() {
     console.log(userLoginJson);
@@ -73,17 +75,7 @@ if (msg) {
 }
 
 
-document.addEventListener('scroll', function() {
-    var scrollY = document.documentElement.scrollTop || document.body.scrollTop;
-    
-    
-    var container = document.getElementById("logoId");
-    if (scrollY === 0) {
-        container.style.opacity = "1";
-    } else {
-        container.style.opacity = "0";
-    }
-});
+
 
 
 function guestLogin(event){

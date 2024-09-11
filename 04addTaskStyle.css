@@ -342,6 +342,7 @@ input[type=date]:invalid::-webkit-datetime-edit {
   height: 16px;
   stroke: #ffffff;
   border-radius: 3px;
+  padding: 4px;
 }
 
 .checkbox-unchecked {
