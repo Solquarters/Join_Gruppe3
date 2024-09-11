@@ -53,7 +53,7 @@ function updateUserInitials() {
 
   
   function openAccountMenu() {
-    var menu = document.getElementById('accountMenuDivId');
+    let menu = document.getElementById('accountMenuDivId');
     if (menu.style.display === 'none' || menu.style.display === '') {
         menu.style.display = 'flex'; // Show the element before triggering the transition
         setTimeout(function() {
@@ -67,6 +67,23 @@ function updateUserInitials() {
     }
 }
 
+function closeMenuIfClickedOutside(event) {
+    let menu = document.getElementById('accountMenuDivId');
+    let toggleButton = document.getElementById('currentUserCircleId'); // Assuming you have a button to open/close the menu
+    if (menu.style.display === 'flex' && !menu.contains(event.target) && !toggleButton.contains(event.target)) {
+        openAccountMenu(); // Close the menu if clicked outside
+    }
+}
+
+// Event listener for clicks (for desktop)
+document.addEventListener('click', function(event) {
+    closeMenuIfClickedOutside(event);
+});
+
+// Event listener for touchstart (for mobile)
+document.addEventListener('touchstart', function(event) {
+    closeMenuIfClickedOutside(event);
+});
 
 
 

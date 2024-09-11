@@ -470,6 +470,147 @@ input[type="date"]:-webkit-calendar-picker-indicator:hover {
 }
 /* ///////////////////////////// */
 
+
+.littleCircleDivClass{
+  position: relative;
+ top: -27px;
+ right: 8px;
+width: 16px;
+height: 16px;
+display: flex;
+justify-content: center;
+align-items: center;
+background-color: #f1f1f1;
+border-radius: 50%;
+}
+
+/* ////////////////SUBTASKS///////////////// */
+.addSubtaskTextInputClass{
+  height: 40px;
+  overflow-y: auto;
+}
+
+
+.subtasksDivContainerClass{
+display: flex;
+flex-direction: column;
+/* height: 80px; */
+height: 64px;
+overflow-y: auto;
+}
+
+.littleCircleDivClass2{
+  position: relative;
+ top: -32px;
+ right: 10px;
+width: 16px;
+height: 16px;
+display: flex;
+justify-content: center;
+align-items: center;
+background-color: #f1f1f1;
+border-radius: 50%;
+margin: 0px 0px 0px 6px;
+}
+.littleCircleDivClass2 svg{
+  width: 12px;
+  height: 12px;
+}
+.littleCircleDivClass2:hover{
+filter: invert(0.1);
+}
+
+.resizeHandleClass2 {
+  width: 100%;
+  height: 0px;
+  display: flex;
+  justify-content: flex-end;
+  cursor: pointer;
+}
+.subtaskFirstIconDiv{
+  margin: 0px 2px 0px 0px;
+  display: flex;
+  justify-content: space-between;
+  width: 48px;
+}
+
+.iconsClass{
+  width: 42px;
+   height: 0px;
+   display: none;
+   justify-content: space-between;
+   margin: 0px 12px 0px 0px;
+ }
+ .iconsClass img{
+   position: relative;
+   top: -8px;
+   margin: 0px 0px 0px 0px;
+   height: 16px;
+   width: 16px;
+   cursor: pointer;
+ 
+  
+ }
+ .iconsClass img:hover{
+   filter: brightness(3);
+ }
+
+
+.backGroundArrowClass{
+  background-image: url("./assets/img/addTaskImg/inputArrowDown.svg");
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+  background-position:99% 50%;
+}
+.backGroundArrowClass.open{
+  background-image: url("./assets/img/addTaskImg/inputArrowUp.svg");
+}
+
+
+.subtaskDynamicDivClass{
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.subtaskDynamicDivClass:hover{
+  background-color: #dadada;
+  border-radius: 8px;
+  
+}
+.subtaskDynamicDivClass:focus{
+  background-color: white;
+  outline: none;
+  border: 1px solid rgb(218, 218, 218);
+  border-radius: 6px;
+  padding: 0px 0px 0px 8px;
+
+}
+
+.subtaskFocusDivClass{
+  border-radius: 6px;
+  overflow-y: auto;
+}
+.subtaskFocusDivClass:focus{
+
+  background-color: white;
+  width: 100%;
+  outline: none;
+ 
+}
+
+.subtaskFocusDivClass {
+  max-height: 48px; /* Set maximum height */
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
+
+
+
+
+
+
+
 /* ////MEDIA QUERIES //// */
 /* ////MEDIA QUERIES //// */
 /* ////MEDIA QUERIES //// */
@@ -605,7 +746,7 @@ input[type="date"]:-webkit-calendar-picker-indicator:hover {
 
 
 
-@media screen and (max-width: 372px) {
+@media screen and (max-width: 380px) {
   .priorityButtonClass {
     width: 94px;
     font-size: 14px;
@@ -635,145 +776,55 @@ input[type="date"]:-webkit-calendar-picker-indicator:hover {
 
 
 
+@media screen and (max-width: 350px) {
+  .priorityButtonClass {
+    width: 92px;
+    font-size: 12px;
+  }
+  .prioButtonDivClass {
+    
+    gap: 4px;
+  }
 
-
-
-
-
-
-
-.littleCircleDivClass{
-  position: relative;
- top: -27px;
- right: 8px;
-width: 16px;
-height: 16px;
-display: flex;
-justify-content: center;
-align-items: center;
-background-color: #f1f1f1;
-border-radius: 50%;
-}
-
-
-
-
-/* ////////////////SUBTASKS///////////////// */
-.addSubtaskTextInputClass{
-  height: 40px;
-  overflow-y: auto;
-}
-
-
-.subtasksDivContainerClass{
-display: flex;
-flex-direction: column;
-/* height: 80px; */
-height: 64px;
-overflow-y: auto;
-}
-
-.littleCircleDivClass2{
-  position: relative;
- top: -32px;
- right: 10px;
-width: 16px;
-height: 16px;
-display: flex;
-justify-content: center;
-align-items: center;
-background-color: #f1f1f1;
-border-radius: 50%;
-margin: 0px 0px 0px 6px;
-}
-.littleCircleDivClass2 svg{
-  width: 12px;
-  height: 12px;
-}
-.littleCircleDivClass2:hover{
-filter: invert(0.1);
-}
-
-.resizeHandleClass2 {
-  width: 100%;
-  height: 0px;
-  display: flex;
-  justify-content: flex-end;
-  cursor: pointer;
-}
-.subtaskFirstIconDiv{
-  margin: 0px 2px 0px 0px;
-  display: flex;
-  justify-content: space-between;
-  width: 48px;
-}
-
-.iconsClass{
-  width: 42px;
-   height: 0px;
-   display: none;
-   justify-content: space-between;
-   margin: 0px 12px 0px 0px;
- }
- .iconsClass img{
-   position: relative;
-   top: -8px;
-   margin: 0px 0px 0px 0px;
-   height: 16px;
+  .priorityButtonClass svg{
    width: 16px;
-   cursor: pointer;
- 
-  
- }
- .iconsClass img:hover{
-   filter: brightness(3);
- }
+   height: 16px;
+  }
 
+  .dropbtn {
+    min-width: auto;
+  }
+  .singleLineInputClass {
+    min-width: auto;
+  }
 
-.backGroundArrowClass{
-  background-image: url("./assets/img/addTaskImg/inputArrowDown.svg");
-  background-size: 20px 20px;
-  background-repeat: no-repeat;
-  background-position:99% 50%;
-}
-.backGroundArrowClass.open{
-  background-image: url("./assets/img/addTaskImg/inputArrowUp.svg");
-}
+  textarea {
+    min-width: auto;
+  }
+  .resizeHandleClass {
+    min-width: auto;
+  }
+  select {
+    min-width: auto;
+  }
 
-
-.subtaskDynamicDivClass{
-  height: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.subtaskDynamicDivClass:hover{
-  background-color: #dadada;
-  border-radius: 8px;
-  
-}
-.subtaskDynamicDivClass:focus{
-  background-color: white;
-  outline: none;
-  border: 1px solid rgb(218, 218, 218);
-  border-radius: 6px;
-  padding: 0px 0px 0px 8px;
+    .clearCreateTaskButtonDivChildClass {
+      display: flex;
+      flex-direction: column-reverse;
+      align-items: flex-end;
+      
+        gap: 8px;
+    }
 
 }
 
-.subtaskFocusDivClass{
-  border-radius: 6px;
-  overflow-y: auto;
-}
-.subtaskFocusDivClass:focus{
 
-  background-color: white;
-  width: 100%;
-  outline: none;
- 
-}
 
-.subtaskFocusDivClass {
-  max-height: 48px; /* Set maximum height */
-  overflow-y: auto; /* Enable vertical scrolling */
-}
+
+
+
+
+
+
+
+
