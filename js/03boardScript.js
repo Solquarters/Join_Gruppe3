@@ -58,9 +58,35 @@ function renderAllCardToBoard(){
 
 
 function returnSingleCardHTML(i){
-    return /*html*/`
-    <div class="mainSingleCardDivClass" id="singleCardId${i}"
-    draggable="true" ondragstart="startDragging(${i})" onclick="openLargeCardOverlay(${i})">
+    // return /*html*/`
+    // <div class="mainSingleCardDivClass" id="singleCardId${i}"
+    // draggable="true" ondragstart="startDragging(${i})" onclick="openLargeCardOverlay(${i})">
+    //     <div class="cardContainerInnert">
+    //         ${returnCategoryHTML(i)}
+    //         <div id="containerformularId${i}" class="containerformularDivClass">
+    //             <span >${toDoCardsJSON[i]["title"]}</span>
+    //         </div>
+    //         <div id="descriptionDivId${i}" class="descriptionDivClass">
+    //             <span id="descriptionSpanId${i}">${toDoCardsJSON[i]["description"]}</span>
+    //         </div>
+    //         ${getProgressBarHTML(i)}
+    //         <div class="contactPrioDiv">
+                
+    //                 <div class="singleCardAssignedContactsParentDivClass" id="singleCardContactCircleDivId${i}">
+    //                 </div>
+    //             <div>
+    //                 <div id="prioDivId${i}" class="prioDiv">
+    //                     ${returnPrioSvgHTML(i)}
+    //                 </div>
+    //             </div>     
+    //         </div>
+    //     </div>
+    // </div>
+    // `; 
+    return /*html*/ `<div class="mainSingleCardDivClass" id="singleCardId${i}"
+    draggable="true" ondragstart="startDragging(${i})" onclick="openLargeCardOverlay(${i})"
+    ontouchstart="handleTouchStart(event, ${i})" ontouchmove="handleTouchMove(event, 'toDoStatusDivId')"
+    ontouchend="handleTouchEnd('To do', 'toDoStatusDivId')">
         <div class="cardContainerInnert">
             ${returnCategoryHTML(i)}
             <div id="containerformularId${i}" class="containerformularDivClass">
@@ -71,9 +97,8 @@ function returnSingleCardHTML(i){
             </div>
             ${getProgressBarHTML(i)}
             <div class="contactPrioDiv">
-                
-                    <div class="singleCardAssignedContactsParentDivClass" id="singleCardContactCircleDivId${i}">
-                    </div>
+                <div class="singleCardAssignedContactsParentDivClass" id="singleCardContactCircleDivId${i}">
+                </div>
                 <div>
                     <div id="prioDivId${i}" class="prioDiv">
                         ${returnPrioSvgHTML(i)}
@@ -81,8 +106,7 @@ function returnSingleCardHTML(i){
                 </div>     
             </div>
         </div>
-    </div>
-    `; 
+    </div>`;
 }
 
 function returnAssignedContactCircle(i){
@@ -198,14 +222,54 @@ function handleDragLeave(event, mainCategoryDivId) {
 }
 
 ///MOBILE DRAG DROP FUNCTION:
+
+function handleTouchStart(event, index) {
+    // Store the index of the dragged element
+    currentDraggedElement = index;
+
+    // Get initial touch coordinates
+    const touch = event.touches[0];
+    touchStartX = touch.pageX;
+    touchStartY = touch.pageY;
+
+    // Add visual feedback, if needed
+    document.getElementById(`singleCardId${index}`).classList.add('rotateOnDrag');
+}
+
+
+
+
+
+
+
+// Mobile: Handle touch move (equivalent to dragover)
+// function handleTouchMove(event, mainCategoryDivId) {
+//     // Prevent scrolling while dragging
+//     event.preventDefault();
+    
+//     const touch = event.touches[0];
+//     const rect = document.getElementById(mainCategoryDivId).getBoundingClientRect();
+    
+//     // Track touch coordinates
+//     let x = touch.pageX;
+//     let y = touch.pageY;
+
+//     if (x > rect.left && x < rect.right && y > rect.top && y < rect.bottom) {
+//         // Inside the container, add highlight
+//         highlight(mainCategoryDivId);
+//     } else {
+//         // Outside the container, remove highlight
+//         removeHighlight(mainCategoryDivId);
+//     }
+// }
 // Mobile: Handle touch move (equivalent to dragover)
 function handleTouchMove(event, mainCategoryDivId) {
     // Prevent scrolling while dragging
     event.preventDefault();
-    
+
     const touch = event.touches[0];
     const rect = document.getElementById(mainCategoryDivId).getBoundingClientRect();
-    
+
     // Track touch coordinates
     let x = touch.pageX;
     let y = touch.pageY;
@@ -220,23 +284,45 @@ function handleTouchMove(event, mainCategoryDivId) {
 }
 
 // Mobile: Handle touch end (equivalent to drop)
+// function handleTouchEnd(categoryInput, mainCategoryDivId) {
+//     const element = document.getElementById(mainCategoryDivId);
+//     const rect = element.getBoundingClientRect();
+    
+//     // After touch ends, move card if it's over a valid drop area
+//     let x = touchStartX;
+//     let y = touchStartY;
+
+//     if (x > rect.left && x < rect.right && y > rect.top && y < rect.bottom) {
+//         moveTo(categoryInput);
+//     }
+
+//     document.querySelectorAll('.drag-area-highlight').forEach(function(element) {
+//         element.classList.remove('drag-area-highlight');
+//     });
+// }
+// Mobile: Handle touch end (equivalent to drop)
 function handleTouchEnd(categoryInput, mainCategoryDivId) {
     const element = document.getElementById(mainCategoryDivId);
     const rect = element.getBoundingClientRect();
-    
-    // After touch ends, move card if it's over a valid drop area
+
+    // Use the last tracked touch coordinates
     let x = touchStartX;
     let y = touchStartY;
 
+    // Check if the touch end is within the drop area
     if (x > rect.left && x < rect.right && y > rect.top && y < rect.bottom) {
+        // Move the card to the new category
         moveTo(categoryInput);
     }
 
+    // Clean up any highlighting and visual feedback
     document.querySelectorAll('.drag-area-highlight').forEach(function(element) {
         element.classList.remove('drag-area-highlight');
     });
+    document.querySelectorAll('.rotateOnDrag').forEach(function(element) {
+        element.classList.remove('rotateOnDrag');
+    });
 }
-
 
 ///DRAG AND DROP FUNCTION END
 function returnPrioSvgHTML(i) {
