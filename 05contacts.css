@@ -71,7 +71,7 @@ body {
 }
 
 h2 {
-    font-size: 61px;
+    font-size: 55px;
     font-weight: 700;
 }
 
@@ -89,7 +89,7 @@ h2 {
 }
 
 .contactsText {
-    font-size: 27px;
+    font-size: 25px;
     font-weight: 400;
 }
 
@@ -250,7 +250,7 @@ h2 {
     border: 3px solid #FFFFFF;
     width: 120px;
     height: 120px;
-    color:white;
+    color: white;
 }
 
 .nameContainer {
@@ -654,7 +654,7 @@ form input {
 }
 
 .backArrowContainer {
-    display:none;
+    display: none;
 }
 
 /* ////////////////////////////////POP UP WINDOW END///////////// */
@@ -691,28 +691,33 @@ form input {
     }
 
     .backArrowContainer {
-        display:inline;
+        display: inline;
     }
 
-    .addContactsMain{
-        width:100%;
+    .addContactsMain {
+        width: 100%;
         align-items: center;
-       
+
     }
-    .underContactMain{
-    margin: 0px 16px;
-    padding: 0 0 0 16px;
+
+    .underContactMain {
+        margin: 0px 16px;
+        padding: 0 0 0 16px;
     }
-    .contactSeperator{
-        width:100%;
+
+    .contactSeperator {
+        width: 100%;
         margin: 0px 16px;
     }
-    .addContactsBtn{
+
+    .addContactsBtn {
         margin: 0px 16px;
     }
+
     .alphabet {
-       
-        margin: 12px 0px 0px 24px;}
+
+        margin: 12px 0px 0px 24px;
+    }
 }
 
 @media(max-width: 1210px) {
@@ -729,7 +734,7 @@ form input {
 
 @media(max-width: 1020px) {
     .contactsSection {
-        margin: 96px 0 0 179px;
+        margin: 96px 0 0 172px;
     }
 }
 
@@ -1011,7 +1016,7 @@ form input {
         cursor: pointer;
         margin: 16px 0px 16px 0px;
 
-    
+
     }
 
     .backArrow {
