@@ -6,7 +6,7 @@ body{
 
 
 ::-webkit-scrollbar {
-    width: 10px; /* Width of the vertical scrollbar */
+    width: 6px; /* Width of the vertical scrollbar */
     /* height: 12px; Height of the horizontal scrollbar */
     background: #f3f3f3; /* Background color of the scrollbar */
     border-radius: 12px; /* Rounded corners for the scrollbar */
