@@ -222,7 +222,8 @@ function addContacts() {
     document.querySelector('.saveContact').style.display = 'none';
     document.querySelector('.editDeleteContact').style.display = 'none';
    
-
+    let index = -1;
+    setStyleOfUserCircle(index);
 
     resetEditForm();
     let popUp = document.getElementById('popUpContent');
@@ -277,8 +278,7 @@ function contactsWindowsCancel(event) {
 
 function editContact(index) {
 
-    document.getElementById('editUserCircleId').style.backgroundColor= getProfileRGB(index);
-    document.getElementById('editUserCircleId').innerText = contactsJSON[index]['firstName'].charAt(0) + contactsJSON[index]['lastName'].charAt(0);
+    
 
     currentIndex = index;
     let contact = contactsJSON[index];
@@ -298,7 +298,7 @@ function editContact(index) {
     document.querySelector('.editDeleteContact').style.display = 'flex';
     document.querySelector('.addContactCancel').style.display = 'none';
 
-    
+    setStyleOfUserCircle(index);
 
     // Open the modal
     let popUp = document.getElementById('popUpContent');
@@ -307,6 +307,18 @@ function editContact(index) {
     popUp.classList.add('active');
 
     renderContacts();
+}
+
+function setStyleOfUserCircle(index){
+    if(index > -1){
+        document.getElementById('editUserCircleId').style.backgroundColor= getProfileRGB(index);
+        document.getElementById('editUserCircleId').innerText = contactsJSON[index]['firstName'].charAt(0) + contactsJSON[index]['lastName'].charAt(0);
+    }
+    else{
+        document.getElementById('editUserCircleId').style.backgroundColor = '#2A3647';
+        document.getElementById('editUserCircleId').innerText = 'AA';
+    }
+    
 }
 
 function editDeleteContact() {
