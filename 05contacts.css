@@ -360,6 +360,9 @@ h2 {
     color: #000000;
 }
 
+#editUserCircleId{
+    margin: 16px 0px;
+}
 /* ///////////////////////////POP UP ANIMATION START/////////////  */
 @keyframes slideIn {
     from {
@@ -765,8 +768,8 @@ form input {
     }
 
     .rightSide {
-        padding: 0 0 0 0;
-        height: 58vh;
+        padding: 0px 0px 0px 0px;
+        height: 450px;
     }
 
     .formDetails {
@@ -793,15 +796,22 @@ form input {
 
     .closePopUpTop {
         position: relative;
-        bottom: 58px;
-        left: 379px;
+        bottom: 32px;
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
         background-color: #2A3647;
         color: #FFFFFF;
         border-radius: 50%;
         border: none;
         padding: 5px 4px 0 5px;
         font-size: 18px;
-        display: inline;
+       
+    }
+
+    .closePopUpTop svg{
+        width: 32px;
+        height: 32px;
     }
 
     .closePopUpTop svg path {
@@ -858,23 +868,31 @@ form input {
         bottom: 79px;
     }
 
-    .rightSide {
-        height: 40vh;
-    }
+    
 
     .leftSide {
         padding: 89px 20px 100px 20px;
+        /* height:30%; */
+    }
+    .rightSide {
+    
+        height: 420px;
     }
 
-    form {
+
+    /* form {
         position: relative;
         bottom: 40px;
+    } */
+    .formContent {
+        height: 95%;
+        overflow-y: auto;
     }
 
-    .buttonContent {
+    /* .buttonContent {
         position: relative;
         bottom: 25px;
-    }
+    } */
 
     .showContactsText {
         padding: 10px 0 0 10px;
@@ -882,6 +900,14 @@ form input {
 
     .backArrowContainer {
         left: 480px;
+    }
+
+
+    #editUserCircleId{
+        margin: 16px 0px;
+        width: 80px;
+        height: 80px;
+        font-size: 32px;
     }
 }
 
@@ -938,14 +964,7 @@ form input {
         font-size: 22px;
     }
 
-    .rightSide {
-        height: 42vh;
-    }
-
-    .closePopUpTop {
-        left: 291px;
-    }
-
+ 
     .showContactsTextMain {
         flex-direction: column;
         gap: 0;
@@ -1270,14 +1289,6 @@ form input {
     .editDeleteContact {
         padding: 0 10px 0 10px;
         height: 40px;
-    }
-
-    .rightSide {
-        height: 43.6vh;
-    }
-
-    .closePopUpTop {
-        left: 249px;
     }
 
     form {
