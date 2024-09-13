@@ -189,7 +189,7 @@ h2 {
     height: 90px;
 }
 
-.underContactMain:hover {
+.underContactMain:not(.active):hover {
     background: linear-gradient(to bottom, #fdfafa, #ececec);
     border-radius: 10px;
 }
@@ -198,16 +198,11 @@ h2 {
     background-color: #2A3647;
     color: #ffffff;
     border-radius: 10px;
+    pointer-events: none;
 }
 
 .underContactMain a:active {
     color: #0B6BC4;
-}
-
-.underContactMain.active {
-    background-color: #2A3647;
-    color: #ffffff;
-    pointer-events: none;
 }
 
 /* Farbe der Links in aktiven Elementen */
