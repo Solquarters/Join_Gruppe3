@@ -32,7 +32,7 @@
         
       }
       .cardsDiv{
-        flex-direction: column;
+        /* flex-direction: column; */
       }
 
      
@@ -131,9 +131,9 @@
   .contentDiv{
     width: 90%;
   }
-  .drag-area {
+  /* .drag-area {
    width: unset;
-  }
+  } */
 }
 
 

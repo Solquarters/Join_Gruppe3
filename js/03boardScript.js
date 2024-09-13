@@ -84,8 +84,11 @@ function returnSingleCardHTML(i){
     // </div>
     // `; 
     return /*html*/ `<div class="mainSingleCardDivClass" id="singleCardId${i}"
-    draggable="true" ondragstart="startDragging(${i})" onclick="openLargeCardOverlay(${i})"
-    ontouchstart="handleTouchStart(event, ${i})" ontouchmove="handleTouchMove(event, 'toDoStatusDivId')"
+    draggable="true" 
+    ondragstart="startDragging(${i})" 
+    onclick="openLargeCardOverlay(${i})"
+    ontouchstart="handleTouchStart(event, ${i})" 
+    ontouchmove="handleTouchMove(event, 'toDoStatusDivId')"
     ontouchend="handleTouchEnd('To do', 'toDoStatusDivId')">
         <div class="cardContainerInnert">
             ${returnCategoryHTML(i)}
@@ -223,6 +226,20 @@ function handleDragLeave(event, mainCategoryDivId) {
 
 ///MOBILE DRAG DROP FUNCTION:
 
+// function handleTouchStart(event, index) {
+//     // Store the index of the dragged element
+//     currentDraggedElement = index;
+
+//     // Get initial touch coordinates
+//     const touch = event.touches[0];
+//     touchStartX = touch.pageX;
+//     touchStartY = touch.pageY;
+
+//     // Add visual feedback, if needed
+//     document.getElementById(`singleCardId${index}`).classList.add('rotateOnDrag');
+// }
+
+// Function to trigger vibration on touch start
 function handleTouchStart(event, index) {
     // Store the index of the dragged element
     currentDraggedElement = index;
@@ -232,7 +249,12 @@ function handleTouchStart(event, index) {
     touchStartX = touch.pageX;
     touchStartY = touch.pageY;
 
-    // Add visual feedback, if needed
+    // Trigger vibration (200ms)
+    if (navigator.vibrate) {
+        navigator.vibrate(100);  // Vibration for feedback
+    }
+
+    // Add visual feedback
     document.getElementById(`singleCardId${index}`).classList.add('rotateOnDrag');
 }
 
@@ -263,6 +285,25 @@ function handleTouchStart(event, index) {
 //     }
 // }
 // Mobile: Handle touch move (equivalent to dragover)
+// function handleTouchMove(event, mainCategoryDivId) {
+//     // Prevent scrolling while dragging
+//     event.preventDefault();
+
+//     const touch = event.touches[0];
+//     const rect = document.getElementById(mainCategoryDivId).getBoundingClientRect();
+
+//     // Track touch coordinates
+//     let x = touch.pageX;
+//     let y = touch.pageY;
+
+//     if (x > rect.left && x < rect.right && y > rect.top && y < rect.bottom) {
+//         // Inside the container, add highlight
+//         highlight(mainCategoryDivId);
+//     } else {
+//         // Outside the container, remove highlight
+//         removeHighlight(mainCategoryDivId);
+//     }
+// }
 function handleTouchMove(event, mainCategoryDivId) {
     // Prevent scrolling while dragging
     event.preventDefault();
@@ -274,12 +315,11 @@ function handleTouchMove(event, mainCategoryDivId) {
     let x = touch.pageX;
     let y = touch.pageY;
 
+    // Check if the touch is inside the container
     if (x > rect.left && x < rect.right && y > rect.top && y < rect.bottom) {
-        // Inside the container, add highlight
-        highlight(mainCategoryDivId);
+        highlight(mainCategoryDivId);  // Highlight the container
     } else {
-        // Outside the container, remove highlight
-        removeHighlight(mainCategoryDivId);
+        removeHighlight(mainCategoryDivId);  // Remove highlight if outside
     }
 }
 
@@ -301,6 +341,28 @@ function handleTouchMove(event, mainCategoryDivId) {
 //     });
 // }
 // Mobile: Handle touch end (equivalent to drop)
+// function handleTouchEnd(categoryInput, mainCategoryDivId) {
+//     const element = document.getElementById(mainCategoryDivId);
+//     const rect = element.getBoundingClientRect();
+
+//     // Use the last tracked touch coordinates
+//     let x = touchStartX;
+//     let y = touchStartY;
+
+//     // Check if the touch end is within the drop area
+//     if (x > rect.left && x < rect.right && y > rect.top && y < rect.bottom) {
+//         // Move the card to the new category
+//         moveTo(categoryInput);
+//     }
+
+//     // Clean up any highlighting and visual feedback
+//     document.querySelectorAll('.drag-area-highlight').forEach(function(element) {
+//         element.classList.remove('drag-area-highlight');
+//     });
+//     document.querySelectorAll('.rotateOnDrag').forEach(function(element) {
+//         element.classList.remove('rotateOnDrag');
+//     });
+// }
 function handleTouchEnd(categoryInput, mainCategoryDivId) {
     const element = document.getElementById(mainCategoryDivId);
     const rect = element.getBoundingClientRect();
@@ -309,10 +371,9 @@ function handleTouchEnd(categoryInput, mainCategoryDivId) {
     let x = touchStartX;
     let y = touchStartY;
 
-    // Check if the touch end is within the drop area
+    // Check if the touch ended within the container
     if (x > rect.left && x < rect.right && y > rect.top && y < rect.bottom) {
-        // Move the card to the new category
-        moveTo(categoryInput);
+        moveTo(categoryInput);  // Move the card to the new category
     }
 
     // Clean up any highlighting and visual feedback
@@ -325,6 +386,15 @@ function handleTouchEnd(categoryInput, mainCategoryDivId) {
 }
 
 ///DRAG AND DROP FUNCTION END
+
+
+
+
+
+
+
+
+
 function returnPrioSvgHTML(i) {
         if(toDoCardsJSON[i]["prio"] == "Low"){
             return `<img src="./assets/img/Priority symbols low.svg">`;
