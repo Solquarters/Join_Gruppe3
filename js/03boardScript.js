@@ -249,10 +249,10 @@ function handleTouchStart(event, index) {
     touchStartX = touch.pageX;
     touchStartY = touch.pageY;
 
-    // Trigger vibration (200ms)
-    if (navigator.vibrate) {
-        navigator.vibrate(100);  // Vibration for feedback
-    }
+    // // Trigger vibration (200ms)
+    // if (navigator.vibrate) {
+    //     navigator.vibrate(100);  // Vibration for feedback
+    // }
 
     // Add visual feedback
     document.getElementById(`singleCardId${index}`).classList.add('rotateOnDrag');
@@ -497,7 +497,7 @@ function openEmptyAddTaskOverlay(toDoStatus){
 
         document.getElementById('largeCardTitleSpanId').innerText = toDoCardsJSON[i].title;
         document.getElementById('largeCardDescriptionSpanId').innerText = toDoCardsJSON[i].description;
-        document.getElementById('largeCardDateSpanId').innerText = toDoCardsJSON[i].dueDate;
+        document.getElementById('largeCardDateSpanId').innerText = formatToGermanDate(toDoCardsJSON[i].dueDate)+' (german)' ;
         document.getElementById('largeCardPrioSpanId').innerHTML = /*html*/`${toDoCardsJSON[i].prio}&nbsp${returnPrioSvgHTML(i)}`;
         
         ///EIGENE FUNKTION: GEHE DURCH JSONTODO[i].assignedTo Array und rendere den Kreis und den Namen
@@ -507,7 +507,12 @@ function openEmptyAddTaskOverlay(toDoStatus){
     }
 
     
-
+    function formatToGermanDate(dateString) {
+        const [year, month, day] = dateString.split('-');
+        return `${day}.${month}.${year}`;
+    }
+    
+  
 
 
 function renderDeleteAndEditButton(i){

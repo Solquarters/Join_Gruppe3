@@ -701,6 +701,7 @@ function changeCategoryInTempArray(categoryInput){
 }
 
 function updateDateInTempArray(){
+    
     temporaryNewTaskSingleCardObject["dueDate"] = document.getElementById('datePickerInputId').value;
 }
 

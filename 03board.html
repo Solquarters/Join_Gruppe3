@@ -84,140 +84,159 @@
                   </div>
       
                </div>
-              
-                <div class="cardsDiv">
-<div class="containerDivCards1">
-                  <div id="toDoAreaId">
-                     <div class="titel">
-                        <div class="addLine"><span>To Do</span>
-                           <svg onclick="openEmptyAddTaskOverlay('To do')" width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <rect x="1" y="1.5" width="22" height="22" rx="7" stroke="#2A3647" stroke-width="2"/>
-                              <path d="M12 8.5V16.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
-                              <path d="M16 12.5754L8 12.5754" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
-                              </svg>
-                     </div>
-                  </div>
-                     
-                     <!-- <div id="toDoStatusDivId" class="mainCardContainerDivClass drag-area"
-                     ondrop="moveTo('To do')" 
-                     ondragleave="handleDragLeave(event, 'toDoStatusDivId')" 
-                     ondragover="allowDrop(event); highlight('toDoStatusDivId')"
-                     ontouchmove="handleTouchMove(event, 'toDoStatusDivId')"
-                     ontouchend="handleTouchEnd('To do', 'toDoStatusDivId')">
-                     > -->
-                     <div id="toDoStatusDivId" class="mainCardContainerDivClass drag-area"
-                     ondrop="moveTo('To do')" 
-                     ondragleave="handleDragLeave(event, 'toDoStatusDivId')" 
-                     ondragover="allowDrop(event); highlight('toDoStatusDivId')"
-                     ontouchmove="handleTouchMove(event, 'toDoStatusDivId')"
-                     ontouchend="handleTouchEnd('To do', 'toDoStatusDivId')">
-                  </div>
-                        <!-- ID im Drag and Drop MiniProjekt: id="mainToDoDivId" -->
-                        <!-- HIER WERDEN ALLE OBJEKTE AUS DEM TODOJSON DYNAMISCH EINGEFÜGT, ABER NUR WENN SIE DIE KATEGORIE "TO DO" -->
-                     </div>
-                 </div>
-                    
-                    
-                 <div id="inProgressAreaId">
-                  <div class="titel">
-                     <div class="addLine"><span>In Progress</span>
-                        <svg onclick="openEmptyAddTaskOverlay('In progress')" width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                           <rect x="1" y="1.5" width="22" height="22" rx="7" stroke="#2A3647" stroke-width="2"/>
-                           <path d="M12 8.5V16.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
-                           <path d="M16 12.5754L8 12.5754" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
-                           </svg>
-                  </div>
-               </div>
+                   <!-- HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH -->
+                    <div class="mainTwoContainerCardsDiv">
+
+                     <div class="cardsDiv">
+                        <div class="containerDivCards1">
+                                          <div id="toDoAreaId">
+                                             <div class="titel">
+                                                <div class="addLine"><span>To Do</span>
+                                                   <svg onclick="openEmptyAddTaskOverlay('To do')" width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                      <rect x="1" y="1.5" width="22" height="22" rx="7" stroke="#2A3647" stroke-width="2"/>
+                                                      <path d="M12 8.5V16.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                                                      <path d="M16 12.5754L8 12.5754" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                                                      </svg>
+                                             </div>
+                                          </div>
+                                             
+                                             <!-- <div id="toDoStatusDivId" class="mainCardContainerDivClass drag-area"
+                                             ondrop="moveTo('To do')" 
+                                             ondragleave="handleDragLeave(event, 'toDoStatusDivId')" 
+                                             ondragover="allowDrop(event); highlight('toDoStatusDivId')"
+                                             ontouchmove="handleTouchMove(event, 'toDoStatusDivId')"
+                                             ontouchend="handleTouchEnd('To do', 'toDoStatusDivId')">
+                                             > -->
+                                             <div id="toDoStatusDivId" class="mainCardContainerDivClass drag-area"
+                                             ondrop="moveTo('To do')" 
+                                             ondragleave="handleDragLeave(event, 'toDoStatusDivId')" 
+                                             ondragover="allowDrop(event); highlight('toDoStatusDivId')"
+                                             ontouchmove="handleTouchMove(event, 'toDoStatusDivId')"
+                                             ontouchend="handleTouchEnd('To do', 'toDoStatusDivId')">
+                                          </div>
+                                                <!-- ID im Drag and Drop MiniProjekt: id="mainToDoDivId" -->
+                                                <!-- HIER WERDEN ALLE OBJEKTE AUS DEM TODOJSON DYNAMISCH EINGEFÜGT, ABER NUR WENN SIE DIE KATEGORIE "TO DO" -->
+                                             </div>
+                                         </div>
+                                            
+                                            
+                                         <div id="inProgressAreaId">
+                                          <div class="titel">
+                                             <div class="addLine"><span>In Progress</span>
+                                                <svg onclick="openEmptyAddTaskOverlay('In progress')" width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                   <rect x="1" y="1.5" width="22" height="22" rx="7" stroke="#2A3647" stroke-width="2"/>
+                                                   <path d="M12 8.5V16.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                                                   <path d="M16 12.5754L8 12.5754" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                                                   </svg>
+                                          </div>
+                                       </div>
+                                          
+                                          <!-- <div id="inProgressStatusDivId" class="mainCardContainerDivClass drag-area"
+                                          ondrop="moveTo('In progress')" 
+                                          ondragleave="handleDragLeave(event, 'inProgressStatusDivId')" 
+                                          ondragover="allowDrop(event); highlight('inProgressStatusDivId')"
+                                          ontouchmove="handleTouchMove(event, 'inProgressStatusDivId')" 
+                                          ontouchend="handleTouchEnd('In progress', 'inProgressStatusDivId')"
+                                          > -->
+                        
+                                          <div id="inProgressStatusDivId" class="mainCardContainerDivClass drag-area"
+                            ondrop="moveTo('In progress')" 
+                            ondragleave="handleDragLeave(event, 'inProgressStatusDivId')" 
+                            ondragover="allowDrop(event); highlight('inProgressStatusDivId')"
+                            ontouchmove="handleTouchMove(event, 'inProgressStatusDivId')" 
+                            ontouchend="handleTouchEnd('In progress', 'inProgressStatusDivId')">
+                        </div>
+                        
+                        
+                        
+                                             <!-- ID im Drag and Drop MiniProjekt: id="mainInProgressDivId" -->
+                                             <!-- HIER WERDEN ALLE OBJEKTE AUS DEM TODOJSON DYNAMISCH EINGEFÜGT, ABER NUR WENN SIE DIE KATEGORIE "IN PROGRESS" -->
+                        
+                                          </div>
+                                      </div>
+                        
+                        
+                                     
+                                       <div class="containerDivCards2">      
+                                          <div id="awaitFeedbackAreaId">
+                                              <div class="titel">
+                                                 <div class="addLine"><span>Await Feedback</span>
+                                                    <svg onclick="openEmptyAddTaskOverlay('Await feedback')" width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                       <rect x="1" y="1.5" width="22" height="22" rx="7" stroke="#2A3647" stroke-width="2"/>
+                                                       <path d="M12 8.5V16.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                                                       <path d="M16 12.5754L8 12.5754" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                                                       </svg>
+                                              </div>
+                                           </div>
+                                              
+                                           <!-- <div id="awaitFeedbackStatusDivId" class="mainCardContainerDivClass drag-area"
+                                           ondrop="moveTo('Await feedback')" 
+                                           ondragleave="handleDragLeave(event, 'awaitFeedbackStatusDivId')" 
+                                           ondragover="allowDrop(event); highlight('awaitFeedbackStatusDivId')"
+                                           ontouchmove="handleTouchMove(event, 'awaitFeedbackStatusDivId')" 
+                                           ontouchend="handleTouchEnd('Await feedback', 'awaitFeedbackStatusDivId')"
+                                           > -->
+                        
+                                           <div id="awaitFeedbackStatusDivId" class="mainCardContainerDivClass drag-area"
+                          ondrop="moveTo('Await feedback')" 
+                          ondragleave="handleDragLeave(event, 'awaitFeedbackStatusDivId')" 
+                          ondragover="allowDrop(event); highlight('awaitFeedbackStatusDivId')"
+                          ontouchmove="handleTouchMove(event, 'awaitFeedbackStatusDivId')" 
+                          ontouchend="handleTouchEnd('Await feedback', 'awaitFeedbackStatusDivId')">
+                        </div>
+                                                  <!-- ID im Drag and Drop MiniProjekt: id="awaitFeedbackDivId" -->
+                                                 <!-- HIER WERDEN ALLE OBJEKTE AUS DEM TODOJSON DYNAMISCH EINGEFÜGT, ABER NUR WENN SIE DIE KATEGORIE "Await feedback" -->
+                        
+                                              </div>
+                        
+                                              <div id="doneAreaId">
+                                                <div class="titel">
+                                                   <div class="addLine"><span>Done</span>
+                                                      <svg onclick="openEmptyAddTaskOverlay('Done')" width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                         <rect x="1" y="1.5" width="22" height="22" rx="7" stroke="#2A3647" stroke-width="2"/>
+                                                         <path d="M12 8.5V16.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                                                         <path d="M16 12.5754L8 12.5754" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                                                         </svg>
+                                                </div>
+                                             </div>
+                                                
+                                             <!-- <div id="doneStatusDivId" class="mainCardContainerDivClass drag-area"
+                                             ondrop="moveTo('Done')" 
+                                             ondragleave="handleDragLeave(event, 'doneStatusDivId')" 
+                                             ondragover="allowDrop(event); highlight('doneStatusDivId')"
+                                             ontouchmove="handleTouchMove(event, 'doneStatusDivId')" 
+                                             ontouchend="handleTouchEnd('Done', 'doneStatusDivId')"
+                                             > -->
+                                             <div id="doneStatusDivId" class="mainCardContainerDivClass drag-area"
+                               ondrop="moveTo('Done')" 
+                               ondragleave="handleDragLeave(event, 'doneStatusDivId')" 
+                               ondragover="allowDrop(event); highlight('doneStatusDivId')"
+                               ontouchmove="handleTouchMove(event, 'doneStatusDivId')" 
+                               ontouchend="handleTouchEnd('Done', 'doneStatusDivId')">
+                             </div>
+                             
+                                                   <!-- ID im Drag and Drop MiniProjekt: id="isDoneDivId" -->
+                                                      <!-- HIER WERDEN ALLE OBJEKTE AUS DEM TODOJSON DYNAMISCH EINGEFÜGT, ABER NUR WENN SIE DIE KATEGORIE "Await feedback" -->
+                             
+                                             </div>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                                          </div>
+                        
+
+                    </div>
+                
+                  <!-- HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH -->
                   
-                  <!-- <div id="inProgressStatusDivId" class="mainCardContainerDivClass drag-area"
-                  ondrop="moveTo('In progress')" 
-                  ondragleave="handleDragLeave(event, 'inProgressStatusDivId')" 
-                  ondragover="allowDrop(event); highlight('inProgressStatusDivId')"
-                  ontouchmove="handleTouchMove(event, 'inProgressStatusDivId')" 
-                  ontouchend="handleTouchEnd('In progress', 'inProgressStatusDivId')"
-                  > -->
-
-                  <div id="inProgressStatusDivId" class="mainCardContainerDivClass drag-area"
-    ondrop="moveTo('In progress')" 
-    ondragleave="handleDragLeave(event, 'inProgressStatusDivId')" 
-    ondragover="allowDrop(event); highlight('inProgressStatusDivId')"
-    ontouchmove="handleTouchMove(event, 'inProgressStatusDivId')" 
-    ontouchend="handleTouchEnd('In progress', 'inProgressStatusDivId')">
-</div>
-
-
-
-                     <!-- ID im Drag and Drop MiniProjekt: id="mainInProgressDivId" -->
-                     <!-- HIER WERDEN ALLE OBJEKTE AUS DEM TODOJSON DYNAMISCH EINGEFÜGT, ABER NUR WENN SIE DIE KATEGORIE "IN PROGRESS" -->
-
-                  </div>
-              </div>
+            </div>
             </div>  
             
-            <div class="contentDiv">
-               <div class="containerDivCards2">      
-                  <div id="awaitFeedbackAreaId">
-                      <div class="titel">
-                         <div class="addLine"><span>Await Feedback</span>
-                            <svg onclick="openEmptyAddTaskOverlay('Await feedback')" width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                               <rect x="1" y="1.5" width="22" height="22" rx="7" stroke="#2A3647" stroke-width="2"/>
-                               <path d="M12 8.5V16.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
-                               <path d="M16 12.5754L8 12.5754" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
-                               </svg>
-                      </div>
-                   </div>
-                      
-                   <!-- <div id="awaitFeedbackStatusDivId" class="mainCardContainerDivClass drag-area"
-                   ondrop="moveTo('Await feedback')" 
-                   ondragleave="handleDragLeave(event, 'awaitFeedbackStatusDivId')" 
-                   ondragover="allowDrop(event); highlight('awaitFeedbackStatusDivId')"
-                   ontouchmove="handleTouchMove(event, 'awaitFeedbackStatusDivId')" 
-                   ontouchend="handleTouchEnd('Await feedback', 'awaitFeedbackStatusDivId')"
-                   > -->
-
-                   <div id="awaitFeedbackStatusDivId" class="mainCardContainerDivClass drag-area"
-  ondrop="moveTo('Await feedback')" 
-  ondragleave="handleDragLeave(event, 'awaitFeedbackStatusDivId')" 
-  ondragover="allowDrop(event); highlight('awaitFeedbackStatusDivId')"
-  ontouchmove="handleTouchMove(event, 'awaitFeedbackStatusDivId')" 
-  ontouchend="handleTouchEnd('Await feedback', 'awaitFeedbackStatusDivId')">
-</div>
-                          <!-- ID im Drag and Drop MiniProjekt: id="awaitFeedbackDivId" -->
-                         <!-- HIER WERDEN ALLE OBJEKTE AUS DEM TODOJSON DYNAMISCH EINGEFÜGT, ABER NUR WENN SIE DIE KATEGORIE "Await feedback" -->
-
-                      </div>
-                  </div>
-                  <div id="doneAreaId">
-                   <div class="titel">
-                      <div class="addLine"><span>Done</span>
-                         <svg onclick="openEmptyAddTaskOverlay('Done')" width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect x="1" y="1.5" width="22" height="22" rx="7" stroke="#2A3647" stroke-width="2"/>
-                            <path d="M12 8.5V16.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
-                            <path d="M16 12.5754L8 12.5754" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
-                            </svg>
-                   </div>
-                </div>
-                   
-                <!-- <div id="doneStatusDivId" class="mainCardContainerDivClass drag-area"
-                ondrop="moveTo('Done')" 
-                ondragleave="handleDragLeave(event, 'doneStatusDivId')" 
-                ondragover="allowDrop(event); highlight('doneStatusDivId')"
-                ontouchmove="handleTouchMove(event, 'doneStatusDivId')" 
-                ontouchend="handleTouchEnd('Done', 'doneStatusDivId')"
-                > -->
-                <div id="doneStatusDivId" class="mainCardContainerDivClass drag-area"
-  ondrop="moveTo('Done')" 
-  ondragleave="handleDragLeave(event, 'doneStatusDivId')" 
-  ondragover="allowDrop(event); highlight('doneStatusDivId')"
-  ontouchmove="handleTouchMove(event, 'doneStatusDivId')" 
-  ontouchend="handleTouchEnd('Done', 'doneStatusDivId')">
-</div>
-
-                      <!-- ID im Drag and Drop MiniProjekt: id="isDoneDivId" -->
-                         <!-- HIER WERDEN ALLE OBJEKTE AUS DEM TODOJSON DYNAMISCH EINGEFÜGT, ABER NUR WENN SIE DIE KATEGORIE "Await feedback" -->
-
-                </div>
-            </div>
+            
 
             
                  </div>

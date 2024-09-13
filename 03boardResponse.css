@@ -15,8 +15,12 @@
    
 }
 
-
-
+@media (min-width: 1450px) {
+.mainTwoContainerCardsDiv{
+  display: flex;
+  gap:16px;
+}
+}
 
 @media (max-width: 1410px) {
    
@@ -32,9 +36,10 @@
         
       }
       .cardsDiv{
-        flex-direction: column;
+        /* flex-direction: column; */
       }
 
+      
      
 }
 
@@ -45,10 +50,22 @@
 
 }
 
+@media (min-width: 850px) {
+  .cardsDiv {
+      display: flex;
+      gap: 16px;
+  }
+  .containerDivCards2{
+    gap: 16px;
+  }
+}
+
+
+
 @media (max-width: 830px)  {
+  
 
   .mainDiv {
- 
     margin-bottom: 120px;
 }
 
@@ -89,10 +106,29 @@
   cursor: pointer;
 }
 
+
+
 }
 
 
+
+@media (min-width: 776px) {
+  .cardsDiv{
+    display: flex;
+  }
+  .containerDivCards2{
+    margin: 16px 0px 0px 0px;
+  }
+}
+
+
+
 @media (max-width: 775px) {
+
+  .cardsDiv{
+    flex-direction: column;
+  }
+  
   .contentDiv{
     width: 90%;
   }
@@ -100,8 +136,8 @@
     width: auto;
     display: flex;
     overflow-x:auto;
-   
   }
+ 
   .containerDivCards1{
     flex-direction: column;
   }
@@ -119,7 +155,7 @@
     margin: 8px 12px 0px 0px;
   }
   .addLine{
-    margin: 16px 0px 0px 0px;
+    margin: 16px 0px 16px 0px;
   }
   .cardsDiv{
     margin: 8px 0px 0px 0px;

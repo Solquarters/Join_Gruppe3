@@ -94,11 +94,15 @@
                                 </g>
                             </svg></button>
                         <form onsubmit="createContact()">
-                            <input id="name" type="text" placeholder="Name" required>
+                            <!-- <input id="name" type="text" placeholder="Name" required>
                             <input id="email" type="email" placeholder="Email" required>
-                            <input id="phone" type="tel" placeholder="Phone"  pattern="[0-9]*" inputmode="numeric" required>
+                            <input id="phone" type="tel" placeholder="Phone"  pattern="[0-9]*" inputmode="numeric" required> -->
+
+                            <input id="name" name="name" type="text" placeholder="Name" required>
+                            <input id="email" name="email" type="email" placeholder="Email" required>
+                            <input id="phone" name="phone" type="tel" placeholder="Phone" pattern="[0-9]*" inputmode="numeric" required>
                             <div class="buttonContent">
-                                <button onclick="contactsWindowsCancel()" id="addContactCancel"
+                                <button onclick="contactsWindowsCancel(event)" id="addContactCancel"
                                     class="addContactCancel"><svg xmlns="http://www.w3.org/2000/svg"
                                         viewBox="0 0 24 24">
                                         <path d="M6 6L18 18M6 18L18 6" stroke="currentColor" stroke-width="2"

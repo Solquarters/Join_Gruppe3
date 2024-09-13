@@ -127,7 +127,7 @@ h2 {
 /* ////////////////////////////////// */
 
 .contactSeperator {
-    width: 325px;
+    /* width: 325px; */
     height: 1px;
     background-color: #D1D1D1;
     border-radius: 10px;
@@ -704,10 +704,9 @@ form input {
         margin: 0px 16px;
         padding: 0 0 0 16px;
     }
-
-    .contactSeperator {
-        width: 100%;
-        margin: 0px 16px;
+    .contactSeperator{
+        /* width:100%; */
+        /* margin: 0px 16px; */
     }
 
     .addContactsBtn {
@@ -1220,7 +1219,7 @@ form input {
     }
 
     .contactSeperator {
-        width: 270px;
+        /* width: 270px; */
     }
 
     .underContactMain {

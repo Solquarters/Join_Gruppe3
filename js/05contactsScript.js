@@ -167,8 +167,15 @@ async function createContact(){
     } else {
         // Get first and last name from the full name input
         let nameParts = fullName.split(' ');
+
+        //////new contact wont create when only one name string is inputted!! ///////
         let firstName = nameParts[0];
-        let lastName = nameParts.slice(1).join(' ');
+        let lastName = '';
+        if(nameParts.length > 1){
+            lastName = nameParts.slice(1).join(' ');
+        }
+       
+        
 
         if (editingIndex !== null) {
             // Update existing contact
@@ -195,6 +202,9 @@ async function createContact(){
                 profileRGB: profileRGB
             };
             contactsJSON.push(newContact);
+            contactsJSON = sortContactsByFirstName(contactsJSON);
+
+
             await putData("/contactsJson", contactsJSON);
         }
         renderContacts();
@@ -233,6 +243,8 @@ function callDropDownMenu() {
     document.querySelector('button[onclick="callDropDownMenu()"]').addEventListener('click', event => event.stopPropagation());
 }
 
+
+
 function hideContacts() {
     let popUp = document.getElementById('popUpContent');
     popUp.classList.remove('active');
@@ -240,7 +252,8 @@ function hideContacts() {
     setTimeout(() => popUp.style.display = 'none', 600); // Adjust the timeout to match the slideOut animation duration
 }
 
-function contactsWindowsCancel() {
+function contactsWindowsCancel(event) {
+    event.preventDefault();
     // Close the modal
     let popUp = document.getElementById('popUpContent');
     popUp.classList.remove('active');
@@ -389,3 +402,6 @@ async function deleteContacts(index) {
 
     alert('Kontakt erfolgreich gelöscht!');
 }
+
+
+
