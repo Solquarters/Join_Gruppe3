@@ -1,6 +1,7 @@
 let oldLetter = '#';
 let newLetter = 'A';
 let editingIndex = null; // Added to track editing index
+let currentIndex;
 
 async function initContactSite(){
     try {
@@ -214,6 +215,15 @@ async function createContact(){
 
 // Function for show a Pop Up window
 function addContacts() {
+
+    document.querySelector('.createContact').style.display = 'flex';
+    document.querySelector('.addContactCancel').style.display = 'none';
+
+    document.querySelector('.saveContact').style.display = 'none';
+    document.querySelector('.editDeleteContact').style.display = 'none';
+   
+
+
     resetEditForm();
     let popUp = document.getElementById('popUpContent');
     popUp.style.display = 'flex'; // Ensure display is set to flex before adding active class
@@ -266,6 +276,10 @@ function contactsWindowsCancel(event) {
 }
 
 function editContact(index) {
+
+    document.getElementById('editUserCircleId').style.backgroundColor= getProfileRGB(index);
+    document.getElementById('editUserCircleId').innerText = contactsJSON[index]['firstName'].charAt(0) + contactsJSON[index]['lastName'].charAt(0);
+
     currentIndex = index;
     let contact = contactsJSON[index];
 
@@ -284,11 +298,7 @@ function editContact(index) {
     document.querySelector('.editDeleteContact').style.display = 'flex';
     document.querySelector('.addContactCancel').style.display = 'none';
 
-    //Set the submit handler to the save function for the edited contact
-    document.querySelector('form').onsubmit = function () {
-        saveEditedContact(index);
-        return false;
-    };
+    
 
     // Open the modal
     let popUp = document.getElementById('popUpContent');
