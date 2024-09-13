@@ -349,6 +349,13 @@ function backStep() {
         document.getElementById('showContactsText').style.display = 'none';
     }
     document.getElementById('addContactsMain').classList.remove('d-none');
+
+    ////////////Hier alle active "underContactMain active" entfernen 
+    const elements = document.querySelectorAll('.underContactMain.active');
+    // Loop through each element and remove the 'active' class
+    elements.forEach(function(element) {
+        element.classList.remove('active');
+    });
 }
 
 let isBelowThreshold = false; // Flag, um den Zustand zu verfolgen

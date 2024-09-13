@@ -653,6 +653,10 @@ form input {
     box-shadow: 0 4px 3px rgba(0, 0, 0, 0.2);
 }
 
+.backArrowContainer {
+    display:none;
+}
+
 /* ////////////////////////////////POP UP WINDOW END///////////// */
 
 /* Media Queries */
@@ -684,12 +688,31 @@ form input {
         width: 30px;
         height: 30px;
         cursor: pointer;
-        position: relative;
-        left: 900px;
-        top: -69px;
-        flex-shrink: 0;
-        /* Verhindert, dass der Container schrumpft */
     }
+
+    .backArrowContainer {
+        display:inline;
+    }
+
+    .addContactsMain{
+        width:100%;
+        align-items: center;
+       
+    }
+    .underContactMain{
+    margin: 0px 16px;
+    padding: 0 0 0 16px;
+    }
+    .contactSeperator{
+        width:100%;
+        margin: 0px 16px;
+    }
+    .addContactsBtn{
+        margin: 0px 16px;
+    }
+    .alphabet {
+       
+        margin: 12px 0px 0px 24px;}
 }
 
 @media(max-width: 1210px) {
@@ -810,7 +833,7 @@ form input {
 
 @media(max-width: 680px) {
     .showContactsTextMain {
-        gap: 3px;
+        gap: 16px;
     }
 }
 
@@ -982,15 +1005,13 @@ form input {
     }
 
     .backArrowContainer {
-        display: inline;
-        width: 30px;
-        height: 30px;
+        display: flex;
+        width: 100%;
+        justify-content: flex-end;
         cursor: pointer;
-        position: relative;
-        left: 377px;
-        top: 30px;
-        flex-shrink: 0;
-        /* Verhindert, dass der Container schrumpft */
+        margin: 16px 0px 16px 0px;
+
+    
     }
 
     .backArrow {
@@ -998,6 +1019,7 @@ form input {
         height: 24px;
         transition: transform 0.3s ease, width 0.3s ease, height 0.3s ease;
         padding: 3px;
+        margin: 0px 32px 0px 0px;
     }
 
     .backArrow:active {
