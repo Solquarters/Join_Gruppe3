@@ -32,7 +32,7 @@
         
       }
       .cardsDiv{
-        /* flex-direction: column; */
+        flex-direction: column;
       }
 
      
@@ -93,8 +93,11 @@
 
 
 @media (max-width: 775px) {
+  .contentDiv{
+    width: 90%;
+  }
   .drag-area {
-    width: 420px;
+    width: auto;
     display: flex;
     overflow-x:auto;
    
@@ -128,9 +131,7 @@
 }
 
 @media (max-width: 700px) {
-  .contentDiv{
-    width: 90%;
-  }
+  
   /* .drag-area {
    width: unset;
   } */
