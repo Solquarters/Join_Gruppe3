@@ -630,12 +630,13 @@ async function submitAddTaskForm(){
         if (!isInput1Valid) input1.reportValidity();
        
     } else {
+        //Display success message and redirect to board
+        displaySuccessAddingTask();
         await pushNewCardToJson();
     }
 
 
-    //Display success message and redirect to board
-    displaySuccessAddingTask();
+    
     
 
 };
