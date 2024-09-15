@@ -123,9 +123,7 @@ function updateContactsInfoHTML(index){
 }
 
 function returnAlphabeticalSeperator(i) {
-
     newLetter = contactsJSON[i]['firstName'].charAt(0).toUpperCase();
-
     if (oldLetter !== newLetter) {
         oldLetter = newLetter;
 
@@ -176,8 +174,6 @@ async function createContact(){
             lastName = nameParts.slice(1).join(' ');
         }
        
-        
-
         if (editingIndex !== null) {
             // Update existing contact
             contactsJSON[editingIndex] = {
@@ -277,9 +273,6 @@ function contactsWindowsCancel(event) {
 }
 
 function editContact(index) {
-
-    
-
     currentIndex = index;
     let contact = contactsJSON[index];
 
@@ -300,14 +293,29 @@ function editContact(index) {
 
     setStyleOfUserCircle(index);
 
+    
+
     // Open the modal
     let popUp = document.getElementById('popUpContent');
     popUp.style.display = 'flex'; // Ensure display is set to flex before adding active class
     popUp.classList.remove('inactive');
     popUp.classList.add('active');
 
-    renderContacts();
+    setDeleteButtonToIndex(index);
+
+    // renderContacts();
 }
+
+
+function setDeleteButtonToIndex(index){
+    let deleteButton = document.getElementById("deleteButtonInEditModeId");
+    deleteButton.classList.remove('d-none');
+    deleteButton.onclick = function(event) {
+        event.preventDefault(); // Prevent the default action (if any)
+        deleteContacts(index);  // Call your delete function
+    };
+}
+
 
 function setStyleOfUserCircle(index){
     if(index > -1){
@@ -321,10 +329,7 @@ function setStyleOfUserCircle(index){
     
 }
 
-function editDeleteContact() {
-    deleteContacts();
-    renderContacts();
-}
+
 
 // Change Contact
 function saveEditedContact(index) {
@@ -525,7 +530,15 @@ function changeWidth() {
     }
 }
 
+
+
+function editDeleteContact() {
+    deleteContacts();
+    renderContacts();
+}
+
 async function deleteContacts(index) {
+
     contactsJSON.splice(index, 1);
     await putData("/contactsJson", contactsJSON);
 
@@ -536,10 +549,30 @@ async function deleteContacts(index) {
         document.getElementById('showContactsText').style.display = 'none';
         document.getElementById('addContactsMain').classList.remove('d-none');
     }
+
+    toggleDeleteSuccessMessage();
+    hideContacts();
     renderContacts();
 
-    alert('Kontakt erfolgreich gelöscht!');
 }
 
 
+function toggleDeleteSuccessMessage() {
+    const deleteSuccessContainer = document.getElementById('deleteSuccessContainerId');
+    
+    // Step 1: Set display to flex and start fading in
+    deleteSuccessContainer.style.display = 'flex';
+    setTimeout(() => {
+        deleteSuccessContainer.style.opacity = '1';
+    }, 10); // Small delay to ensure the display change takes effect before opacity
 
+    // Step 2: Wait 2 seconds (or however long you want it visible), then fade out
+    setTimeout(() => {
+        deleteSuccessContainer.style.opacity = '0';
+    }, 2000); // Adjust this value to control how long the message is visible
+
+    // Step 3: After the fade-out transition, set display to none
+    setTimeout(() => {
+        deleteSuccessContainer.style.display = 'none';
+    }, 2200); // A little longer than the fade-out transition to ensure it completes
+}
