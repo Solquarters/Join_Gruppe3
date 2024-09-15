@@ -356,16 +356,22 @@ async function saveEditedContact(index) {
     document.querySelector('.editDeleteContact').style.display = 'none';
 
     // Close Pop Up
-    let popUp = document.getElementById('popUpContent');
-    popUp.style.display = 'none';
-    popUp.classList.remove('active');
-    popUp.classList.add('inactive');
+    closeEditPopup();
 
     renderContacts();
     resetEditForm();
     updateContactsInfoHTML(index);
 
+
+    ///Statt alert infofenster 
     alert('Änderungen wurden gespeichert.');
+}
+
+function closeEditPopup(){
+    let popUp = document.getElementById('popUpContent');
+    popUp.style.display = 'none';
+    popUp.classList.remove('active');
+    popUp.classList.add('inactive');
 }
 
 // Function to find a contact by index
