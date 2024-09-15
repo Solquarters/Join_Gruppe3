@@ -460,6 +460,7 @@ h2 {
 }
 
 .formButtonContainer {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: end;
@@ -656,6 +657,32 @@ form input {
 }
 
 /* ////////////////////////////////POP UP WINDOW END///////////// */
+
+/* ///Input field validation */
+.invalid-name::placeholder {
+    color: red;
+}
+.invalid-email::placeholder {
+    color: red;
+}
+
+.editSuccessMessageClass{
+    position: absolute;
+    z-index: 12;
+    width: 100%;
+    height:100%;
+    background-color: white;
+    border-radius: 16px;
+
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0;
+    transition: opacity 200ms ease-in-out;
+}
+
 
 /* Media Queries */
 @media(max-width: 1285px) {

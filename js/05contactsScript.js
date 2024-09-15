@@ -326,20 +326,69 @@ function editDeleteContact() {
     renderContacts();
 }
 
-// Change Contacte
-async function saveEditedContact(index) {
+// Change Contact
+function saveEditedContact(index) {
     // Get the edited information from the form
     let name = document.getElementById('name').value.trim().split(' ');
     let email = document.getElementById('email').value.trim();
     let phone = document.getElementById('phone').value.trim();
-
+    if(!isPhoneValid()){
+        return;
+    }
     // Ensure that the name array has at least two parts (first and last name)
-    if (name.length < 2) {
-        alert('Bitte geben Sie sowohl den Vor- als auch den Nachnamen ein.');
+    if(!isNameValid()){
+        return;
+    }
+    if(!isEmailValid()){
         return;
     }
 
     // Update the contact in the list
+    editContactJsonAtIndexAndSave(index, name,phone, email);
+
+    // Reset the visibility of the buttons
+    resetVisibilityOfCreateButton();
+
+    showEditSuccessMessage();
+    
+    // Delay the closing of the popup to give the user time to read the success message
+    setTimeout(() => {
+        // Close Pop Up
+        resetEditForm();
+        closeEditPopup();
+        renderContacts();
+        updateContactsInfoHTML(index);
+    }, 1500); // Match this delay with the time set in showEditSuccessMessage
+}
+
+
+function showEditSuccessMessage() {
+    // Select the success message element
+    const successMessage = document.querySelector('.editSuccessMessageClass');
+    
+    // Display the message with flex and set opacity to 1 for smooth transition
+    successMessage.style.display = 'flex';
+    
+    // Trigger a reflow so that the opacity transition works
+    successMessage.offsetHeight; // This forces the reflow
+
+    // Set opacity to 1 to show the message
+    successMessage.style.opacity = '1';
+    
+    // After 1.5 seconds, start the fade-out process
+    setTimeout(() => {
+        // Set opacity to 0 for smooth fade-out
+        successMessage.style.opacity = '0';
+        
+        // Wait for the opacity transition to finish before setting display to none
+        setTimeout(() => {
+            successMessage.style.display = 'none';
+        }, 200); // Match this to your CSS transition duration (200ms)
+        
+    }, 1500); // Wait 1.5 seconds before starting to fade out
+}
+
+async function editContactJsonAtIndexAndSave(index, name, phone, email){
     contactsJSON[index] = {
         'firstName': name[0],
         'lastName': name.slice(1).join(' '), // Join remaining parts as last name
@@ -349,22 +398,83 @@ async function saveEditedContact(index) {
     };
 
     await putData("/contactsJson", contactsJSON);
+}
 
-    // Reset the visibility of the buttons
+function resetVisibilityOfCreateButton(){
     document.querySelector('.createContact').style.display = 'flex';
     document.querySelector('.saveContact').style.display = 'none';
     document.querySelector('.editDeleteContact').style.display = 'none';
+}
 
-    // Close Pop Up
-    closeEditPopup();
+function isNameValid() {
+    const nameInput = document.getElementById('name');
+    const nameParts = nameInput.value.trim().split(' ');
 
-    renderContacts();
-    resetEditForm();
-    updateContactsInfoHTML(index);
+    if (nameParts.length < 2) {
+        // Change the placeholder text
+        nameInput.placeholder = 'Full name needed';
+        
+        // Add a class to style the placeholder color
+        nameInput.classList.add('invalid-name');
+        
+        // Clear the input value to show the placeholder
+        nameInput.value = '';
+
+        return false;
+    } else {
+        // Reset the placeholder text and remove the class
+        nameInput.placeholder = 'Name';
+        nameInput.classList.remove('invalid-name');
+
+        return true;
+    }
+}
 
 
-    ///Statt alert infofenster 
-    alert('Änderungen wurden gespeichert.');
+function isPhoneValid() {
+    const phoneInput = document.getElementById('phone');
+    
+    if (!phoneInput.checkValidity()) {
+        // Change the placeholder text
+        phoneInput.placeholder = 'Need a valid phonenumber or empty field';
+        
+        // Add a class to style the placeholder color
+        phoneInput.classList.add('invalid-email');
+        
+        // Clear the input value to show the placeholder
+        phoneInput.value = '';
+        
+        return false;
+    } else {
+        // Reset the placeholder text and remove the class
+        phoneInput.placeholder = 'Phone';
+        phoneInput.classList.remove('invalid-email');
+        
+        return true;
+    }
+}
+
+function isEmailValid() {
+    const emailInput = document.getElementById('email');
+    
+    if (!emailInput.checkValidity()) {
+        // Change the placeholder text
+        emailInput.placeholder = 'Valid email needed';
+        
+        // Add a class to style the placeholder color
+        emailInput.classList.add('invalid-email');
+        
+        // Clear the input value to show the placeholder
+        emailInput.value = '';
+        
+        return false;
+    } else {
+        // Reset the placeholder text and remove the class
+        emailInput.placeholder = 'Email';
+        emailInput.classList.remove('invalid-email');
+        
+        return true;
+    }
 }
 
 function closeEditPopup(){
