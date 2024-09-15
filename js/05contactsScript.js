@@ -538,9 +538,15 @@ function editDeleteContact() {
 }
 
 async function deleteContacts(index) {
+    toggleDeleteSuccessMessage(index);
+
+    
 
     contactsJSON.splice(index, 1);
     await putData("/contactsJson", contactsJSON);
+
+
+ 
 
     let showContactsInfo = document.getElementById('showContactsInfo');
     showContactsInfo.innerHTML = '';
@@ -550,16 +556,24 @@ async function deleteContacts(index) {
         document.getElementById('addContactsMain').classList.remove('d-none');
     }
 
-    toggleDeleteSuccessMessage();
+    
     hideContacts();
     renderContacts();
 
 }
 
 
-function toggleDeleteSuccessMessage() {
+function toggleDeleteSuccessMessage(index) {
     const deleteSuccessContainer = document.getElementById('deleteSuccessContainerId');
-    
+
+    deleteSuccessContainer.innerHTML = /*html*/ `
+    <h3 style="color: red;">Deleted contact:</h3>
+    <h3>${contactsJSON[index].firstName + contactsJSON[index].lastName}</h3>
+    <br>
+    <br>
+    <div class="loader"></div>
+    `;
+
     // Step 1: Set display to flex and start fading in
     deleteSuccessContainer.style.display = 'flex';
     setTimeout(() => {
