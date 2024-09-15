@@ -66,7 +66,7 @@ function returnAddTaskSiteHTML(){
                <span>Assigned to</span>    
                <div class="dropdown">
                    <input type="text" id="contactsInputId" placeholder="Select contacts to assign" class="singleLineInputClass dropbtn backGroundArrowClass" 
-                   onclick="toggleDropdown(this)" onmouseover="changeInputArrow(this)" onmouseleave="changeBackInputArrow(this)" oninput="searchContactsDropdown()" >
+                   onclick="toggleDropdown(this)" onmouseover="changeInputArrow(this)" onmouseleave="changeBackInputArrow(this)" oninput="searchContactsDropdown(); openDropdownOnInput(this)" >
                    
                    <div id="dropdownContactAssignId" class="dropdownContactDivClass">
                    </div>
@@ -193,17 +193,6 @@ function findIndexOfFirstCategoryInMainJson(categoryInput) {
 }
 
 
-// function returnInitialsFromTwoWordString(stringInput) {
-//     if(stringInput){
-//         let nameArray = stringInput.split(' ');
-//         if(nameArray.length === 0){return '';}
-//         if (nameArray.length === 1) {return nameArray[0][0].toUpperCase();}
-//         if(nameArray.length === 2) {
-//             let initials = nameArray[0][0].toUpperCase() + nameArray[1][0].toUpperCase();
-//             return initials;
-//         }
-//     }
-//   }
   function returnInitialsFromTwoWordString(stringInput) {
     if (stringInput) {
         // Trim any leading or trailing spaces from the input
@@ -231,11 +220,6 @@ function findIndexOfFirstCategoryInMainJson(categoryInput) {
 }
 
 
-
-
-
-
-
 /////Database
 const BASE_URL = "https://testprojekt01-812cb-default-rtdb.europe-west1.firebasedatabase.app/";
 async function putData(path="", data={}){
@@ -246,7 +230,7 @@ async function putData(path="", data={}){
                 },
         body: JSON.stringify(data)
         });
-    // return responseToJson = await response.json();
+   
 }
 
 ///Fetching data
@@ -255,29 +239,6 @@ async function loadData(path=""){
     let responseAsJson = await response.json();
     return responseAsJson;
 }
-
-
-
-///SUchfunktion für AddTask Contacts Dropdown
-//Suchfunktion für Board Cards 
-///Datum String auf der Karte richtig umwandeln, in deutsche Schreibweise ...
-
-//wenn Kontakt gelöscht wird - alle assignedArrays durchsuchen nach dem fullName string und splicen, 
-//wenn gefunden
-
-///Refactoring! 
-///JS DOC !!! 
-
-
-
-
-//26.08.2024
-//Contacts: Bei Hinzufügen, soll contacts neu sortiert werden
-
-//BIG : object keys benutzen zum rendern und zugreifen auf Firebase daten !
-
-
-
 
 
 function logout(){
@@ -290,3 +251,45 @@ function logout(){
 }
 
 
+
+
+function getFullNameStringFromContacts(i){
+    return contactsJSON[i].firstName + " " + contactsJSON[i].lastName;
+}
+
+
+// async function removeAssignedNameFromToDoCards(i) {
+//     let assignedFullNameString = getFullNameStringFromContacts(i);
+
+//     // Iterate through each card in toDoCardsJSON
+//     toDoCardsJSON.forEach(card => {
+//         // Filter the assignedToArray by removing the object with the matching assignedFullName
+//         card.assignedToArray = card.assignedToArray.filter(assigned => assigned.assignedFullName !== assignedFullNameString);
+//     });
+
+//     await putData("/toDoJson", toDoCardsJSON);
+// }
+
+
+async function removeAssignedNameFromToDoCards(i) {
+    let assignedFullNameString = getFullNameStringFromContacts(i);
+
+    // Iterate through each card in toDoCardsJSON
+    toDoCardsJSON.forEach((card, index) => {
+        // Filter the assignedToArray by removing the object with the matching assignedFullName
+        const originalLength = card.assignedToArray.length;
+        card.assignedToArray = card.assignedToArray.filter(assigned => assigned.assignedFullName !== assignedFullNameString);
+        
+        // Debugging - Log if something was removed
+        if (card.assignedToArray.length !== originalLength) {
+            console.log(`Removed ${assignedFullNameString} from card index ${index}`);
+        }
+    });
+
+    // Update the toDoCardsJSON via putData if needed
+    try {
+        await putData("/toDoJson", toDoCardsJSON);
+    } catch (error) {
+        console.error("Error updating toDoCardsJSON:", error);
+    }
+}

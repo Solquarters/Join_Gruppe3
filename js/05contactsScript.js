@@ -5,6 +5,7 @@ let currentIndex;
 
 async function initContactSite(){
     try {
+        toDoCardsJSON = await loadData("/toDoJson");
         contactsJSON = await loadData("/contactsJson");
 
     } catch (error) {
@@ -540,13 +541,10 @@ function editDeleteContact() {
 async function deleteContacts(index) {
     toggleDeleteSuccessMessage(index);
 
-    
+    removeAssignedNameFromToDoCards(index);
 
     contactsJSON.splice(index, 1);
     await putData("/contactsJson", contactsJSON);
-
-
- 
 
     let showContactsInfo = document.getElementById('showContactsInfo');
     showContactsInfo.innerHTML = '';
@@ -555,7 +553,6 @@ async function deleteContacts(index) {
         document.getElementById('showContactsText').style.display = 'none';
         document.getElementById('addContactsMain').classList.remove('d-none');
     }
-
     
     hideContacts();
     renderContacts();

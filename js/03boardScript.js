@@ -259,13 +259,6 @@ function handleTouchEnd(categoryInput, mainCategoryDivId) {
 ///DRAG AND DROP FUNCTION END
 
 
-
-
-
-
-
-
-
 function returnPrioSvgHTML(i) {
         if(toDoCardsJSON[i]["prio"] == "Low"){
             return `<img src="./assets/img/Priority symbols low.svg">`;
@@ -670,55 +663,6 @@ return /*html*/`
 `;
 }
 
-
-
-
-
-// function findTask(){
-   
-//         let searchInput = document.getElementById("findTaskInputId").value;
-//         // searchInput = searchInput.toLowerCase();
-
-//         if (searchInput == "") {
-//             renderAllCardToBoard();
-//             return;
-//           }
-
-//        // Reset all boards
-//     document.getElementById('toDoStatusDivId').innerHTML = '';
-//     document.getElementById('inProgressStatusDivId').innerHTML = '';
-//     document.getElementById('awaitFeedbackStatusDivId').innerHTML = '';
-//     document.getElementById('doneStatusDivId').innerHTML = '';
-
-//     // Iterate through the cards to find matching tasks
-//     for (let i = 0; i < toDoCardsJSON.length; i++) {
-//         let card = toDoCardsJSON[i];
-//         let title = card.title ? card.title.toLowerCase() : "";
-//         let description = card.description ? card.description.toLowerCase() : "";
-//         let assignedContacts = card.assignedToArray ? card.assignedToArray.map(contact => contact.toLowerCase()).join(" ") : "";
-
-//         // Check if the search input is found in the title, description, or assigned contacts
-//         if (title.includes(searchInput) || description.includes(searchInput) || assignedContacts.includes(searchInput)) {
-//             // Render the card in the appropriate section
-//             if (card.toDoStatus == "To do") {
-//                 document.getElementById('toDoStatusDivId').innerHTML += returnSingleCardHTML(i);
-//             }
-//             if (card.toDoStatus == "In progress") {
-//                 document.getElementById('inProgressStatusDivId').innerHTML += returnSingleCardHTML(i);
-//             }
-//             if (card.toDoStatus == "Await feedback") {
-//                 document.getElementById('awaitFeedbackStatusDivId').innerHTML += returnSingleCardHTML(i);
-//             }
-//             if (card.toDoStatus == "Done") {
-//                 document.getElementById('doneStatusDivId').innerHTML += returnSingleCardHTML(i);
-//             }
-
-//             returnAssignedContactCircle(i); // Render the assigned contacts
-//         }
-//     }
-      
-    
-// }
 
 
 function findTask() {

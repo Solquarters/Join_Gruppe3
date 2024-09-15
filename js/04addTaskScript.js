@@ -14,11 +14,8 @@ let temporaryNewTaskSingleCardObject = {
     title: "Title temp array",
     description:"XXXXX",
     assignedToArray: [
-        //////Aus diesem Array  WERDEN BEI JEDEM ASSIGNEN von Kontakten 
-        //      die Daten ins innerHTML der ID assignedUsersCircleDivId mit einer for schleife gepusht
         // {assignedFullName:"Stefan Schulz", assignedRGB:"rgb(0,170,0)"},
         //  {assignedFullName:"Claudia Müller", assignedRGB:"rgb(190,0,0)"},
-        
     ],
     dueDate: "2028-10-10",
     prio: "Low",
@@ -349,21 +346,10 @@ function getProfileRgbFromTempArray(j){
     return temporaryNewTaskSingleCardObject.assignedToArray[j].assignedRGB;
 }
 
-// function getNameInitialsFromTempArray(j){
-//    let fullName = temporaryNewTaskSingleCardObject.assignedToArray[j].assignedFullName;
-//     let namePartsArray = fullName.split(' ');
-//     let firstName = namePartsArray[0];
-//     let lastName = namePartsArray[1];
-//     let initials = firstName.charAt(0).toUpperCase() + lastName.charAt(0).toUpperCase();
-//     return initials;
+
+// function getFullNameStringFromContacts(i){
+//     return contactsJSON[i].firstName + " " + contactsJSON[i].lastName;
 // }
-
-
-
-
-function getFullNameStringFromContacts(i){
-    return contactsJSON[i].firstName + " " + contactsJSON[i].lastName;
-}
 
 function pushAssignedNameAndRgbToTempArray(i){
     let assignedFullNameString = getFullNameStringFromContacts(i);
@@ -373,8 +359,7 @@ function pushAssignedNameAndRgbToTempArray(i){
         assignedRGB: assignedRGBString
     };
     temporaryNewTaskSingleCardObject.assignedToArray.push(assignedObject);
-    ///debugging...
-    // console.log(temporaryNewTaskSingleCardObject);
+
 }
 
 function removeAssignedNameAndRgbFromTempArray(i){
@@ -426,6 +411,26 @@ function toggleDropdown(thisElement) {
             thisElement.style.backgroundImage = "url('./assets/img/addTaskImg/inputArrowUp.svg')";
         }
     thisElement.classList.toggle('open');
+}
+
+
+function openDropdownOnInput(thisElement) {
+
+    let dropdownContent = document.getElementById("dropdownContactAssignId");
+
+    // Check if the dropdown is already open, if yes, do nothing
+    if (dropdownContent.classList.contains("show")) {
+        return; // Dropdown is already open, so exit the function
+    }
+
+    // If dropdown is not open, open it
+    let dropdownButton = document.querySelector('.dropbtn');
+    dropdownButton.classList.add("active");
+    dropdownContent.classList.add("show");
+
+    // Update the arrow image to indicate dropdown is open
+    thisElement.style.backgroundImage = "url('./assets/img/addTaskImg/inputArrowUp.svg')";
+    thisElement.classList.add('open');
 }
 
 
