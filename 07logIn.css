@@ -109,7 +109,7 @@ input:-webkit-autofill {
     align-items: center;
     width: 422px;
     height: 48px;
-    padding: 0px 20px 0px 20px;
+    padding: 0px 0px 0px 20px;
     gap: 32px;
     border: 1px solid rgba(128, 128, 128, 0.404);
     border-radius: 10px;
@@ -495,7 +495,7 @@ body, html {
     .container-input-field {
         width: 342px;
         height: 48px;
-        padding: 0px 20px 0px 20px;
+        padding: 0px 0px 0px 20px;
     }
 
     .input-log-In {
@@ -549,7 +549,7 @@ body, html {
     .container-input-field {
         width: 182px;
         height: 48px;
-        padding: 0px 70px 0px 20px;
+        padding: 0px 70px 0px 16px;
         font-size: 1;
     }
 
