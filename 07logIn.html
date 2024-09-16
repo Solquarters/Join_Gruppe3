@@ -52,12 +52,12 @@
             <div id="loginFormDivId">
             <form onsubmit="login(); return false;" class="input-log-In">
             <div class="container-input-field">
-                <input type="email" placeholder="Email" id="email" required class="input-field">
-                <img src="./assets/img/mail.png" alt="" style="position: relative; right: 8px">
+                <input type="email" placeholder="Email" id="email" required class="input-field" autocomplete="email">
+                <img class="inputFieldLogoClass" src="./assets/img/mail.png" alt="" >
             </div>
             <div class="container-input-field">
-                <input type="password" placeholder="Password" id="password" class="input-field" required>
-                <img src="./assets/img/lock.png" alt="" style="position: relative; right: 8px">
+                <input type="password" placeholder="Password" id="password" class="input-field" required autocomplete="current-password">
+                <img class="inputFieldLogoClass" src="./assets/img/lock.png" alt="" >
             </div>
             <div id="loginMsgBox"></div>
             <div class="container-remember-me">

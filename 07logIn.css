@@ -210,6 +210,13 @@ a:hover {
     transform: scale(1.08);
 }
 
+
+.inputFieldLogoClass{
+position: relative; 
+right: 10px;
+
+}
+
 /*---------------------------Animation-Logo----------------------------*/
 
 body, html {
@@ -554,7 +561,7 @@ body, html {
     }
 
     .logo-in-button-guest {
-        width: 147px;
+        width: 160px;
         height: 38px;
         font-size: 19px;
     }
@@ -568,7 +575,7 @@ body, html {
     }
 
     .sign-up-button {
-        width: 81px;
+        width: 100px;
         height: 39px;
     }
 
