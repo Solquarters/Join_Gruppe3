@@ -59,14 +59,22 @@ function renderHtmlIfCategoryIsEmpty(){
     }
 }
 
-// function returnSingleCardHTML(i){
+
+
+
+
+// function returnSingleCardHTML(i) {
 //     return /*html*/ `<div class="mainSingleCardDivClass" id="singleCardId${i}"
 //     draggable="true" 
 //     ondragstart="startDragging(${i})" 
-//     onclick="openLargeCardOverlay(${i})"
-//     ontouchstart="handleTouchStart(event, ${i})" 
-//     ontouchmove="handleTouchMove(event, 'toDoStatusDivId')"
-//     ontouchend="handleTouchEnd('To do', 'toDoStatusDivId')">
+//     onclick="openLargeCardOverlay(${i})" 
+//     ontouchstart="handleTouchStart(event, ${i})"
+
+    
+//     ontouchmove="handleTouchMove(event)"
+//     ontouchend="handleTouchEnd(event)">
+
+
 //         <div class="cardContainerInnert">
 //             ${returnCategoryHTML(i)}
 //             <div id="containerformularId${i}" class="containerformularDivClass">
@@ -77,8 +85,7 @@ function renderHtmlIfCategoryIsEmpty(){
 //             </div>
 //             ${getProgressBarHTML(i)}
 //             <div class="contactPrioDiv">
-//                 <div class="singleCardAssignedContactsParentDivClass" id="singleCardContactCircleDivId${i}">
-//                 </div>
+//                 <div class="singleCardAssignedContactsParentDivClass" id="singleCardContactCircleDivId${i}"></div>
 //                 <div>
 //                     <div id="prioDivId${i}" class="prioDiv">
 //                         ${returnPrioSvgHTML(i)}
@@ -88,16 +95,12 @@ function renderHtmlIfCategoryIsEmpty(){
 //         </div>
 //     </div>`;
 // }
-function returnSingleCardHTML(i) {
-    return /*html*/ `<div class="mainSingleCardDivClass" id="singleCardId${i}"
-    draggable="true" 
-    ondragstart="startDragging(${i})" 
-    onclick="openLargeCardOverlay(${i})" 
-    ontouchstart="handleTouchStart(event, ${i})"
 
-    
-    ontouchmove="handleTouchMove(event)"
-    ontouchend="handleTouchEnd(event)">
+function returnSingleCardHTML(i) {
+    const cardHTML = /*html*/ `
+    <div class="mainSingleCardDivClass" id="singleCardId${i}" draggable="true"
+         ondragstart="startDragging(${i})"
+         onclick="openLargeCardOverlay(${i})">
         <div class="cardContainerInnert">
             ${returnCategoryHTML(i)}
             <div id="containerformularId${i}" class="containerformularDivClass">
@@ -117,8 +120,23 @@ function returnSingleCardHTML(i) {
             </div>
         </div>
     </div>`;
+    
+    appendMobileDragEventListeners(i);
+
+    return cardHTML;
 }
 
+
+function appendMobileDragEventListeners(i){
+    // Use setTimeout to ensure the element is available in the DOM
+    setTimeout(() => {
+        const cardElement = document.getElementById(`singleCardId${i}`);
+        cardElement.addEventListener('touchstart', (event) => handleTouchStart(event, i), { passive: true });
+        cardElement.addEventListener('touchmove', handleTouchMove, { passive: false });
+        cardElement.addEventListener('touchend', handleTouchEnd, { passive: true });
+    }, 0);
+
+}
 
 function returnAssignedContactCircle(i){
     document.getElementById(`singleCardContactCircleDivId${i}`).innerHTML = '';
