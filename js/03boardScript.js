@@ -1,103 +1,74 @@
 let currentDraggedElement = null;
-let touchStartX = 0, touchStartY = 0;
+let touchStartX = 0,
+  touchStartY = 0;
 
 async function initializeBoard() {
-    try {
-        toDoCardsJSON = await loadData("/toDoJson");
-        contactsJSON = await loadData("/contactsJson");
-      
-    } catch (error) {
-        console.error('Error loading data:', error);
-    }
-    finally{
-        renderAllCardToBoard();
-    }
+  try {
+    toDoCardsJSON = await loadData("/toDoJson");
+    contactsJSON = await loadData("/contactsJson");
+  } catch (error) {
+    console.error("Error loading data:", error);
+  } finally {
+    renderAllCardToBoard();
+  }
 }
 
-function renderAllCardToBoard(){
-    ///Reset all boards
-    document.getElementById('toDoStatusDivId').innerHTML = '';
-    document.getElementById('inProgressStatusDivId').innerHTML = '';
-    document.getElementById('awaitFeedbackStatusDivId').innerHTML = '';
-    document.getElementById('doneStatusDivId').innerHTML = '';
-    //Get data from toDoCardsJSON
-    for(let i = 0; i < Object.keys(toDoCardsJSON).length; i++ ){
-
-       if(toDoCardsJSON[i]["toDoStatus"] == "To do"){
-        document.getElementById('toDoStatusDivId').innerHTML += returnSingleCardHTML(i);
-       }
-       if(toDoCardsJSON[i]["toDoStatus"] == "In progress"){
-        document.getElementById('inProgressStatusDivId').innerHTML += returnSingleCardHTML(i);
-       }
-       if(toDoCardsJSON[i]["toDoStatus"] == "Await feedback"){
-        document.getElementById('awaitFeedbackStatusDivId').innerHTML += returnSingleCardHTML(i);
-       }
-       if(toDoCardsJSON[i]["toDoStatus"] == "Done"){
-        document.getElementById('doneStatusDivId').innerHTML += returnSingleCardHTML(i);
-       }
-
-       returnAssignedContactCircle(i);
-  
+function renderAllCardToBoard() {
+  ///Reset all boards
+  document.getElementById("toDoStatusDivId").innerHTML = "";
+  document.getElementById("inProgressStatusDivId").innerHTML = "";
+  document.getElementById("awaitFeedbackStatusDivId").innerHTML = "";
+  document.getElementById("doneStatusDivId").innerHTML = "";
+  //Get data from toDoCardsJSON
+  for (let i = 0; i < Object.keys(toDoCardsJSON).length; i++) {
+    if (toDoCardsJSON[i]["toDoStatus"] == "To do") {
+      document.getElementById("toDoStatusDivId").innerHTML +=
+        returnSingleCardHTML(i);
+    }
+    if (toDoCardsJSON[i]["toDoStatus"] == "In progress") {
+      document.getElementById("inProgressStatusDivId").innerHTML +=
+        returnSingleCardHTML(i);
+    }
+    if (toDoCardsJSON[i]["toDoStatus"] == "Await feedback") {
+      document.getElementById("awaitFeedbackStatusDivId").innerHTML +=
+        returnSingleCardHTML(i);
+    }
+    if (toDoCardsJSON[i]["toDoStatus"] == "Done") {
+      document.getElementById("doneStatusDivId").innerHTML +=
+        returnSingleCardHTML(i);
     }
 
-    renderHtmlIfCategoryIsEmpty();
-   
+    returnAssignedContactCircle(i);
+  }
+
+  renderHtmlIfCategoryIsEmpty();
 }
 
-function renderHtmlIfCategoryIsEmpty(){
-    if(document.getElementById('toDoStatusDivId').innerHTML == ''){
-        document.getElementById('toDoStatusDivId').innerHTML = `<div class="emptyDragareaClass"><span>No tasks to do</span></div>`
-    }
-    if(document.getElementById('inProgressStatusDivId').innerHTML == ''){
-        document.getElementById('inProgressStatusDivId').innerHTML = `<div class="emptyDragareaClass"><span>No tasks in progress</span></div>`
-    }
-    if(document.getElementById('awaitFeedbackStatusDivId').innerHTML == ''){
-        document.getElementById('awaitFeedbackStatusDivId').innerHTML = `<div class="emptyDragareaClass"><span>No tasks awaiting feedback</span></div>`
-    }
-    if(document.getElementById('doneStatusDivId').innerHTML == ''){
-        document.getElementById('doneStatusDivId').innerHTML = `<div class="emptyDragareaClass"><span>No tasks done</span></div>`
-    }
+function renderHtmlIfCategoryIsEmpty() {
+  if (document.getElementById("toDoStatusDivId").innerHTML == "") {
+    document.getElementById(
+      "toDoStatusDivId"
+    ).innerHTML = `<div class="emptyDragareaClass"><span>No tasks to do</span></div>`;
+  }
+  if (document.getElementById("inProgressStatusDivId").innerHTML == "") {
+    document.getElementById(
+      "inProgressStatusDivId"
+    ).innerHTML = `<div class="emptyDragareaClass"><span>No tasks in progress</span></div>`;
+  }
+  if (document.getElementById("awaitFeedbackStatusDivId").innerHTML == "") {
+    document.getElementById(
+      "awaitFeedbackStatusDivId"
+    ).innerHTML = `<div class="emptyDragareaClass"><span>No tasks awaiting feedback</span></div>`;
+  }
+  if (document.getElementById("doneStatusDivId").innerHTML == "") {
+    document.getElementById(
+      "doneStatusDivId"
+    ).innerHTML = `<div class="emptyDragareaClass"><span>No tasks done</span></div>`;
+  }
 }
-
-
-
-
-
-// function returnSingleCardHTML(i) {
-//     return /*html*/ `<div class="mainSingleCardDivClass" id="singleCardId${i}"
-//     draggable="true" 
-//     ondragstart="startDragging(${i})" 
-//     onclick="openLargeCardOverlay(${i})" 
-//     ontouchstart="handleTouchStart(event, ${i})"
-
-    
-//     ontouchmove="handleTouchMove(event)"
-//     ontouchend="handleTouchEnd(event)">
-
-
-//         <div class="cardContainerInnert">
-//             ${returnCategoryHTML(i)}
-//             <div id="containerformularId${i}" class="containerformularDivClass">
-//                 <span >${toDoCardsJSON[i]["title"]}</span>
-//             </div>
-//             <div id="descriptionDivId${i}" class="descriptionDivClass">
-//                 <span id="descriptionSpanId${i}">${toDoCardsJSON[i]["description"]}</span>
-//             </div>
-//             ${getProgressBarHTML(i)}
-//             <div class="contactPrioDiv">
-//                 <div class="singleCardAssignedContactsParentDivClass" id="singleCardContactCircleDivId${i}"></div>
-//                 <div>
-//                     <div id="prioDivId${i}" class="prioDiv">
-//                         ${returnPrioSvgHTML(i)}
-//                     </div>
-//                 </div>     
-//             </div>
-//         </div>
-//     </div>`;
-// }
 
 function returnSingleCardHTML(i) {
-    const cardHTML = /*html*/ `
+  const cardHTML = /*html*/ `
     <div class="mainSingleCardDivClass" id="singleCardId${i}" draggable="true"
          ondragstart="startDragging(${i})"
          onclick="openLargeCardOverlay(${i})">
@@ -107,7 +78,9 @@ function returnSingleCardHTML(i) {
                 <span >${toDoCardsJSON[i]["title"]}</span>
             </div>
             <div id="descriptionDivId${i}" class="descriptionDivClass">
-                <span id="descriptionSpanId${i}">${toDoCardsJSON[i]["description"]}</span>
+                <span id="descriptionSpanId${i}">${
+    toDoCardsJSON[i]["description"]
+  }</span>
             </div>
             ${getProgressBarHTML(i)}
             <div class="contactPrioDiv">
@@ -120,54 +93,73 @@ function returnSingleCardHTML(i) {
             </div>
         </div>
     </div>`;
-    
-    appendMobileDragEventListeners(i);
 
-    return cardHTML;
+  appendMobileDragEventListeners(i);
+
+  return cardHTML;
 }
 
-
-function appendMobileDragEventListeners(i){
-    // Use setTimeout to ensure the element is available in the DOM
-    setTimeout(() => {
-        const cardElement = document.getElementById(`singleCardId${i}`);
-        cardElement.addEventListener('touchstart', (event) => handleTouchStart(event, i), { passive: true });
-        cardElement.addEventListener('touchmove', handleTouchMove, { passive: false });
-        cardElement.addEventListener('touchend', handleTouchEnd, { passive: true });
-    }, 0);
-
+function appendMobileDragEventListeners(i) {
+  // Use setTimeout to ensure the element is available in the DOM
+  setTimeout(() => {
+    const cardElement = document.getElementById(`singleCardId${i}`);
+    cardElement.addEventListener(
+      "touchstart",
+      (event) => handleTouchStart(event, i),
+      { passive: true }
+    );
+    cardElement.addEventListener("touchmove", handleTouchMove, {
+      passive: false,
+    });
+    cardElement.addEventListener("touchend", handleTouchEnd, { passive: true });
+  }, 0);
 }
 
-function returnAssignedContactCircle(i){
-    document.getElementById(`singleCardContactCircleDivId${i}`).innerHTML = '';
+function returnAssignedContactCircle(i) {
+  document.getElementById(`singleCardContactCircleDivId${i}`).innerHTML = "";
 
-    if (toDoCardsJSON[i].assignedToArray) {
-        let renderedCircles = 0;
+  if (toDoCardsJSON[i].assignedToArray) {
+    let renderedCircles = 0;
 
-        for(let j = 0; j < toDoCardsJSON[i].assignedToArray.length; j++){
-            if(renderedCircles == 7){
-                document.getElementById(`singleCardContactCircleDivId${i}`).innerHTML += /*html*/`
-            <div class="singleCardCircleDivClass" style="background-color: #2A3647">+${toDoCardsJSON[i].assignedToArray.length-7}</div>
+    for (let j = 0; j < toDoCardsJSON[i].assignedToArray.length; j++) {
+      if (renderedCircles == 7) {
+        document.getElementById(
+          `singleCardContactCircleDivId${i}`
+        ).innerHTML += /*html*/ `
+            <div class="singleCardCircleDivClass" style="background-color: #2A3647">+${
+              toDoCardsJSON[i].assignedToArray.length - 7
+            }</div>
             `;
-            return;
-            }
-            document.getElementById(`singleCardContactCircleDivId${i}`).innerHTML += /*html*/`
-            <div class="singleCardCircleDivClass" style="background-color: ${toDoCardsJSON[i].assignedToArray[j].assignedRGB}">${returnInitialsFromTwoWordString(toDoCardsJSON[i].assignedToArray[j].assignedFullName)}</div>
+        return;
+      }
+      document.getElementById(
+        `singleCardContactCircleDivId${i}`
+      ).innerHTML += /*html*/ `
+            <div class="singleCardCircleDivClass" style="background-color: ${
+              toDoCardsJSON[i].assignedToArray[j].assignedRGB
+            }">${returnInitialsFromTwoWordString(
+        toDoCardsJSON[i].assignedToArray[j].assignedFullName
+      )}</div>
             `;
-            renderedCircles++;
-        }
+      renderedCircles++;
     }
+  }
 }
 
 function getProgressBarHTML(i) {
-    let card = toDoCardsJSON[i];
-    if (!card || !card.subtaskJson) {return '';}
-    let subtasks = card.subtaskJson;
-    let totalSubtasks = subtasks.length;
-    let completedSubtasks = subtasks.filter(subtask => subtask.subtaskDone==true).length;
-    let progress = (totalSubtasks > 0) ? (completedSubtasks / totalSubtasks) * 100 : 0;
-    
-    return `<div class="progessBarAndTextClass">
+  let card = toDoCardsJSON[i];
+  if (!card || !card.subtaskJson) {
+    return "";
+  }
+  let subtasks = card.subtaskJson;
+  let totalSubtasks = subtasks.length;
+  let completedSubtasks = subtasks.filter(
+    (subtask) => subtask.subtaskDone == true
+  ).length;
+  let progress =
+    totalSubtasks > 0 ? (completedSubtasks / totalSubtasks) * 100 : 0;
+
+  return `<div class="progessBarAndTextClass">
         <div class="progressBarParentDivClass">
             <div style="width: ${progress}%" class="innerProgressBarClass"></div>
             
@@ -176,287 +168,289 @@ function getProgressBarHTML(i) {
     </div>`;
 }
 
-function returnCategoryHTML(i){
-    if(toDoCardsJSON[i]["category"] == "User Story"){
-        return /*html*/ `<div id="cardHeadlineId${i}" class="cardHeadlineClass userStoryClass">
+function returnCategoryHTML(i) {
+  if (toDoCardsJSON[i]["category"] == "User Story") {
+    return /*html*/ `<div id="cardHeadlineId${i}" class="cardHeadlineClass userStoryClass">
                 <span id="">${toDoCardsJSON[i]["category"]}</span>
             </div>`;
-    }
-    else if(toDoCardsJSON[i]["category"] == "Technical Task"){
-        return /*html*/ `<div id="cardHeadlineId${i}" class="cardHeadlineClass technicalTaskClass">
+  } else if (toDoCardsJSON[i]["category"] == "Technical Task") {
+    return /*html*/ `<div id="cardHeadlineId${i}" class="cardHeadlineClass technicalTaskClass">
         <span id="">${toDoCardsJSON[i]["category"]}</span>
         </div>`;
-    }
+  }
 }
 
 ///DRAG AND DROP MOUSE FUNCTION START
 function startDragging(index) {
-    currentDraggedElement = index;
-    document.getElementById(`singleCardId${index}`).classList.add('rotateOnDrag');
+  currentDraggedElement = index;
+  document.getElementById(`singleCardId${index}`).classList.add("rotateOnDrag");
 }
 
 function allowDrop(ev) {
-    ev.preventDefault();
+  ev.preventDefault();
 }
 
 function moveTo(categoryInput) {
-    moveDraggedCardToCategoryInsideJson(categoryInput);
-    document.querySelectorAll('.drag-area-highlight').forEach(function(element) {
-        element.classList.remove('drag-area-highlight');
-    });
-    document.querySelectorAll('.rotateOnDrag').forEach(function(element) {
-        element.classList.remove('rotateOnDrag');
-    });
-    renderAllCardToBoard();
+  moveDraggedCardToCategoryInsideJson(categoryInput);
+  document.querySelectorAll(".drag-area-highlight").forEach(function (element) {
+    element.classList.remove("drag-area-highlight");
+  });
+  document.querySelectorAll(".rotateOnDrag").forEach(function (element) {
+    element.classList.remove("rotateOnDrag");
+  });
+  renderAllCardToBoard();
 }
 
-function moveDraggedCardToCategoryInsideJson(categoryInput){
-    let tempObject = toDoCardsJSON[currentDraggedElement];
+function moveDraggedCardToCategoryInsideJson(categoryInput) {
+  let tempObject = toDoCardsJSON[currentDraggedElement];
 
-    tempObject.toDoStatus = categoryInput;
+  tempObject.toDoStatus = categoryInput;
 
-    let indexOfFirstCategoryinJson = findIndexOfFirstCategoryInMainJson(categoryInput);
-    toDoCardsJSON.splice(currentDraggedElement, 1);
+  let indexOfFirstCategoryinJson =
+    findIndexOfFirstCategoryInMainJson(categoryInput);
+  toDoCardsJSON.splice(currentDraggedElement, 1);
 
-    if(indexOfFirstCategoryinJson >= 1){
-        toDoCardsJSON.splice(indexOfFirstCategoryinJson-1, 0, tempObject);
-        putData("/toDoJson", toDoCardsJSON);
-    }
-    else{
-        toDoCardsJSON.splice(0, 0, tempObject);
-        putData("/toDoJson", toDoCardsJSON);
-    }
+  if (indexOfFirstCategoryinJson >= 1) {
+    toDoCardsJSON.splice(indexOfFirstCategoryinJson - 1, 0, tempObject);
+    putData("/toDoJson", toDoCardsJSON);
+  } else {
+    toDoCardsJSON.splice(0, 0, tempObject);
+    putData("/toDoJson", toDoCardsJSON);
+  }
 }
 
 function highlight(mainCategoryDivId) {
-    document.getElementById(mainCategoryDivId).classList.add('drag-area-highlight');
+  document
+    .getElementById(mainCategoryDivId)
+    .classList.add("drag-area-highlight");
 }
 
 function removeHighlight(mainCategoryDivId) {
-    document.getElementById(mainCategoryDivId).classList.remove('drag-area-highlight');
+  document
+    .getElementById(mainCategoryDivId)
+    .classList.remove("drag-area-highlight");
 }
 
 function handleDragLeave(event, mainCategoryDivId) {
-    let rect = document.getElementById(mainCategoryDivId).getBoundingClientRect();
-    let x = event.clientX;
-    let y = event.clientY;
+  let rect = document.getElementById(mainCategoryDivId).getBoundingClientRect();
+  let x = event.clientX;
+  let y = event.clientY;
 
-    // Check if the mouse is outside the parent element
-    if (x < rect.left || x > rect.right || y < rect.top || y > rect.bottom) {
-
-        document.querySelectorAll('.drag-area-highlight').forEach(function(element) {
-            element.classList.remove('drag-area-highlight');
-        });
-    }
+  // Check if the mouse is outside the parent element
+  if (x < rect.left || x > rect.right || y < rect.top || y > rect.bottom) {
+    document
+      .querySelectorAll(".drag-area-highlight")
+      .forEach(function (element) {
+        element.classList.remove("drag-area-highlight");
+      });
+  }
 }
 
 ///DRAG AND DROP MOUSE FUNCTION END
 
 ///MOBILE DRAG DROP FUNCTION START:
-///MOBILE DRAG DROP FUNCTION START:
-///MOBILE DRAG DROP FUNCTION START:
-///MOBILE DRAG DROP FUNCTION START:
-
 function handleTouchStart(event, index) {
-    // console.log(event);
-    // Store the index of the dragged element
-    currentDraggedElement = index;
+  currentDraggedElement = index;
 
-    // Get initial touch coordinates
-    const touch = event.touches[0];
+  // Get initial touch coordinates
+  const touch = event.touches[0];
 
-    touchStartX = touch.clientX;
-    touchStartY = touch.clientY;
+  touchStartX = touch.clientX;
+  touchStartY = touch.clientY;
 
-    // Add visual feedback
-    document.getElementById(`singleCardId${index}`).classList.add('rotateOnDrag');
+  // Add visual feedback
+  document.getElementById(`singleCardId${index}`).classList.add("rotateOnDrag");
 }
-
 
 // Adjusted touch move handler to check all containers
 function handleTouchMove(event) {
-    event.preventDefault(); // Prevent scrolling
+  event.preventDefault(); // Prevent scrolling
 
-    const touch = event.touches[0];
-    const x = touch.clientX;
-    const y = touch.clientY;
+  const touch = event.touches[0];
+  const x = touch.clientX;
+  const y = touch.clientY;
 
-    // Check if the card is over any drop area
-    ['toDoStatusDivId', 'inProgressStatusDivId', 'awaitFeedbackStatusDivId', 'doneStatusDivId'].forEach(mainCategoryDivId => {
-        const rect = document.getElementById(mainCategoryDivId).getBoundingClientRect();
+  // Check if the card is over any drop area
+  [
+    "toDoStatusDivId",
+    "inProgressStatusDivId",
+    "awaitFeedbackStatusDivId",
+    "doneStatusDivId",
+  ].forEach((mainCategoryDivId) => {
+    const rect = document
+      .getElementById(mainCategoryDivId)
+      .getBoundingClientRect();
 
-        if (x > rect.left && x < rect.right && y > rect.top && y < rect.bottom) {
-            highlight(mainCategoryDivId);  // Highlight the container
-        } else {
-            removeHighlight(mainCategoryDivId);  // Remove highlight if outside
-        }
-    });
+    if (x > rect.left && x < rect.right && y > rect.top && y < rect.bottom) {
+      highlight(mainCategoryDivId); // Highlight the container
+    } else {
+      removeHighlight(mainCategoryDivId); // Remove highlight if outside
+    }
+  });
 }
-
 
 function handleTouchEnd(event) {
-    const touch = event.changedTouches[0];
-    const x = touch.clientX;
-    const y = touch.clientY;
+  const touch = event.changedTouches[0];
+  const x = touch.clientX;
+  const y = touch.clientY;
 
-    // Clean up highlights and visual feedback
-    document.querySelectorAll('.drag-area-highlight').forEach(function(element) {
-        element.classList.remove('drag-area-highlight');
-    });
-    document.querySelectorAll('.rotateOnDrag').forEach(function(element) {
-        element.classList.remove('rotateOnDrag');
-    });
+  // Clean up highlights and visual feedback
+  document.querySelectorAll(".drag-area-highlight").forEach(function (element) {
+    element.classList.remove("drag-area-highlight");
+  });
+  document.querySelectorAll(".rotateOnDrag").forEach(function (element) {
+    element.classList.remove("rotateOnDrag");
+  });
 
-    // Mapping of container IDs to category names
-    const categoryMapping = {
-        'toDoStatusDivId': 'To do',
-        'inProgressStatusDivId': 'In progress',
-        'awaitFeedbackStatusDivId': 'Await feedback',
-        'doneStatusDivId': 'Done'
-    };
+  // Mapping of container IDs to category names
+  const categoryMapping = {
+    toDoStatusDivId: "To do",
+    inProgressStatusDivId: "In progress",
+    awaitFeedbackStatusDivId: "Await feedback",
+    doneStatusDivId: "Done",
+  };
 
-    // Check where the touch ended and move the card if it is over a valid drop area
-    Object.keys(categoryMapping).forEach(mainCategoryDivId => {
-        const rect = document.getElementById(mainCategoryDivId).getBoundingClientRect();
+  // Check where the touch ended and move the card if it is over a valid drop area
+  Object.keys(categoryMapping).forEach((mainCategoryDivId) => {
+    const rect = document
+      .getElementById(mainCategoryDivId)
+      .getBoundingClientRect();
 
-        if (x > rect.left && x < rect.right && y > rect.top && y < rect.bottom) {
-            const categoryInput = categoryMapping[mainCategoryDivId];  // Get the corresponding category
-            moveTo(categoryInput);  // Move the card to the category
-        }
-    });
+    if (x > rect.left && x < rect.right && y > rect.top && y < rect.bottom) {
+      const categoryInput = categoryMapping[mainCategoryDivId]; // Get the corresponding category
+      moveTo(categoryInput); // Move the card to the category
+    }
+  });
 }
-
 ///MOBILE DRAG DROP FUNCTION END
-///MOBILE DRAG DROP FUNCTION END
-///MOBILE DRAG DROP FUNCTION END
-///MOBILE DRAG DROP FUNCTION END
-
-
-
 
 function returnPrioSvgHTML(i) {
-        if(toDoCardsJSON[i]["prio"] == "Low"){
-            return `<img src="./assets/img/Priority symbols low.svg">`;
-           }
+  if (toDoCardsJSON[i]["prio"] == "Low") {
+    return `<img src="./assets/img/Priority symbols low.svg">`;
+  }
 
-           if(toDoCardsJSON[i]["prio"] == "Medium"){
-            return `<img src="./assets/img/Priority symbols medium.svg">`;
-           }
+  if (toDoCardsJSON[i]["prio"] == "Medium") {
+    return `<img src="./assets/img/Priority symbols medium.svg">`;
+  }
 
-           if(toDoCardsJSON[i]["prio"] == "Urgent"){
-            return `<img src="./assets/img/Priority symbols urgent.svg">`;
-           }
+  if (toDoCardsJSON[i]["prio"] == "Urgent") {
+    return `<img src="./assets/img/Priority symbols urgent.svg">`;
+  }
 }
 
-function openEmptyAddTaskOverlay(toDoStatus){
-    
-    inBoardAddTask = true;
-    slideInAddTaskOverlay();
-        //Accessing GLOBAL SCRIPT
-        renderAddTaskHTMLForBoardOverlay();
-        emptyTempJson();
-        setToDoStatusInTempArray(toDoStatus);
-        renderAddTaskSiteFromTempArray();
-        renderContactsDropdownMenuContent();
-        setCurrentDateInputMinValue();
-        renderProfileCirclesFromTempArray();
-        renderSubtaskFromTempArray();
-        fitAddTaskCssAttributesToBoardTemplate();
-    }
+function openEmptyAddTaskOverlay(toDoStatus) {
+  inBoardAddTask = true;
+  slideInAddTaskOverlay();
+  //Accessing GLOBAL SCRIPT
+  renderAddTaskHTMLForBoardOverlay();
+  emptyTempJson();
+  setToDoStatusInTempArray(toDoStatus);
+  renderAddTaskSiteFromTempArray();
+  renderContactsDropdownMenuContent();
+  setCurrentDateInputMinValue();
+  renderProfileCirclesFromTempArray();
+  renderSubtaskFromTempArray();
+  fitAddTaskCssAttributesToBoardTemplate();
+}
 
-    function setToDoStatusInTempArray(toDoStatus){
-      temporaryNewTaskSingleCardObject.toDoStatus = toDoStatus;
-    }
-    
-    function slideInAddTaskOverlay(){
-        const parentOverlay = document.getElementById('addEmptyTaskMainOverlayId');
-        const childOverlay = document.getElementById('addEmptyTaskChildOverlayId');
-    
-        // Show the parent overlay first
-        parentOverlay.style.display = "flex"; // Set display to flex immediately
-        setTimeout(() => {
-            parentOverlay.style.opacity = "1"; // Fade in the parent
-        }, 0); // Short delay to ensure it is applied after display is set
-    
-        // Slide in the child overlay
-        setTimeout(() => {
-            childOverlay.classList.add('active'); // Add active class to start the slide
-        }, 50); // Small delay to ensure display change takes effect
-    }
+function setToDoStatusInTempArray(toDoStatus) {
+  temporaryNewTaskSingleCardObject.toDoStatus = toDoStatus;
+}
 
-    function slideOutAddTaskOverlay(){
-        const parentOverlay = document.getElementById('addEmptyTaskMainOverlayId');
-        const childOverlay = document.getElementById('addEmptyTaskChildOverlayId');
-    
-        // Remove the active class to slide the child out
-        childOverlay.classList.remove('active');
-        
-        // Wait for the slide-out animation to finish (500ms matches the CSS transition)
-        setTimeout(() => {
-            parentOverlay.style.opacity = "0"; // Fade out the parent
-        }, 500); // Delay matches the child overlay's transition duration
-    
-        // After the fade-out completes, hide the parent
-        setTimeout(() => {
-            parentOverlay.style.display = "none"; // Set display to none after opacity transition
-        }, 700); // This delay accounts for both the slide-out and fade-out transitions
-    }
+function slideInAddTaskOverlay() {
+  const parentOverlay = document.getElementById("addEmptyTaskMainOverlayId");
+  const childOverlay = document.getElementById("addEmptyTaskChildOverlayId");
 
-    
-    function closeAddTaskOverlay(){
-        slideOutAddTaskOverlay();
-        setTimeout(() => {
-            document.getElementById('addEmptyTaskChildOverlayId').innerHTML = '';
-        }, 500); 
-    }
+  // Show the parent overlay first
+  parentOverlay.style.display = "flex"; // Set display to flex immediately
+  setTimeout(() => {
+    parentOverlay.style.opacity = "1"; // Fade in the parent
+  }, 0); // Short delay to ensure it is applied after display is set
 
-    function handleOverlayClick(event) {
-        // Check if the click happened outside the child element
-        if (event.target.id === 'addEmptyTaskMainOverlayId') {
-            closeAddTaskOverlay();
-        }
-    }
+  // Slide in the child overlay
+  setTimeout(() => {
+    childOverlay.classList.add("active"); // Add active class to start the slide
+  }, 50); // Small delay to ensure display change takes effect
+}
 
-    function openLargeCardOverlay(i){
-        currentLargeCardIndex = i;
-        document.getElementById('mainLargeCardOverlayId').style.display= "flex";
-        document.getElementById('popupMainDivId').innerHTML = returnLargeCardOverlayHTML();
-        document.getElementById('popupMainDivId').scrollTop = 0;
-        disableScrolling();
+function slideOutAddTaskOverlay() {
+  const parentOverlay = document.getElementById("addEmptyTaskMainOverlayId");
+  const childOverlay = document.getElementById("addEmptyTaskChildOverlayId");
 
-        ///SaveChanges - TempArray zu JSON pushen, zu Large Card rendern
-        let categorySpan = document.getElementById('largeCardOverlayCategorySpanId')
-        categorySpan.innerText = toDoCardsJSON[i].category;
-        if(toDoCardsJSON[i]["category"] == "User Story"){
-            categorySpan.style.backgroundColor="blue";
-        }
-        else if(toDoCardsJSON[i]["category"] == "Technical Task"){
-            categorySpan.style.backgroundColor="#1FD7C1"; 
-        }
+  // Remove the active class to slide the child out
+  childOverlay.classList.remove("active");
 
-        document.getElementById('largeCardTitleSpanId').innerText = toDoCardsJSON[i].title;
-        document.getElementById('largeCardDescriptionSpanId').innerText = toDoCardsJSON[i].description;
-        document.getElementById('largeCardDateSpanId').innerText = formatToGermanDate(toDoCardsJSON[i].dueDate)+' (german)' ;
-        document.getElementById('largeCardPrioSpanId').innerHTML = /*html*/`${toDoCardsJSON[i].prio}&nbsp${returnPrioSvgHTML(i)}`;
-        
-        ///EIGENE FUNKTION: GEHE DURCH JSONTODO[i].assignedTo Array und rendere den Kreis und den Namen
-        returnLargeCardAssignedHTML(i);
-        returnLargeCardSubtasksHTML(i);
-        renderDeleteAndEditButton(i);
-    }
+  // Wait for the slide-out animation to finish (500ms matches the CSS transition)
+  setTimeout(() => {
+    parentOverlay.style.opacity = "0"; // Fade out the parent
+  }, 500); // Delay matches the child overlay's transition duration
 
-    
-    function formatToGermanDate(dateString) {
-        const [year, month, day] = dateString.split('-');
-        return `${day}.${month}.${year}`;
-    }
-    
-  
+  // After the fade-out completes, hide the parent
+  setTimeout(() => {
+    parentOverlay.style.display = "none"; // Set display to none after opacity transition
+  }, 700); // This delay accounts for both the slide-out and fade-out transitions
+}
 
+function closeAddTaskOverlay() {
+  slideOutAddTaskOverlay();
+  setTimeout(() => {
+    document.getElementById("addEmptyTaskChildOverlayId").innerHTML = "";
+  }, 500);
+}
 
-function renderDeleteAndEditButton(i){
-    //DELETE BUTTON
-    document.getElementById('deleteContactDivId').innerHTML = ` 
+function handleOverlayClick(event) {
+  // Check if the click happened outside the child element
+  if (event.target.id === "addEmptyTaskMainOverlayId") {
+    closeAddTaskOverlay();
+  }
+}
+
+function openLargeCardOverlay(i) {
+  currentLargeCardIndex = i;
+
+  setupOverlayHTMLandCSS();
+
+  ///SaveChanges - pushing TempArray to JSON , render to Large Card Overlay
+  let categorySpan = document.getElementById("largeCardOverlayCategorySpanId");
+  categorySpan.innerText = toDoCardsJSON[i].category;
+  if (toDoCardsJSON[i]["category"] == "User Story") {
+    categorySpan.style.backgroundColor = "blue";
+  } else if (toDoCardsJSON[i]["category"] == "Technical Task") {
+    categorySpan.style.backgroundColor = "#1FD7C1";
+  }
+
+  document.getElementById("largeCardTitleSpanId").innerText =
+    toDoCardsJSON[i].title;
+  document.getElementById("largeCardDescriptionSpanId").innerText =
+    toDoCardsJSON[i].description;
+  document.getElementById("largeCardDateSpanId").innerText =
+    formatToGermanDate(toDoCardsJSON[i].dueDate) + " (german)";
+  document.getElementById("largeCardPrioSpanId").innerHTML = /*html*/ `${
+    toDoCardsJSON[i].prio
+  }&nbsp${returnPrioSvgHTML(i)}`;
+
+  ///Go through JSONTODO[i].assignedTo Array und render circle and name
+  returnLargeCardAssignedHTML(i);
+  returnLargeCardSubtasksHTML(i);
+  renderDeleteAndEditButton(i);
+}
+
+function setupOverlayHTMLandCSS() {
+  document.getElementById("mainLargeCardOverlayId").style.display = "flex";
+  document.getElementById("popupMainDivId").innerHTML =
+    returnLargeCardOverlayHTML();
+  document.getElementById("popupMainDivId").scrollTop = 0;
+  disableScrolling();
+}
+
+function formatToGermanDate(dateString) {
+  const [year, month, day] = dateString.split("-");
+  return `${day}.${month}.${year}`;
+}
+
+function renderDeleteAndEditButton(i) {
+  //DELETE BUTTON
+  document.getElementById("deleteContactDivId").innerHTML = ` 
     <svg onclick="deleteSingleCard(${i})" width="81" height="24" viewBox="0 0 81 24" fill="none" >
     <mask id="mask0_192987_4275" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
     <rect width="24" height="24" fill="#D9D9D9"/>
@@ -468,8 +462,8 @@ function renderDeleteAndEditButton(i){
     </svg>
     `;
 
-    ////EDIT BUTTON
-    document.getElementById('editContactDivId').innerHTML = `
+  ////EDIT BUTTON
+  document.getElementById("editContactDivId").innerHTML = `
     <svg onclick="editSingleCard(${i})" width="62" height="24" viewBox="0 0 62 24" fill="none" >
     <mask id="mask0_192987_4281" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
     <rect width="24" height="24" fill="#D9D9D9"/>
@@ -482,14 +476,17 @@ function renderDeleteAndEditButton(i){
     `;
 }
 
-function returnLargeCardSubtasksHTML(i){
-    document.getElementById('subtasksLargeCardContainerId').innerHTML = '';
-    let card = toDoCardsJSON[i];
-    if (!card || !card.subtaskJson) {return '';}
-    for(let j = 0; j < toDoCardsJSON[i].subtaskJson.length; j++){
-
-        if(toDoCardsJSON[i].subtaskJson[j].subtaskDone){
-            document.getElementById('subtasksLargeCardContainerId').innerHTML += /*html*/`
+function returnLargeCardSubtasksHTML(i) {
+  document.getElementById("subtasksLargeCardContainerId").innerHTML = "";
+  let card = toDoCardsJSON[i];
+  if (!card || !card.subtaskJson) {
+    return "";
+  }
+  for (let j = 0; j < toDoCardsJSON[i].subtaskJson.length; j++) {
+    if (toDoCardsJSON[i].subtaskJson[j].subtaskDone) {
+      document.getElementById(
+        "subtasksLargeCardContainerId"
+      ).innerHTML += /*html*/ `
             <div class="subTaskSingleChildClass">
                    <label class="container" >${toDoCardsJSON[i].subtaskJson[j].subtaskText} 
                        <input type="checkbox" checked="checked" onclick="flipSubtaskCheckBool(${i},${j})">
@@ -497,9 +494,10 @@ function returnLargeCardSubtasksHTML(i){
                      </label>
                </div>
             `;
-        }
-        else{
-            document.getElementById('subtasksLargeCardContainerId').innerHTML += /*html*/`
+    } else {
+      document.getElementById(
+        "subtasksLargeCardContainerId"
+      ).innerHTML += /*html*/ `
                 <div  class="subTaskSingleChildClass">
                    <label class="container" >${toDoCardsJSON[i].subtaskJson[j].subtaskText}
                        <input type="checkbox" onclick="flipSubtaskCheckBool(${i},${j})">
@@ -507,160 +505,200 @@ function returnLargeCardSubtasksHTML(i){
                      </label>
                </div>
             `;
-        }
     }
+  }
 }
 
-function flipSubtaskCheckBool(i,j){
-    toDoCardsJSON[i].subtaskJson[j].subtaskDone = !toDoCardsJSON[i].subtaskJson[j].subtaskDone;
+function flipSubtaskCheckBool(i, j) {
+  toDoCardsJSON[i].subtaskJson[j].subtaskDone =
+    !toDoCardsJSON[i].subtaskJson[j].subtaskDone;
 
-    putData("/toDoJson", toDoCardsJSON);
+  putData("/toDoJson", toDoCardsJSON);
 
-    return toDoCardsJSON[i].subtaskJson[j].subtaskDone; 
+  return toDoCardsJSON[i].subtaskJson[j].subtaskDone;
 }
 
-function returnLargeCardAssignedHTML(i){
-        document.getElementById('assignedLargeCardContainerId').innerHTML = '';
-        // if (!toDoCardsJSON[i].assignedToArray || !Array.isArray(toDoCardsJSON[i].assignedToArray) || toDoCardsJSON[i].assignedToArray.length === 0) {
-            // console.log(`assignedToArray does not exist or is empty for item at index ${i}`);
-        //     return; 
-        // }
+function returnLargeCardAssignedHTML(i) {
+  document.getElementById("assignedLargeCardContainerId").innerHTML = "";
 
-        if (toDoCardsJSON[i].assignedToArray) {
-            for(let j = 0; j < toDoCardsJSON[i].assignedToArray.length; j++){
-                document.getElementById('assignedLargeCardContainerId').innerHTML += /*html*/`
+  if (toDoCardsJSON[i].assignedToArray) {
+    for (let j = 0; j < toDoCardsJSON[i].assignedToArray.length; j++) {
+      document.getElementById(
+        "assignedLargeCardContainerId"
+      ).innerHTML += /*html*/ `
                  <span class="circleAndNameSpanClass2">
                 <!-- InitialsCircle -->
-                <span class="contactSvgCircleClass2" style="background-color: ${toDoCardsJSON[i].assignedToArray[j].assignedRGB};">${returnInitialsFromTwoWordString(toDoCardsJSON[i].assignedToArray[j].assignedFullName)}</span>
+                <span class="contactSvgCircleClass2" style="background-color: ${
+                  toDoCardsJSON[i].assignedToArray[j].assignedRGB
+                };">${returnInitialsFromTwoWordString(
+        toDoCardsJSON[i].assignedToArray[j].assignedFullName
+      )}</span>
                 <!-- Full contact name -->
-                <span>${toDoCardsJSON[i].assignedToArray[j].assignedFullName}</span>
+                <span>${
+                  toDoCardsJSON[i].assignedToArray[j].assignedFullName
+                }</span>
             </span>
                 `;
-            }
-        }
-       
+    }
+  }
 }
 
-function closeLargeCardOverlay(){
-    document.getElementById('mainLargeCardOverlayId').style.display= "none";
-    enableScrolling();
-    renderAllCardToBoard();
+function closeLargeCardOverlay() {
+  document.getElementById("mainLargeCardOverlayId").style.display = "none";
+  enableScrolling();
+  renderAllCardToBoard();
 }
 
-function submitEditingCard(){
- // Get all the input elements
- const input1 = document.getElementById('titleInputId');
- const input2 = document.getElementById('datePickerInputId');
+function submitEditingCard() {
+  // Get all the input elements
+  const input1 = document.getElementById("titleInputId");
+  const input2 = document.getElementById("datePickerInputId");
 
- // Validate each input element
- const isInput1Valid = input1.checkValidity();
- const isInput2Valid = input2.checkValidity();
+  // Validate each input element
+  const isInput1Valid = input1.checkValidity();
+  const isInput2Valid = input2.checkValidity();
 
- // If any input is invalid, prevent form submission and show validation messages
- if (!isInput1Valid || !isInput2Valid) {
-     // Optionally, display custom error messages
-     if (!isInput2Valid) input2.reportValidity();
-     if (!isInput1Valid) input1.reportValidity();
- } else {
-     temporaryNewTaskSingleCardObject["title"] = document.getElementById('titleInputId').value;
-     temporaryNewTaskSingleCardObject["description"] = document.getElementById('descriptionTextAreaId').value;
-     temporaryNewTaskSingleCardObject["dueDate"] = document.getElementById('datePickerInputId').value;
-     toDoCardsJSON[currentLargeCardIndex] = temporaryNewTaskSingleCardObject;
-     putData("/toDoJson", toDoCardsJSON);
-     openLargeCardOverlay(currentLargeCardIndex);
- }
+  // If any input is invalid, prevent form submission and show validation messages
+  if (!isInput1Valid || !isInput2Valid) {
+    // Optionally, display custom error messages
+    if (!isInput2Valid) input2.reportValidity();
+    if (!isInput1Valid) input1.reportValidity();
+  } else {
+    temporaryNewTaskSingleCardObject["title"] =
+      document.getElementById("titleInputId").value;
+    temporaryNewTaskSingleCardObject["description"] = document.getElementById(
+      "descriptionTextAreaId"
+    ).value;
+    temporaryNewTaskSingleCardObject["dueDate"] =
+      document.getElementById("datePickerInputId").value;
+    toDoCardsJSON[currentLargeCardIndex] = temporaryNewTaskSingleCardObject;
+    putData("/toDoJson", toDoCardsJSON);
+    openLargeCardOverlay(currentLargeCardIndex);
+  }
 }
-   
-function handleLargeCardOverlayClick(event){
-// Check if the click happened outside the child element
-    if (event.target.id === 'mainLargeCardOverlayId') {
+
+function handleLargeCardOverlayClick(event) {
+  // Check if the click happened outside the child element
+  if (event.target.id === "mainLargeCardOverlayId") {
     closeLargeCardOverlay();
-    }
+  }
 }
-  
+
 function disableScrolling() {
-        document.body.style.overflow = 'hidden';
+  document.body.style.overflow = "hidden";
 }
-    
+
 function enableScrolling() {
-        document.body.style.overflow = 'auto';
+  document.body.style.overflow = "auto";
 }
 
-function fitAddTaskCssAttributesToBoardTemplate(){
-    const element = document.querySelector('.' + 'addTaskMainTemplateDivClass');
-    if (element){
-     element.style.height = 'auto';
-     element.style.width = 'unset';
-        } 
-    else{
-     console.warn(`No element found with class ${className}`);
-    }
+function fitAddTaskCssAttributesToBoardTemplate() {
+  const element = document.querySelector("." + "addTaskMainTemplateDivClass");
+  if (element) {
+    element.style.height = "auto";
+    element.style.width = "unset";
+  } else {
+    console.warn(`No element found with class ${className}`);
+  }
 }
 
-function deleteSingleCard(i){
-toDoCardsJSON.splice(i, 1);
-putData("/toDoJson", toDoCardsJSON);
-closeLargeCardOverlay();
-renderAllCardToBoard();
-enableScrolling();
+function deleteSingleCard(i) {
+  toDoCardsJSON.splice(i, 1);
+  putData("/toDoJson", toDoCardsJSON);
+  closeLargeCardOverlay();
+  renderAllCardToBoard();
+  enableScrolling();
 }
 
-function editSingleCard(i){
-    //When copying: temporaryNewTaskSingleCardObject = toDoCardsJSON[i] - this actually creates a direct reference to each other.
-    //Copy without reference: temporaryNewTaskSingleCardObject = structuredClone(toDoCardsJSON[i]) OR temporaryNewTaskSingleCardObject = { ...toDoCardsJSON[i] };
-    //Attention, this is a difference between referencetype and valuetype!
-    temporaryNewTaskSingleCardObject = structuredClone(toDoCardsJSON[i]);
-    document.getElementById('popupMainDivId').innerHTML = returnAddTaskSiteHTML();
-    renderAddTaskSiteFromTempArray();
-    document.getElementById('popupMainDivId').scrollTop = 0;
-    setStyleAdaptationForSingleCardHTML();
-    setDateFromTempArray();
+function editSingleCard(i) {
+  //When copying: temporaryNewTaskSingleCardObject = toDoCardsJSON[i] - this actually creates a direct reference to each other.
+  //Copy without reference: temporaryNewTaskSingleCardObject = structuredClone(toDoCardsJSON[i]) OR temporaryNewTaskSingleCardObject = { ...toDoCardsJSON[i] };
+  //Attention, this is a difference between referencetype and valuetype!
+  temporaryNewTaskSingleCardObject = structuredClone(toDoCardsJSON[i]);
+  document.getElementById("popupMainDivId").innerHTML = returnAddTaskSiteHTML();
+  renderAddTaskSiteFromTempArray();
+  document.getElementById("popupMainDivId").scrollTop = 0;
+  setStyleAdaptationForSingleCardHTML();
+  setDateFromTempArray();
 }
 
-function setStyleAdaptationForSingleCardHTML(){
-///CSS Klassen anpassen: Media queries...
-let singleLineInputClass = document.querySelectorAll('.singleLineInputClass');
-singleLineInputClass.forEach(function(element) {element.style.minWidth = "unset";});
-let textarea = document.querySelectorAll('textarea');
-textarea.forEach(function(element) {element.style.minWidth = "unset";});
-let drobbtn = document.querySelectorAll('.drobbtn');
-drobbtn.forEach(function(element) {element.style.minWidth = "unset";});
-let select = document.querySelectorAll('select');
-select.forEach(function(element) {element.style.minWidth = "unset";});
-let addTaskMainTemplateDivClass = document.querySelectorAll('.addTaskMainTemplateDivClass');
-addTaskMainTemplateDivClass.forEach(function(element) {element.style.maxHeight = "94vh"; element.style.padding = "10px 10px"});
-let prioButtonDivClass = document.querySelectorAll('.prioButtonDivClass');
-prioButtonDivClass.forEach(function(element) {element.style.gap = "2px"});
-let priorityButtonClass = document.querySelectorAll('.priorityButtonClass');
-priorityButtonClass.forEach(function(element) {element.style.fontSize="14px" });
-//mainContainerOverlay width 100% influences AddTask Overlay
-document.getElementById('mainLargeCardOverlayId').style.width = "100%";
-//clear und create button display none, okay button display
-document.getElementById('clearCreateDivId1').style.display ="none";
-document.getElementById('clearCreateDivId2').style.display ="none";
-document.getElementById('clearCreateDivId3').style.display ="block";
-document.getElementById('divSeperatorId1').style.display = "none";
-let addTaskDetailsParentDivClass = document.querySelectorAll('.addTaskDetailsParentDivClass');
-addTaskDetailsParentDivClass.forEach(function(element) {element.style.display = "unset"});
-let leftSideChildDivClass = document.querySelectorAll('.leftSideChildDivClass');
-leftSideChildDivClass.forEach(function(element) {element.style.width = "unset"});
-let rightSideChildDivClass = document.querySelectorAll('.rightSideChildDivClass');
-rightSideChildDivClass.forEach(function(element) {element.style.width = "unset"});
+function setStyleAdaptationForSingleCardHTML() {
+  theBigSinfulCssAdaptFunction1();
+  theBigSinfulCssAdaptFunction2();
 }
 
-
-
-function setDateFromTempArray(){
-    let dateInput = document.getElementById('datePickerInputId');
-    if (dateInput) {
-        dateInput.value = temporaryNewTaskSingleCardObject.dueDate;
-    }
-
-
+function theBigSinfulCssAdaptFunction1() {
+  ///CSS Klassen anpassen: Media queries...
+  let singleLineInputClass = document.querySelectorAll(".singleLineInputClass");
+  singleLineInputClass.forEach(function (element) {
+    element.style.minWidth = "unset";
+  });
+  let textarea = document.querySelectorAll("textarea");
+  textarea.forEach(function (element) {
+    element.style.minWidth = "unset";
+  });
+  let drobbtn = document.querySelectorAll(".drobbtn");
+  drobbtn.forEach(function (element) {
+    element.style.minWidth = "unset";
+  });
+  let select = document.querySelectorAll("select");
+  select.forEach(function (element) {
+    element.style.minWidth = "unset";
+  });
+  let addTaskMainTemplateDivClass = document.querySelectorAll(
+    ".addTaskMainTemplateDivClass"
+  );
+  addTaskMainTemplateDivClass.forEach(function (element) {
+    element.style.maxHeight = "94vh";
+    element.style.padding = "10px 10px";
+  });
+  let prioButtonDivClass = document.querySelectorAll(".prioButtonDivClass");
+  prioButtonDivClass.forEach(function (element) {
+    element.style.gap = "2px";
+  });
+  let priorityButtonClass = document.querySelectorAll(".priorityButtonClass");
+  priorityButtonClass.forEach(function (element) {
+    element.style.fontSize = "14px";
+  });
 }
 
-function returnLargeCardOverlayHTML(){
-return /*html*/`
+function theBigSinfulCssAdaptFunction2() {
+  //mainContainerOverlay width 100% influences AddTask Overlay
+  document.getElementById("mainLargeCardOverlayId").style.width = "100%";
+  //clear und create button display none, okay button display
+  document.getElementById("clearCreateDivId1").style.display = "none";
+  document.getElementById("clearCreateDivId2").style.display = "none";
+  document.getElementById("clearCreateDivId3").style.display = "block";
+  document.getElementById("divSeperatorId1").style.display = "none";
+  let addTaskDetailsParentDivClass = document.querySelectorAll(
+    ".addTaskDetailsParentDivClass"
+  );
+  addTaskDetailsParentDivClass.forEach(function (element) {
+    element.style.display = "unset";
+  });
+  let leftSideChildDivClass = document.querySelectorAll(
+    ".leftSideChildDivClass"
+  );
+  leftSideChildDivClass.forEach(function (element) {
+    element.style.width = "unset";
+  });
+  let rightSideChildDivClass = document.querySelectorAll(
+    ".rightSideChildDivClass"
+  );
+  rightSideChildDivClass.forEach(function (element) {
+    element.style.width = "unset";
+  });
+}
+
+function setDateFromTempArray() {
+  let dateInput = document.getElementById("datePickerInputId");
+  if (dateInput) {
+    dateInput.value = temporaryNewTaskSingleCardObject.dueDate;
+  }
+}
+
+function returnLargeCardOverlayHTML() {
+  return /*html*/ `
 <div class="headLineCloseButton">
            <span class="userStory" id="largeCardOverlayCategorySpanId">User Story</span>
            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" onclick="closeLargeCardOverlay()">
@@ -697,25 +735,20 @@ return /*html*/`
                    <circle cx="21" cy="21" r="20" fill="#462F8A" stroke="white" stroke-width="2"/>
                    <path d="M12.8166 16.2727H14.0779L17.0439 23.517H17.1461L20.112 16.2727H21.3734V25H20.3848V18.3693H20.2995L17.5723 25H16.6177L13.8904 18.3693H13.8052V25H12.8166V16.2727ZM23.4924 25V16.2727H26.5435C27.1515 16.2727 27.6529 16.3778 28.0478 16.5881C28.4426 16.7955 28.7367 17.0753 28.9299 17.4276C29.123 17.777 29.2196 18.1648 29.2196 18.5909C29.2196 18.9659 29.1529 19.2756 29.0194 19.5199C28.8887 19.7642 28.7154 19.9574 28.4995 20.0994C28.2864 20.2415 28.0549 20.3466 27.8049 20.4148V20.5C28.0719 20.517 28.3404 20.6108 28.6103 20.7812C28.8801 20.9517 29.106 21.196 29.2878 21.5142C29.4696 21.8324 29.5605 22.2216 29.5605 22.6818C29.5605 23.1193 29.4611 23.5128 29.2623 23.8622C29.0634 24.2116 28.7495 24.4886 28.3205 24.6932C27.8915 24.8977 27.3333 25 26.6458 25H23.4924ZM24.5492 24.0625H26.6458C27.3361 24.0625 27.8262 23.929 28.1159 23.6619C28.4086 23.392 28.5549 23.0653 28.5549 22.6818C28.5549 22.3864 28.4796 22.1136 28.329 21.8636C28.1784 21.6108 27.964 21.4091 27.6855 21.2585C27.4071 21.1051 27.0776 21.0284 26.6969 21.0284H24.5492V24.0625ZM24.5492 20.108H26.5094C26.8276 20.108 27.1145 20.0455 27.3702 19.9205C27.6287 19.7955 27.8333 19.6193 27.9838 19.392C28.1373 19.1648 28.214 18.8977 28.214 18.5909C28.214 18.2074 28.0804 17.8821 27.8134 17.6151C27.5463 17.3452 27.123 17.2102 26.5435 17.2102H24.5492V20.108Z" fill="white"/>
                    </svg>
-                   
                <span class="namesSpan">Emmanuel Mauer</span>
             </div>
          </div>
            </div>
-
        </div>
-
            <div class="subTasksDivClass">
                <span class="SubTaskSpanClass">Subtasks</span>
             <div id="subtasksLargeCardContainerId">
-
                <div  class="subTaskSingleChildClass">
                    <label class="container">Implement Recipe Recommendation
                        <input type="checkbox" checked="checked">
                        <span class="checkmark"></span>
                      </label>
                </div>
-
                <div  class="subTaskSingleChildClass">
                    <label class="container">Start Page Layout
                        <input type="checkbox">
@@ -724,67 +757,69 @@ return /*html*/`
                </div>
             </div>
            </div>
-
            <div class="deleteEditContactDivClass">
-               <div id="deleteContactDivId" >
-                   
-                       
+               <div id="deleteContactDivId" >  
                </div>
                <div id="editContactDivId">
-                   
                </div>
-
            </div>
 `;
 }
 
-
-
 function findTask() {
-    let searchInput = document.getElementById("findTaskInputId").value.toLowerCase();
+  let searchInput = document
+    .getElementById("findTaskInputId")
+    .value.toLowerCase();
 
-    // If the search input is empty, render all cards to the board
-    if (searchInput == "") {
-        renderAllCardToBoard();
-        return;
+  // If the search input is empty, render all cards to the board
+  if (searchInput == "") {
+    renderAllCardToBoard();
+    return;
+  }
+
+  // Reset all boards
+  document.getElementById("toDoStatusDivId").innerHTML = "";
+  document.getElementById("inProgressStatusDivId").innerHTML = "";
+  document.getElementById("awaitFeedbackStatusDivId").innerHTML = "";
+  document.getElementById("doneStatusDivId").innerHTML = "";
+
+  // Iterate through the cards to find matching tasks
+  for (let i = 0; i < toDoCardsJSON.length; i++) {
+    let card = toDoCardsJSON[i];
+    let title = card.title ? card.title.toLowerCase() : "";
+    let description = card.description ? card.description.toLowerCase() : "";
+
+    // Search through assigned contacts' full names
+    let assignedContacts = card.assignedToArray
+      ? card.assignedToArray
+          .map((contact) => contact.assignedFullName.toLowerCase())
+          .join(" ")
+      : "";
+
+    // Check if the search input is found in the title, description, or assigned contacts
+    if (
+      title.includes(searchInput) ||
+      description.includes(searchInput) ||
+      assignedContacts.includes(searchInput)
+    ) {
+      // Render the card in the appropriate section
+      if (card.toDoStatus == "To do") {
+        document.getElementById("toDoStatusDivId").innerHTML +=
+          returnSingleCardHTML(i);
+      }
+      if (card.toDoStatus == "In progress") {
+        document.getElementById("inProgressStatusDivId").innerHTML +=
+          returnSingleCardHTML(i);
+      }
+      if (card.toDoStatus == "Await feedback") {
+        document.getElementById("awaitFeedbackStatusDivId").innerHTML +=
+          returnSingleCardHTML(i);
+      }
+      if (card.toDoStatus == "Done") {
+        document.getElementById("doneStatusDivId").innerHTML +=
+          returnSingleCardHTML(i);
+      }
+      returnAssignedContactCircle(i); // Render the assigned contacts
     }
-
-    // Reset all boards
-    document.getElementById('toDoStatusDivId').innerHTML = '';
-    document.getElementById('inProgressStatusDivId').innerHTML = '';
-    document.getElementById('awaitFeedbackStatusDivId').innerHTML = '';
-    document.getElementById('doneStatusDivId').innerHTML = '';
-
-    // Iterate through the cards to find matching tasks
-    for (let i = 0; i < toDoCardsJSON.length; i++) {
-        let card = toDoCardsJSON[i];
-        let title = card.title ? card.title.toLowerCase() : "";
-        let description = card.description ? card.description.toLowerCase() : "";
-
-        // Search through assigned contacts' full names
-        let assignedContacts = card.assignedToArray
-            ? card.assignedToArray
-                  .map(contact => contact.assignedFullName.toLowerCase())
-                  .join(" ")
-            : "";
-
-        // Check if the search input is found in the title, description, or assigned contacts
-        if (title.includes(searchInput) || description.includes(searchInput) || assignedContacts.includes(searchInput)) {
-            // Render the card in the appropriate section
-            if (card.toDoStatus == "To do") {
-                document.getElementById('toDoStatusDivId').innerHTML += returnSingleCardHTML(i);
-            }
-            if (card.toDoStatus == "In progress") {
-                document.getElementById('inProgressStatusDivId').innerHTML += returnSingleCardHTML(i);
-            }
-            if (card.toDoStatus == "Await feedback") {
-                document.getElementById('awaitFeedbackStatusDivId').innerHTML += returnSingleCardHTML(i);
-            }
-            if (card.toDoStatus == "Done") {
-                document.getElementById('doneStatusDivId').innerHTML += returnSingleCardHTML(i);
-            }
-
-            returnAssignedContactCircle(i); // Render the assigned contacts
-        }
-    }
+  }
 }

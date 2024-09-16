@@ -1,34 +1,39 @@
-const BASE_URL = "https://testprojekt01-812cb-default-rtdb.europe-west1.firebasedatabase.app/";
+const BASE_URL =
+  "https://testprojekt01-812cb-default-rtdb.europe-west1.firebasedatabase.app/";
 let contactsJSON = [];
 
 let toDoCardsJSON = [];
 
-let defaultGuestAccount = [{ 
-    accountName: "Guest", 
-    email: "account@guest.com", 
-    password: "guestpassword", 
-    loggedIn: false 
-}];
+let defaultGuestAccount = [
+  {
+    accountName: "Guest",
+    email: "account@guest.com",
+    password: "guestpassword",
+    loggedIn: false,
+  },
+];
 
 // Fetch user login data from local storage
-let userLoginJson = JSON.parse(localStorage.getItem('userLoginJson')) || defaultGuestAccount;
+let userLoginJson =
+  JSON.parse(localStorage.getItem("userLoginJson")) || defaultGuestAccount;
 
 let inBoardAddTask = false;
 let currentLargeCardIndex = -1;
 
-// ROMANS EDIT START 
-function renderAddTaskHTMLForBoardOverlay(){
-    document.getElementById('addEmptyTaskChildOverlayId').innerHTML = returnAddTaskSiteHTML();
+// ROMANS EDIT START
+function renderAddTaskHTMLForBoardOverlay() {
+  document.getElementById("addEmptyTaskChildOverlayId").innerHTML =
+    returnAddTaskSiteHTML();
 }
 
 // ADD TASK HTML TEMPLATE
-function addTaskSiteHTML(){
-document.getElementById('addTaskMotherDivId').innerHTML = returnAddTaskSiteHTML();
+function addTaskSiteHTML() {
+  document.getElementById("addTaskMotherDivId").innerHTML =
+    returnAddTaskSiteHTML();
 }
 
-
-function returnAddTaskSiteHTML(){
-   return /*HTML*/`
+function returnAddTaskSiteHTML() {
+  return /*HTML*/ `
    <div class="successMainOverlayParent" id="successOverlayId">
     <div class="successMessageMainDiv">
             <p>Added new card to the board!</p>
@@ -188,109 +193,89 @@ function returnAddTaskSiteHTML(){
 `;
 }
 
-
 function findIndexOfFirstCategoryInMainJson(categoryInput) {
-    return toDoCardsJSON.findIndex(item => item.toDoStatus === categoryInput);
+  return toDoCardsJSON.findIndex((item) => item.toDoStatus === categoryInput);
 }
 
+function returnInitialsFromTwoWordString(stringInput) {
+  if (stringInput) {
+    // Trim any leading or trailing spaces from the input
+    stringInput = stringInput.trim();
 
-  function returnInitialsFromTwoWordString(stringInput) {
-    if (stringInput) {
-        // Trim any leading or trailing spaces from the input
-        stringInput = stringInput.trim();
-        
-        // Split the string by spaces
-        let nameArray = stringInput.split(' ');
+    // Split the string by spaces
+    let nameArray = stringInput.split(" ");
 
-        // Filter out any empty strings from the array (in case of multiple spaces)
-        nameArray = nameArray.filter(name => name.length > 0);
+    // Filter out any empty strings from the array (in case of multiple spaces)
+    nameArray = nameArray.filter((name) => name.length > 0);
 
-        // Handle different cases based on the length of the nameArray
-        if (nameArray.length === 0) {
-            return ''; // No words in the string
-        } else if (nameArray.length === 1) {
-            return nameArray[0][0].toUpperCase(); // Single word, return its first letter
-        } else if (nameArray.length >= 2) {
-            // Two or more words, return the initials of the first two words
-            let initials = nameArray[0][0].toUpperCase() + nameArray[1][0].toUpperCase();
-            return initials;
-        }
-    } else {
-        return ''; // If stringInput is falsy (e.g., null or undefined), return an empty string
+    // Handle different cases based on the length of the nameArray
+    if (nameArray.length === 0) {
+      return ""; // No words in the string
+    } else if (nameArray.length === 1) {
+      return nameArray[0][0].toUpperCase(); // Single word, return its first letter
+    } else if (nameArray.length >= 2) {
+      // Two or more words, return the initials of the first two words
+      let initials =
+        nameArray[0][0].toUpperCase() + nameArray[1][0].toUpperCase();
+      return initials;
     }
+  } else {
+    return ""; // If stringInput is falsy (e.g., null or undefined), return an empty string
+  }
 }
-
 
 /////Database
 
-async function putData(path="", data={}){
-    let response = await fetch(BASE_URL + path + ".json",{
-        method: "PUT",
-        header: {
-            "Content-Type": "application/json",
-                },
-        body: JSON.stringify(data)
-        });
-   
+async function putData(path = "", data = {}) {
+  let response = await fetch(BASE_URL + path + ".json", {
+    method: "PUT",
+    header: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
 }
 
 ///Fetching data
-async function loadData(path=""){
-    let response = await fetch(BASE_URL + path + ".json"); 
-    let responseAsJson = await response.json();
-    return responseAsJson;
+async function loadData(path = "") {
+  let response = await fetch(BASE_URL + path + ".json");
+  let responseAsJson = await response.json();
+  return responseAsJson;
 }
 
-
-function logout(){
-    for (let i = 0; i < userLoginJson.length; i++) {
-        userLoginJson[i].loggedIn = false;
-    }
-    localStorage.setItem('userLoginJson', JSON.stringify(userLoginJson));
-    window.location.href = '07logIn.html';
-
+function logout() {
+  for (let i = 0; i < userLoginJson.length; i++) {
+    userLoginJson[i].loggedIn = false;
+  }
+  localStorage.setItem("userLoginJson", JSON.stringify(userLoginJson));
+  window.location.href = "07logIn.html";
 }
 
-
-
-
-function getFullNameStringFromContacts(i){
-    return contactsJSON[i].firstName + " " + contactsJSON[i].lastName;
+function getFullNameStringFromContacts(i) {
+  return contactsJSON[i].firstName + " " + contactsJSON[i].lastName;
 }
-
-
-// async function removeAssignedNameFromToDoCards(i) {
-//     let assignedFullNameString = getFullNameStringFromContacts(i);
-
-//     // Iterate through each card in toDoCardsJSON
-//     toDoCardsJSON.forEach(card => {
-//         // Filter the assignedToArray by removing the object with the matching assignedFullName
-//         card.assignedToArray = card.assignedToArray.filter(assigned => assigned.assignedFullName !== assignedFullNameString);
-//     });
-
-//     await putData("/toDoJson", toDoCardsJSON);
-// }
-
 
 async function removeAssignedNameFromToDoCards(i) {
-    let assignedFullNameString = getFullNameStringFromContacts(i);
+  let assignedFullNameString = getFullNameStringFromContacts(i);
 
-    // Iterate through each card in toDoCardsJSON
-    toDoCardsJSON.forEach((card, index) => {
-        // Filter the assignedToArray by removing the object with the matching assignedFullName
-        const originalLength = card.assignedToArray.length;
-        card.assignedToArray = card.assignedToArray.filter(assigned => assigned.assignedFullName !== assignedFullNameString);
-        
-        // Debugging - Log if something was removed
-        if (card.assignedToArray.length !== originalLength) {
-            console.log(`Removed ${assignedFullNameString} from card index ${index}`);
-        }
-    });
+  // Iterate through each card in toDoCardsJSON
+  toDoCardsJSON.forEach((card, index) => {
+    // Filter the assignedToArray by removing the object with the matching assignedFullName
+    const originalLength = card.assignedToArray.length;
+    card.assignedToArray = card.assignedToArray.filter(
+      (assigned) => assigned.assignedFullName !== assignedFullNameString
+    );
 
-    // Update the toDoCardsJSON via putData if needed
-    try {
-        await putData("/toDoJson", toDoCardsJSON);
-    } catch (error) {
-        console.error("Error updating toDoCardsJSON:", error);
+    // Debugging - Log if something was removed
+    if (card.assignedToArray.length !== originalLength) {
+      console.log(`Removed ${assignedFullNameString} from card index ${index}`);
     }
+  });
+
+  // Update the toDoCardsJSON via putData if needed
+  try {
+    await putData("/toDoJson", toDoCardsJSON);
+  } catch (error) {
+    console.error("Error updating toDoCardsJSON:", error);
+  }
 }
