@@ -7,6 +7,12 @@ body {
     width: 100%;
     background-color: #F6F7F8;
    
+
+
+    /* Fix for light blue selection popup on mobile devices */
+    -webkit-tap-highlight-color: transparent; /* For mobile browsers to remove tap highlight */
+    user-select: none; /* Prevent text selection on tap */
+    outline: none; /* Remove focus outline */
 }
 
 .container-all {
@@ -70,6 +76,7 @@ margin: 96px 0px 0px 328px;
 }
 
 .container-right {
+    
     width: 264px;
     height: 168px;
     border-radius: 30px;
@@ -82,7 +89,16 @@ margin: 96px 0px 0px 328px;
     transition: all 200ms ease-in-out;
 }
 
+.container-right {
+    -webkit-tap-highlight-color: transparent; /* For mobile browsers to remove tap highlight */
+    user-select: none; /* Prevent text selection on tap */
+    outline: none; /* Remove focus outline */
+}
+
+
+
 .container-right:hover {
+    
     background-color: #2A3647;
     color: white;
     transform: scale(1.05) translate(-8px);

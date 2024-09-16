@@ -952,18 +952,18 @@ form input {
     }
 
     .closePopUpTop {
-        bottom: 79px;
+        bottom: 16px;
     }
 
     
 
     .leftSide {
-        padding: 89px 20px 100px 20px;
+        padding: 32px 20px 64px 20px;
         /* height:30%; */
     }
     .rightSide {
     
-        height: 420px;
+        height: 410px;
     }
 
 
