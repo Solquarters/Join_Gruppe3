@@ -1,3 +1,4 @@
+const BASE_URL = "https://testprojekt01-812cb-default-rtdb.europe-west1.firebasedatabase.app/";
 let contactsJSON = [];
 
 let toDoCardsJSON = [];
@@ -221,7 +222,7 @@ function findIndexOfFirstCategoryInMainJson(categoryInput) {
 
 
 /////Database
-const BASE_URL = "https://testprojekt01-812cb-default-rtdb.europe-west1.firebasedatabase.app/";
+
 async function putData(path="", data={}){
     let response = await fetch(BASE_URL + path + ".json",{
         method: "PUT",
