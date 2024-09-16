@@ -211,10 +211,13 @@ a:hover {
 }
 
 
-.inputFieldLogoClass{
-position: relative; 
-right: 10px;
+/* .inputFieldLogoClass{
+padding: 0px 16px 0px 0px;
 
+} */
+.container-input-field img{
+position: relative;
+right: 16px;
 }
 
 /*---------------------------Animation-Logo----------------------------*/
@@ -546,7 +549,7 @@ body, html {
     .container-input-field {
         width: 182px;
         height: 48px;
-        padding: 0px 60px 0px 10px;
+        padding: 0px 70px 0px 20px;
         font-size: 1;
     }
 
