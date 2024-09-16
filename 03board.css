@@ -1,38 +1,23 @@
 body {
   margin: 0;
-  font-family: 'Inter';
+  font-family: "Inter";
   background-color: #f6f7f8;
-  
 }
 .mainDivContainer {
-margin: 128px 0px 0px 232px;
+  margin: 128px 0px 0px 232px;
 }
 
 .mainDiv {
-  
-display:flex;
-flex-direction: column;
-align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 #findTask {
   border-radius: 10px;
   padding: 12px;
   border-style: solid;
   border-color: #29abe2;
-  /* border-color: ; */
 }
-.headDiv {
-  /* margin-left: 128px;
-  margin-right: 64px; */
-  /* display: flex;
-
-  justify-content: space-between;
-  width: 100%; */
-  
-}
-/* #boardImg {
-  margin-right: 260px;
-} */
 
 .cardsDiv img:hover {
   cursor: pointer;
@@ -51,7 +36,6 @@ align-items: center;
 
 #addTask:hover {
   cursor: pointer;
-  
 }
 .addLine {
   display: flex;
@@ -63,22 +47,15 @@ align-items: center;
   margin: 8px 8px 16px 8px;
 
   -webkit-user-select: none; /* Safari */
-    -moz-user-select: none;    /* Firefox */
-    -ms-user-select: none;     /* Internet Explorer/Edge */
-    user-select: none;         /* Non-prefixed version, currently supported by Chrome, Opera, and Edge */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera, and Edge */
 }
 
-
-/* ////DIE ID CARD WAR AUF 4 CONTAINERN das hat zu Fehlern im CSS geführt , eine ID darf immer nur 1 mal vergeben werden */
-/* #card {
-  width: 253px;
-  margin: 12px;
-} */
-
-.mainSingleCardDivClass{
+.mainSingleCardDivClass {
   display: flex;
   flex-direction: column;
-  
+
   justify-content: space-between;
   border-style: solid;
   border-radius: 12px;
@@ -90,24 +67,23 @@ align-items: center;
   cursor: pointer;
 }
 
-.mainCardContainerDivClass{
+.mainCardContainerDivClass {
   margin: 4px;
 }
 
-#cardContainer{
-display: flex;
-flex-direction: column;
-justify-content: space-between;
-border-style: solid;
-border-radius: 12px;
-border-width: 0;
-background-color: white;
-box-shadow: 6px 5px 5px rgb(212, 209, 209);
-margin-top: 24px;
+#cardContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-style: solid;
+  border-radius: 12px;
+  border-width: 0;
+  background-color: white;
+  box-shadow: 6px 5px 5px rgb(212, 209, 209);
+  margin-top: 24px;
 }
 
-
-.cardHeadlineClass{
+.cardHeadlineClass {
   display: flex;
   justify-content: center;
   color: white;
@@ -116,52 +92,24 @@ margin-top: 24px;
   border-radius: 6px;
   margin: 16px 16px 4px 16px;
 }
-.technicalTaskClass{
-background-color: #1FD7C1;
+.technicalTaskClass {
+  background-color: #1fd7c1;
 }
-.userStoryClass{
+.userStoryClass {
   background-color: blue;
 }
-
-/* #block-3  {
-  width: 220px; height: 12px;
-  text-align:center; font-size:1em; box-sizing: border-box;   border:solid 1px #fff; line-height:50px; 
-  color: #000; background:#808080; margin:10px auto;
-   border:solid 1px #fff; 
-    
-    font-size: 1em;
-    letter-spacing: 1px;
-    border-radius: 6px;
-    display: block;
-    text-align: center;
-    cursor: pointer;
-    box-shadow: inset 0 0 0 0 rgb(68, 0, 255);
-    -webkit-transition: all ease 3s;
-    -moz-transition: all ease 3s;
-    transition: all linear 2s;
-   
-}
-#block-3:hover {
-    box-shadow: inset 220px 0 0 0 rgb(17, 0, 255);
-    color:white;  color:white; cursor:pointer; border:solid 6px green; 
-}
- */
-/* .wrapper { display:block; width:; height:5px; margin:0 auto;} */
 
 .contactPrioDiv {
   display: flex;
   justify-content: space-between;
   margin: 12px 12px 12px 12px;
-  
 }
-.contactPrioDiv img{
+.contactPrioDiv img {
   position: relative;
   top: 2px;
 }
 
-
-
-.descriptionDivClass{
+.descriptionDivClass {
   margin: 16px 16px 16px 16px;
   font-weight: normal;
   color: #808080;
@@ -169,8 +117,7 @@ background-color: #1FD7C1;
   overflow: hidden;
 }
 
-.descriptionDivClass2{
-
+.descriptionDivClass2 {
   font-weight: normal;
   color: #808080;
   text-overflow: ellipsis;
@@ -178,28 +125,22 @@ background-color: #1FD7C1;
   word-break: break-word;
 }
 
-
 .cartContainerInnert {
   margin-left: 16px;
   height: 100vh;
 }
 .containerformularDivClass {
-
   text-overflow: ellipsis;
   overflow: hidden;
   font-weight: bold;
   margin: 16px 16px 4px 16px;
 }
 
-
-
-
-.singleCardAssignedContactsParentDivClass{
-  display:flex;
-
+.singleCardAssignedContactsParentDivClass {
+  display: flex;
 }
 
-.singleCardCircleDivClass{
+.singleCardCircleDivClass {
   height: 32px;
   width: 32px;
   border-radius: 50%;
@@ -212,22 +153,17 @@ background-color: #1FD7C1;
   color: white;
 }
 
-
-
-
-.headerAndContentParentDivClass{
+.headerAndContentParentDivClass {
   display: flex;
   flex-direction: column;
 }
 
-.findTaskInputSeperatorAndLensDiv{
+.findTaskInputSeperatorAndLensDiv {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 12px;
 }
-
-
 
 .accept-field {
   width: 24px;
@@ -238,17 +174,16 @@ background-color: #1FD7C1;
   display: inline-block;
   appearance: none;
   margin: 0;
-
 }
 .addTask {
-  font-family: 'Inter';
+  font-family: "Inter";
   cursor: pointer;
-  color: #FFFFFF;
-  background-color: #2A3647;
+  color: #ffffff;
+  background-color: #2a3647;
   height: 48px;
   width: 160px;
   border-radius: 10px;
-  border: 1px solid #2A3647;
+  border: 1px solid #2a3647;
   display: flex;
   flex-direction: row-reverse;
   justify-content: center;
@@ -259,11 +194,11 @@ background-color: #1FD7C1;
   margin-left: 24px;
 }
 
-.addTaskButtonClass{
-  font-family: 'Inter';
+.addTaskButtonClass {
+  font-family: "Inter";
   cursor: pointer;
-  color: #FFFFFF;
-  background-color: #2A3647;
+  color: #ffffff;
+  background-color: #2a3647;
   height: 48px;
   min-width: 140px;
   border-radius: 10px;
@@ -277,11 +212,9 @@ background-color: #1FD7C1;
   font-weight: 700;
   margin-left: 24px;
 }
-.addTaskButtonClass:hover{
-  background-color: #29ABE2;
+.addTaskButtonClass:hover {
+  background-color: #29abe2;
 }
-
-
 
 .addTask:hover {
   background-color: #29abe2;
@@ -289,71 +222,65 @@ background-color: #1FD7C1;
   box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.2);
 }
 .titel svg:hover rect {
-stroke: #29abe2;
+  stroke: #29abe2;
 }
 .titel svg:hover path {
-stroke: #29abe2;
+  stroke: #29abe2;
 }
 .titel svg:hover {
-cursor: pointer;
+  cursor: pointer;
 }
 .inputAddTask {
-display:flex;
-align-items: center;
-justify-content: space-between;
-margin: 16px 0px 0px 0px;
-
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 16px 0px 0px 0px;
 }
 
 .containerInputField {
-display: flex;
-justify-content: space-between;
-align-items: center;
-width: 312px;
-height: 46px;
-padding: 0px 20px 0px 20px;
-border: 1px solid #146cdfd0;
-border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 312px;
+  height: 46px;
+  padding: 0px 20px 0px 20px;
+  border: 1px solid #146cdfd0;
+  border-radius: 10px;
 }
 
 .inputField {
-background-color: none;
-font-size: 20px;
-border: none;
-background: none;
-border-style: none;
-outline: none;
+  background-color: none;
+  font-size: 20px;
+  border: none;
+  background: none;
+  border-style: none;
+  outline: none;
 }
 
 .seperator {
-background-color: #D1D1D1;
-width: 1px;
-height: 31px;
+  background-color: #d1d1d1;
+  width: 1px;
+  height: 31px;
 }
 .containerDivCards1 {
-display: flex;
-
+  display: flex;
 }
 
 .containerDivCards2 {
-display: flex;
+  display: flex;
 }
 
-.mediaQuerryBoardAdd svg{
-display: none;
+.mediaQuerryBoardAdd svg {
+  display: none;
 }
-
-
-
 
 /* ROMANS EDIT START  */
 
-
-.addEmptyTaskMainOverlayClass{
+.addEmptyTaskMainOverlayClass {
   z-index: 1001;
   position: fixed;
-  top:0;
-  right:0;
+  top: 0;
+  right: 0;
   width: 100%;
   height: 100%;
   background-color: rgba(104, 104, 104, 0.432);
@@ -363,13 +290,11 @@ display: none;
   align-items: center;
 }
 
-
-
-.addEmptyTaskChildOverlayClass{
+.addEmptyTaskChildOverlayClass {
   max-width: 1200px;
   margin: 48px 0px 64px 0px;
-  width:90%;
-  
+  width: 90%;
+
   background-color: rgb(255, 255, 255);
   border-radius: 20px;
   overflow-y: auto;
@@ -389,7 +314,6 @@ display: none;
 }
 
 /* ///////////////////////////TRYING NEW */
-
 
 #addEmptyTaskMainOverlayId {
   display: none;
@@ -411,75 +335,41 @@ display: none;
   opacity: 1; /* Fade in */
 }
 
-
-
-
-
-
-
-
-
-
-
-
 /* /////////////////MEDIA QUERY */
 @media screen and (max-width: 905px) {
-
-  .addEmptyTaskChildOverlayClass{
-
+  .addEmptyTaskChildOverlayClass {
     height: 85%;
   }
-
-
-
 }
-
-
 
 @media screen and (max-width: 450px) {
-
-  .addEmptyTaskChildOverlayClass{
-   
-    width:100%;
+  .addEmptyTaskChildOverlayClass {
+    width: 100%;
   }
 
-  .addEmptyTaskChildOverlayClass .addTaskMainTemplateDivClass .rightSideChildDivClass .prioButtonDivClass{ gap: 2px;}
-
+  .addEmptyTaskChildOverlayClass
+    .addTaskMainTemplateDivClass
+    .rightSideChildDivClass
+    .prioButtonDivClass {
+    gap: 2px;
+  }
 }
 
-
 /* ROMANS EDIT ENDE */
-
-
-
 
 /* DRAG AND DROP START */
 
 .drag-area {
   min-height: 60px;
   min-width: 240px;
-  /* display: flex;
-  overflow-x: auto;
-  width: auto; */
+
   border-radius: 16px;
   padding: 0px 16px 24px 16px;
   border: 1px solid rgba(148, 148, 148, 0.522);
   background-color: #f2f2f2;
-
-  /* background-color: rgba(0, 0, 0, 0.1);
-  
-  margin-bottom: 50px;
-  display: flex;
-  align-items: flex-start;
-  flex-direction: column; */
-
-  /* overflow-x: scroll;
-  overflow-y: hidden;
-  -ms-overflow-style: none;  
-  scrollbar-width: none;   */
 }
 
-.emptyDragareaClass{
+.emptyDragareaClass {
   width: 100%;
   height: 60px;
   display: flex;
@@ -492,28 +382,18 @@ display: none;
   top: 12px;
 }
 
-
-
-
 .drag-area-highlight {
   background-color: rgba(0, 0, 0, 0.2);
- 
 }
 
 /* DRAG AND DROP END */
 
-
-
-
-
-
-/* ////////////////LARGE CARD OVERLAY CSS /////////////////////////////// */
-
+/* LARGE CARD OVERLAY CSS  */
 .mainContainerOverlay {
   display: flex;
   justify-content: center;
   align-items: center;
- 
+
   width: 100%;
   height: 100%;
   position: fixed;
@@ -521,30 +401,23 @@ display: none;
   z-index: 1000;
   top: 0;
   right: 0;
-
 }
 .popupMainDiv {
- max-height: 94vh;
+  max-height: 94vh;
   width: 400px;
   background-color: white;
   border-radius: 30px;
   border: solid 1px #00000029;
-
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  /* margin: 16px 0px 0px 0px; */
-  /* overflow-y: auto; */
   overflow: auto;
-
 }
 
 .userStory {
-  background-color: #0038FF;
+  background-color: #0038ff;
   border-radius: 8px;
   padding: 4px 24px 4px 24px;
-  
-  
 }
 
 .container {
@@ -586,7 +459,7 @@ display: none;
 
 /* When the checkbox is checked, add a blue background */
 .container input:checked ~ .checkmark {
-  background-color: #2196F3;
+  background-color: #2196f3;
 }
 
 /* Create the checkmark/indicator (hidden when not checked) */
@@ -618,19 +491,18 @@ display: none;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  
+
   color: white;
- 
+
   margin: 24px 26px 6px 28px;
   font-size: 22px;
   font-weight: 400;
 }
 
-.headLineCloseButton svg:hover{
+.headLineCloseButton svg:hover {
   background-color: #e7e5e5;
   border-radius: 50%;
 }
-
 
 .popupMainDiv:hover svg {
   cursor: pointer;
@@ -642,57 +514,48 @@ display: none;
   font-weight: 700;
   margin: 4px 28px 4px 28px;
   word-break: break-word;
- 
-
 }
 
 .SubTaskSpanClass {
-font-family: Inter;
-font-size: 20px;
-font-weight: 400;
-line-height: 24px;
-text-align: left;
-
+  font-family: Inter;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
 }
 
 .container {
-  
-font-family: Inter;
-font-size: 16px;
-font-weight: 400;
-line-height: 19.2px;
-text-align: left;
-
+  font-family: Inter;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19.2px;
+  text-align: left;
 }
 
 .deleteEditContactDivClass {
   display: flex;
   justify-content: flex-end;
   gap: 16px;
- 
-  
+
   margin: 8px 28px 0px 28px;
   padding: 0px 8px 24px 0px;
-  
 }
 #deleteContactDivId:hover path {
-fill: #2196F3;
+  fill: #2196f3;
 }
 #editContactDivId:hover path {
-fill: #2196F3;
+  fill: #2196f3;
 }
-
 
 .dateDivClass {
   margin-top: 22px;
   margin-bottom: 16px;
-  
 }
 
 .dateFormatSpan {
   margin-left: 12px;
 }
-.priorityDivClass  {
+.priorityDivClass {
   margin-bottom: 16px;
   display: flex;
   align-items: center;
@@ -702,34 +565,26 @@ fill: #2196F3;
   margin-left: 10px;
 }
 
-
-.assignetToNamesClass {
-  /* display: flex;
-  flex-direction: column; */
-}
-
-.assignedToName1{
+.assignedToName1 {
   display: flex;
   align-items: center;
   gap: 16px;
   margin-left: 24px;
   margin-top: 16px;
-  
 }
 
-/* //////assigned Container in Large Card ////////////// */
-#assignedLargeCardContainerId{
+#assignedLargeCardContainerId {
   max-height: 140px;
   overflow-y: auto;
-margin: 8px 0px 0px 0px;
+  margin: 8px 0px 0px 0px;
 }
 
-#subtasksLargeCardContainerId{
+#subtasksLargeCardContainerId {
   max-height: 102px;
   overflow-y: auto;
 }
 
-#largeCardPrioSpanId{
+#largeCardPrioSpanId {
   display: flex;
   align-items: center;
 }
@@ -737,20 +592,17 @@ margin: 8px 0px 0px 0px;
 .subTasksDivClass {
   margin-top: 24px;
   margin-bottom: 24px;
-  
+
   margin: 6px 28px 6px 28px;
 }
 
-
-.subTaskSingleChildClass{
+.subTaskSingleChildClass {
   margin: 8px 0px 0px 0px;
 }
 
 .mainPopupDivClass {
-
   margin: 8px 28px 8px 28px;
 }
-
 
 .circleAndNameSpanClass2 {
   display: flex;
@@ -773,34 +625,29 @@ margin: 8px 0px 0px 0px;
   align-items: center;
 }
 
-.progessBarAndTextClass{
+.progessBarAndTextClass {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap:4px;
+  gap: 4px;
   font-size: 12px;
   margin: 12px 0px;
 }
-.progressBarParentDivClass{
+.progressBarParentDivClass {
   width: 56%;
   border: none;
   border-radius: 10px;
   margin: 0px 0px 0px 4px;
-  height: 8px; 
+  height: 8px;
   background: #e0e0e0;
-  
 }
 
-.innerProgressBarClass{
-  height: 100%; 
-  background: #4589FF; 
+.innerProgressBarClass {
+  height: 100%;
+  background: #4589ff;
   border-radius: 10px;
 }
 
-
-.rotateOnDrag{
+.rotateOnDrag {
   transform: rotate(4deg);
 }
-
-
-

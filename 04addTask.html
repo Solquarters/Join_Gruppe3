@@ -1,42 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <link rel="icon" type="image/x-icon" href="./assets/img/joinMiniLogo.svg">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Add Task Main Site</title>
+  <head>
+    <link rel="icon" type="image/x-icon" href="./assets/img/joinMiniLogo.svg" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Task Main Site</title>
 
-<link rel="stylesheet" href="fonts.css">
-<link rel="stylesheet" href="./04addTaskStyle.css">
-<link rel="stylesheet" href="./assets/templates/headerSidebar.css">
-<link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="fonts.css" />
+    <link rel="stylesheet" href="./04addTaskStyle.css" />
+    <link rel="stylesheet" href="./assets/templates/headerSidebar.css" />
+    <link rel="stylesheet" href="./style.css" />
 
-<!-- ///addTask script is linked after html body /// -->
-<script src="./assets/templates/templatesScript.js"></script>
+    <!-- ///addTask script is linked after html body /// -->
+    <script src="./assets/templates/templatesScript.js"></script>
+  </head>
 
-</head>
-
-
-<body onload="addTaskSiteHTML(); initAddTaskSite(), includeHTML()">
-
+  <body onload="addTaskSiteHTML(); initAddTaskSite(), includeHTML()">
     <!-- //Preventing Site Access without login -->
     <script>
-        let userLoginJsonTest = JSON.parse(localStorage.getItem('userLoginJson'));
-        if (!userLoginJsonTest || userLoginJsonTest.findIndex(u => u.loggedIn==true) == -1 ) {
-            // If not authenticated, redirect to login page
-            window.location.href = '07logIn.html';
-        }
-        </script>
+      let userLoginJsonTest = JSON.parse(localStorage.getItem("userLoginJson"));
+      if (
+        !userLoginJsonTest ||
+        userLoginJsonTest.findIndex((u) => u.loggedIn == true) == -1
+      ) {
+        // If not authenticated, redirect to login page
+        window.location.href = "07logIn.html";
+      }
+    </script>
 
+    <div w3-include-html="./assets/templates/headerSidebar.html"></div>
 
-    <div w3-include-html="./assets/templates/headerSidebar.html"></div> 
-
-    <div class="addTaskMainSiteDivClass" id="addTaskMotherDivId">
-        
-    </div>
+    <div class="addTaskMainSiteDivClass" id="addTaskMotherDivId"></div>
 
     <script src="./js/01script.js"></script>
-<script src="./js/04addTaskScript.js"></script>
-</body>
-
+    <script src="./js/04addTaskScript.js"></script>
+  </body>
 </html>

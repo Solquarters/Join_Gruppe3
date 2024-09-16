@@ -1,48 +1,39 @@
-body{
-    margin: 0;
-    font-family: 'inter';
+body {
+  margin: 0;
+  font-family: "inter";
 }
 
-
-
 ::-webkit-scrollbar {
-    width: 6px; /* Width of the vertical scrollbar */
-    /* height: 12px; Height of the horizontal scrollbar */
-    background: #f3f3f3; /* Background color of the scrollbar */
-    border-radius: 12px; /* Rounded corners for the scrollbar */
-    overflow: auto;
-  }
-  
-  /* Styles for the scrollbar thumb */
-  ::-webkit-scrollbar-thumb {
-    background: #d6d6d6; /* Default background color of the scrollbar thumb */
-    border-radius: 1ex; /* Rounded corners for the scrollbar thumb */
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: #a4a4a4; /* Default background color of the scrollbar thumb */
-    border-radius: 1ex; /* Rounded corners for the scrollbar thumb */
-  }
-  
-  /* Styles for the corner where the horizontal and vertical scrollbars meet */
-  ::-webkit-scrollbar-corner {
-    background: #ededed; /* Background color of the scrollbar corner */
-  }
-  
+  width: 6px; /* Width of the vertical scrollbar */
+  background: #f3f3f3; /* Background color of the scrollbar */
+  border-radius: 12px; /* Rounded corners for the scrollbar */
+  overflow: auto;
+}
 
+/* Styles for the scrollbar thumb */
+::-webkit-scrollbar-thumb {
+  background: #d6d6d6; /* Default background color of the scrollbar thumb */
+  border-radius: 1ex; /* Rounded corners for the scrollbar thumb */
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #a4a4a4; /* Default background color of the scrollbar thumb */
+  border-radius: 1ex; /* Rounded corners for the scrollbar thumb */
+}
 
+/* Styles for the corner where the horizontal and vertical scrollbars meet */
+::-webkit-scrollbar-corner {
+  background: #ededed; /* Background color of the scrollbar corner */
+}
 
-
-  /* /////LOADING SPINNER */
+/* /////LOADING SPINNER */
 /* HTML: <div class="loader"></div> */
 .loader {
   display: flex;
   align-items: center;
   height: 15px;
   aspect-ratio: 4;
-  --_g: no-repeat radial-gradient(farthest-side,#000 94%,#0000); 
-  background:
-    var(--_g) left,
-    var(--_g) right;
+  --_g: no-repeat radial-gradient(farthest-side, #000 94%, #0000);
+  background: var(--_g) left, var(--_g) right;
   background-size: 25% 100%;
   display: grid;
   margin: 0px 12px 0px 12px;
@@ -55,17 +46,22 @@ body{
   height: 100%;
   aspect-ratio: 1;
   border-radius: 50%;
-  background: #29ABE2; 
+  background: #29abe2;
   clip-path: inset(0 0 49%);
   transform-origin: -100% 50%;
-  animation: l27 .5s infinite alternate ease-in-out;
+  animation: l27 0.5s infinite alternate ease-in-out;
 }
 .loader:after {
-  --s:-1;
+  --s: -1;
   transform-origin: 200% 50%;
 }
 @keyframes l27 {
-  0%,40% {transform:scaleY(var(--s,1)) rotate(0)}
-  100%   {transform:scaleY(var(--s,1)) rotate(calc(var(--s,1)*-20deg))}
+  0%,
+  40% {
+    transform: scaleY(var(--s, 1)) rotate(0);
+  }
+  100% {
+    transform: scaleY(var(--s, 1)) rotate(calc(var(--s, 1) * -20deg));
+  }
 }
 /* ///////////////////////////// */

@@ -1,70 +1,76 @@
-let oldLetter = '#';
-let newLetter = 'A';
+let oldLetter = "#";
+let newLetter = "A";
 let editingIndex = null; // Added to track editing index
 let currentIndex;
 
-async function initContactSite(){
-    try {
-        toDoCardsJSON = await loadData("/toDoJson");
-        contactsJSON = await loadData("/contactsJson");
-
-    } catch (error) {
-        console.error('Error loading data:', error);
-    }
-    finally{
-        contactsJSON = sortContactsByFirstName(contactsJSON);
-        await putData("/contactsJson", contactsJSON);
-        renderContacts();
-    }
+async function initContactSite() {
+  try {
+    toDoCardsJSON = await loadData("/toDoJson");
+    contactsJSON = await loadData("/contactsJson");
+  } catch (error) {
+    console.error("Error loading data:", error);
+  } finally {
+    contactsJSON = sortContactsByFirstName(contactsJSON);
+    await putData("/contactsJson", contactsJSON);
+    renderContacts();
+  }
 }
 
 function save() {
-    let contactsJSONAsText = JSON.stringify(contactsJSON);
-    localStorage.setItem('contactsJSON', contactsJSONAsText);
+  let contactsJSONAsText = JSON.stringify(contactsJSON);
+  localStorage.setItem("contactsJSON", contactsJSONAsText);
 }
 
 function renderContacts() {
-    let contactsContent = document.getElementById('contactsContent');
-    contactsContent.innerHTML = '';
+  let contactsContent = document.getElementById("contactsContent");
+  contactsContent.innerHTML = "";
 
-    for (let i = 0; i < contactsJSON.length; i++) {
+  for (let i = 0; i < contactsJSON.length; i++) {
+    let contactJSON = contactsJSON[i];
 
-        let contactJSON = contactsJSON[i];
-
-        contactsContent.innerHTML += /*html*/`
+    contactsContent.innerHTML += /*html*/ `
         <div id="contactsId" class="underContainer">
             ${returnAlphabeticalSeperator(i)}
             <div onclick="renderContactsInfo(${i}, this)" class="underContactMain">
-                <span class="nameShortOne" style="background-color: ${getProfileRGB(i)};">${contactJSON['firstName'].charAt(0)}${contactJSON['lastName'].charAt(0)}</span>
+                <span class="nameShortOne" style="background-color: ${getProfileRGB(
+                  i
+                )};">${contactJSON["firstName"].charAt(0)}${contactJSON[
+      "lastName"
+    ].charAt(0)}</span>
                 <div class="selectContact">
-                    <span>${contactJSON['firstName']} ${contactJSON['lastName']}</span>
-                    <a href="#">${contactJSON['email']}</a>
+                    <span>${contactJSON["firstName"]} ${
+      contactJSON["lastName"]
+    }</span>
+                    <a href="#">${contactJSON["email"]}</a>
                 </div>
             </div>
         </div>
         `;
-    }
+  }
 }
 
 function renderContactsInfo(index, divElement) {
+  document.querySelectorAll(".active").forEach(function (element) {
+    element.classList.remove("active");
+  });
 
-    document.querySelectorAll('.active').forEach(function (element) {
-        element.classList.remove('active');
-    });
+  divElement.classList.add("active");
 
-    divElement.classList.add('active');
-
-    updateContactsInfoHTML(index);
+  updateContactsInfoHTML(index);
 }
 
-function updateContactsInfoHTML(index){
-    let showContactsInfo = document.getElementById('showContactsInfo');
-    showContactsInfo.innerHTML = '';
+function updateContactsInfoHTML(index) {
+  let showContactsInfo = document.getElementById("showContactsInfo");
+  showContactsInfo.innerHTML = "";
 
-    showContactsInfo.innerHTML = /*html*/`
+  showContactsInfo.innerHTML = /*html*/ `
     <div>
         <div class="nameEditDelete">
-            <span class="nameShortScript" style="background-color: ${getProfileRGB(index)};">${contactsJSON[index]['firstName'].charAt(0)}${contactsJSON[index]['lastName'].charAt(0)}</span>
+            <span class="nameShortScript" style="background-color: ${getProfileRGB(
+              index
+            )};">${contactsJSON[index]["firstName"].charAt(0)}${contactsJSON[
+    index
+  ]["lastName"].charAt(0)}</span>
             <div class="nameEditDeleteMain">
                 <div class="nameContainer">
                     <span><b>${contactsJSON[index]["firstName"]}</b></span>
@@ -86,11 +92,15 @@ function updateContactsInfoHTML(index){
             <span class="informationTxt">Contact Information</span>
             <div class="emailContainer">
                 <span><b>Email</b></span>
-                <a href="mailto:${contactsJSON[index].email}">${contactsJSON[index].email}</a>
+                <a href="mailto:${contactsJSON[index].email}">${
+    contactsJSON[index].email
+  }</a>
             </div>
             <div class="phoneContainer">
                 <span><b>Phone</b></span>
-                <a href="tel:${contactsJSON[index].phone}">${contactsJSON[index].phone}</a>
+                <a href="tel:${contactsJSON[index].phone}">${
+    contactsJSON[index].phone
+  }</a>
             </div>
         </div>
     </div>
@@ -119,456 +129,461 @@ function updateContactsInfoHTML(index){
         </div>
     </div>
     `;
-    if (window.innerWidth < 1285) {
-        document.getElementById('addContactsMain').classList.add('d-none');
-        document.getElementById('showContactsText').style.display = 'block';
-    } else {
-        document.getElementById('addContactsMain').classList.remove('d-none');
-        document.getElementById('showContactsText').style.display = 'block';
-    }
+  if (window.innerWidth < 1285) {
+    document.getElementById("addContactsMain").classList.add("d-none");
+    document.getElementById("showContactsText").style.display = "block";
+  } else {
+    document.getElementById("addContactsMain").classList.remove("d-none");
+    document.getElementById("showContactsText").style.display = "block";
+  }
 }
 
 function returnAlphabeticalSeperator(i) {
-    newLetter = contactsJSON[i]['firstName'].charAt(0).toUpperCase();
-    if (oldLetter !== newLetter) {
-        oldLetter = newLetter;
+  newLetter = contactsJSON[i]["firstName"].charAt(0).toUpperCase();
+  if (oldLetter !== newLetter) {
+    oldLetter = newLetter;
 
-        return `
-        <span class="alphabet">${contactsJSON[i]['firstName'].charAt(0).toUpperCase()}</span>
+    return `
+        <span class="alphabet">${contactsJSON[i]["firstName"]
+          .charAt(0)
+          .toUpperCase()}</span>
         <div class="contactSeperator"></div>
         `;
-    }
-    else {
-        return ``;
-    }
+  } else {
+    return ``;
+  }
 }
 
 function sortContactsByFirstName(JSONARRAY) {
-    return JSONARRAY.sort((a, b) => {
-        if (a.firstName < b.firstName) {
-            return -1;
-        }
-        if (a.firstName > b.firstName) {
-            return 1;
-        }
-        return 0;
-    });
+  return JSONARRAY.sort((a, b) => {
+    if (a.firstName < b.firstName) {
+      return -1;
+    }
+    if (a.firstName > b.firstName) {
+      return 1;
+    }
+    return 0;
+  });
 }
 
 function getProfileRGB(i) {
-    return contactsJSON[i].profileRGB;
+  return contactsJSON[i].profileRGB;
 }
 
-async function createContact(){
-    let fullName = document.getElementById('name').value.trim();
-    let email = document.getElementById('email').value.trim();
-    let phone = document.getElementById('phone').value.trim();
+async function createContact() {
+  let fullName = document.getElementById("name").value.trim();
+  let email = document.getElementById("email").value.trim();
+  let phone = document.getElementById("phone").value.trim();
 
-    // Check whether a contact already exists with this email
-    let emailExists = contactsJSON.some((contact, index) => contact.email === email && index !== editingIndex);
+  // Check whether a contact already exists with this email
+  let emailExists = contactsJSON.some(
+    (contact, index) => contact.email === email && index !== editingIndex
+  );
 
-    if (emailExists) {
-        alert("Diese E-Mail-Adresse existiert bereits, verwenden Sie bitte eine andere E-Mail-Adresse");
-    } else {
-        // Get first and last name from the full name input
-        let nameParts = fullName.split(' ');
+  if (emailExists) {
+    alert(
+      "Diese E-Mail-Adresse existiert bereits, verwenden Sie bitte eine andere E-Mail-Adresse"
+    );
+  } else {
+    // Get first and last name from the full name input
+    let nameParts = fullName.split(" ");
 
-        //////new contact wont create when only one name string is inputted!! ///////
-        let firstName = nameParts[0];
-        let lastName = '';
-        if(nameParts.length > 1){
-            lastName = nameParts.slice(1).join(' ');
-        }
-       
-        if (editingIndex !== null) {
-            // Update existing contact
-            contactsJSON[editingIndex] = {
-                firstName: firstName,
-                lastName: lastName,
-                phone: phone,
-                email: email,
-                profileRGB: contactsJSON[editingIndex].profileRGB // Keep the existing color
-            };
-            await putData("/contactsJson", contactsJSON);
-
-            editingIndex = null; // Reset editing index after saving
-        } else {
-            // Generate a random color for the profileRGB
-            let profileRGB = `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`;
-
-            // Create a new contact object
-            let newContact = {
-                firstName: firstName,
-                lastName: lastName,
-                phone: phone,
-                email: email,
-                profileRGB: profileRGB
-            };
-            contactsJSON.push(newContact);
-            contactsJSON = sortContactsByFirstName(contactsJSON);
-
-
-            await putData("/contactsJson", contactsJSON);
-        }
-        renderContacts();
-        hideContacts();
+    //////new contact wont create when only one name string is inputted!! ///////
+    let firstName = nameParts[0];
+    let lastName = "";
+    if (nameParts.length > 1) {
+      lastName = nameParts.slice(1).join(" ");
     }
+
+    if (editingIndex !== null) {
+      // Update existing contact
+      contactsJSON[editingIndex] = {
+        firstName: firstName,
+        lastName: lastName,
+        phone: phone,
+        email: email,
+        profileRGB: contactsJSON[editingIndex].profileRGB, // Keep the existing color
+      };
+      await putData("/contactsJson", contactsJSON);
+
+      editingIndex = null; // Reset editing index after saving
+    } else {
+      // Generate a random color for the profileRGB
+      let profileRGB = `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(
+        Math.random() * 256
+      )}, ${Math.floor(Math.random() * 256)})`;
+
+      // Create a new contact object
+      let newContact = {
+        firstName: firstName,
+        lastName: lastName,
+        phone: phone,
+        email: email,
+        profileRGB: profileRGB,
+      };
+      contactsJSON.push(newContact);
+      contactsJSON = sortContactsByFirstName(contactsJSON);
+
+      await putData("/contactsJson", contactsJSON);
+    }
+    renderContacts();
+    hideContacts();
+  }
 }
 
 // Function for show a Pop Up window
 function addContacts() {
+  document.querySelector(".createContact").style.display = "flex";
+  document.querySelector(".addContactCancel").style.display = "none";
 
-    document.querySelector('.createContact').style.display = 'flex';
-    document.querySelector('.addContactCancel').style.display = 'none';
+  document.querySelector(".saveContact").style.display = "none";
+  document.querySelector(".editDeleteContact").style.display = "none";
 
-    document.querySelector('.saveContact').style.display = 'none';
-    document.querySelector('.editDeleteContact').style.display = 'none';
-   
-    let index = -1;
-    setStyleOfUserCircle(index);
+  let index = -1;
+  setStyleOfUserCircle(index);
 
-    resetEditForm();
-    let popUp = document.getElementById('popUpContent');
-    popUp.style.display = 'flex'; // Ensure display is set to flex before adding active class
-    popUp.classList.remove('inactive');
-    popUp.classList.add('active');
-    document.querySelector('.addContacts').style.display = 'flex';
+  resetEditForm();
+  let popUp = document.getElementById("popUpContent");
+  popUp.style.display = "flex"; // Ensure display is set to flex before adding active class
+  popUp.classList.remove("inactive");
+  popUp.classList.add("active");
+  document.querySelector(".addContacts").style.display = "flex";
 }
 
 function callDropDownMenu() {
-    let dropDown = document.getElementById('dropDownMenu');
-    dropDown.style.display = 'flex';
-    dropDown.classList.add('active');
-    dropDown.classList.remove('inactive');
+  let dropDown = document.getElementById("dropDownMenu");
+  dropDown.style.display = "flex";
+  dropDown.classList.add("active");
+  dropDown.classList.remove("inactive");
 
-    function closeDropdown(event) {
-        if (!dropDown.contains(event.target) && !event.target.closest('button[onclick="callDropDownMenu()"]')) {
-            dropDown.classList.remove('active');
-            dropDown.classList.add('inactive');
-            dropDown.addEventListener('animationend', () => {
-                dropDown.style.display = 'none';
-            }, { once: true });
-            document.removeEventListener('click', closeDropdown);
-        }
+  function closeDropdown(event) {
+    if (
+      !dropDown.contains(event.target) &&
+      !event.target.closest('button[onclick="callDropDownMenu()"]')
+    ) {
+      dropDown.classList.remove("active");
+      dropDown.classList.add("inactive");
+      dropDown.addEventListener(
+        "animationend",
+        () => {
+          dropDown.style.display = "none";
+        },
+        { once: true }
+      );
+      document.removeEventListener("click", closeDropdown);
     }
+  }
 
-    document.addEventListener('click', closeDropdown);
-    document.querySelector('button[onclick="callDropDownMenu()"]').addEventListener('click', event => event.stopPropagation());
+  document.addEventListener("click", closeDropdown);
+  document
+    .querySelector('button[onclick="callDropDownMenu()"]')
+    .addEventListener("click", (event) => event.stopPropagation());
 }
 
-
-
 function hideContacts() {
-    let popUp = document.getElementById('popUpContent');
-    popUp.classList.remove('active');
-    popUp.classList.add('inactive');
-    setTimeout(() => popUp.style.display = 'none', 600); // Adjust the timeout to match the slideOut animation duration
+  let popUp = document.getElementById("popUpContent");
+  popUp.classList.remove("active");
+  popUp.classList.add("inactive");
+  setTimeout(() => (popUp.style.display = "none"), 600); // Adjust the timeout to match the slideOut animation duration
 }
 
 function contactsWindowsCancel(event) {
-    event.preventDefault();
-    // Close the modal
-    let popUp = document.getElementById('popUpContent');
-    popUp.classList.remove('active');
-    popUp.classList.add('inactive');
-    popUp.style.display = 'none';
+  event.preventDefault();
+  // Close the modal
+  let popUp = document.getElementById("popUpContent");
+  popUp.classList.remove("active");
+  popUp.classList.add("inactive");
+  popUp.style.display = "none";
 
-    // Reset the form
-    resetEditForm();
-    editingIndex = null; // Reset editingIndex after cancelling
+  // Reset the form
+  resetEditForm();
+  editingIndex = null; // Reset editingIndex after cancelling
 }
 
 function editContact(index) {
-    currentIndex = index;
-    let contact = contactsJSON[index];
+  currentIndex = index;
+  let contact = contactsJSON[index];
 
-    // Filling the form with the contact's information
-    document.getElementById('name').value = `${contact.firstName} ${contact.lastName}`;
-    document.getElementById('email').value = contact.email;
-    document.getElementById('phone').value = contact.phone;
+  // Filling the form with the contact's information
+  document.getElementById(
+    "name"
+  ).value = `${contact.firstName} ${contact.lastName}`;
+  document.getElementById("email").value = contact.email;
+  document.getElementById("phone").value = contact.phone;
 
-    // Set the background color of the initials span
-    let initialsElement = document.querySelector('.nameShortScript');
-    initialsElement.style.backgroundColor = contact.profileRGB;
+  // Set the background color of the initials span
+  let initialsElement = document.querySelector(".nameShortScript");
+  initialsElement.style.backgroundColor = contact.profileRGB;
 
-    // Change the visibility of the buttons
-    document.querySelector('.createContact').style.display = 'none';
-    document.querySelector('.saveContact').style.display = 'flex';
-    document.querySelector('.editDeleteContact').style.display = 'flex';
-    document.querySelector('.addContactCancel').style.display = 'none';
+  // Change the visibility of the buttons
+  document.querySelector(".createContact").style.display = "none";
+  document.querySelector(".saveContact").style.display = "flex";
+  document.querySelector(".editDeleteContact").style.display = "flex";
+  document.querySelector(".addContactCancel").style.display = "none";
 
-    setStyleOfUserCircle(index);
+  setStyleOfUserCircle(index);
 
-    
+  // Open the modal
+  let popUp = document.getElementById("popUpContent");
+  popUp.style.display = "flex"; // Ensure display is set to flex before adding active class
+  popUp.classList.remove("inactive");
+  popUp.classList.add("active");
 
-    // Open the modal
-    let popUp = document.getElementById('popUpContent');
-    popUp.style.display = 'flex'; // Ensure display is set to flex before adding active class
-    popUp.classList.remove('inactive');
-    popUp.classList.add('active');
+  setDeleteButtonToIndex(index);
 
-    setDeleteButtonToIndex(index);
-
-    // renderContacts();
+  // renderContacts();
 }
 
-
-function setDeleteButtonToIndex(index){
-    let deleteButton = document.getElementById("deleteButtonInEditModeId");
-    deleteButton.classList.remove('d-none');
-    deleteButton.onclick = function(event) {
-        event.preventDefault(); // Prevent the default action (if any)
-        deleteContacts(index);  // Call your delete function
-    };
+function setDeleteButtonToIndex(index) {
+  let deleteButton = document.getElementById("deleteButtonInEditModeId");
+  deleteButton.classList.remove("d-none");
+  deleteButton.onclick = function (event) {
+    event.preventDefault(); // Prevent the default action (if any)
+    deleteContacts(index); // Call your delete function
+  };
 }
 
-
-function setStyleOfUserCircle(index){
-    if(index > -1){
-        document.getElementById('editUserCircleId').style.backgroundColor= getProfileRGB(index);
-        document.getElementById('editUserCircleId').innerText = contactsJSON[index]['firstName'].charAt(0) + contactsJSON[index]['lastName'].charAt(0);
-    }
-    else{
-        document.getElementById('editUserCircleId').style.backgroundColor = '#2A3647';
-        document.getElementById('editUserCircleId').innerText = 'AA';
-    }
-    
+function setStyleOfUserCircle(index) {
+  if (index > -1) {
+    document.getElementById("editUserCircleId").style.backgroundColor =
+      getProfileRGB(index);
+    document.getElementById("editUserCircleId").innerText =
+      contactsJSON[index]["firstName"].charAt(0) +
+      contactsJSON[index]["lastName"].charAt(0);
+  } else {
+    document.getElementById("editUserCircleId").style.backgroundColor =
+      "#2A3647";
+    document.getElementById("editUserCircleId").innerText = "AA";
+  }
 }
-
-
 
 // Change Contact
 function saveEditedContact(index) {
-    // Get the edited information from the form
-    let name = document.getElementById('name').value.trim().split(' ');
-    let email = document.getElementById('email').value.trim();
-    let phone = document.getElementById('phone').value.trim();
-    if(!isPhoneValid()){
-        return;
-    }
-    // Ensure that the name array has at least two parts (first and last name)
-    if(!isNameValid()){
-        return;
-    }
-    if(!isEmailValid()){
-        return;
-    }
+  // Get the edited information from the form
+  let name = document.getElementById("name").value.trim().split(" ");
+  let email = document.getElementById("email").value.trim();
+  let phone = document.getElementById("phone").value.trim();
+  if (!isPhoneValid()) {
+    return;
+  }
+  // Ensure that the name array has at least two parts (first and last name)
+  if (!isNameValid()) {
+    return;
+  }
+  if (!isEmailValid()) {
+    return;
+  }
 
-    // Update the contact in the list
-    editContactJsonAtIndexAndSave(index, name,phone, email);
+  // Update the contact in the list
+  editContactJsonAtIndexAndSave(index, name, phone, email);
 
-    // Reset the visibility of the buttons
-    resetVisibilityOfCreateButton();
+  // Reset the visibility of the buttons
+  resetVisibilityOfCreateButton();
 
-    showEditSuccessMessage();
-    
-    // Delay the closing of the popup to give the user time to read the success message
-    setTimeout(() => {
-        // Close Pop Up
-        resetEditForm();
-        closeEditPopup();
-        renderContacts();
-        updateContactsInfoHTML(index);
-    }, 1500); // Match this delay with the time set in showEditSuccessMessage
+  showEditSuccessMessage();
+
+  // Delay the closing of the popup to give the user time to read the success message
+  setTimeout(() => {
+    // Close Pop Up
+    resetEditForm();
+    closeEditPopup();
+    renderContacts();
+    updateContactsInfoHTML(index);
+  }, 1500); // Match this delay with the time set in showEditSuccessMessage
 }
-
 
 function showEditSuccessMessage() {
-    // Select the success message element
-    const successMessage = document.querySelector('.editSuccessMessageClass');
-    
-    // Display the message with flex and set opacity to 1 for smooth transition
-    successMessage.style.display = 'flex';
-    
-    // Trigger a reflow so that the opacity transition works
-    successMessage.offsetHeight; // This forces the reflow
+  // Select the success message element
+  const successMessage = document.querySelector(".editSuccessMessageClass");
 
-    // Set opacity to 1 to show the message
-    successMessage.style.opacity = '1';
-    
-    // After 1.5 seconds, start the fade-out process
+  // Display the message with flex and set opacity to 1 for smooth transition
+  successMessage.style.display = "flex";
+
+  // Trigger a reflow so that the opacity transition works
+  successMessage.offsetHeight; // This forces the reflow
+
+  // Set opacity to 1 to show the message
+  successMessage.style.opacity = "1";
+
+  // After 1.5 seconds, start the fade-out process
+  setTimeout(() => {
+    // Set opacity to 0 for smooth fade-out
+    successMessage.style.opacity = "0";
+
+    // Wait for the opacity transition to finish before setting display to none
     setTimeout(() => {
-        // Set opacity to 0 for smooth fade-out
-        successMessage.style.opacity = '0';
-        
-        // Wait for the opacity transition to finish before setting display to none
-        setTimeout(() => {
-            successMessage.style.display = 'none';
-        }, 200); // Match this to your CSS transition duration (200ms)
-        
-    }, 1500); // Wait 1.5 seconds before starting to fade out
+      successMessage.style.display = "none";
+    }, 200); // Match this to your CSS transition duration (200ms)
+  }, 1500); // Wait 1.5 seconds before starting to fade out
 }
 
-async function editContactJsonAtIndexAndSave(index, name, phone, email){
-    contactsJSON[index] = {
-        'firstName': name[0],
-        'lastName': name.slice(1).join(' '), // Join remaining parts as last name
-        'phone': phone,
-        'email': email,
-        'profileRGB': contactsJSON[index].profileRGB // Keep the original color
-    };
+async function editContactJsonAtIndexAndSave(index, name, phone, email) {
+  contactsJSON[index] = {
+    firstName: name[0],
+    lastName: name.slice(1).join(" "), // Join remaining parts as last name
+    phone: phone,
+    email: email,
+    profileRGB: contactsJSON[index].profileRGB, // Keep the original color
+  };
 
-    await putData("/contactsJson", contactsJSON);
+  await putData("/contactsJson", contactsJSON);
 }
 
-function resetVisibilityOfCreateButton(){
-    document.querySelector('.createContact').style.display = 'flex';
-    document.querySelector('.saveContact').style.display = 'none';
-    document.querySelector('.editDeleteContact').style.display = 'none';
+function resetVisibilityOfCreateButton() {
+  document.querySelector(".createContact").style.display = "flex";
+  document.querySelector(".saveContact").style.display = "none";
+  document.querySelector(".editDeleteContact").style.display = "none";
 }
 
 function isNameValid() {
-    const nameInput = document.getElementById('name');
-    const nameParts = nameInput.value.trim().split(' ');
+  const nameInput = document.getElementById("name");
+  const nameParts = nameInput.value.trim().split(" ");
 
-    if (nameParts.length < 2) {
-        // Change the placeholder text
-        nameInput.placeholder = 'Full name needed';
-        
-        // Add a class to style the placeholder color
-        nameInput.classList.add('invalid-name');
-        
-        // Clear the input value to show the placeholder
-        nameInput.value = '';
+  if (nameParts.length < 2) {
+    // Change the placeholder text
+    nameInput.placeholder = "Full name needed";
 
-        return false;
-    } else {
-        // Reset the placeholder text and remove the class
-        nameInput.placeholder = 'Name';
-        nameInput.classList.remove('invalid-name');
+    // Add a class to style the placeholder color
+    nameInput.classList.add("invalid-name");
 
-        return true;
-    }
+    // Clear the input value to show the placeholder
+    nameInput.value = "";
+
+    return false;
+  } else {
+    // Reset the placeholder text and remove the class
+    nameInput.placeholder = "Name";
+    nameInput.classList.remove("invalid-name");
+
+    return true;
+  }
 }
 
-
 function isPhoneValid() {
-    const phoneInput = document.getElementById('phone');
-    
-    if (!phoneInput.checkValidity()) {
-        // Change the placeholder text
-        phoneInput.placeholder = 'Need a valid phonenumber or empty field';
-        
-        // Add a class to style the placeholder color
-        phoneInput.classList.add('invalid-email');
-        
-        // Clear the input value to show the placeholder
-        phoneInput.value = '';
-        
-        return false;
-    } else {
-        // Reset the placeholder text and remove the class
-        phoneInput.placeholder = 'Phone';
-        phoneInput.classList.remove('invalid-email');
-        
-        return true;
-    }
+  const phoneInput = document.getElementById("phone");
+
+  if (!phoneInput.checkValidity()) {
+    // Change the placeholder text
+    phoneInput.placeholder = "Need a valid phonenumber or empty field";
+
+    // Add a class to style the placeholder color
+    phoneInput.classList.add("invalid-email");
+
+    // Clear the input value to show the placeholder
+    phoneInput.value = "";
+
+    return false;
+  } else {
+    // Reset the placeholder text and remove the class
+    phoneInput.placeholder = "Phone";
+    phoneInput.classList.remove("invalid-email");
+
+    return true;
+  }
 }
 
 function isEmailValid() {
-    const emailInput = document.getElementById('email');
-    
-    if (!emailInput.checkValidity()) {
-        // Change the placeholder text
-        emailInput.placeholder = 'Valid email needed';
-        
-        // Add a class to style the placeholder color
-        emailInput.classList.add('invalid-email');
-        
-        // Clear the input value to show the placeholder
-        emailInput.value = '';
-        
-        return false;
-    } else {
-        // Reset the placeholder text and remove the class
-        emailInput.placeholder = 'Email';
-        emailInput.classList.remove('invalid-email');
-        
-        return true;
-    }
+  const emailInput = document.getElementById("email");
+
+  if (!emailInput.checkValidity()) {
+    // Change the placeholder text
+    emailInput.placeholder = "Valid email needed";
+
+    // Add a class to style the placeholder color
+    emailInput.classList.add("invalid-email");
+
+    // Clear the input value to show the placeholder
+    emailInput.value = "";
+
+    return false;
+  } else {
+    // Reset the placeholder text and remove the class
+    emailInput.placeholder = "Email";
+    emailInput.classList.remove("invalid-email");
+
+    return true;
+  }
 }
 
-function closeEditPopup(){
-    let popUp = document.getElementById('popUpContent');
-    popUp.style.display = 'none';
-    popUp.classList.remove('active');
-    popUp.classList.add('inactive');
+function closeEditPopup() {
+  let popUp = document.getElementById("popUpContent");
+  popUp.style.display = "none";
+  popUp.classList.remove("active");
+  popUp.classList.add("inactive");
 }
 
 // Function to find a contact by index
 function findContactByIndex(index) {
-    return contactsJSON[index];
+  return contactsJSON[index];
 }
 
 function resetEditForm() {
-    document.getElementById('name').value = "";
-    document.getElementById('email').value = "";
-    document.getElementById('phone').value = "";
+  document.getElementById("name").value = "";
+  document.getElementById("email").value = "";
+  document.getElementById("phone").value = "";
 }
 
 function backStep() {
-    if (window.innerWidth < 1285) {
-        document.getElementById('showContactsText').style.display = 'none';
-    }
-    document.getElementById('addContactsMain').classList.remove('d-none');
+  if (window.innerWidth < 1285) {
+    document.getElementById("showContactsText").style.display = "none";
+  }
+  document.getElementById("addContactsMain").classList.remove("d-none");
 
-    ////////////Hier alle active "underContactMain active" entfernen 
-    const elements = document.querySelectorAll('.underContactMain.active');
-    // Loop through each element and remove the 'active' class
-    elements.forEach(function(element) {
-        element.classList.remove('active');
-    });
+  ////////////Hier alle active "underContactMain active" entfernen
+  const elements = document.querySelectorAll(".underContactMain.active");
+  // Loop through each element and remove the 'active' class
+  elements.forEach(function (element) {
+    element.classList.remove("active");
+  });
 }
 
 let isBelowThreshold = false; // Flag, um den Zustand zu verfolgen
 
-window.addEventListener('resize', changeWidth);
+window.addEventListener("resize", changeWidth);
 
 function changeWidth() {
-    if (window.innerWidth >= 1285 && isBelowThreshold) {
-        document.getElementById('addContactsMain').classList.remove('d-none');
-        document.getElementById('showContactsText').style.display = 'block';
-        isBelowThreshold = false;
-    } else if (window.innerWidth < 1285 && !isBelowThreshold) {
-        document.getElementById('addContactsMain').classList.remove('d-none');
-        document.getElementById('showContactsText').style.display = 'none';
-        isBelowThreshold = true;
-    }
+  if (window.innerWidth >= 1285 && isBelowThreshold) {
+    document.getElementById("addContactsMain").classList.remove("d-none");
+    document.getElementById("showContactsText").style.display = "block";
+    isBelowThreshold = false;
+  } else if (window.innerWidth < 1285 && !isBelowThreshold) {
+    document.getElementById("addContactsMain").classList.remove("d-none");
+    document.getElementById("showContactsText").style.display = "none";
+    isBelowThreshold = true;
+  }
 }
 
-
-
 function editDeleteContact() {
-    deleteContacts();
-    renderContacts();
+  deleteContacts();
+  renderContacts();
 }
 
 async function deleteContacts(index) {
-    toggleDeleteSuccessMessage(index);
+  toggleDeleteSuccessMessage(index);
 
-    removeAssignedNameFromToDoCards(index);
+  removeAssignedNameFromToDoCards(index);
 
-    contactsJSON.splice(index, 1);
-    await putData("/contactsJson", contactsJSON);
+  contactsJSON.splice(index, 1);
+  await putData("/contactsJson", contactsJSON);
 
-    let showContactsInfo = document.getElementById('showContactsInfo');
-    showContactsInfo.innerHTML = '';
+  let showContactsInfo = document.getElementById("showContactsInfo");
+  showContactsInfo.innerHTML = "";
 
-    if (window.innerWidth < 1285) {
-        document.getElementById('showContactsText').style.display = 'none';
-        document.getElementById('addContactsMain').classList.remove('d-none');
-    }
-    
-    hideContacts();
-    renderContacts();
+  if (window.innerWidth < 1285) {
+    document.getElementById("showContactsText").style.display = "none";
+    document.getElementById("addContactsMain").classList.remove("d-none");
+  }
 
+  hideContacts();
+  renderContacts();
 }
 
-
 function toggleDeleteSuccessMessage(index) {
-    const deleteSuccessContainer = document.getElementById('deleteSuccessContainerId');
+  const deleteSuccessContainer = document.getElementById(
+    "deleteSuccessContainerId"
+  );
 
-    deleteSuccessContainer.innerHTML = /*html*/ `
+  deleteSuccessContainer.innerHTML = /*html*/ `
     <h3 style="color: red;">Deleted contact:</h3>
     <h3>${contactsJSON[index].firstName + contactsJSON[index].lastName}</h3>
     <br>
@@ -576,19 +591,19 @@ function toggleDeleteSuccessMessage(index) {
     <div class="loader"></div>
     `;
 
-    // Step 1: Set display to flex and start fading in
-    deleteSuccessContainer.style.display = 'flex';
-    setTimeout(() => {
-        deleteSuccessContainer.style.opacity = '1';
-    }, 10); // Small delay to ensure the display change takes effect before opacity
+  // Step 1: Set display to flex and start fading in
+  deleteSuccessContainer.style.display = "flex";
+  setTimeout(() => {
+    deleteSuccessContainer.style.opacity = "1";
+  }, 10); // Small delay to ensure the display change takes effect before opacity
 
-    // Step 2: Wait 2 seconds (or however long you want it visible), then fade out
-    setTimeout(() => {
-        deleteSuccessContainer.style.opacity = '0';
-    }, 2000); // Adjust this value to control how long the message is visible
+  // Step 2: Wait 2 seconds (or however long you want it visible), then fade out
+  setTimeout(() => {
+    deleteSuccessContainer.style.opacity = "0";
+  }, 2000); // Adjust this value to control how long the message is visible
 
-    // Step 3: After the fade-out transition, set display to none
-    setTimeout(() => {
-        deleteSuccessContainer.style.display = 'none';
-    }, 2200); // A little longer than the fade-out transition to ensure it completes
+  // Step 3: After the fade-out transition, set display to none
+  setTimeout(() => {
+    deleteSuccessContainer.style.display = "none";
+  }, 2200); // A little longer than the fade-out transition to ensure it completes
 }

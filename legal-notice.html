@@ -1,49 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <link rel="icon" type="image/x-icon" href="./assets/img/joinMiniLogo.svg">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/templates/headerSidebar.css">
-    <link rel="stylesheet" href="./style.css">
-    <link rel="stylesheet" href="fonts.css">
-    <link rel="stylesheet" href="legal-notice.css">
+  <head>
+    <link rel="icon" type="image/x-icon" href="./assets/img/joinMiniLogo.svg" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./assets/templates/headerSidebar.css" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="fonts.css" />
+    <link rel="stylesheet" href="legal-notice.css" />
     <title>Legal Notice</title>
+  </head>
 
-</head>
-
-<body onload="includeHTML()">
-
+  <body onload="includeHTML()">
     <script>
-        //Preventing Site Access without login
-        let userLoginJsonTest = JSON.parse(localStorage.getItem('userLoginJson'));
-        if (userLoginJsonTest.findIndex(u => u.loggedIn==true) == -1) {
-            // If not authenticated, redirect to login page
-            window.location.href = '07logIn.html';
-        }
-        </script>
-
+      //Preventing Site Access without login
+      let userLoginJsonTest = JSON.parse(localStorage.getItem("userLoginJson"));
+      if (userLoginJsonTest.findIndex((u) => u.loggedIn == true) == -1) {
+        // If not authenticated, redirect to login page
+        window.location.href = "07logIn.html";
+      }
+    </script>
 
     <!-- ///Header und Sidebar Div bei jeder HTML Datei hinzufügen, dazu auch im body: onload="includeHTML()" /// -->
-    <div w3-include-html="./assets/templates/headerSidebar.html"></div> 
+    <div w3-include-html="./assets/templates/headerSidebar.html"></div>
 
-                  <div class="legalNoticeMotherDiv">
+    <div class="legalNoticeMotherDiv">
+      <h1>Legal notice</h1>
 
-<h1>Legal notice</h1>
+      <span>Roman Kabucov</span>
+      <span>Kirchplatz 2</span>
+      <span>57334 Bad Laasphe</span>
+      <h2>Contact</h2>
+      <span>E-Mail: rom.kabucov@gmail.com</span>
+      <br />
+      <span> Source: https://www.e-recht24.de/impressum-generator.html</span>
+    </div>
 
-                  <span>Roman Kabucov</span>  
-                  <span>Kirchplatz 2</span>
-                  <span>57334 Bad Laasphe</span>
-                  <h2>Contact</h2>
-                  <span>E-Mail: rom.kabucov@gmail.com</span>
-                  <br>
-                  <span>  Source: https://www.e-recht24.de/impressum-generator.html</span>
-                  </div>
-                   
-    
     <script src="./js/01script.js"></script>
     <script src="./assets/templates/templatesScript.js" defer></script>
-</body>
-
+  </body>
 </html>

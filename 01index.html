@@ -1,37 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <link rel="icon" type="image/x-icon" href="./assets/img/joinMiniLogo.svg">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/templates/headerSidebar.css">
-    <link rel="stylesheet" href="./style.css">
-    <link rel="stylesheet" href="./02summary.css">
-    <link rel="stylesheet" href="fonts.css">
+  <head>
+    <link rel="icon" type="image/x-icon" href="./assets/img/joinMiniLogo.svg" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./assets/templates/headerSidebar.css" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./02summary.css" />
+    <link rel="stylesheet" href="fonts.css" />
     <title>Index empty template</title>
+  </head>
 
-</head>
-
-<body onload="includeHTML()">
-
+  <body onload="includeHTML()">
     <script>
-      
-       
-            // If not authenticated, redirect to login page
-            window.location.href = '07logIn.html';
-        
-        </script>
-
+      // If not authenticated, redirect to login page
+      window.location.href = "07logIn.html";
+    </script>
 
     <!-- ///Header und Sidebar Div bei jeder HTML Datei hinzufügen, dazu auch im body: onload="includeHTML()" /// -->
-    <div w3-include-html="./assets/templates/headerSidebar.html"></div> 
+    <div w3-include-html="./assets/templates/headerSidebar.html"></div>
 
-                  
-                   
-    
     <script src="./js/01script.js"></script>
     <script src="./assets/templates/templatesScript.js" defer></script>
-</body>
-
+  </body>
 </html>
