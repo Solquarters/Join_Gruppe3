@@ -57,14 +57,41 @@ function renderAllCardToBoard(){
 
 
 
-function returnSingleCardHTML(i){
+// function returnSingleCardHTML(i){
+//     return /*html*/ `<div class="mainSingleCardDivClass" id="singleCardId${i}"
+//     draggable="true" 
+//     ondragstart="startDragging(${i})" 
+//     onclick="openLargeCardOverlay(${i})"
+//     ontouchstart="handleTouchStart(event, ${i})" 
+//     ontouchmove="handleTouchMove(event, 'toDoStatusDivId')"
+//     ontouchend="handleTouchEnd('To do', 'toDoStatusDivId')">
+//         <div class="cardContainerInnert">
+//             ${returnCategoryHTML(i)}
+//             <div id="containerformularId${i}" class="containerformularDivClass">
+//                 <span >${toDoCardsJSON[i]["title"]}</span>
+//             </div>
+//             <div id="descriptionDivId${i}" class="descriptionDivClass">
+//                 <span id="descriptionSpanId${i}">${toDoCardsJSON[i]["description"]}</span>
+//             </div>
+//             ${getProgressBarHTML(i)}
+//             <div class="contactPrioDiv">
+//                 <div class="singleCardAssignedContactsParentDivClass" id="singleCardContactCircleDivId${i}">
+//                 </div>
+//                 <div>
+//                     <div id="prioDivId${i}" class="prioDiv">
+//                         ${returnPrioSvgHTML(i)}
+//                     </div>
+//                 </div>     
+//             </div>
+//         </div>
+//     </div>`;
+// }
+function returnSingleCardHTML(i) {
     return /*html*/ `<div class="mainSingleCardDivClass" id="singleCardId${i}"
     draggable="true" 
     ondragstart="startDragging(${i})" 
-    onclick="openLargeCardOverlay(${i})"
-    ontouchstart="handleTouchStart(event, ${i})" 
-    ontouchmove="handleTouchMove(event, 'toDoStatusDivId')"
-    ontouchend="handleTouchEnd('To do', 'toDoStatusDivId')">
+    onclick="openLargeCardOverlay(${i})" 
+    ontouchstart="handleTouchStart(event, ${i})">
         <div class="cardContainerInnert">
             ${returnCategoryHTML(i)}
             <div id="containerformularId${i}" class="containerformularDivClass">
@@ -75,8 +102,7 @@ function returnSingleCardHTML(i){
             </div>
             ${getProgressBarHTML(i)}
             <div class="contactPrioDiv">
-                <div class="singleCardAssignedContactsParentDivClass" id="singleCardContactCircleDivId${i}">
-                </div>
+                <div class="singleCardAssignedContactsParentDivClass" id="singleCardContactCircleDivId${i}"></div>
                 <div>
                     <div id="prioDivId${i}" class="prioDiv">
                         ${returnPrioSvgHTML(i)}
@@ -86,6 +112,7 @@ function returnSingleCardHTML(i){
         </div>
     </div>`;
 }
+
 
 function returnAssignedContactCircle(i){
     document.getElementById(`singleCardContactCircleDivId${i}`).innerHTML = '';
