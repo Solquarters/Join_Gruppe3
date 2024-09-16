@@ -241,38 +241,88 @@ function handleTouchStart(event, index) {
     document.getElementById(`singleCardId${index}`).classList.add('rotateOnDrag');
 }
 
-function handleTouchMove(event, mainCategoryDivId) {
-    // Prevent scrolling while dragging
-    event.preventDefault();
+// function handleTouchMove(event, mainCategoryDivId) {
+//     // Prevent scrolling while dragging
+//     event.preventDefault();
+
+//     const touch = event.touches[0];
+//     const rect = document.getElementById(mainCategoryDivId).getBoundingClientRect();
+
+//     // Track touch coordinates
+//     let x = touch.pageX;
+//     let y = touch.pageY;
+
+//     // Check if the touch is inside the container
+//     if (x > rect.left && x < rect.right && y > rect.top && y < rect.bottom) {
+//         highlight(mainCategoryDivId);  // Highlight the container
+//     } else {
+//         removeHighlight(mainCategoryDivId);  // Remove highlight if outside
+//     }
+// }
+function handleTouchMove(event) {
+    event.preventDefault(); // Prevent scrolling while dragging
 
     const touch = event.touches[0];
-    const rect = document.getElementById(mainCategoryDivId).getBoundingClientRect();
 
-    // Track touch coordinates
-    let x = touch.pageX;
-    let y = touch.pageY;
+    // Loop through all containers to check if the touch is inside any container
+    const containers = document.querySelectorAll('.mainCardContainerDivClass');
+    
+    containers.forEach(function(container) {
+        const rect = container.getBoundingClientRect();
 
-    // Check if the touch is inside the container
-    if (x > rect.left && x < rect.right && y > rect.top && y < rect.bottom) {
-        highlight(mainCategoryDivId);  // Highlight the container
-    } else {
-        removeHighlight(mainCategoryDivId);  // Remove highlight if outside
-    }
+        // Track touch coordinates
+        let x = touch.pageX;
+        let y = touch.pageY;
+
+        // Check if the touch is inside the container
+        if (x > rect.left && x < rect.right && y > rect.top && y < rect.bottom) {
+            highlight(container.id);  // Highlight the container
+        } else {
+            removeHighlight(container.id);  // Remove highlight if outside
+        }
+    });
 }
 
 
-function handleTouchEnd(categoryInput, mainCategoryDivId) {
-    const element = document.getElementById(mainCategoryDivId);
-    const rect = element.getBoundingClientRect();
+// function handleTouchEnd(categoryInput, mainCategoryDivId) {
+//     const element = document.getElementById(mainCategoryDivId);
+//     const rect = element.getBoundingClientRect();
 
-    // Use the last tracked touch coordinates
-    let x = touchStartX;
-    let y = touchStartY;
+//     // Use the last tracked touch coordinates
+//     let x = touchStartX;
+//     let y = touchStartY;
 
-    // Check if the touch ended within the container
-    if (x > rect.left && x < rect.right && y > rect.top && y < rect.bottom) {
-        moveTo(categoryInput);  // Move the card to the new category
-    }
+//     // Check if the touch ended within the container
+//     if (x > rect.left && x < rect.right && y > rect.top && y < rect.bottom) {
+//         moveTo(categoryInput);  // Move the card to the new category
+//     }
+
+//     // Clean up any highlighting and visual feedback
+//     document.querySelectorAll('.drag-area-highlight').forEach(function(element) {
+//         element.classList.remove('drag-area-highlight');
+//     });
+//     document.querySelectorAll('.rotateOnDrag').forEach(function(element) {
+//         element.classList.remove('rotateOnDrag');
+//     });
+// }
+function handleTouchEnd(event) {
+    const touch = event.changedTouches[0];
+
+    // Loop through all containers again to see where the touch ends
+    const containers = document.querySelectorAll('.mainCardContainerDivClass');
+    
+    containers.forEach(function(container) {
+        const rect = container.getBoundingClientRect();
+        
+        let x = touch.pageX;
+        let y = touch.pageY;
+
+        // Check if the touch ended within the container
+        if (x > rect.left && x < rect.right && y > rect.top && y < rect.bottom) {
+            const categoryInput = container.getAttribute('ondrop').match(/'(.*?)'/)[1];
+            moveTo(categoryInput);  // Move the card to the new category
+        }
+    });
 
     // Clean up any highlighting and visual feedback
     document.querySelectorAll('.drag-area-highlight').forEach(function(element) {
