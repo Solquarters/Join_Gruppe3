@@ -40,7 +40,11 @@ function renderAllCardToBoard(){
   
     }
 
+    renderHtmlIfCategoryIsEmpty();
+   
+}
 
+function renderHtmlIfCategoryIsEmpty(){
     if(document.getElementById('toDoStatusDivId').innerHTML == ''){
         document.getElementById('toDoStatusDivId').innerHTML = `<div class="emptyDragareaClass"><span>No tasks to do</span></div>`
     }
@@ -54,8 +58,6 @@ function renderAllCardToBoard(){
         document.getElementById('doneStatusDivId').innerHTML = `<div class="emptyDragareaClass"><span>No tasks done</span></div>`
     }
 }
-
-
 
 // function returnSingleCardHTML(i){
 //     return /*html*/ `<div class="mainSingleCardDivClass" id="singleCardId${i}"
@@ -91,7 +93,11 @@ function returnSingleCardHTML(i) {
     draggable="true" 
     ondragstart="startDragging(${i})" 
     onclick="openLargeCardOverlay(${i})" 
-    ontouchstart="handleTouchStart(event, ${i})">
+    ontouchstart="handleTouchStart(event, ${i})"
+
+    
+    ontouchmove="handleTouchMove(event)"
+    ontouchend="handleTouchEnd(event)">
         <div class="cardContainerInnert">
             ${returnCategoryHTML(i)}
             <div id="containerformularId${i}" class="containerformularDivClass">
@@ -165,7 +171,7 @@ function returnCategoryHTML(i){
     }
 }
 
-///DRAG AND DROP FUNCTION START
+///DRAG AND DROP MOUSE FUNCTION START
 function startDragging(index) {
     currentDraggedElement = index;
     document.getElementById(`singleCardId${index}`).classList.add('rotateOnDrag');
@@ -226,114 +232,88 @@ function handleDragLeave(event, mainCategoryDivId) {
     }
 }
 
-///MOBILE DRAG DROP FUNCTION:
+///DRAG AND DROP MOUSE FUNCTION END
+
+///MOBILE DRAG DROP FUNCTION START:
+///MOBILE DRAG DROP FUNCTION START:
+///MOBILE DRAG DROP FUNCTION START:
+///MOBILE DRAG DROP FUNCTION START:
 
 function handleTouchStart(event, index) {
+    // console.log(event);
     // Store the index of the dragged element
     currentDraggedElement = index;
 
     // Get initial touch coordinates
     const touch = event.touches[0];
-    touchStartX = touch.pageX;
-    touchStartY = touch.pageY;
+
+    touchStartX = touch.clientX;
+    touchStartY = touch.clientY;
 
     // Add visual feedback
     document.getElementById(`singleCardId${index}`).classList.add('rotateOnDrag');
 }
 
-// function handleTouchMove(event, mainCategoryDivId) {
-//     // Prevent scrolling while dragging
-//     event.preventDefault();
 
-//     const touch = event.touches[0];
-//     const rect = document.getElementById(mainCategoryDivId).getBoundingClientRect();
-
-//     // Track touch coordinates
-//     let x = touch.pageX;
-//     let y = touch.pageY;
-
-//     // Check if the touch is inside the container
-//     if (x > rect.left && x < rect.right && y > rect.top && y < rect.bottom) {
-//         highlight(mainCategoryDivId);  // Highlight the container
-//     } else {
-//         removeHighlight(mainCategoryDivId);  // Remove highlight if outside
-//     }
-// }
+// Adjusted touch move handler to check all containers
 function handleTouchMove(event) {
-    event.preventDefault(); // Prevent scrolling while dragging
+    event.preventDefault(); // Prevent scrolling
 
     const touch = event.touches[0];
+    const x = touch.clientX;
+    const y = touch.clientY;
 
-    // Loop through all containers to check if the touch is inside any container
-    const containers = document.querySelectorAll('.mainCardContainerDivClass');
-    
-    containers.forEach(function(container) {
-        const rect = container.getBoundingClientRect();
+    // Check if the card is over any drop area
+    ['toDoStatusDivId', 'inProgressStatusDivId', 'awaitFeedbackStatusDivId', 'doneStatusDivId'].forEach(mainCategoryDivId => {
+        const rect = document.getElementById(mainCategoryDivId).getBoundingClientRect();
 
-        // Track touch coordinates
-        let x = touch.pageX;
-        let y = touch.pageY;
-
-        // Check if the touch is inside the container
         if (x > rect.left && x < rect.right && y > rect.top && y < rect.bottom) {
-            highlight(container.id);  // Highlight the container
+            highlight(mainCategoryDivId);  // Highlight the container
         } else {
-            removeHighlight(container.id);  // Remove highlight if outside
+            removeHighlight(mainCategoryDivId);  // Remove highlight if outside
         }
     });
 }
 
 
-// function handleTouchEnd(categoryInput, mainCategoryDivId) {
-//     const element = document.getElementById(mainCategoryDivId);
-//     const rect = element.getBoundingClientRect();
-
-//     // Use the last tracked touch coordinates
-//     let x = touchStartX;
-//     let y = touchStartY;
-
-//     // Check if the touch ended within the container
-//     if (x > rect.left && x < rect.right && y > rect.top && y < rect.bottom) {
-//         moveTo(categoryInput);  // Move the card to the new category
-//     }
-
-//     // Clean up any highlighting and visual feedback
-//     document.querySelectorAll('.drag-area-highlight').forEach(function(element) {
-//         element.classList.remove('drag-area-highlight');
-//     });
-//     document.querySelectorAll('.rotateOnDrag').forEach(function(element) {
-//         element.classList.remove('rotateOnDrag');
-//     });
-// }
 function handleTouchEnd(event) {
     const touch = event.changedTouches[0];
+    const x = touch.clientX;
+    const y = touch.clientY;
 
-    // Loop through all containers again to see where the touch ends
-    const containers = document.querySelectorAll('.mainCardContainerDivClass');
-    
-    containers.forEach(function(container) {
-        const rect = container.getBoundingClientRect();
-        
-        let x = touch.pageX;
-        let y = touch.pageY;
-
-        // Check if the touch ended within the container
-        if (x > rect.left && x < rect.right && y > rect.top && y < rect.bottom) {
-            const categoryInput = container.getAttribute('ondrop').match(/'(.*?)'/)[1];
-            moveTo(categoryInput);  // Move the card to the new category
-        }
-    });
-
-    // Clean up any highlighting and visual feedback
+    // Clean up highlights and visual feedback
     document.querySelectorAll('.drag-area-highlight').forEach(function(element) {
         element.classList.remove('drag-area-highlight');
     });
     document.querySelectorAll('.rotateOnDrag').forEach(function(element) {
         element.classList.remove('rotateOnDrag');
     });
+
+    // Mapping of container IDs to category names
+    const categoryMapping = {
+        'toDoStatusDivId': 'To do',
+        'inProgressStatusDivId': 'In progress',
+        'awaitFeedbackStatusDivId': 'Await feedback',
+        'doneStatusDivId': 'Done'
+    };
+
+    // Check where the touch ended and move the card if it is over a valid drop area
+    Object.keys(categoryMapping).forEach(mainCategoryDivId => {
+        const rect = document.getElementById(mainCategoryDivId).getBoundingClientRect();
+
+        if (x > rect.left && x < rect.right && y > rect.top && y < rect.bottom) {
+            const categoryInput = categoryMapping[mainCategoryDivId];  // Get the corresponding category
+            moveTo(categoryInput);  // Move the card to the category
+        }
+    });
 }
 
-///DRAG AND DROP FUNCTION END
+///MOBILE DRAG DROP FUNCTION END
+///MOBILE DRAG DROP FUNCTION END
+///MOBILE DRAG DROP FUNCTION END
+///MOBILE DRAG DROP FUNCTION END
+
+
 
 
 function returnPrioSvgHTML(i) {

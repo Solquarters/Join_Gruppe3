@@ -99,15 +99,23 @@
                                                       </svg>
                                              </div>
                                           </div>
-                                        
+<!--                                         
                                              <div id="toDoStatusDivId" class="mainCardContainerDivClass drag-area"
                                              ondrop="moveTo('To do')" 
                                              ondragleave="handleDragLeave(event, 'toDoStatusDivId')" 
                                              ondragover="allowDrop(event); highlight('toDoStatusDivId')"
-                                             ontouchmove="handleTouchMove(event, 'toDoStatusDivId')"
-                                             ontouchend="handleTouchEnd('To do', 'toDoStatusDivId')">
-                                          </div>
 
+                                             ontouchmove="handleTouchMove(event, 'toDoStatusDivId')"
+                                             ontouchend="handleTouchEnd('To do', 'toDoStatusDivId', event)">
+                                          </div> -->
+                                          
+                                          <div id="toDoStatusDivId" class="mainCardContainerDivClass drag-area"
+                                          ondrop="moveTo('To do')" 
+                                          ondragleave="handleDragLeave(event, 'toDoStatusDivId')" 
+                                          ondragover="allowDrop(event); highlight('toDoStatusDivId')"
+
+                                          >
+                                       </div>
                                           
                                                 <!-- ID im Drag and Drop MiniProjekt: id="mainToDoDivId" -->
                                                 <!-- HIER WERDEN ALLE OBJEKTE AUS DEM TODOJSON DYNAMISCH EINGEFÜGT, ABER NUR WENN SIE DIE KATEGORIE "TO DO" -->
@@ -127,12 +135,18 @@
                                        </div>
                                          
                         
-                                          <div id="inProgressStatusDivId" class="mainCardContainerDivClass drag-area"
+                                          <!-- <div id="inProgressStatusDivId" class="mainCardContainerDivClass drag-area"
                             ondrop="moveTo('In progress')" 
                             ondragleave="handleDragLeave(event, 'inProgressStatusDivId')" 
                             ondragover="allowDrop(event); highlight('inProgressStatusDivId')"
                             ontouchmove="handleTouchMove(event, 'inProgressStatusDivId')" 
-                            ontouchend="handleTouchEnd('In progress', 'inProgressStatusDivId')">
+                            ontouchend="handleTouchEnd('In progress', 'inProgressStatusDivId', event)">
+                        </div> -->
+                        <div id="inProgressStatusDivId" class="mainCardContainerDivClass drag-area"
+                            ondrop="moveTo('In progress')" 
+                            ondragleave="handleDragLeave(event, 'inProgressStatusDivId')" 
+                            ondragover="allowDrop(event); highlight('inProgressStatusDivId')"
+                            >
                         </div>
                         
                         
@@ -157,12 +171,18 @@
                                               </div>
                                            </div>
                                         
-                                           <div id="awaitFeedbackStatusDivId" class="mainCardContainerDivClass drag-area"
+                                           <!-- <div id="awaitFeedbackStatusDivId" class="mainCardContainerDivClass drag-area"
                           ondrop="moveTo('Await feedback')" 
                           ondragleave="handleDragLeave(event, 'awaitFeedbackStatusDivId')" 
                           ondragover="allowDrop(event); highlight('awaitFeedbackStatusDivId')"
                           ontouchmove="handleTouchMove(event, 'awaitFeedbackStatusDivId')" 
-                          ontouchend="handleTouchEnd('Await feedback', 'awaitFeedbackStatusDivId')">
+                          ontouchend="handleTouchEnd('Await feedback', 'awaitFeedbackStatusDivId', event)">
+                        </div> -->
+                        <div id="awaitFeedbackStatusDivId" class="mainCardContainerDivClass drag-area"
+                          ondrop="moveTo('Await feedback')" 
+                          ondragleave="handleDragLeave(event, 'awaitFeedbackStatusDivId')" 
+                          ondragover="allowDrop(event); highlight('awaitFeedbackStatusDivId')"
+                          >
                         </div>
                                                   <!-- ID im Drag and Drop MiniProjekt: id="awaitFeedbackDivId" -->
                                                  <!-- HIER WERDEN ALLE OBJEKTE AUS DEM TODOJSON DYNAMISCH EINGEFÜGT, ABER NUR WENN SIE DIE KATEGORIE "Await feedback" -->
@@ -181,12 +201,18 @@
                                              </div>
                                                 
                                        
-                                             <div id="doneStatusDivId" class="mainCardContainerDivClass drag-area"
+                                             <!-- <div id="doneStatusDivId" class="mainCardContainerDivClass drag-area"
                                ondrop="moveTo('Done')" 
                                ondragleave="handleDragLeave(event, 'doneStatusDivId')" 
                                ondragover="allowDrop(event); highlight('doneStatusDivId')"
                                ontouchmove="handleTouchMove(event, 'doneStatusDivId')" 
-                               ontouchend="handleTouchEnd('Done', 'doneStatusDivId')">
+                               ontouchend="handleTouchEnd('Done', 'doneStatusDivId', event)">
+                             </div> -->
+                             <div id="doneStatusDivId" class="mainCardContainerDivClass drag-area"
+                               ondrop="moveTo('Done')" 
+                               ondragleave="handleDragLeave(event, 'doneStatusDivId')" 
+                               ondragover="allowDrop(event); highlight('doneStatusDivId')"
+                               >
                              </div>
                              
                                                    <!-- ID im Drag and Drop MiniProjekt: id="isDoneDivId" -->
