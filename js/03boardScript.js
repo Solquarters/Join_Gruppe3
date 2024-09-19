@@ -302,6 +302,18 @@ function handleTouchEnd(event) {
     element.classList.remove("rotateOnDrag");
   });
 
+
+  ///CHECK IF USER MOVED THE DRAGGED TOUCH MORE THAN 10PX IN ANY DIRECTION
+ // Calculate the difference between touch start and end positions
+ const deltaX = Math.abs(x - touchStartX);
+ const deltaY = Math.abs(y - touchStartY);
+
+ // Check if the user moved more than 10px in any direction
+ if (deltaX <= 15 && deltaY <= 15) {
+   // If not moved more than 10px, return early
+   return;
+ }
+
   // Mapping of container IDs to category names
   const categoryMapping = {
     toDoStatusDivId: "To do",
