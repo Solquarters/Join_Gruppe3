@@ -62,7 +62,9 @@ function searchContactsDropdown() {
   document.getElementById("dropdownContactAssignId").innerHTML = "";
   if (searchInput == "") {
     ///Render all contacts
+   
     renderContactsDropdownMenuContent();
+    return;
   }
   searchInput = searchInput.toLowerCase();
   //If searching for contacts, all already selected contacts stay selected
