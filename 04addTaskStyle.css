@@ -328,8 +328,8 @@ input[type="date"]:invalid::-webkit-datetime-edit {
   width: 16px;
   height: 16px;
   stroke: #ffffff;
-  border-radius: 3px;
-  padding: 4px;
+  /* border-radius: 3px; */
+  padding: 6px;
 }
 
 .checkbox-unchecked {

@@ -234,37 +234,21 @@ function getProfileRGB(i) {
 async function createContact(event) {
   event.preventDefault(); // Prevent form from submitting automatically
 
+
+
   let fullName = document.getElementById("name").value.trim();
   let email = document.getElementById("email").value.trim();
   let phone = document.getElementById("phone").value.trim();
   
-  // Get first and last name from the full name input
-  let nameParts = fullName.split(" ");
-
-  if (nameParts.length < 2) {
-    // If there is only one part of the name, set the input as invalid and return early
-    let nameInput = document.getElementById("name");
-    nameInput.setCustomValidity("Please enter both first and last name.");
-    nameInput.reportValidity();
-    return;
-  } else {
-    // Clear any previous custom validity messages
-    let nameInput = document.getElementById("name");
-    nameInput.setCustomValidity("");
-  }
-
+  // Split fullName by spaces and filter out empty strings (in case of multiple spaces)
+  let nameParts = fullName.split(" ").filter(part => part.length > 0);
   let firstName = nameParts[0];
   let lastName = nameParts.slice(1).join(" ");
 
   // Check whether a contact already exists with this email
-  let emailExists = contactsJSON.some(
-    (contact, index) => contact.email === email && index !== editingIndex
-  );
-
+  let emailExists = contactsJSON.some((contact, index) => contact.email === email && index !== editingIndex);
   if (emailExists) {
-    alert(
-      "Diese E-Mail-Adresse existiert bereits, verwenden Sie bitte eine andere E-Mail-Adresse"
-    );
+    alert("Diese E-Mail-Adresse existiert bereits, verwenden Sie bitte eine andere E-Mail-Adresse");
     return;
   }
 

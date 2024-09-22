@@ -116,7 +116,7 @@
                         <form onsubmit="createContact(event)">
                             
 
-                            <input id="name" name="name" type="text" placeholder="Name" required>
+                            <input id="name" name="name" type="text" placeholder="First and last name" required pattern="^[A-Za-z]+(\s[A-Za-z]+)+$" title="Please enter both first and last name.">
                             <input id="email" name="email" type="email" placeholder="Email" required pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}">
                             <input id="phone" name="phone" type="tel" placeholder="Phone"  pattern="^(\+?\d{1,2}\s?)?[0-9\s\+\(\)]*$" inputmode="numeric" >
                             <div class="buttonContent">
