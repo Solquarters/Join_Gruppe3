@@ -634,9 +634,9 @@ async function submitAddTaskForm() {
   // If any input is invalid, prevent form submission and show validation messages
   if (!isInput1Valid || !isInput2Valid || !isInput3Valid) {
     // Optionally, display custom error messages
-    if (!isInput3Valid) input3.reportValidity();
-    if (!isInput2Valid) input2.reportValidity();
-    if (!isInput1Valid) input1.reportValidity();
+    if (!isInput3Valid){input3.reportValidity();}
+    if (!isInput2Valid){input2.reportValidity();}
+    if (!isInput1Valid){input1.reportValidity();}
   } else {
     //Display success message and redirect to board
     displaySuccessAddingTask();
@@ -658,20 +658,15 @@ function clearAddTaskForm() {
 }
 
 async function pushNewCardToJson() {
-  temporaryNewTaskSingleCardObject["title"] =
-    document.getElementById("titleInputId").value;
-  temporaryNewTaskSingleCardObject["description"] = document.getElementById(
-    "descriptionTextAreaId").value;
+  temporaryNewTaskSingleCardObject["title"] = document.getElementById("titleInputId").value;
+  temporaryNewTaskSingleCardObject["description"] = document.getElementById("descriptionTextAreaId").value;
   //Date Value correct?
-  temporaryNewTaskSingleCardObject["dueDate"] =
-    document.getElementById("datePickerInputId").value;
+  temporaryNewTaskSingleCardObject["dueDate"] = document.getElementById("datePickerInputId").value;
   //Category already changed onclick, if not clicked, it stays empty
 
   //PUSHE TEMP ARRAY AN DIE STELLE IM TODOJSON
   ///HIER SUCHE INDEX DES ERSTEN TODO OBJECKTS
-  let indexOfFirstToDoinMainJson = findIndexOfFirstCategoryInMainJson(
-    temporaryNewTaskSingleCardObject.toDoStatus
-  );
+  let indexOfFirstToDoinMainJson = findIndexOfFirstCategoryInMainJson(temporaryNewTaskSingleCardObject.toDoStatus);
   if (indexOfFirstToDoinMainJson >= 1) {
     toDoCardsJSON.splice(indexOfFirstToDoinMainJson - 1,0,temporaryNewTaskSingleCardObject);
     //Pushing to server
