@@ -170,71 +170,8 @@ function getProfileRGB(i) {
   return contactsJSON[i].profileRGB;
 }
 
-// async function createContact() {
-//   let fullName = document.getElementById("name").value.trim();
-//   let email = document.getElementById("email").value.trim();
-//   let phone = document.getElementById("phone").value.trim();
-
-//   // Check whether a contact already exists with this email
-//   let emailExists = contactsJSON.some(
-//     (contact, index) => contact.email === email && index !== editingIndex
-//   );
-
-//   if (emailExists) {
-//     alert(
-//       "Diese E-Mail-Adresse existiert bereits, verwenden Sie bitte eine andere E-Mail-Adresse"
-//     );
-//   } else {
-//     // Get first and last name from the full name input
-//     let nameParts = fullName.split(" ");
-
-//     //////new contact wont create when only one name string is inputted!! ///////
-//     let firstName = nameParts[0];
-//     let lastName = "";
-//     if (nameParts.length > 1) {
-//       lastName = nameParts.slice(1).join(" ");
-//     }
-
-//     if (editingIndex !== null) {
-//       // Update existing contact
-//       contactsJSON[editingIndex] = {
-//         firstName: firstName,
-//         lastName: lastName,
-//         phone: phone,
-//         email: email,
-//         profileRGB: contactsJSON[editingIndex].profileRGB, // Keep the existing color
-//       };
-//       await putData("/contactsJson", contactsJSON);
-
-//       editingIndex = null; // Reset editing index after saving
-//     } else {
-//       // Generate a random color for the profileRGB
-//       let profileRGB = `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(
-//         Math.random() * 256
-//       )}, ${Math.floor(Math.random() * 256)})`;
-
-//       // Create a new contact object
-//       let newContact = {
-//         firstName: firstName,
-//         lastName: lastName,
-//         phone: phone,
-//         email: email,
-//         profileRGB: profileRGB,
-//       };
-//       contactsJSON.push(newContact);
-//       contactsJSON = sortContactsByFirstName(contactsJSON);
-
-//       await putData("/contactsJson", contactsJSON);
-//     }
-//     renderContacts();
-//     hideContacts();
-//   }
-// }
-
 async function createContact(event) {
   event.preventDefault(); // Prevent form from submitting automatically
-
-
 
   let fullName = document.getElementById("name").value.trim();
   let email = document.getElementById("email").value.trim();
@@ -262,7 +199,6 @@ async function createContact(event) {
       profileRGB: contactsJSON[editingIndex].profileRGB, // Keep the existing color
     };
     await putData("/contactsJson", contactsJSON);
-
     editingIndex = null; // Reset editing index after saving
   } else {
     // Generate a random color for the profileRGB
@@ -280,16 +216,11 @@ async function createContact(event) {
     };
     contactsJSON.push(newContact);
     contactsJSON = sortContactsByFirstName(contactsJSON);
-
     await putData("/contactsJson", contactsJSON);
   }
-
   renderContacts();
   hideContacts();
 }
-
-
-
 
 
 // Function for show a Pop Up window
@@ -317,11 +248,13 @@ function callDropDownMenu() {
   dropDown.classList.add("active");
   dropDown.classList.remove("inactive");
 
+
+
+  
   function closeDropdown(event) {
-    if (
-      !dropDown.contains(event.target) &&
-      !event.target.closest('button[onclick="callDropDownMenu()"]')
-    ) {
+    ///Managing clicks inside or outside the dropdown menu
+    if (!dropDown.contains(event.target) && !event.target.closest('button[onclick="callDropDownMenu()"]')) 
+      {
       dropDown.classList.remove("active");
       dropDown.classList.add("inactive");
       dropDown.addEventListener(
@@ -334,11 +267,8 @@ function callDropDownMenu() {
       document.removeEventListener("click", closeDropdown);
     }
   }
-
   document.addEventListener("click", closeDropdown);
-  document
-    .querySelector('button[onclick="callDropDownMenu()"]')
-    .addEventListener("click", (event) => event.stopPropagation());
+  document.querySelector('button[onclick="callDropDownMenu()"]').addEventListener("click", (event) => event.stopPropagation());
 }
 
 function hideContacts() {
