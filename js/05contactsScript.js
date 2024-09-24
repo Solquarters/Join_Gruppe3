@@ -185,7 +185,7 @@ async function createContact(event) {
   // Check whether a contact already exists with this email
   let emailExists = contactsJSON.some((contact, index) => contact.email === email && index !== editingIndex);
   if (emailExists) {
-    alert("Diese E-Mail-Adresse existiert bereits, verwenden Sie bitte eine andere E-Mail-Adresse");
+    showEmailErrorMessage();
     return;
   }
 
@@ -615,4 +615,22 @@ function toggleCreateSuccessMessage() {
   setTimeout(() => {
       createSuccessContainer.style.display = "none";
   }, 2200); // Nach der Fade-Out-Zeit ausblenden
+}
+
+function showEmailErrorMessage() {
+  const emailErrorContainer = document.getElementById("emailErrorContainerId");
+  
+  emailErrorContainer.style.display = "flex";
+  setTimeout(() => {
+      emailErrorContainer.style.opacity = "1";
+  }, 10); // Kurze Verzögerung für den Übergang
+  
+  // Sichtbarkeit verlängern
+  setTimeout(() => {
+      emailErrorContainer.style.opacity = "0";
+  }, 3000); // Jetzt 3 Sekunden sichtbar
+
+  setTimeout(() => {
+      emailErrorContainer.style.display = "none";
+  }, 3200); // Nach der Fade-Out-Zeit ausblenden
 }
