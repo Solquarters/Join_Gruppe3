@@ -217,6 +217,7 @@ async function createContact(event) {
     contactsJSON.push(newContact);
     contactsJSON = sortContactsByFirstName(contactsJSON);
     await putData("/contactsJson", contactsJSON);
+    toggleCreateSuccessMessage();
   }
   renderContacts();
   hideContacts();
@@ -597,4 +598,21 @@ function toggleDeleteSuccessMessage(index) {
   setTimeout(() => {
     deleteSuccessContainer.style.display = "none";
   }, 2200); // A little longer than the fade-out transition to ensure it completes
+}
+
+function toggleCreateSuccessMessage() {
+  const createSuccessContainer = document.getElementById("createSuccessContainerId");
+  
+  createSuccessContainer.style.display = "flex";
+  setTimeout(() => {
+      createSuccessContainer.style.opacity = "1";
+  }, 10); // Kurze Verzögerung für den Übergang
+  
+  setTimeout(() => {
+      createSuccessContainer.style.opacity = "0";
+  }, 2000); // Dauer sichtbar
+
+  setTimeout(() => {
+      createSuccessContainer.style.display = "none";
+  }, 2200); // Nach der Fade-Out-Zeit ausblenden
 }

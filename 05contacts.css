@@ -704,6 +704,31 @@ form input {
   transition: opacity 200ms ease-in-out;
 }
 
+.successMessageClass {
+  position: absolute;
+  z-index: 12;
+  width: 300px;
+  height: 300px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border-radius: 16px;
+  border: 2px solid #40A9F5;
+
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  opacity: 0;
+  transition: opacity 200ms ease-in-out;
+}
+
+.contactCreatedText {
+  color: #40A9F5;
+}
+
 /* Media Queries */
 @media (max-width: 1285px) {
   .showContactsText {
