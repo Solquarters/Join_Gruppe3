@@ -14,8 +14,8 @@
     <link rel="stylesheet" href="./assets/templates/headerSidebar.css">
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="fonts.css">
-    
-    
+
+
 
 </head>
 
@@ -23,11 +23,11 @@
     <!-- //Preventing Site Access without login -->
     <script>
         let userLoginJsonTest = JSON.parse(localStorage.getItem('userLoginJson'));
-        if (!userLoginJsonTest || userLoginJsonTest.findIndex(u => u.loggedIn==true) == -1 ) {
+        if (!userLoginJsonTest || userLoginJsonTest.findIndex(u => u.loggedIn == true) == -1) {
             // If not authenticated, redirect to login page
             window.location.href = '07logIn.html';
         }
-        </script>
+    </script>
 
 
 
@@ -37,10 +37,15 @@
 
 
             <!-- ////DELETE SUCCESS MESSAGE HERE -->
-            <div class="deleteSuccessMessageClass" id="deleteSuccessContainerId">
-                
-
-             </div>
+            <div class="deleteSuccessMessageClass" id="deleteSuccessContainerId"></div>
+            <div class="successMessageClass d-none" id="createSuccessContainerId">
+                <h3 class="contactCreatedText">Contact created successfully!</h3>
+                <div class="loader"></div>
+            </div>
+            <div class="errorMessageClass d-none" id="emailErrorContainerId">
+                <h3 style="color: red;">Diese E-Mail-Adresse existiert bereits, verwenden Sie bitte eine andere E-Mail-Adresse.</h3>
+                <div class="loader"></div> <!-- Optional, falls du einen Loader möchtest -->
+            </div>
 
 
             <div class="addContactsBtn">
@@ -51,7 +56,7 @@
         </div>
         <div id="showContactsText" class="showContactsText">
             <div class="showContactsTextMain">
-                <div class="backArrowContainer" >
+                <div class="backArrowContainer">
                     <img onclick="backStep()" class="backArrow" src="./img/Vector.png" alt="Back Arrow">
                 </div>
                 <h2>Contacts</h2>
@@ -67,8 +72,7 @@
         <div class="formContent">
             <div class="leftSide">
                 <button onclick="hideContacts()" id="closePopUp" class="closePopUpTop d-none">
-                    <svg width="24"
-                        height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <mask id="mask0_71720_5528" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="4" y="4"
                             width="24" height="24">
                             <rect x="4" y="4" width="24" height="24" fill="#D9D9D9" />
@@ -93,13 +97,13 @@
                     <div class="formButtonContainer" id="editOrAddContactContainerId">
 
                         <!-- Success edit message container -->
-                         <div class="editSuccessMessageClass">
+                        <div class="editSuccessMessageClass">
                             <h3>Edit successful</h3>
                             <div class="loader"></div>
 
-                         </div>
+                        </div>
 
-                         
+
 
                         <button onclick="hideContacts()" id="closePopUp" class="closePopUp"><svg width="32" height="32"
                                 viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -114,11 +118,14 @@
                                 </g>
                             </svg></button>
                         <form onsubmit="createContact(event)">
-                            
 
-                            <input id="name" name="name" type="text" placeholder="First and last name" required pattern="^[A-Za-z]+(\s[A-Za-z]+)+$" title="Please enter both first and last name.">
-                            <input id="email" name="email" type="email" placeholder="Email" required pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}">
-                            <input id="phone" name="phone" type="tel" placeholder="Phone"  pattern="^(\+?\d{1,2}\s?)?[0-9\s\+\(\)]*$" inputmode="numeric" >
+
+                            <input id="name" name="name" type="text" placeholder="First and last name" required
+                                pattern="^[A-Za-z]+(\s[A-Za-z]+)+$" title="Please enter both first and last name.">
+                            <input id="email" name="email" type="email" placeholder="Email" required
+                                pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}">
+                            <input id="phone" name="phone" type="tel" placeholder="Phone"
+                                pattern="^(\+?\d{1,2}\s?)?[0-9\s\+\(\)]*$" inputmode="numeric">
                             <div class="buttonContent">
                                 <button onclick="contactsWindowsCancel(event)" id="addContactCancel"
                                     class="addContactCancel"><svg xmlns="http://www.w3.org/2000/svg"
@@ -129,9 +136,10 @@
                                 <button id="createContactId" type="submit" class="createContact"><img
                                         src="./img/check.png">Create
                                     contact</button>
-                                <button  onclick="event.preventDefault()" class="editDeleteContact d-none" id="deleteButtonInEditModeId">Delete</button>
-                                <button onclick="saveEditedContact(currentIndex); return false;" id="saveContact" type="submit" class="saveContact"><img
-                                        src="./img/check.png">Save</button>
+                                <button onclick="event.preventDefault()" class="editDeleteContact d-none"
+                                    id="deleteButtonInEditModeId">Delete</button>
+                                <button onclick="saveEditedContact(currentIndex); return false;" id="saveContact"
+                                    type="submit" class="saveContact"><img src="./img/check.png">Save</button>
                             </div>
                         </form>
                     </div>
@@ -139,10 +147,10 @@
             </div>
         </div>
     </div>
-    
+
     <script src="./js/01script.js"></script>
     <script src="./js/05contactsScript.js"></script>
-    
+
 </body>
 
 </html>

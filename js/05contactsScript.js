@@ -185,7 +185,7 @@ async function createContact(event) {
   // Check whether a contact already exists with this email
   let emailExists = contactsJSON.some((contact, index) => contact.email === email && index !== editingIndex);
   if (emailExists) {
-    alert("Diese E-Mail-Adresse existiert bereits, verwenden Sie bitte eine andere E-Mail-Adresse");
+    showEmailErrorMessage();
     return;
   }
 
@@ -217,6 +217,7 @@ async function createContact(event) {
     contactsJSON.push(newContact);
     contactsJSON = sortContactsByFirstName(contactsJSON);
     await putData("/contactsJson", contactsJSON);
+    toggleCreateSuccessMessage();
   }
   renderContacts();
   hideContacts();
@@ -597,4 +598,39 @@ function toggleDeleteSuccessMessage(index) {
   setTimeout(() => {
     deleteSuccessContainer.style.display = "none";
   }, 2200); // A little longer than the fade-out transition to ensure it completes
+}
+
+function toggleCreateSuccessMessage() {
+  const createSuccessContainer = document.getElementById("createSuccessContainerId");
+  
+  createSuccessContainer.style.display = "flex";
+  setTimeout(() => {
+      createSuccessContainer.style.opacity = "1";
+  }, 10); // Kurze Verzögerung für den Übergang
+  
+  setTimeout(() => {
+      createSuccessContainer.style.opacity = "0";
+  }, 2000); // Dauer sichtbar
+
+  setTimeout(() => {
+      createSuccessContainer.style.display = "none";
+  }, 2200); // Nach der Fade-Out-Zeit ausblenden
+}
+
+function showEmailErrorMessage() {
+  const emailErrorContainer = document.getElementById("emailErrorContainerId");
+  
+  emailErrorContainer.style.display = "flex";
+  setTimeout(() => {
+      emailErrorContainer.style.opacity = "1";
+  }, 10); // Kurze Verzögerung für den Übergang
+  
+  // Sichtbarkeit verlängern
+  setTimeout(() => {
+      emailErrorContainer.style.opacity = "0";
+  }, 3000); // Jetzt 3 Sekunden sichtbar
+
+  setTimeout(() => {
+      emailErrorContainer.style.display = "none";
+  }, 3200); // Nach der Fade-Out-Zeit ausblenden
 }
