@@ -1,5 +1,6 @@
 const BASE_URL =
   "https://testprojekt01-812cb-default-rtdb.europe-west1.firebasedatabase.app/";
+  
 let contactsJSON = [];
 
 let toDoCardsJSON = [];
@@ -91,7 +92,7 @@ function returnAddTaskSiteHTML() {
                <span>Due date<span style="color: red;">*</span></span><br>
               
                <div class="textarea-container">
-                   <input id="datePickerInputId" type="date"  min="" onchange="updateDateInTempArray()" class="singleLineInputClass" placeholder="dd/mm/yyyy" required>
+                   <input id="datePickerInputId" type="date"  min="" onchange="updateDateInTempArray()" class="singleLineInputClass" placeholder="dd/mm/yyyy" required max="9999-12-31">
                    
 
                </div>
