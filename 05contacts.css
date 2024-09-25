@@ -684,7 +684,7 @@ form input {
   transition: opacity 200ms ease-in-out;
 }
 .deleteSuccessMessageClass {
-  position: absolute;
+  position: fixed;
   z-index: 12;
   width: 300px;
   height: 300px;

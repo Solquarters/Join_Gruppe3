@@ -154,12 +154,26 @@ function returnAlphabeticalSeperator(i) {
   }
 }
 
+// function sortContactsByFirstName(JSONARRAY) {
+//   return JSONARRAY.sort((a, b) => {
+//     if (a.firstName < b.firstName) {
+//       return -1;
+//     }
+//     if (a.firstName > b.firstName) {
+//       return 1;
+//     }
+//     return 0;
+//   });
+// }
 function sortContactsByFirstName(JSONARRAY) {
   return JSONARRAY.sort((a, b) => {
-    if (a.firstName < b.firstName) {
+    const firstNameA = a.firstName.toLowerCase();
+    const firstNameB = b.firstName.toLowerCase();
+
+    if (firstNameA < firstNameB) {
       return -1;
     }
-    if (a.firstName > b.firstName) {
+    if (firstNameA > firstNameB) {
       return 1;
     }
     return 0;
