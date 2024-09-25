@@ -396,7 +396,7 @@ h2 {
   align-items: center;
   display: none;
   /* Initially hidden */
-  z-index: 999;
+  z-index: 12;
 }
 
 .popUp.active {
@@ -669,7 +669,7 @@ form input {
 
 .editSuccessMessageClass {
   position: absolute;
-  z-index: 12;
+  z-index: 15;
   width: 100%;
   height: 100%;
   background-color: white;
@@ -684,8 +684,8 @@ form input {
   transition: opacity 200ms ease-in-out;
 }
 .deleteSuccessMessageClass {
-  position: fixed;
-  z-index: 12;
+  position: absolute;
+  z-index: 15;
   width: 300px;
   height: 300px;
   top: 50%;
@@ -706,7 +706,7 @@ form input {
 
 .successMessageClass {
   position: absolute;
-  z-index: 12;
+  z-index: 15;
   width: 300px;
   height: 300px;
   top: 50%;
@@ -731,7 +731,7 @@ form input {
 
 .errorMessageClass {
   position: fixed; /* Fixed position für das Pop-up */
-  z-index: 9999; /* Hoher z-index, damit es über allem anderen liegt */
+  z-index: 20; /* Hoher z-index, damit es über allem anderen liegt */
   width: 80%; /* Breite anpassen */
   max-width: 400px; /* Maximalbreite */
   height: auto; /* Höhe automatisch anpassen */
