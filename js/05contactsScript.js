@@ -620,15 +620,15 @@ function toggleCreateSuccessMessage() {
   createSuccessContainer.style.display = "flex";
   setTimeout(() => {
       createSuccessContainer.style.opacity = "1";
-  }, 10); // Kurze Verzögerung für den Übergang
+  }, 10); // Short delay for transition
   
   setTimeout(() => {
       createSuccessContainer.style.opacity = "0";
-  }, 2000); // Dauer sichtbar
+  }, 2000); // Duration visible
 
   setTimeout(() => {
       createSuccessContainer.style.display = "none";
-  }, 2200); // Nach der Fade-Out-Zeit ausblenden
+  }, 2200); // Fade out after the fade out time
 }
 
 function showEmailErrorMessage() {
@@ -637,14 +637,13 @@ function showEmailErrorMessage() {
   emailErrorContainer.style.display = "flex";
   setTimeout(() => {
       emailErrorContainer.style.opacity = "1";
-  }, 10); // Kurze Verzögerung für den Übergang
+  }, 10); // Short delay for transition
   
-  // Sichtbarkeit verlängern
   setTimeout(() => {
       emailErrorContainer.style.opacity = "0";
-  }, 3000); // Jetzt 3 Sekunden sichtbar
+  }, 3000); // Now visible for 3 seconds
 
   setTimeout(() => {
       emailErrorContainer.style.display = "none";
-  }, 3200); // Nach der Fade-Out-Zeit ausblenden
+  }, 3200); // Fade out after the fade out time
 }
